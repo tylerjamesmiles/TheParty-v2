@@ -46,6 +46,14 @@ namespace TheParty_v2
             return state.Parties[state.CurrentTurnPartyIdx];
         }
 
+        public static int TotalNumMembers(BattleStore state)
+        {
+            int Result = 0;
+            foreach (Party party in state.Parties)
+                Result += party.Members.Length;
+            return Result;
+        }
+
         public static BattleStore TimePassed(BattleStore state)
         {
             BattleStore ResultState = DeepCopyOf(state);

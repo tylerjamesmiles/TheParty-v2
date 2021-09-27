@@ -15,6 +15,7 @@ namespace TheParty_v2
         LerpV MovementLerp;
         Wobble HandWobble;
 
+        public bool Done;
         static readonly Vector2 HandOffset = new Vector2(-20, 0);
         const float HandTravelTime = 0.05f;
         const int InvalidNode = -1;
@@ -26,6 +27,7 @@ namespace TheParty_v2
             Edges = PositionEdges(choicePositions);
             MovementLerp = new LerpV(ChoicePositions[0], ChoicePositions[0], 0f);
             HandWobble = new Wobble(1f, 4f);
+            Done = false;
         }
 
         public static int[][] PositionEdges(Vector2[] positions)
@@ -119,6 +121,9 @@ namespace TheParty_v2
 
             MovementLerp.Update(deltaTime);
             HandWobble.Update(deltaTime);
+
+            if (isInFocus && InputManager.JustPressed(Keys.Space))
+                Done = true;
         }
 
         public void Draw(SpriteBatch spriteBatch, bool isInFocus)

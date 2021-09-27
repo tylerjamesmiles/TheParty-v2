@@ -12,7 +12,17 @@ namespace TheParty_v2
         GUIChoice Choice;
         GUIText Text;
 
-        public GUIChoiceBox(string[] choices)
+        public int CurrentChoice => Choice.CurrentChoiceIdx;
+        public bool Done => Box.Done;
+
+        public enum Position
+        {
+            Center,
+            BottomLeft,
+            BottomRight
+        }
+
+        public GUIChoiceBox(string[] choices, Position position)
         {
             string ChoicesText = "";
             for (int i = 0; i < choices.Length; i++)
@@ -23,8 +33,13 @@ namespace TheParty_v2
             }
 
             Vector2 TextSize = GameContent.Font.MeasureString(ChoicesText);
-            Vector2 ScreenCenter = GraphicsGlobals.ScreenSize.ToVector2() / 2;
-            Vector2 TextLoc = ScreenCenter - TextSize / 2;
+            Vector2 ScreenSize = GraphicsGlobals.ScreenSize.ToVector2();
+            Vector2 ScreenCenter = ScreenSize / 2;
+            Vector2 TextLoc =
+                position == Position.Center ? ScreenCenter - TextSize / 2 :
+                position == Position.BottomLeft ? new Vector2(4, ScreenSize.Y - TextSize.Y) :
+                position == Position.BottomRight ? new Vector2(ScreenSize.X - TextSize.X - 8, ScreenSize.Y - TextSize.Y - 8) :
+                Vector2.Zero;
             Text = new GUIText(ChoicesText, TextLoc, int.MaxValue, float.MinValue);
 
             Point BoxLoc = TextLoc.ToPoint() + new Point(-4, -4);
@@ -42,15 +57,23 @@ namespace TheParty_v2
         public void Update(float deltaTime, bool isInFocus)
         {
             Box.Update(deltaTime, true);
-            Choice.Update(deltaTime, true);
-            Text.Update(deltaTime, true);
+            Choice.Update(deltaTime, Box.Grown);
+            Text.Update(deltaTime, Box.Grown);
+
+            if (!Box.Shrink && Choice.Done)
+                Box.StartShrink();
         }
 
         public void Draw(SpriteBatch spriteBatch, bool isInFocus)
         {
             Box.Draw(spriteBatch, true);
-            Choice.Draw(spriteBatch, true);
-            Text.Draw(spriteBatch, true);
+
+            if (Box.Grown && !Box.Shrink)
+            {
+                Choice.Draw(spriteBatch, true);
+                Text.Draw(spriteBatch, true);
+            }
+
         }
     }
 }

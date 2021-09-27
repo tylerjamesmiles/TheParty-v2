@@ -54,15 +54,23 @@ namespace TheParty_v2
             Point DrawSize = SpriteSize;
             Rectangle DrawRect = new Rectangle(DrawPos, DrawSize);
 
-            int SourceX = CurrentFrame * SpriteSize.X;
-            int SourceY = CurrentFacing * SpriteSize.Y;
-            Point SourcePos = new Point(SourceX, SourceY);
-            Point SourceSize = SpriteSize;
-            Rectangle SourceRect = new Rectangle(SourcePos, SourceSize);
+            int DrawFrame = CurrentFrame;
+            if (CurrentFrame == 2)
+                DrawFrame = 0;
+            if (CurrentFrame == 3)
+                DrawFrame = 2;
+            int DrawFacing = CurrentFacing;
+            if (CurrentFacing == 3)
+                DrawFacing = 2;
+
+            Point SourcePos = new Point(DrawFrame * SpriteSize.X, DrawFacing * SpriteSize.Y);
+            Rectangle SourceRect = new Rectangle(SourcePos, SpriteSize);
+
+            SpriteEffects Flip = CurrentFacing == 3 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
 
             Texture2D Sprite = GameContent.Sprites[SpriteName];
 
-            spriteBatch.Draw(Sprite, DrawRect, SourceRect, Color.White);
+            spriteBatch.Draw(Sprite, DrawRect, SourceRect, Color.White, 0f, Vector2.Zero, Flip, 0f);
         }
     }
 }

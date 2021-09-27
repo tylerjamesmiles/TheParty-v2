@@ -10,16 +10,37 @@ namespace TheParty_v2
     {
         BattleStore CurrentStore;
         string BackgroundName;
+        public Vector2[] MemberPositions;
+        public StateMachine<CommandBattle> StateMachine;
 
-        GUIChoiceBox Choice;
+        public GUIChoiceBox FightOrFlee;
+        public GUIChoice MemberChoice;
 
         public CommandBattle(string name)
         {
             BackgroundName = "TestBackground";
             CurrentStore = GameContent.Battles["TestBattle"];
 
-            string[] Choices = new string[] { "Hit", "Hurt", "Charge" };
-            Choice = new GUIChoiceBox(Choices);
+            StateMachine = new StateMachine<CommandBattle>();
+            StateMachine.SetNewCurrentState(this, new FightOrFlee());
+
+            MemberPositions = new Vector2[BattleStore.TotalNumMembers(CurrentStore)];
+            int MemberPosIdx = 0;
+            for (int party = 0; party < CurrentStore.Parties.Length; party++)
+            {
+                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
+                {
+                    Point MemberDrawOffset = new Point(-16, -24);
+                    int MemberDrawStartX = (party == 0) ? 110 : 48;
+                    int MemberXOffset = (party == 0) ? 16 : -16;
+                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
+                    int MemberDrawStartY = 62;
+                    int MemberDrawY = MemberDrawStartY + member * 16;
+                    Point MemberDrawPos = new Point(MemberDrawX, MemberDrawY) + MemberDrawOffset;
+                    MemberPositions[MemberPosIdx] = MemberDrawPos.ToVector2();
+                    MemberPosIdx++;
+                }
+            }
         }
 
         public override void Enter(TheParty client)
@@ -28,7 +49,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-
+            StateMachine.Update(this, deltaTime);
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
@@ -60,6 +81,8 @@ namespace TheParty_v2
                     spriteBatch.Draw(GameContent.Sprites["CharacterBase"], MemberDrawRect, MemberSourceRect, Color.White);
                 }
             }
+
+            StateMachine.Draw(this, spriteBatch);
         }
 
         public override void Exit(TheParty client)

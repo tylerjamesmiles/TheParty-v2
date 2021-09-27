@@ -70,6 +70,9 @@ namespace TheParty_v2
 
         public void Update(float deltaTime, bool isInFocus)
         {
+            if (!isInFocus)
+                return;
+
             NewCharTimer.Update(deltaTime);
 
             if (NewCharTimer.TicThisFrame && CurrentChar < Text.Length - 1)

@@ -13,21 +13,37 @@ namespace TheParty_v2
         private static readonly Point TileSize = new Point(16, 16);
 
         Rectangle Bounds;
+
+        Vector2 LocSmall;
+        Vector2 LocGrown;
+        Vector2 SizeSmall;
+        Vector2 SizeGrown;
         LerpV GrowLocationLerp;
         LerpV GrowSizeLerp;
         public bool Grown => GrowLocationLerp.Reached && GrowSizeLerp.Reached;
+        public bool Done => Grown && Shrink;
+        public bool Shrink;
 
         public GUIBox(Rectangle bounds)
         {
             Bounds = bounds;
 
-            Vector2 LocStart = bounds.Center.ToVector2() + new Vector2(-8, -8);
-            Vector2 LocEnd = bounds.Location.ToVector2();
-            GrowLocationLerp = new LerpV(LocStart, LocEnd, GrowTime);
+            LocSmall = bounds.Center.ToVector2() + new Vector2(-8, -8);
+            LocGrown = bounds.Location.ToVector2();
+            GrowLocationLerp = new LerpV(LocSmall, LocGrown, GrowTime);
 
-            Vector2 SizeStart = new Vector2(16, 16);
-            Vector2 SizeEnd = bounds.Size.ToVector2();
-            GrowSizeLerp = new LerpV(SizeStart, SizeEnd, GrowTime);
+            SizeSmall = new Vector2(16, 16);
+            SizeGrown = bounds.Size.ToVector2();
+            GrowSizeLerp = new LerpV(SizeSmall, SizeGrown, GrowTime);
+
+            Shrink = false;
+        }
+
+        public void StartShrink()
+        {
+            Shrink = true;
+            GrowLocationLerp = new LerpV(LocGrown, LocSmall, GrowTime);
+            GrowSizeLerp = new LerpV(SizeGrown, SizeSmall, GrowTime);
         }
 
         public void Update(float deltaTime, bool isInFocus)
