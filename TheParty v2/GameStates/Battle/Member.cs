@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace TheParty_v2
 {
@@ -15,6 +16,18 @@ namespace TheParty_v2
         public bool HasGoneThisTurn;
 
         private static readonly int StanceLimit = 5;
+
+        public Member(string memberName, JsonDocument doc)
+        {
+            JsonElement Mem = doc.RootElement.GetProperty(memberName);
+            HP = Mem.GetProperty("HP").GetInt32();
+            Stance = Mem.GetProperty("Stance").GetInt32();
+            Charged = Mem.GetProperty("Charged").GetBoolean();
+            KOdFor = Mem.GetProperty("KOdFor").GetInt32();
+
+            HasGoneThisTurn = false;
+            Moves = new Move[] { Move.Hit, Move.Hurt, Move.Charge };
+        }
 
         public static Member DeepCopyOf(Member m) =>
             new Member() 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Text.Json;
 
 namespace TheParty_v2
 {
@@ -20,6 +21,7 @@ namespace TheParty_v2
         public static Dictionary<string, Song> Songs;
         public static Dictionary<string, SoundEffect> SoundEffects;
         public static Dictionary<string, OgmoTileMap> Maps;
+        public static Dictionary<string, Member> Members;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
         public static SpriteFont Font;
@@ -40,25 +42,47 @@ namespace TheParty_v2
             return Result;
         }
 
+        private static Dictionary<string, T> FromJson<T>(string folderName)
+        {
+            Dictionary<string, T> Result = new Dictionary<string, T>();
+            foreach (string filePath in Directory.GetFiles("../../../Content/" + folderName + "/"))
+            {
+                string Name = filePath.Remove(0, ("../../../Content/" + folderName + "/").Length);
+                Name = Name.Remove(Name.Length - ".json".Length, ".json".Length);
+                T Item = JsonUtility.GetDeserialized<T>(filePath);
+                Result.Add(Name, Item);
+            }
+            return Result;
+        }
+
+        private static Dictionary<string, JsonDocument> JsonDocs(string folderName)
+        {
+            Dictionary<string, JsonDocument> Result = new Dictionary<string, JsonDocument>();
+            foreach (string filePath in Directory.GetFiles("../../../Content/" + folderName + "/"))
+            {
+                string Name = filePath.Remove(0, ("../../../Content/" + folderName + "/").Length);
+                Name = Name.Remove(Name.Length - ".json".Length, ".json".Length);
+                JsonDocument doc = JsonDocument.Parse(File.ReadAllText(filePath));
+                Result.Add(Name, doc);
+            }
+            return Result;
+        }
+
         public static void Load(ContentManager content)
         {
             Sprites = LoadedWith<Texture2D>(content, "Art");
             Songs = LoadedWith<Song>(content, "Music");
             SoundEffects = LoadedWith<SoundEffect>(content, "Sfx");
 
-            // Maps
-            Maps = new Dictionary<string, OgmoTileMap>();
-            foreach (string filePath in Directory.GetFiles("../../../Content/Maps"))
-            {
-                string Name = filePath.Remove(0, "../../../Content/Maps/".Length);
+            Maps = FromJson<OgmoTileMap>("Maps");
+            foreach (var map in Maps.Values)
+                map.Initialize();
 
-                if (Name != "TheParty.ogmo")
-                {
-                    OgmoTileMap Map = JsonUtility.GetDeserialized<OgmoTileMap>(filePath);
-                    Map.Initialize();
-                    Maps.Add(Name, Map);
-                }
-            }
+            Members = new Dictionary<string, Member>();
+            foreach (var item in JsonDocs("Members"))
+                Members.Add(item.Key, new Member(item.Key, item.Value));
+
+
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();

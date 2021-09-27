@@ -49,7 +49,7 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["TestMap.json"];
+            CurrentMap = GameContent.Maps["TestMap"];
         }
 
 
