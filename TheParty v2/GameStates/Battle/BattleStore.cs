@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace TheParty_v2
 {
@@ -11,6 +12,16 @@ namespace TheParty_v2
         public int AvailableCharge;
 
         public static int NumDeepCopiesMade = 0;
+
+        public BattleStore(string stateName, JsonDocument doc)
+        {
+            JsonElement parties = doc.RootElement.GetProperty(stateName).GetProperty("Parties");
+            Parties = new Party[parties.GetArrayLength()];
+            for (int i = 0; i < Parties.Length; i++)
+                Parties[i] = GameContent.Parties[parties[i].GetString()];
+            CurrentTurnPartyIdx = 0;
+            AvailableCharge = Parties.Length;
+        }
 
         public static BattleStore DeepCopyOf(BattleStore state)
         {

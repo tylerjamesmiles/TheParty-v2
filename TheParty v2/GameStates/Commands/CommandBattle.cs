@@ -16,68 +16,7 @@ namespace TheParty_v2
         public CommandBattle(string name)
         {
             BackgroundName = "TestBackground";
-            CurrentStore = new BattleStore()
-            {
-                CurrentTurnPartyIdx = 0,
-                AvailableCharge = 0,
-                Parties = new Party[]
-                {
-                    new Party()
-                    {
-                        AIControlled = false,
-                        Members = new Member[]
-                        {
-                            new Member()
-                            {
-                                HP = 6,
-                                Stance = 2,
-                                Charged = false,
-                                KOdFor = 0,
-                                HasGoneThisTurn = false
-                            },
-                            new Member()
-                            {
-                                HP = 6,
-                                Stance = 2,
-                                Charged = false,
-                                KOdFor = 0,
-                                HasGoneThisTurn = false
-                            }
-                        }
-                    },
-                    new Party()
-                    {
-                        AIControlled = false,
-                        Members = new Member[]
-                        {
-                            new Member()
-                            {
-                                HP = 6,
-                                Stance = 2,
-                                Charged = false,
-                                KOdFor = 0,
-                                HasGoneThisTurn = false
-                            },
-                            new Member()
-                            {
-                                HP = 6,
-                                Stance = 2,
-                                Charged = false,
-                                KOdFor = 0,
-                                HasGoneThisTurn = false
-                            },
-                            new Member()
-                            {
-                                HP = 6,
-                                Stance = 2,
-                                Charged = false,
-                                KOdFor = 0,
-                                HasGoneThisTurn = false
-                            }
-                        }
-                    }
-                }
-            };
+            CurrentStore = GameContent.Battles["TestBattle"];
 
             string[] Choices = new string[] { "Hit", "Hurt", "Charge" };
             Choice = new GUIChoiceBox(Choices);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json;
 
 namespace TheParty_v2
 {
@@ -17,6 +18,20 @@ namespace TheParty_v2
     {
         public Member[] Members;
         public bool AIControlled;
+
+        public Party(string partyName, JsonDocument doc)
+        {
+            JsonElement party = doc.RootElement.GetProperty(partyName);
+            JsonElement members = party.GetProperty("Members");
+            Members = new Member[members.GetArrayLength()];
+            for (int i = 0; i < members.GetArrayLength(); i++)
+            {
+                string MemberName = members[i].GetString();
+                Members[i] = GameContent.Members[MemberName];
+            }
+
+            AIControlled = party.GetProperty("AIControlled").GetBoolean();
+        }
 
         public static Party DeepCopyOf(Party party)
         {

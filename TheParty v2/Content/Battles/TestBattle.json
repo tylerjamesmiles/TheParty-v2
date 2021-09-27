@@ -1,0 +1,10 @@
+﻿{
+	"TestBattle" :
+	{
+		"Parties" :
+		[
+			"TestParty",
+			"TestParty"
+		]
+	}
+}

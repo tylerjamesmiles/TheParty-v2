@@ -1,0 +1,11 @@
+﻿{
+	"TestParty" :
+	{
+		"AIControlled" : false,
+		"Members" :
+		[
+			"TestMember",
+			"TestMember"
+		]
+	}
+}

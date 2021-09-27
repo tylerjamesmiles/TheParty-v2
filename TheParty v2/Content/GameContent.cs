@@ -22,6 +22,8 @@ namespace TheParty_v2
         public static Dictionary<string, SoundEffect> SoundEffects;
         public static Dictionary<string, OgmoTileMap> Maps;
         public static Dictionary<string, Member> Members;
+        public static Dictionary<string, Party> Parties;
+        public static Dictionary<string, BattleStore> Battles;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
         public static SpriteFont Font;
@@ -82,7 +84,13 @@ namespace TheParty_v2
             foreach (var item in JsonDocs("Members"))
                 Members.Add(item.Key, new Member(item.Key, item.Value));
 
+            Parties = new Dictionary<string, Party>();
+            foreach (var item in JsonDocs("Parties"))
+                Parties.Add(item.Key, new Party(item.Key, item.Value));
 
+            Battles = new Dictionary<string, BattleStore>();
+            foreach (var item in JsonDocs("Battles"))
+                Battles.Add(item.Key, new BattleStore(item.Key, item.Value));
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();
