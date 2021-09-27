@@ -58,7 +58,9 @@ namespace TheParty_v2
                         foreach (string entityName in Arguments)
                             ResultList.Add(new CommandStopFacingPlayer(EntityFromName(entityName, EntityLayer, caller)));
                         break;
-
+                    case "battle":
+                        ResultList.Add(new CommandBattle(Arguments[0]));
+                        break;
 
                 }
 

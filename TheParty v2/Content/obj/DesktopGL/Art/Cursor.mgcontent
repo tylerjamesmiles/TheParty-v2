@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png</SourceFile>
-  <SourceTime>2021-09-15T14:16:06.2307503-05:00</SourceTime>
+  <SourceTime>2021-09-24T14:40:35.0261064-05:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/Cursor.xnb</DestFile>
-  <DestTime>2021-09-21T10:35:19.5496764-05:00</DestTime>
+  <DestTime>2021-09-27T10:23:41.2064735-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

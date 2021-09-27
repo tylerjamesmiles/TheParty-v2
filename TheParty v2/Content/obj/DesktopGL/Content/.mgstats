@@ -1,9 +1,10 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/basictiles.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/basictiles.xnb","TextureProcessor","Texture2DContent",7516,122965,0.1349353
+"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/basictiles.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/basictiles.xnb","TextureProcessor","Texture2DContent",4241,122965,0.1109259
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Box.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Box.xnb","TextureProcessor","Texture2DContent",248,9301,0.1829039
-"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterBase.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/CharacterBase.xnb","TextureProcessor","Texture2DContent",795,65621,0.1064304
+"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterBase.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/CharacterBase.xnb","TextureProcessor","Texture2DContent",779,65621,0.1082142
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Circle.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Circle.xnb","TextureProcessor","Texture2DContent",59545,4000085,0.2062909
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Cursor.xnb","TextureProcessor","Texture2DContent",258,2133,0.1207935
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FilledCircle.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/FilledCircle.xnb","TextureProcessor","Texture2DContent",62358,4000085,0.0780709
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Font.xnb","TextureProcessor","Texture2DContent",920,17365,0.1464912
+"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestBackground.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/TestBackground.xnb","TextureProcessor","Texture2DContent",1637,92245,0.1438965
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Tileset.xnb","TextureProcessor","Texture2DContent",156,16469,0.0012324

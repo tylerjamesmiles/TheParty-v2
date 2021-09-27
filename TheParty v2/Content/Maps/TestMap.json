@@ -51,7 +51,7 @@
           "y": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Freeze(me)\nFacePlayer(me)\nDialogue(\"Hello!\")\nDialogue(\"How are you?\")\nUnfreeze(me)\nStopFacingPlayer(me)"}
+          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Battle(TestBattle1)"}
         },
         {
           "name": "Entity",
