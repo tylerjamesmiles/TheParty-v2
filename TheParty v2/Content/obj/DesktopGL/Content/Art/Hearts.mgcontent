@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/basictiles.png</SourceFile>
-  <SourceTime>2021-09-27T10:30:17.4137321-05:00</SourceTime>
-  <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/basictiles.xnb</DestFile>
-  <DestTime>2021-09-27T15:03:28.8714185-05:00</DestTime>
+  <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</SourceFile>
+  <SourceTime>2021-09-28T09:58:22.9546362-05:00</SourceTime>
+  <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/Hearts.xnb</DestFile>
+  <DestTime>2021-09-28T09:58:41.8726334-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

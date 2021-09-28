@@ -8,13 +8,15 @@ namespace TheParty_v2
 {
     class CommandBattle : Command<TheParty>
     {
-        BattleStore CurrentStore;
+        public BattleStore CurrentStore;
         string BackgroundName;
-        public Vector2[] MemberPositions;
+        public List<AnimatedSprite2D> Sprites;
         public StateMachine<CommandBattle> StateMachine;
 
         public GUIChoiceBox FightOrFlee;
         public GUIChoice MemberChoice;
+        public GUIChoiceBox MoveChoice;
+        public GUIChoice TargetChoice;
 
         public CommandBattle(string name)
         {
@@ -24,24 +26,49 @@ namespace TheParty_v2
             StateMachine = new StateMachine<CommandBattle>();
             StateMachine.SetNewCurrentState(this, new FightOrFlee());
 
-            MemberPositions = new Vector2[BattleStore.TotalNumMembers(CurrentStore)];
-            int MemberPosIdx = 0;
+            Sprites = new List<AnimatedSprite2D>();
             for (int party = 0; party < CurrentStore.Parties.Length; party++)
             {
                 for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
                 {
-                    Point MemberDrawOffset = new Point(-16, -24);
+                    Vector2 MemberDrawOffset = new Vector2(-16, -16);
                     int MemberDrawStartX = (party == 0) ? 110 : 48;
                     int MemberXOffset = (party == 0) ? 16 : -16;
                     int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
                     int MemberDrawStartY = 62;
                     int MemberDrawY = MemberDrawStartY + member * 16;
-                    Point MemberDrawPos = new Point(MemberDrawX, MemberDrawY) + MemberDrawOffset;
-                    MemberPositions[MemberPosIdx] = MemberDrawPos.ToVector2();
-                    MemberPosIdx++;
+                    Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
+
+                    AnimatedSprite2D Sprite = new AnimatedSprite2D("TestFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                    Sprite.AddAnimation("Active", 0, 4, 0.2f);
+                    Sprite.SetCurrentAnimation("Active");
+                    Sprites.Add(Sprite);
                 }
             }
         }
+
+        public List<int> PartyIdxs(int partyIdx)
+        {
+            List<int> Result = new List<int>();
+            int Idx = 0;
+            for (int p = 0; p < CurrentStore.Parties.Length; p++)
+                for (int m = 0; m < CurrentStore.Parties[p].Members.Length; m++)
+                {
+                    if (p == partyIdx) 
+                        Result.Add(Idx);
+                    Idx++;
+                }
+            return Result;
+        }
+
+        public List<AnimatedSprite2D> PartySprites(int partyIdx)
+            => PartyIdxs(partyIdx).ConvertAll(i => Sprites[i]);
+
+        public int MemberSpriteIdx(int partyIdx, int memberIdx)
+            => PartyIdxs(partyIdx)[memberIdx];
+
+        //public List<AnimatedSprite2D> MemberSprites(Predicate<Member> pred)
+        //    => PartySprites[]
 
         public override void Enter(TheParty client)
         {
@@ -49,6 +76,8 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
+            Sprites.ForEach(s => s.Update(deltaTime));
+
             StateMachine.Update(this, deltaTime);
         }
 
@@ -57,30 +86,8 @@ namespace TheParty_v2
             // Background
             Rectangle BackgroundRect = new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize);
             spriteBatch.Draw(GameContent.Sprites[BackgroundName], BackgroundRect, Color.White);
-        
-            // Fighters
-            for (int party = 0; party < CurrentStore.Parties.Length; party++)
-            {
-                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
-                {
-                    Point MemberDrawOffset = new Point(-16, -24);
-                    int MemberDrawStartX = (party == 0) ? 110 : 48;
-                    int MemberXOffset = (party == 0) ? 16 : -16;
-                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
-                    int MemberDrawStartY = 62;
-                    int MemberDrawY = MemberDrawStartY + member * 16;
-                    Point MemberDrawPos = new Point(MemberDrawX, MemberDrawY) + MemberDrawOffset;
-                    Point MemberDrawSize = new Point(32, 32);
-                    Rectangle MemberDrawRect = new Rectangle(MemberDrawPos, MemberDrawSize);
 
-                    int MemberSourceY = (party == 0) ? 64 : 96;
-                    Point MemberSourcePos = new Point(0, MemberSourceY);
-                    Point MemberSourceSize = new Point(32, 32);
-                    Rectangle MemberSourceRect = new Rectangle(MemberSourcePos, MemberSourceSize);
-
-                    spriteBatch.Draw(GameContent.Sprites["CharacterBase"], MemberDrawRect, MemberSourceRect, Color.White);
-                }
-            }
+            Sprites.ForEach(s => s.Draw(spriteBatch));
 
             StateMachine.Draw(this, spriteBatch);
         }

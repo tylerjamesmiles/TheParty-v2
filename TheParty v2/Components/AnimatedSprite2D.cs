@@ -32,12 +32,14 @@ namespace TheParty_v2
             }
         }
 
-        public void Draw(string spriteName, Rectangle drawRect, SpriteBatch spriteBatch)
+        public void Draw(string spriteName, Rectangle drawRect, SpriteBatch spriteBatch, bool flip = false)
         {
             Texture2D Sprite = GameContent.Sprites[spriteName];
             Point SourcePos = new Point(CurrentFrame * drawRect.Size.X, FrameRow * drawRect.Size.Y);
             Rectangle SourceRect = new Rectangle(SourcePos, drawRect.Size);
-            spriteBatch.Draw(Sprite, drawRect, SourceRect, Color.White);
+
+            SpriteEffects Flip = flip ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            spriteBatch.Draw(Sprite, drawRect, SourceRect, Color.White, 0f, Vector2.Zero, Flip, 0f);
         }
     }
 
@@ -46,15 +48,21 @@ namespace TheParty_v2
         string SpriteName;
         string CurrentAnimationName;
         Point FrameSize;
-        Vector2 DrawPos;
+        Vector2 Pos;
         Vector2 Offset;
+        public Vector2 DrawPos => Pos;
+        bool Flip;
         Dictionary<string, Animation> Animations;
 
-        public AnimatedSprite2D(string spriteName, Point frameSize)
+        public AnimatedSprite2D(string spriteName, Point frameSize, Vector2 drawPos, Vector2 offset, bool flip = false)
         {
             CurrentAnimationName = "";
             SpriteName = spriteName;
             FrameSize = frameSize;
+            Animations = new Dictionary<string, Animation>();
+            Pos = drawPos;
+            Offset = offset;
+            Flip = flip;
         }
 
         public Animation CurrentAnimation =>
@@ -72,9 +80,9 @@ namespace TheParty_v2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Point DrawPosPoint = DrawPos.ToPoint() + Offset.ToPoint();
+            Point DrawPosPoint = Pos.ToPoint() + Offset.ToPoint();
             Rectangle DrawRect = new Rectangle(DrawPosPoint, FrameSize);
-            CurrentAnimation?.Draw(SpriteName, DrawRect, spriteBatch);
+            CurrentAnimation?.Draw(SpriteName, DrawRect, spriteBatch, Flip);
         }
     }
 }

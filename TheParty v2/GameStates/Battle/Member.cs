@@ -44,6 +44,14 @@ namespace TheParty_v2
         public static int StanceAfterHit(int oldStance, int hitBy) =>
             MathUtility.RolledIfAtLimit(oldStance + hitBy, StanceLimit);
 
+        public string[] MoveNames()
+        {
+            List<string> Result = new List<string>();
+            foreach (Move move in Moves)
+                Result.Add(move.Name);
+            return Result.ToArray();
+        }
+
         public static string StringRepresentation(Member member)
         {
             string Result = "";

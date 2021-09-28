@@ -11,6 +11,7 @@ namespace TheParty_v2
     {
         Vector2[] ChoicePositions;
         public int CurrentChoiceIdx { get; private set; }
+        public int NumChoices => ChoicePositions.Length;
         int[][] Edges;
         LerpV MovementLerp;
         Wobble HandWobble;
@@ -25,9 +26,10 @@ namespace TheParty_v2
             ChoicePositions = choicePositions;
             CurrentChoiceIdx = 0;
             Edges = PositionEdges(choicePositions);
-            MovementLerp = new LerpV(ChoicePositions[0], ChoicePositions[0], 0f);
-            HandWobble = new Wobble(1f, 4f);
+            HandWobble = new Wobble(4f, 2f);
             Done = false;
+            MovementLerp = new LerpV(ChoicePositions[0], ChoicePositions[0], 0f);
+
         }
 
         public static int[][] PositionEdges(Vector2[] positions)

@@ -13,6 +13,7 @@ namespace TheParty_v2
         GUIText Text;
 
         public int CurrentChoice => Choice.CurrentChoiceIdx;
+        public int NumChoices => Choice.NumChoices;
         public bool Done => Box.Done;
 
         public enum Position
@@ -22,7 +23,7 @@ namespace TheParty_v2
             BottomRight
         }
 
-        public GUIChoiceBox(string[] choices, Position position)
+        public GUIChoiceBox(string[] choices, Position position, bool[] choiceValidity = null)
         {
             string ChoicesText = "";
             for (int i = 0; i < choices.Length; i++)
@@ -49,7 +50,10 @@ namespace TheParty_v2
 
             Vector2[] ChoicePositions = new Vector2[choices.Length];
             for (int i = 0; i < choices.Length; i++)
-                ChoicePositions[i] = TextLoc + new Vector2(0, i * 10 - 4);
+                if (choiceValidity == null || 
+                    (choiceValidity != null && choiceValidity[i]))
+                    ChoicePositions[i] = TextLoc + new Vector2(0, i * 10 - 4);
+
             Choice = new GUIChoice(ChoicePositions);
 
         }

@@ -56,9 +56,6 @@ namespace TheParty_v2
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             InputManager.SetNewState();
 
             float DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;

@@ -11,10 +11,14 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FilledCircle.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestBackground.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

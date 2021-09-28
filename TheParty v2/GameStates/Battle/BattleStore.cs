@@ -97,6 +97,51 @@ namespace TheParty_v2
         public static ref Member Member(BattleStore state, int partyIdx, int memberIdx) =>
             ref state.Parties[partyIdx].Members[memberIdx];
 
+        public Member MemberFromIdx(int idx)
+        {
+            int CurIdx = 0;
+            for (int party = 0; party < Parties.Length; party++)
+            {
+                for (int member = 0; member < Parties[party].Members.Length; member++)
+                {
+                    if (CurIdx == idx)
+                        return Parties[party].Members[member];
+                    CurIdx++;
+                }
+            }
+            throw new Exception("Idx larger than number of members.");
+        }
+
+        public List<Targeting> PossibleTargetingFor(Move move, int fromPartyIdx, int fromMemIdx)
+        {
+            List<Targeting> Result = new List<Targeting>();
+            for (int party = 0; party < Parties.Length; party++)
+                for (int mem = 0; mem < Parties[party].Members.Length; mem++)
+                {
+                    Targeting Potential = new Targeting()
+                    {
+                        FromPartyIdx = fromPartyIdx,
+                        FromMemberIdx = fromMemIdx,
+                        ToPartyIdx = party,
+                        ToMemberIdx = mem
+                    };
+
+                    if (Move.ValidOnMember(move, this, Potential))
+                        Result.Add(Potential);
+                }
+
+            return Result;
+        }
+
+        public Member[] AllMembers()
+        {
+            List<Member> Result = new List<Member>();
+            foreach (Party party in Parties)
+                foreach (Member member in party.Members)
+                    Result.Add(member);
+            return Result.ToArray();
+        }
+
         public static string ConsolePrintState(BattleStore state)
         {
             int LargestNumMembers = BattleStore.LargestNumMembers(state);
