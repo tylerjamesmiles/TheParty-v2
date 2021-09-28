@@ -17,6 +17,8 @@ namespace TheParty_v2
         public CommandQueue<TheParty> CommandQueue;
         public OgmoTileMap CurrentMap;
 
+        int HP = 10;
+
         public TheParty()
         {
             Graphics = new GraphicsDeviceManager(this);
@@ -52,8 +54,6 @@ namespace TheParty_v2
             CurrentMap = GameContent.Maps["TestMap"];
         }
 
-
-
         protected override void Update(GameTime gameTime)
         {
             InputManager.SetNewState();
@@ -61,7 +61,6 @@ namespace TheParty_v2
             float DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             StateMachine.Update(this, DeltaTime);
-
             CommandQueue.Update(this, DeltaTime);
 
             InputManager.SetOldState();
@@ -79,7 +78,6 @@ namespace TheParty_v2
             // ~ ~ ~
 
             StateMachine.Draw(this, SpriteBatch);
-
             CommandQueue.Draw(this, SpriteBatch);
 
             // ~ ~ ~

@@ -11,6 +11,7 @@ namespace TheParty_v2
         public BattleStore CurrentStore;
         string BackgroundName;
         public List<AnimatedSprite2D> Sprites;
+        public List<HeartsIndicator> HPIndicators;
         public StateMachine<CommandBattle> StateMachine;
 
         public GUIChoiceBox FightOrFlee;
@@ -27,6 +28,7 @@ namespace TheParty_v2
             StateMachine.SetNewCurrentState(this, new FightOrFlee());
 
             Sprites = new List<AnimatedSprite2D>();
+            HPIndicators = new List<HeartsIndicator>();
             for (int party = 0; party < CurrentStore.Parties.Length; party++)
             {
                 for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
@@ -43,6 +45,9 @@ namespace TheParty_v2
                     Sprite.AddAnimation("Active", 0, 4, 0.2f);
                     Sprite.SetCurrentAnimation("Active");
                     Sprites.Add(Sprite);
+
+                    int HP = CurrentStore.Parties[party].Members[member].HP;
+                    HPIndicators.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
                 }
             }
         }
@@ -67,9 +72,6 @@ namespace TheParty_v2
         public int MemberSpriteIdx(int partyIdx, int memberIdx)
             => PartyIdxs(partyIdx)[memberIdx];
 
-        //public List<AnimatedSprite2D> MemberSprites(Predicate<Member> pred)
-        //    => PartySprites[]
-
         public override void Enter(TheParty client)
         {
         }
@@ -77,8 +79,11 @@ namespace TheParty_v2
         public override void Update(TheParty client, float deltaTime)
         {
             Sprites.ForEach(s => s.Update(deltaTime));
+            HPIndicators.ForEach(h => h.Update(deltaTime));
 
             StateMachine.Update(this, deltaTime);
+
+
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
@@ -88,6 +93,7 @@ namespace TheParty_v2
             spriteBatch.Draw(GameContent.Sprites[BackgroundName], BackgroundRect, Color.White);
 
             Sprites.ForEach(s => s.Draw(spriteBatch));
+            HPIndicators.ForEach(h => h.Draw(spriteBatch));
 
             StateMachine.Draw(this, spriteBatch);
         }
