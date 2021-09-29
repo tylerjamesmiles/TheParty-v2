@@ -9,11 +9,29 @@ namespace TheParty_v2
 {
     class ChooseMember : State<CommandBattle>
     {
+        List<int> MemberIdxs;
+
         public override void Enter(CommandBattle client)
         {
             int CurrentTurn = client.CurrentStore.CurrentTurnPartyIdx;
-            List<Vector2> MemberPositions = client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos);
-            client.MemberChoice = new GUIChoice(MemberPositions.ToArray());
+
+            List<Vector2> MemberPositions = client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos + new Vector2(-3, 0));
+
+            List<Vector2> LegalMemberPositions = new List<Vector2>();
+            Member[] MembersInThisParty = client.CurrentStore.MembersOfParty(CurrentTurn);
+            MemberIdxs = new List<int>();
+            for (int i = 0; i < MembersInThisParty.Length; i++)
+            {
+                if (MembersInThisParty[i].CanGo())
+                {
+                    MemberIdxs.Add(i);
+                    LegalMemberPositions.Add(MemberPositions[i]);
+                }
+            }
+
+            client.MemberChoice = new GUIChoice(LegalMemberPositions.ToArray());
+
+            client.Sprites.ForEach(s => s.SetCurrentAnimation("Idle"));
         }
 
         public override void Update(CommandBattle client, float deltaTime)
@@ -21,7 +39,15 @@ namespace TheParty_v2
             client.MemberChoice.Update(deltaTime, true);
 
             if (client.MemberChoice.Done)
+            {
+                client.CurrentTargeting = new Targeting()
+                {
+                    FromPartyIdx = client.CurrentStore.CurrentTurnPartyIdx,
+                    FromMemberIdx = MemberIdxs[client.MemberChoice.CurrentChoiceIdx]
+                };
                 client.StateMachine.SetNewCurrentState(client, new ChooseMove());
+
+            }
 
             if (InputManager.JustReleased(Keys.Escape))
                 client.StateMachine.SetNewCurrentState(client, new FightOrFlee());

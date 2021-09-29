@@ -52,33 +52,9 @@ namespace TheParty_v2
             return Result.ToArray();
         }
 
-        public static string StringRepresentation(Member member)
+        public bool CanGo()
         {
-            string Result = "";
-
-            if (member.HasGoneThisTurn)
-                Result += ".";
-
-            if (member.Charged)
-                Result += "*";
-
-            for (int i = 0; i < member.KOdFor; i++)
-                Result += '>';
-
-            // stance
-            if (member.KOdFor <= 0) 
-                Result += "[" + member.Stance + "]";
-
-            // hp
-            Result += "(" + member.HP + ")";
-
-            for (int i = 0; i < member.KOdFor; i++)
-                Result += '<';
-
-            if (member.Charged)
-                Result += "*";
-
-            return Result;
+            return HP > 0 && Stance > 0;
         }
     }
 }

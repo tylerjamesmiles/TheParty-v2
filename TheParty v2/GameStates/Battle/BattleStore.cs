@@ -97,41 +97,9 @@ namespace TheParty_v2
         public static ref Member Member(BattleStore state, int partyIdx, int memberIdx) =>
             ref state.Parties[partyIdx].Members[memberIdx];
 
-        public Member MemberFromIdx(int idx)
-        {
-            int CurIdx = 0;
-            for (int party = 0; party < Parties.Length; party++)
-            {
-                for (int member = 0; member < Parties[party].Members.Length; member++)
-                {
-                    if (CurIdx == idx)
-                        return Parties[party].Members[member];
-                    CurIdx++;
-                }
-            }
-            throw new Exception("Idx larger than number of members.");
-        }
 
-        public List<Targeting> PossibleTargetingFor(Move move, int fromPartyIdx, int fromMemIdx)
-        {
-            List<Targeting> Result = new List<Targeting>();
-            for (int party = 0; party < Parties.Length; party++)
-                for (int mem = 0; mem < Parties[party].Members.Length; mem++)
-                {
-                    Targeting Potential = new Targeting()
-                    {
-                        FromPartyIdx = fromPartyIdx,
-                        FromMemberIdx = fromMemIdx,
-                        ToPartyIdx = party,
-                        ToMemberIdx = mem
-                    };
-
-                    if (Move.ValidOnMember(move, this, Potential))
-                        Result.Add(Potential);
-                }
-
-            return Result;
-        }
+        public Member[] MembersOfParty(int partyIdx) =>
+            Parties[partyIdx].Members;
 
         public Member[] AllMembers()
         {
@@ -140,55 +108,6 @@ namespace TheParty_v2
                 foreach (Member member in party.Members)
                     Result.Add(member);
             return Result.ToArray();
-        }
-
-        public static string ConsolePrintState(BattleStore state)
-        {
-            int LargestNumMembers = BattleStore.LargestNumMembers(state);
-
-            string Result = "";
-
-            // Top row: Party numbers
-            Result += '\t';
-            for (int p = 0; p < state.Parties.Length; p++)
-            {
-                if (p == state.CurrentTurnPartyIdx) Result += "*";
-                Result += ' ' + p.ToString();
-                if (p == state.CurrentTurnPartyIdx) Result += "*";
-                Result += "\t\t";
-            }
-            Result += '\n';
-
-            for (int member = 0; member < LargestNumMembers; member++)
-            {
-                // Far left collumn: Member numbers
-                Result += member.ToString() + ":\t";
-
-                // Member representations
-                for (int party = 0; party < state.Parties.Length; party++)
-                {
-                    if (member < state.Parties[party].Members.Length)
-                    {
-                        Member Member = BattleStore.Member(state, party, member);
-                        string StringRep = Member.StringRepresentation(Member);
-                        Result += StringRep;
-
-                        if (StringRep.Length <= 7)
-                            Result += "\t\t";
-                        else
-                            Result += "\t";
-                    }
-                    else
-                        Result += "\t\t";
-                }
-                Result += '\n';
-            }
-
-            Result += '\n';
-
-            Result += "Charge Available: " + state.AvailableCharge + "\n\n";
-
-            return Result;
         }
 
         public static bool IsTerminal(BattleStore state)

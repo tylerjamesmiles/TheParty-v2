@@ -6,14 +6,14 @@ using System.Text;
 
 namespace TheParty_v2
 {
-    class Animation
+    class SpriteAnimation
     {
         int FrameRow;
         int NumFrames;
         int CurrentFrame;
         Timer Timer;
 
-        public Animation(int row, int numFrames, float speed)
+        public SpriteAnimation(int row, int numFrames, float speed)
         {
             FrameRow = row;
             NumFrames = numFrames;
@@ -48,28 +48,27 @@ namespace TheParty_v2
         string SpriteName;
         string CurrentAnimationName;
         Point FrameSize;
-        Vector2 Pos;
+        public Vector2 DrawPos { get; set; }
         Vector2 Offset;
-        public Vector2 DrawPos => Pos;
-        bool Flip;
-        Dictionary<string, Animation> Animations;
+        public bool Flip { get; private set; }
+        Dictionary<string, SpriteAnimation> Animations;
 
         public AnimatedSprite2D(string spriteName, Point frameSize, Vector2 drawPos, Vector2 offset, bool flip = false)
         {
             CurrentAnimationName = "";
             SpriteName = spriteName;
             FrameSize = frameSize;
-            Animations = new Dictionary<string, Animation>();
-            Pos = drawPos;
+            Animations = new Dictionary<string, SpriteAnimation>();
+            DrawPos = drawPos;
             Offset = offset;
             Flip = flip;
         }
 
-        public Animation CurrentAnimation =>
+        public SpriteAnimation CurrentAnimation =>
             Animations.GetValueOrDefault(CurrentAnimationName);
                 
         public void AddAnimation(string name, int row, int numFrames, float speed)
-            => Animations.Add(name, new Animation(row, numFrames, speed));
+            => Animations.Add(name, new SpriteAnimation(row, numFrames, speed));
 
         public void SetCurrentAnimation(string name) => CurrentAnimationName = name;
 
@@ -80,7 +79,7 @@ namespace TheParty_v2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Point DrawPosPoint = Pos.ToPoint() + Offset.ToPoint();
+            Point DrawPosPoint = DrawPos.ToPoint() + Offset.ToPoint();
             Rectangle DrawRect = new Rectangle(DrawPosPoint, FrameSize);
             CurrentAnimation?.Draw(SpriteName, DrawRect, spriteBatch, Flip);
         }

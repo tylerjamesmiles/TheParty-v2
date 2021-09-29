@@ -12,14 +12,14 @@ namespace TheParty_v2
         int CurrentStance;
         Timer AnimationTimer;
         Wobble Bob;
-        Point DrawPos;
+        public Vector2 DrawPos;
     
-        public StanceIndicator(int startStance, Point drawPos)
+        public StanceIndicator(int startStance, Vector2 drawPos)
         {
             CurrentStance = startStance;
             CurrentFrame = 0;
             AnimationTimer = new Timer(0.08f);
-            Bob = new Wobble(2f, 3f);
+            Bob = new Wobble(2f, 2f);
             DrawPos = drawPos;
         }
 
@@ -45,7 +45,7 @@ namespace TheParty_v2
         {
             Point FrameSize = new Point(7, 10);
 
-            Point DrawLoc = DrawPos + new Point(0, (int)Bob.CurrentPosition);
+            Point DrawLoc = DrawPos.ToPoint() + new Point(0, (int)Bob.CurrentPosition);
             Rectangle DrawRect = new Rectangle(DrawLoc, FrameSize);
 
             Point SourceLoc = new Point(CurrentFrame * 7, 0);

@@ -13,7 +13,7 @@ namespace TheParty_v2
 
         public Wobble(float speed, float range)
         {
-            TimeElapsed = 0f;
+            TimeElapsed = (float)new Random().NextDouble() * speed;
             Speed = speed;
             Range = range;
             CurrentPosition = 0f;

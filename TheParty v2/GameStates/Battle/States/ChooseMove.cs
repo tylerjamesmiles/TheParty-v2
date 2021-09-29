@@ -10,24 +10,23 @@ namespace TheParty_v2
     {
         public override void Enter(CommandBattle client)
         {
-            int FromParty = client.CurrentStore.CurrentTurnPartyIdx;
-            int FromMem = client.MemberChoice.CurrentChoiceIdx;
-            Member Selected = BattleStore.Member(client.CurrentStore, FromParty, FromMem);
-            Move[] Moves = Selected.Moves;
-            string[] MoveNames = Selected.MoveNames();
-            bool[] ChoiceValidity = new bool[Moves.Length];
-            for (int i = 0; i < Moves.Length; i++)
-                ChoiceValidity[i] = Move.ValidOnAnyone(Moves[i], client.CurrentStore, FromParty, FromMem);
+            Member Selected = client.FromMember;
+            bool[] ChoiceValidity = new bool[Selected.Moves.Length];
+            for (int i = 0; i < Selected.Moves.Length; i++)
+                ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.Moves[i]);
                     
-            client.MoveChoice = new GUIChoiceBox(MoveNames, GUIChoiceBox.Position.BottomRight, ChoiceValidity);
+            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames(), GUIChoiceBox.Position.BottomRight, ChoiceValidity);
         }
 
         public override void Update(CommandBattle client, float deltaTime)
         {
             client.MoveChoice.Update(deltaTime, true);
-            
+
             if (client.MoveChoice.Done)
+            {
+                client.CurrentMove = client.FromMember.Moves[client.MoveChoice.CurrentChoice];
                 client.StateMachine.SetNewCurrentState(client, new ChooseTarget());
+            }
 
             if (InputManager.JustReleased(Keys.Escape))
                 client.StateMachine.SetNewCurrentState(client, new ChooseMember());
