@@ -11,13 +11,11 @@ namespace TheParty_v2
 
     class GameStateField : State<TheParty>
     {
-        Camera2D Camera; 
-        Player Player;
+        Camera2D Camera;
 
         public GameStateField()
         {
             Camera = new Camera2D();
-            Player = new Player(new Vector2(200, 200));
         }
 
         public override void Enter(TheParty client)
@@ -27,16 +25,17 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
-            client.CurrentMap.Update(Player, deltaTime);
+            client.EventsCanHappenTimer.Update(deltaTime);
+            client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
+            client.CurrentMap.Update(client.Player, deltaTime);
 
             if (client.CommandQueue.Empty)
             {
-                // Consider moving this logic to Entity class
                 var Entities = client.CurrentMap.EntityLayer.entities;
                 foreach (var entity in Entities)
                 {
-                    if (entity.PlayerCanInteract(Player.Transform.Position, Player.Movement.Heading) &&
+                    if (client.EventsCanHappenTimer.TicsSoFar >= 1 &&
+                        entity.PlayerCanInteract(client.Player.Transform.Position, client.Player.Movement.Heading) &&
                         (entity.values["TriggerOnTouch"] == "true" || InputManager.JustPressed(Keys.Space)))
                     {
                         var Commands = ScriptInterpreter.Interpret(client, entity, entity.values["Script"]);
@@ -46,13 +45,13 @@ namespace TheParty_v2
                 }
             }
 
-            Camera.Update(client.CurrentMap.Size, Player.Transform.Position);
+            Camera.Update(client.CurrentMap.Size, client.Player.Transform.Position);
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             client.CurrentMap.Draw(Camera.Position, spriteBatch);
-            Player.Draw(Camera.Position, spriteBatch);
+            client.Player.Draw(Camera.Position, spriteBatch);
         }
 
         public override void Exit(TheParty client)

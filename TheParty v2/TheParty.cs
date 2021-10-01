@@ -17,6 +17,10 @@ namespace TheParty_v2
         public CommandQueue<TheParty> CommandQueue;
         public OgmoTileMap CurrentMap;
 
+        public Player Player;
+        public Timer EventsCanHappenTimer;
+
+
         int HP = 10;
 
         public TheParty()
@@ -25,7 +29,8 @@ namespace TheParty_v2
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-
+            Player = new Player(new Vector2(832, 656));
+            EventsCanHappenTimer = new Timer(0.5f);
         }
 
         protected override void Initialize()
@@ -51,7 +56,7 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["TestMap"];
+            CurrentMap = GameContent.Maps["WorldMap"];
         }
 
         protected override void Update(GameTime gameTime)

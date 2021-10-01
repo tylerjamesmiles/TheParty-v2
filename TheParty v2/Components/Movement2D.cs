@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace TheParty_v2
@@ -17,6 +18,7 @@ namespace TheParty_v2
         {
             Mass = mass;
             MaxSpeed = maxSpeed;
+            Velocity = new Vector2(0, 0);
         }
 
         public void Update(Vector2 steeringForce, float deltaTime)
@@ -28,8 +30,10 @@ namespace TheParty_v2
             Vector2 VelWithDrag = NewVelCapped - (NewVelCapped * Drag);
 
             Velocity = VelWithDrag;
-            Heading = (Velocity.LengthSquared() > 0.001f) ?
-                Vector2.Normalize(Velocity) : Heading;
+            if (Velocity.LengthSquared() > 0.1f)
+                Heading = Vector2.Normalize(Velocity);
+            else
+                Velocity = Vector2.Zero;
         }
     }
 }

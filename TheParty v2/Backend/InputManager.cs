@@ -30,7 +30,7 @@ namespace TheParty_v2
             if (Pressed(Keys.A)) DirPressed += new Vector2(-1, 0);
             if (Pressed(Keys.S)) DirPressed += new Vector2(0, +1);
             if (Pressed(Keys.D)) DirPressed += new Vector2(+1, 0);
-            return DirPressed;
+            return DirPressed != Vector2.Zero ? Vector2.Normalize(DirPressed) : Vector2.Zero;
         }
     }
 }

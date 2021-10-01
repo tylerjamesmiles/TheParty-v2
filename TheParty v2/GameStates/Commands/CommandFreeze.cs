@@ -34,4 +34,22 @@ namespace TheParty_v2
             Done = true;
         }
     }
+
+    class CommandFreezePlayer : Command<TheParty>
+    {
+        public override void Enter(TheParty client)
+        {
+            client.Player.Frozen = true;
+            Done = true;
+        }
+    }
+
+    class CommandUnfreezePlayer : Command<TheParty>
+    {
+        public override void Enter(TheParty client)
+        {
+            client.Player.Frozen = false;
+            Done = true;
+        }
+    }
 }

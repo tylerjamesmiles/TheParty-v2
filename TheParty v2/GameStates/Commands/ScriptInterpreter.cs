@@ -8,7 +8,8 @@ namespace TheParty_v2
     {
         private static OgmoEntity EntityFromName(string name, OgmoLayer entityLayer, OgmoEntity caller)
         {
-            return (name.ToLower() == "me") ? caller : entityLayer.EntityWithName(name);
+            return 
+                (name.ToLower() == "me") ? caller : entityLayer.EntityWithName(name);
         }
 
         public static List<Command<TheParty>> Interpret(TheParty game, OgmoEntity caller, string script)
@@ -22,7 +23,16 @@ namespace TheParty_v2
 
             for (int line = 0; line < Lines.Length; line++)
             {
+
                 string Line = Lines[line];
+
+                if (Line == "")
+                    continue;
+
+                // skip any lines which begin with /t
+                if (Line.Substring(0, 3) == "   ")
+                    continue;
+
                 int PosOfParentheses = Line.IndexOf('(');
                 string CommandName = Line.Remove(PosOfParentheses);
 
@@ -41,12 +51,18 @@ namespace TheParty_v2
 
                     case "freeze":
                         foreach (string entityName in Arguments)
-                            ResultList.Add(new CommandFreeze(EntityFromName(entityName, EntityLayer, caller)));
+                            if (entityName.ToLower() == "player")
+                                ResultList.Add(new CommandFreezePlayer());
+                            else
+                                ResultList.Add(new CommandFreeze(EntityFromName(entityName, EntityLayer, caller)));
                         break;
 
                     case "unfreeze":
                         foreach (string entityName in Arguments)
-                            ResultList.Add(new CommandUnFreeze(EntityFromName(entityName, EntityLayer, caller)));
+                            if (entityName.ToLower() == "player")
+                                ResultList.Add(new CommandUnfreezePlayer());
+                            else
+                                ResultList.Add(new CommandUnFreeze(EntityFromName(entityName, EntityLayer, caller)));
                         break;
 
                     case "faceplayer":
@@ -58,10 +74,54 @@ namespace TheParty_v2
                         foreach (string entityName in Arguments)
                             ResultList.Add(new CommandStopFacingPlayer(EntityFromName(entityName, EntityLayer, caller)));
                         break;
+
                     case "battle":
                         ResultList.Add(new CommandBattle(Arguments[0]));
                         break;
 
+                    case "teleport":
+                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
+                        break;
+
+                    case "set":
+                        ResultList.Add(new CommandSetVar(Arguments[0], Arguments[1]));
+                        break;
+
+                    case "incr":
+                        ResultList.Add(new CommandIncrementVar(Arguments[0], Arguments[1]));
+                        break;
+
+                    case "if":
+                        string SubScript = "";
+                        for (int subLine = line + 1; subLine < Lines.Length && Lines[subLine].Substring(0, 3) == "   "; subLine++)
+                            SubScript += Lines[subLine].Remove(0, 3) + '\n';    // remove first character (\t)
+                        var Commands = Interpret(game, caller, SubScript);
+                        string[] Tokens = Arguments[0].Split(' ');
+                        ResultList.Add(new CommandIf(Tokens[0], Tokens[1], Tokens[2], Commands));
+                        break;
+
+                    case "choice":
+                        string[] Choices = Arguments;
+                        List<Command<TheParty>>[] ChoiceCommands = new List<Command<TheParty>>[Choices.Length];
+                        int CommandIdx = 0;
+                        for (int subLine = line+1; subLine < Lines.Length && Lines[subLine].Substring(0, 3) == "   "; subLine++)
+                        {
+                            if (Lines[subLine].Substring(0, 7) == "   Case")
+                            {
+                                string SubSubScript = "";
+                                for (int subsub = subLine+1; subsub < Lines.Length && Lines[subsub].Substring(0, 6) == "      "; subsub++)
+                                {
+                                    SubSubScript += Lines[subsub].Remove(0, 6) + '\n';
+                                }
+                                ChoiceCommands[CommandIdx] = Interpret(game, caller, SubSubScript);
+                                CommandIdx++;
+                            }
+                        }
+
+                        ResultList.Add(new CommandFreezePlayer());
+                        ResultList.Add(new CommandChoice(Choices, ChoiceCommands));
+                        ResultList.Add(new CommandUnfreezePlayer());
+                        break;
                 }
 
             }

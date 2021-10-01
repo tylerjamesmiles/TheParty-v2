@@ -7,7 +7,7 @@ namespace TheParty_v2
 {
     class Transform2D
     {
-        public Vector2 Position { get; private set; }
+        public Vector2 Position;
         public float BoundingRadius { get; private set; }
 
         public Transform2D(Vector2 pos, float br)
@@ -28,17 +28,21 @@ namespace TheParty_v2
                     PotentialPos += Collision.Resolution;
             }
 
-            foreach (Transform2D entityTransform in entityTransforms)
+            if (Solid)
             {
-                if (entityTransform.Position == Position)
-                    continue;
+                foreach (Transform2D entityTransform in entityTransforms)
+                {
+                    if (entityTransform.Position == Position)
+                        continue;
 
-                CollisionInfo Collision = Collisions2D.CircleCircleInterection(Position, BoundingRadius,
-                    entityTransform.Position, entityTransform.BoundingRadius);
+                    CollisionInfo Collision = Collisions2D.CircleCircleInterection(Position, BoundingRadius,
+                        entityTransform.Position, entityTransform.BoundingRadius);
 
-                if (Collision.Exists)
-                    PotentialPos += Collision.Resolution;
+                    if (Collision.Exists)
+                        PotentialPos += Collision.Resolution;
+                }
             }
+
 
             Position = PotentialPos;
         }

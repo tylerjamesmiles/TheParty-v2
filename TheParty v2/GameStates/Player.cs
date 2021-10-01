@@ -13,17 +13,21 @@ namespace TheParty_v2
         public Transform2D Transform;
         public FourDirSprite2D Sprite;
 
+        public bool Frozen;
+
         public Player(Vector2 position)
         {
             Steering = new ControllerSteering2D(30f);
             Movement = new Movement2D(1f, 15f);
             Transform = new Transform2D(position, 8f);
             Sprite = new FourDirSprite2D("CharacterBase", new Point(-16, -24));
+            Frozen = false;
         }
 
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, float deltaTime)
         {
-            Steering.Update();
+            if (!Frozen)
+                Steering.Update();
             Movement.Update(Steering.SteeringForce, deltaTime);
             Transform.Update(Movement.Velocity, collisionBoxes, entityTransforms);
             Sprite.Update(Movement.Velocity, deltaTime);

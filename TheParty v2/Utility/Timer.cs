@@ -19,6 +19,13 @@ namespace TheParty_v2
             TicsSoFar = 0;
         }
 
+        public void Reset()
+        {
+            TimeElapsed = 0f;
+            TicThisFrame = false;
+            TicsSoFar = 0;
+        }
+
         public void Update(float deltaTime)
         {
             TimeElapsed += deltaTime;

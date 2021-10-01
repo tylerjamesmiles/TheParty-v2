@@ -66,8 +66,8 @@ namespace TheParty_v2
         {
             Vector2 ToMe = Transform.Position - playerPos;
             bool CloseEnough = ToMe.LengthSquared() < MinInteractDist * MinInteractDist;
-            float Dot = Vector2.Dot(Vector2.Normalize(ToMe), playerHeading);
-            bool Facing = Dot > 0f;
+            float Dot = Vector2.Dot(ToMe, playerHeading);
+            bool Facing = Dot >= 0f;
             return CloseEnough && Facing;
         }
     }

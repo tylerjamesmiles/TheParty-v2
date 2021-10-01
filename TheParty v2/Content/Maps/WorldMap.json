@@ -43,7 +43,38 @@
       "gridCellHeight": 16,
       "gridCellsX": 116,
       "gridCellsY": 97,
-      "entities": []
+      "entities": [
+        {
+          "name": "Entity",
+          "id": 3,
+          "_eid": "23557279",
+          "x": 832,
+          "y": 576,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "Solid": false, "TriggerOnTouch": true, "Script": "Teleport(Middleville, 192, 208)"}
+        },
+        {
+          "name": "Entity",
+          "id": 7,
+          "_eid": "23557279",
+          "x": 768,
+          "y": 608,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Incr(TestVariable1, 1)\nDialogue(I've incremented TestVariable by 1!)"}
+        },
+        {
+          "name": "Entity",
+          "id": 8,
+          "_eid": "23557279",
+          "x": 736,
+          "y": 640,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Dialogue(Are you a goofy goober?)\nChoice(Yes, No)\n   Case(Yes)\n      Dialogue(I see. So you are a goofy goober.)\n   Case(No)\n      Dialogue(Well get with the times.)"}
+        }
+      ]
     },
     {
       "name": "TileLayer3",
