@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace TheParty_v2
 {
@@ -18,6 +19,15 @@ namespace TheParty_v2
             FrameRow = row;
             NumFrames = numFrames;
             Timer = new Timer(speed);
+            CurrentFrame = 0;
+        }
+
+        public SpriteAnimation(JsonElement elem)
+        {
+            FrameRow = elem.GetProperty("FrameRow").GetInt32();
+            NumFrames = elem.GetProperty("NumFrames").GetInt32();
+            float FrameRate = (float)elem.GetProperty("FrameRate").GetDouble();
+            Timer = new Timer(FrameRate);
             CurrentFrame = 0;
         }
 
@@ -62,6 +72,28 @@ namespace TheParty_v2
             DrawPos = drawPos;
             Offset = offset;
             Flip = flip;
+        }
+
+        public AnimatedSprite2D(string sheetName, JsonDocument doc)
+        {
+            JsonElement root = doc.RootElement.GetProperty(sheetName);
+            SpriteName = root.GetProperty("SpriteName").GetString();
+            int X = root.GetProperty("FrameSizeX").GetInt32();
+            int Y = root.GetProperty("FrameSizeY").GetInt32();
+            FrameSize = new Point(X, Y);
+
+            int oX = root.GetProperty("OffsetX").GetInt32();
+            int oY = root.GetProperty("OffsetY").GetInt32();
+            Offset = new Vector2(oX, oY);
+
+            Animations = new Dictionary<string, SpriteAnimation>();
+            int NumAnimations = root.GetProperty("Animations").GetArrayLength();
+            for (int i = 0; i < NumAnimations; i++)
+            {
+                JsonElement anim = root.GetProperty("Animations")[i];
+                string name = anim.GetProperty("Name").GetString();
+                Animations.Add(name, new SpriteAnimation(anim));
+            }
         }
 
         public SpriteAnimation CurrentAnimation =>

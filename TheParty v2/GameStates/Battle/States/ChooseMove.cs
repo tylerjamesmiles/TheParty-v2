@@ -15,7 +15,7 @@ namespace TheParty_v2
             for (int i = 0; i < Selected.Moves.Length; i++)
                 ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.Moves[i]);
                     
-            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames(), GUIChoiceBox.Position.BottomRight, ChoiceValidity);
+            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
         }
 
         public override void Update(CommandBattle client, float deltaTime)

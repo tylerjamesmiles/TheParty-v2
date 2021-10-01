@@ -1,0 +1,18 @@
+﻿{
+	"HitAnimations" : 
+	{
+		"SpriteName" : "HitAnimations",
+		"FrameSizeX" : 16,
+		"FrameSizeY": 16,
+		"OffsetX" : -8,
+		"OffsetY" : -4,
+		"Animations" : [
+			{
+				"Name" : "Hit",
+				"FrameRow" : 0,
+				"NumFrames" : 4,
+				"FrameRate" : 0.15
+			}
+		]
+	}
+}

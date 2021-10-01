@@ -23,6 +23,8 @@ namespace TheParty_v2
     struct Move
     {
         public string Name;
+        public string AnimationSheet;
+        public string AnimationName;
         public Func<BattleStore, Targeting, BattleStore>[] UnChargedEffects;
         public Func<BattleStore, Targeting, BattleStore>[] ChargedEffects;
         public Func<BattleStore, Targeting, bool>[] MoveConditions;
@@ -33,6 +35,8 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Hit",
+                AnimationSheet = "HitAnimations",
+                AnimationName = "Hit",
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.HitStanceByStance,
@@ -56,6 +60,8 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Hurt",
+                AnimationSheet = "HitAnimations",
+                AnimationName = "Hit",
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.HitHPByStance 
@@ -110,6 +116,20 @@ namespace TheParty_v2
                     MoveCondition.TargetIsSelf,
                     MoveCondition.CasterNotCharged
                 }
+            };
+
+        public static Move Item =>
+            new Move()
+            {
+                Name = "Item",
+                MoveConditions = new Func<BattleStore, Targeting, bool>[] { }
+            };
+
+        public static Move Talk =>
+            new Move()
+            {
+                Name = "Talk",
+                MoveConditions = new Func<BattleStore, Targeting, bool>[] { }
             };
 
         public static BattleStore WithEffectDone(BattleStore state, Move move, Targeting targeting)

@@ -19,7 +19,9 @@ namespace TheParty_v2
             client.Movement.Update(deltaTime);
             client.FromSprite.DrawPos = client.Movement.CurrentPosition;
             if (client.Movement.Reached)
+            {
                 client.StateMachine.SetNewCurrentState(client, new ChooseMember());
+            }
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)

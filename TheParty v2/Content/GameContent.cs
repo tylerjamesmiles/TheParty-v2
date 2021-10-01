@@ -21,6 +21,7 @@ namespace TheParty_v2
         public static Dictionary<string, Song> Songs;
         public static Dictionary<string, SoundEffect> SoundEffects;
         public static Dictionary<string, OgmoTileMap> Maps;
+        public static Dictionary<string, AnimatedSprite2D> AnimationSheets;
         public static Dictionary<string, Member> Members;
         public static Dictionary<string, Party> Parties;
         public static Dictionary<string, BattleStore> Battles;
@@ -79,6 +80,10 @@ namespace TheParty_v2
             Maps = FromJson<OgmoTileMap>("Maps");
             foreach (var map in Maps.Values)
                 map.Initialize();
+
+            AnimationSheets = new Dictionary<string, AnimatedSprite2D>();
+            foreach (var item in JsonDocs("AnimatedSprites"))
+                AnimationSheets.Add(item.Key, new AnimatedSprite2D(item.Key, item.Value));
 
             Members = new Dictionary<string, Member>();
             foreach (var item in JsonDocs("Members"))

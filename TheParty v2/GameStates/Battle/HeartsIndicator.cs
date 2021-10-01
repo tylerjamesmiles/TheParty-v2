@@ -39,6 +39,12 @@ namespace TheParty_v2
             NumHearts = (newHP + 1) / 2;
         }
 
+        public void SetPos(Point newPos)
+        {
+            CenterX = newPos.X;
+            Y = newPos.Y;
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             int HeartWidth = 4;

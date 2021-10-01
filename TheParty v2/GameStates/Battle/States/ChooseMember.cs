@@ -31,11 +31,21 @@ namespace TheParty_v2
 
             client.MemberChoice = new GUIChoice(LegalMemberPositions.ToArray());
 
-            client.Sprites.ForEach(s => s.SetCurrentAnimation("Idle"));
+            client.SetAppropriateAnimations();
         }
 
         public override void Update(CommandBattle client, float deltaTime)
-        {
+        { 
+            // If it's the AI's turn, make the move right away
+            //if (client.CurrentStore.CurrentTurnPartyIdx != 0)
+            //{
+            //    Party CurrentTurnPty = BattleStore.CurrentTurnPartyOf(client.CurrentStore);
+            //    int Idx = client.CurrentStore.CurrentTurnPartyIdx;
+            //    Turn BestTurn = Party.BestTurn(CurrentTurnPty, Idx, client.CurrentStore);
+
+            //    //BestTurn.
+            //}
+
             client.MemberChoice.Update(deltaTime, true);
 
             if (client.MemberChoice.Done)

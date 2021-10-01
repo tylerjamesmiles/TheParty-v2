@@ -99,7 +99,7 @@ namespace TheParty_v2
             return Result;
         }
 
-        public void Update(float deltaTime, bool isInFocus)
+        public void Update(float deltaTime, bool isInFocus, bool onLegalChoice = true)
         {
             int NoDirectionPressed = -1;
             int Direction =
@@ -124,7 +124,7 @@ namespace TheParty_v2
             MovementLerp.Update(deltaTime);
             HandWobble.Update(deltaTime);
 
-            if (isInFocus && InputManager.JustPressed(Keys.Space))
+            if (isInFocus && InputManager.JustPressed(Keys.Space) && onLegalChoice)
                 Done = true;
         }
 

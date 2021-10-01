@@ -26,7 +26,22 @@ namespace TheParty_v2
             KOdFor = Mem.GetProperty("KOdFor").GetInt32();
 
             HasGoneThisTurn = false;
-            Moves = new Move[] { Move.Hit, Move.Hurt, Move.Charge };
+
+            Func<string, Move> StringToMove = (s) =>
+                s == "Hit" ? Move.Hit :
+                s == "Hurt" ? Move.Hurt :
+                s == "Charge" ? Move.Charge :
+                s == "Item" ? Move.Item :
+                s == "Give" ? Move.Give :
+                s == "Talk" ? Move.Talk :
+                Move.Hit;
+
+            int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
+            Moves = new Move[NumMoves];
+            for (int i = 0; i < NumMoves; i++)
+            {
+                Moves[i] = StringToMove(Mem.GetProperty("Moves")[i].GetString());
+            }
         }
 
         public static Member DeepCopyOf(Member m) =>
