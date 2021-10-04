@@ -64,23 +64,23 @@ namespace TheParty_v2
                 NextTurnPartyIdx -= state.Parties.Length;
             ResultState.CurrentTurnPartyIdx = NextTurnPartyIdx;
 
-            // Turn off all has-moveds for CurrentTurnParty
-            for (int party = 0; party < ResultState.Parties.Length; party++)
-                for (int member = 0; member < ResultState.Parties[party].Members.Length; member++)
-                {
-                    ref Member Member = ref ResultState.Parties[party].Members[member];
-                    Member.HasGoneThisTurn = false;
-                }
+            //// Turn off all has-moveds for CurrentTurnParty
+            //for (int party = 0; party < ResultState.Parties.Length; party++)
+            //    for (int member = 0; member < ResultState.Parties[party].Members.Length; member++)
+            //    {
+            //        ref Member Member = ref ResultState.Parties[party].Members[member];
+            //        Member.HasGoneThisTurn = false;
+            //    }
 
             // DecrementKOs
-            for (int party = 0; party < ResultState.Parties.Length; party++)
-                for (int member = 0; member < ResultState.Parties[party].Members.Length; member++)
-                {
-                    ref Member Member = ref ResultState.Parties[party].Members[member];
+            //for (int party = 0; party < ResultState.Parties.Length; party++)
+            //    for (int member = 0; member < ResultState.Parties[party].Members.Length; member++)
+            //    {
+            //        ref Member Member = ref ResultState.Parties[party].Members[member];
 
-                    // continues to decrement, even after recovery
-                    Member.KOdFor -= 1;
-                }
+            //        // continues to decrement, even after recovery
+            //        Member.KOdFor -= 1;
+            //    }
 
             return ResultState;
         }

@@ -10,10 +10,11 @@ namespace TheParty_v2
         public int HP; // 0 - 10
         public int Stance; // 0 - 4
         public bool Charged;
-        public int KOdFor; // Down by 1 each turn
+        //public int KOdFor; // Down by 1 each turn
+        public bool KOd;
         public Move[] Moves;
 
-        public bool HasGoneThisTurn;
+        //public bool HasGoneThisTurn;
 
         private static readonly int StanceLimit = 5;
 
@@ -23,14 +24,16 @@ namespace TheParty_v2
             HP = Mem.GetProperty("HP").GetInt32();
             Stance = Mem.GetProperty("Stance").GetInt32();
             Charged = Mem.GetProperty("Charged").GetBoolean();
-            KOdFor = Mem.GetProperty("KOdFor").GetInt32();
+            //KOdFor = Mem.GetProperty("KOdFor").GetInt32();
+            KOd = false;
 
-            HasGoneThisTurn = false;
+            //HasGoneThisTurn = false;
 
             Func<string, Move> StringToMove = (s) =>
                 s == "Hit" ? Move.Hit :
                 s == "Hurt" ? Move.Hurt :
                 s == "Charge" ? Move.Charge :
+                s == "Help" ? Move.Help :
                 s == "Item" ? Move.Item :
                 s == "Give" ? Move.Give :
                 s == "Talk" ? Move.Talk :
@@ -50,10 +53,11 @@ namespace TheParty_v2
                 HP = m.HP, 
                 Stance = m.Stance, 
                 Charged = m.Charged, 
-                KOdFor = m.KOdFor,
+                //KOdFor = m.KOdFor,
+                KOd = m.KOd,
                 Moves = m.Moves,
 
-                HasGoneThisTurn = m.HasGoneThisTurn
+                //HasGoneThisTurn = m.HasGoneThisTurn
             };
 
         public static int StanceAfterHit(int oldStance, int hitBy) =>

@@ -32,7 +32,6 @@ namespace TheParty_v2
 
             client.MemberChoice = new GUIChoice(LegalMemberPositions.ToArray());
 
-            client.SetAppropriateAnimations();
         }
 
         public override void Update(CommandBattle client, float deltaTime)

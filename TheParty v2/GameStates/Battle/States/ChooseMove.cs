@@ -39,6 +39,7 @@ namespace TheParty_v2
 
         public override void Exit(CommandBattle client)
         {
+
         }
     }
 }

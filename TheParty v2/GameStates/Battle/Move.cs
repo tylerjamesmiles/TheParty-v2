@@ -48,7 +48,7 @@ namespace TheParty_v2
                 { 
                     Effects.HitStanceByStance,
                     Effects.HitHPBy1,
-                    Effects.KOFor1Turn                
+                    Effects.CasterLoseCharge
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
@@ -75,7 +75,8 @@ namespace TheParty_v2
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.HitHPByStance, 
-                    Effects.HitHPBy1 
+                    Effects.HitHPBy1,
+                    Effects.CasterLoseCharge
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
@@ -100,7 +101,9 @@ namespace TheParty_v2
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
                 {
                     Effects.Give1Stance,
-                    Effects.HealHPBy1
+                    Effects.HealHPBy1,
+                    Effects.CasterLoseCharge
+
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
@@ -110,6 +113,33 @@ namespace TheParty_v2
                     MoveCondition.TargetAlert,
                     MoveCondition.TargetIsInSameParty,
                     MoveCondition.TargetIsOTher
+                }
+            };
+
+        public static Move Help =>
+            new Move()
+            {
+                Name = "Help",
+                AnimationSheet = "HitAnimations",
+                AnimationName = "Charge",
+                PositiveEffect = true,
+
+                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                {
+                    Effects.HitStanceByStance
+                },
+                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                {
+                    Effects.HitStanceByStance,
+                    Effects.CasterLoseCharge
+                },
+                MoveConditions = new Func<BattleStore, Targeting, bool>[]
+                {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
+                    MoveCondition.CasterCharged,
+                    MoveCondition.TargetAlive,
+                    MoveCondition.TargetKOd
                 }
             };
 
@@ -175,9 +205,10 @@ namespace TheParty_v2
             {
                 foreach (var effect in move.UnChargedEffects)
                     Result = effect(Result, targeting);
+                
             }
 
-            BattleStore.Member(Result, targeting.FromPartyIdx, targeting.FromMemberIdx).HasGoneThisTurn = true;
+            //BattleStore.Member(Result, targeting.FromPartyIdx, targeting.FromMemberIdx).HasGoneThisTurn = true;
 
             return Result;
         }
@@ -241,9 +272,9 @@ namespace TheParty_v2
         public static bool CasterDead(BattleStore state, Targeting targeting)
             => Targeting.FromMemberRef(targeting, state).HP == 0;
         public static bool CasterAlert(BattleStore state, Targeting targeting)
-            => Targeting.FromMemberRef(targeting, state).KOdFor <= 0;
+            => Targeting.FromMemberRef(targeting, state).KOd == false;
         public static bool CasterKOd(BattleStore state, Targeting targeting)
-            => Targeting.FromMemberRef(targeting, state).KOdFor > 0;
+            => Targeting.FromMemberRef(targeting, state).KOd == true;
         public static bool CasterNotCharged(BattleStore state, Targeting targeting)
             => Targeting.FromMemberRef(targeting, state).Charged == false;
         public static bool CasterCharged(BattleStore state, Targeting targeting)
@@ -254,9 +285,9 @@ namespace TheParty_v2
         public static bool TargetDead(BattleStore state, Targeting targeting)
             => Targeting.ToMemberRef(targeting, state).HP == 0;
         public static bool TargetAlert(BattleStore state, Targeting targeting)
-            => Targeting.ToMemberRef(targeting, state).KOdFor <= 0;
+            => Targeting.ToMemberRef(targeting, state).KOd == false;
         public static bool TargetKOd(BattleStore state, Targeting targeting)
-            => Targeting.ToMemberRef(targeting, state).KOdFor > 0;
+            => Targeting.ToMemberRef(targeting, state).KOd == true;
         public static bool TargetNotCharged(BattleStore state, Targeting targeting)
             => Targeting.ToMemberRef(targeting, state).Charged == false;
         public static bool TargetCharged(BattleStore state, Targeting targeting)
@@ -283,7 +314,8 @@ namespace TheParty_v2
             ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
 
             To.Stance = MathUtility.RolledIfAtLimit(To.Stance + From.Stance, 5);
-            To.KOdFor = (To.Stance == 0) ? 3 : To.KOdFor;
+            //To.KOdFor = (To.Stance == 0) ? 3 : To.KOdFor;
+            To.KOd = (To.Stance == 0);
 
             return NewState;
         }
@@ -299,7 +331,8 @@ namespace TheParty_v2
             if (To.HP < 0)
                 To.HP = 0;
 
-            if (To.KOdFor > 0)
+            //if (To.KOdFor > 0)
+            if (To.KOd)
                 To.HP -= 1;
 
             return NewState;
@@ -357,14 +390,28 @@ namespace TheParty_v2
             return NewState;
         }
 
-        public static BattleStore KOFor1Turn(BattleStore state, Targeting targeting)
+        public static BattleStore CasterLoseCharge(BattleStore state, Targeting targeting)
         {
             BattleStore NewState = BattleStore.DeepCopyOf(state);
 
             ref Member To = ref Targeting.ToMemberRef(targeting, NewState);
             ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
 
-            To.KOdFor = 2;
+            From.Charged = false;
+            NewState.AvailableCharge += 1;
+
+            return NewState;
+        }
+
+        public static BattleStore KO(BattleStore state, Targeting targeting)
+        {
+            BattleStore NewState = BattleStore.DeepCopyOf(state);
+
+            ref Member To = ref Targeting.ToMemberRef(targeting, NewState);
+            ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
+
+            //To.KOdFor = 2;
+            To.KOd = true;
 
             return NewState;
         }

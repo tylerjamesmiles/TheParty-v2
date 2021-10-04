@@ -39,6 +39,15 @@ namespace TheParty_v2
         }
 
 
+        public static bool IsKOd(Party party)
+        {
+            bool Result = true;
+            foreach (Member member in party.Members)
+                if (member.KOd == false)
+                    Result = false;
+            return Result;
+        }
+
 
         public static bool IsDead(Party party)
         {
@@ -54,9 +63,6 @@ namespace TheParty_v2
             List<MemberMove> Result = new List<MemberMove>();
             for (int fromMember = 0; fromMember < party.Members.Length; fromMember++)
             {
-                if (state.Parties[fromPartyIdx].Members[fromMember].HasGoneThisTurn)
-                    continue;
-
                 for (int toParty = 0; toParty < state.Parties.Length; toParty++)
                 {
                     for (int toMember = 0; toMember < state.Parties[toParty].Members.Length; toMember++)
@@ -131,14 +137,14 @@ namespace TheParty_v2
                     if (party2 == fromPartyIdx)
                     {
                         AllyHP += MemberInQuestion.HP;
-                        AllyKOd += MemberInQuestion.KOdFor;
+                        AllyKOd += MemberInQuestion.KOd ? 1 : 0;
                     }
 
                     // Opponent
                     else if (party2 != fromPartyIdx)
                     {
                         EnemyHP += MemberInQuestion.HP;
-                        EnemyKOd += MemberInQuestion.KOdFor;
+                        EnemyKOd += MemberInQuestion.KOd ? 1 : 0;
 
                         for (int myMember = 0; myMember < state.Parties[fromPartyIdx].Members.Length; myMember++)
                         {

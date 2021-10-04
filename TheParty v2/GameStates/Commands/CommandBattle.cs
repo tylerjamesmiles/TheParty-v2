@@ -26,6 +26,8 @@ namespace TheParty_v2
         public LerpV Movement;
         public Vector2 ReturnToPos;
 
+        public bool GameOver;
+
         public CommandBattle(string name)
         {
             BackgroundName = "TestBackground";
@@ -34,6 +36,7 @@ namespace TheParty_v2
             StateMachine = new StateMachine<CommandBattle>();
             StateMachine.SetNewCurrentState(this, new FightOrFlee());
 
+            GameOver = false;
         }
 
         public List<int> PartyIdxs(int partyIdx)
@@ -65,7 +68,7 @@ namespace TheParty_v2
                 Member[] AllMembers = CurrentStore.AllMembers();
                 string Animation = 
                     AllMembers[s].HP <= 0 ? "Dead" :
-                    AllMembers[s].KOdFor > 0 ? "KOd" : 
+                    AllMembers[s].KOd ? "KOd" : 
                     AllMembers[s].Charged ? "Charged" :
                     "Idle";
 
@@ -117,7 +120,6 @@ namespace TheParty_v2
                 }
             throw new Exception("Party index of member " + memberIdx + " not found.");
         }
-                
 
         public override void Enter(TheParty client)
         {
@@ -173,6 +175,9 @@ namespace TheParty_v2
             StanceIndicators.ForEach(s => s.Update(deltaTime));
 
             StateMachine.Update(this, deltaTime);
+
+            if (GameOver)
+                client.StateMachine.SetNewCurrentState(client, new GameStateGameOver());
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)

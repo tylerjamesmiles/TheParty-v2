@@ -13,6 +13,11 @@ namespace TheParty_v2
 
         public override void Update(CommandBattle client, float deltaTime)
         {
+            // Is player dead?
+            Party Player = client.CurrentStore.Parties[0];
+            if (Party.IsKOd(Player))
+                client.GameOver = true;
+
             // Are there any moves for current party?
             Party CurrentTurnPty = BattleStore.CurrentTurnPartyOf(client.CurrentStore);
             int CurrentTurnIdx = client.CurrentStore.CurrentTurnPartyIdx;
@@ -45,6 +50,7 @@ namespace TheParty_v2
 
         public override void Exit(CommandBattle client)
         {
+            client.SetAppropriateAnimations();
         }
     }
 }
