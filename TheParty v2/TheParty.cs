@@ -29,7 +29,6 @@ namespace TheParty_v2
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            Player = new Player(new Vector2(832, 656));
             EventsCanHappenTimer = new Timer(0.5f);
         }
 
@@ -50,9 +49,11 @@ namespace TheParty_v2
             Target.Enable();
 
             GameContent.Load(Content);
+            Player = new Player(new Vector2(832, 656));
+
 
             StateMachine = new StateMachine<TheParty>();
-            StateMachine.SetNewCurrentState(this, new GameStateField());
+            StateMachine.SetNewCurrentState(this, new GameStateTitle());
 
             CommandQueue = new CommandQueue<TheParty>();
 

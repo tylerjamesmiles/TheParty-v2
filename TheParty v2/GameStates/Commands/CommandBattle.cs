@@ -34,37 +34,6 @@ namespace TheParty_v2
             StateMachine = new StateMachine<CommandBattle>();
             StateMachine.SetNewCurrentState(this, new FightOrFlee());
 
-            Sprites = new List<AnimatedSprite2D>();
-            HPIndicators = new List<HeartsIndicator>();
-            StanceIndicators = new List<StanceIndicator>();
-            for (int party = 0; party < CurrentStore.Parties.Length; party++)
-            {
-                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
-                {
-                    Vector2 MemberDrawOffset = new Vector2(-16, -16);
-                    int MemberDrawStartX = (party == 0) ? 110 : 48;
-                    int MemberXOffset = (party == 0) ? 16 : -16;
-                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
-                    int MemberDrawStartY = 62;
-                    int MemberDrawY = MemberDrawStartY + member * 16;
-                    Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
-
-                    AnimatedSprite2D Sprite = new AnimatedSprite2D("TestFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
-                    Sprite.AddAnimation("Idle", 0, 4, 0.15f);
-                    Sprite.AddAnimation("Move", 1, 4, 0.15f);
-                    Sprite.AddAnimation("KOd", 2, 4, 0.15f);
-                    Sprite.AddAnimation("Hit", 3, 1, 0.15f);
-                    Sprite.AddAnimation("Dead", 4, 1, 0.15f);
-                    Sprite.SetCurrentAnimation("Idle");
-                    Sprites.Add(Sprite);
-
-                    int HP = CurrentStore.Parties[party].Members[member].HP;
-                    HPIndicators.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
-
-                    int Stance = CurrentStore.Parties[party].Members[member].Stance;
-                    StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
-                }
-            }
         }
 
         public List<int> PartyIdxs(int partyIdx)
@@ -97,6 +66,7 @@ namespace TheParty_v2
                 string Animation = 
                     AllMembers[s].HP <= 0 ? "Dead" :
                     AllMembers[s].KOdFor > 0 ? "KOd" : 
+                    AllMembers[s].Charged ? "Charged" :
                     "Idle";
 
                 Sprites[s].SetCurrentAnimation(Animation);
@@ -105,7 +75,6 @@ namespace TheParty_v2
         public Member FromMember
             => BattleStore.Member(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
         
-
         public bool MoveValidOnAnyone(Move move)
             => Move.ValidOnAnyone(move, CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
 
@@ -152,6 +121,43 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
+            CurrentStore.Parties[0] = client.Player.ActiveParty;
+
+            Sprites = new List<AnimatedSprite2D>();
+            HPIndicators = new List<HeartsIndicator>();
+            StanceIndicators = new List<StanceIndicator>();
+            for (int party = 0; party < CurrentStore.Parties.Length; party++)
+            {
+                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
+                {
+                    Vector2 MemberDrawOffset = new Vector2(-16, -16);
+                    int MemberDrawStartX = (party == 0) ? 110 : 48;
+                    int MemberXOffset = (party == 0) ? 16 : -16;
+                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
+                    int MemberDrawStartY = 62;
+                    int MemberDrawY = MemberDrawStartY + member * 16;
+                    Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
+
+                    AnimatedSprite2D Sprite = new AnimatedSprite2D("TestFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                    Sprite.AddAnimation("Idle", 0, 4, 0.15f);
+                    Sprite.AddAnimation("Move", 1, 4, 0.15f);
+                    Sprite.AddAnimation("Charged", 2, 4, 0.15f);
+                    Sprite.AddAnimation("KOd", 3, 4, 0.15f);
+                    Sprite.AddAnimation("PositiveHit", 4, 4, 0.15f);
+                    Sprite.AddAnimation("NegativeHit", 5, 1, 0.15f);
+                    Sprite.AddAnimation("Dead", 6, 1, 0.15f);
+                    Sprite.SetCurrentAnimation("Idle");
+                    Sprites.Add(Sprite);
+
+                    int HP = CurrentStore.Parties[party].Members[member].HP;
+                    HPIndicators.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
+
+                    int Stance = CurrentStore.Parties[party].Members[member].Stance;
+                    StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
+                }
+            }
+
+            Entered = true;
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -189,6 +195,7 @@ namespace TheParty_v2
 
         public override void Exit(TheParty client)
         {
+            GameContent.Parties["PlayerParty"] = CurrentStore.Parties[0];
         }
     }
 }

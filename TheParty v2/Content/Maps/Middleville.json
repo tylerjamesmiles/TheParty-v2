@@ -52,6 +52,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "Solid": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 836, 596)"}
+        },
+        {
+          "name": "Entity",
+          "id": 3,
+          "_eid": "23557279",
+          "x": 112,
+          "y": 64,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to spend the day with me?)\nChoice(Yes, No)\n   Case(Yes)\n      Dialogue(Hello!)\n      Dialogue(How's it going!)\n      Incr(Character1Feeling, 1)\n      DayPass(WorldMap, 836, 596)\n   Case(No)\n      Dialogue(No worries!)"}
         }
       ]
     },

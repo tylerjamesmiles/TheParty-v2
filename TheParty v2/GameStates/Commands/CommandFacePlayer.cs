@@ -16,6 +16,7 @@ namespace TheParty_v2
         public override void Enter(TheParty client)
         {
             Entity.FacePlayer = true;
+            Entered = true;
             Done = true;
         }
     }
@@ -32,6 +33,7 @@ namespace TheParty_v2
         public override void Enter(TheParty client)
         {
             Entity.FacePlayer = false;
+            Entered = true;
             Done = true;
         }
     }

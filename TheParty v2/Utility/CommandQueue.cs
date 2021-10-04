@@ -9,8 +9,8 @@ namespace TheParty_v2
     {
         public bool Entered { get; protected set; }
         public bool Done { get; protected set; }
-        public virtual void Enter(T client) { }
-        public virtual void Update(T client, float deltaTime) { }
+        public virtual void Enter(T client) { Entered = true; }
+        public virtual void Update(T client, float deltaTime) { Done = true; }
         public virtual void Draw(T client, SpriteBatch spriteBatch) { }
         public virtual void Exit(T client) { }
     }

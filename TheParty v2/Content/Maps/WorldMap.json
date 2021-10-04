@@ -56,23 +56,13 @@
         },
         {
           "name": "Entity",
-          "id": 7,
-          "_eid": "23557279",
-          "x": 768,
-          "y": 608,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Incr(TestVariable1, 1)\nDialogue(I've incremented TestVariable by 1!)"}
-        },
-        {
-          "name": "Entity",
-          "id": 8,
+          "id": 11,
           "_eid": "23557279",
           "x": 736,
-          "y": 640,
+          "y": 624,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": false, "Script": "Dialogue(Are you a goofy goober?)\nChoice(Yes, No)\n   Case(Yes)\n      Dialogue(I see. So you are a goofy goober.)\n   Case(No)\n      Dialogue(Well get with the times.)"}
+          "values": {"Name": "", "SpriteName": "CharacterBase", "Solid": true, "TriggerOnTouch": true, "Script": "Dialogue(Let's go!!)\nBattle(TestBattle)"}
         }
       ]
     },

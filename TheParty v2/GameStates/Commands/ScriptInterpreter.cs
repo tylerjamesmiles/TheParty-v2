@@ -29,7 +29,7 @@ namespace TheParty_v2
                 if (Line == "")
                     continue;
 
-                // skip any lines which begin with /t
+                // skip any lines which begin with "/t"
                 if (Line.Substring(0, 3) == "   ")
                     continue;
 
@@ -93,7 +93,10 @@ namespace TheParty_v2
 
                     case "if":
                         string SubScript = "";
-                        for (int subLine = line + 1; subLine < Lines.Length && Lines[subLine].Substring(0, 3) == "   "; subLine++)
+                        for (
+                            int subLine = line + 1; 
+                            subLine < Lines.Length && Lines[subLine] != "" && Lines[subLine].Substring(0, 3) == "   "; 
+                            subLine++)
                             SubScript += Lines[subLine].Remove(0, 3) + '\n';    // remove first character (\t)
                         var Commands = Interpret(game, caller, SubScript);
                         string[] Tokens = Arguments[0].Split(' ');
@@ -121,6 +124,12 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandChoice(Choices, ChoiceCommands));
                         ResultList.Add(new CommandUnfreezePlayer());
+                        break;
+
+                    case "daypass":
+                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
+                        ResultList.Add(new CommandIncrementVar("Day", "1"));
+                        ResultList.Add(new CommandDialogue((100 - GameContent.Variables["Day"]).ToString() + " days until the world ends."));
                         break;
                 }
 

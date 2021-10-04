@@ -1,13 +1,14 @@
 ﻿{
-	"TestMember" :
+	"Hero" :
 	{
 		"HP" : 10,
-		"Stance" : 1,
+		"Stance" : 2,
 		"Charged" : false,
 		"KOdFor" : 0,
 		"HasGoneThisTurn" : false,
 		"Moves" : [
-			"Hit"
+			"Hit", "Hurt", "Charge", "Item", "Give", "Talk"
 		]
 	}
 }
+

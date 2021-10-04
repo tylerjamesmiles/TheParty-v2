@@ -13,6 +13,9 @@ namespace TheParty_v2
         public Transform2D Transform;
         public FourDirSprite2D Sprite;
 
+        public Party ActiveParty;
+        public List<Member> AllMembers;
+
         public bool Frozen;
 
         public Player(Vector2 position)
@@ -22,6 +25,13 @@ namespace TheParty_v2
             Transform = new Transform2D(position, 8f);
             Sprite = new FourDirSprite2D("CharacterBase", new Point(-16, -24));
             Frozen = false;
+
+            ActiveParty = GameContent.Parties["PlayerParty"];
+
+            AllMembers = new List<Member>(ActiveParty.Members);
+            
+
+
         }
 
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, float deltaTime)

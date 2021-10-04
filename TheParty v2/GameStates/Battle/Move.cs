@@ -25,6 +25,7 @@ namespace TheParty_v2
         public string Name;
         public string AnimationSheet;
         public string AnimationName;
+        public bool PositiveEffect;
         public Func<BattleStore, Targeting, BattleStore>[] UnChargedEffects;
         public Func<BattleStore, Targeting, BattleStore>[] ChargedEffects;
         public Func<BattleStore, Targeting, bool>[] MoveConditions;
@@ -37,6 +38,7 @@ namespace TheParty_v2
                 Name = "Hit",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
+                PositiveEffect = false,
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.HitStanceByStance,
@@ -50,6 +52,8 @@ namespace TheParty_v2
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
                     MoveCondition.TargetAlive,
                     MoveCondition.TargetAlert,
                     MoveCondition.TargetIsInDifferentParty
@@ -62,6 +66,8 @@ namespace TheParty_v2
                 Name = "Hurt",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
+                PositiveEffect = false,
+
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.HitHPByStance 
@@ -73,6 +79,8 @@ namespace TheParty_v2
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
                     MoveCondition.TargetAlive,
                     MoveCondition.TargetKOd,
                     MoveCondition.TargetIsInDifferentParty
@@ -83,6 +91,8 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Give",
+                PositiveEffect = true,
+
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
                 {
                     Effects.Give1Stance
@@ -94,6 +104,8 @@ namespace TheParty_v2
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
                     MoveCondition.TargetAlive,
                     MoveCondition.TargetAlert,
                     MoveCondition.TargetIsInSameParty,
@@ -105,6 +117,10 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Charge",
+                AnimationSheet = "HitAnimations",
+                AnimationName = "Charge",
+                PositiveEffect = true,
+
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
                     Effects.Charge 
@@ -112,6 +128,8 @@ namespace TheParty_v2
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] { },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
                     MoveCondition.ChargeAvailable,
                     MoveCondition.TargetIsSelf,
                     MoveCondition.CasterNotCharged
@@ -122,14 +140,26 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Item",
-                MoveConditions = new Func<BattleStore, Targeting, bool>[] { }
+                PositiveEffect = true,
+
+                MoveConditions = new Func<BattleStore, Targeting, bool>[] 
+                {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
+                }
             };
 
         public static Move Talk =>
             new Move()
             {
                 Name = "Talk",
-                MoveConditions = new Func<BattleStore, Targeting, bool>[] { }
+                PositiveEffect = true,
+
+                MoveConditions = new Func<BattleStore, Targeting, bool>[] 
+                {
+                    MoveCondition.CasterAlive,
+                    MoveCondition.CasterAlert,
+                }
             };
 
         public static BattleStore WithEffectDone(BattleStore state, Move move, Targeting targeting)

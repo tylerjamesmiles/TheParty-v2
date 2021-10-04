@@ -20,7 +20,7 @@ namespace TheParty_v2
             client.FromSprite.DrawPos = client.Movement.CurrentPosition;
             if (client.Movement.Reached)
             {
-                client.StateMachine.SetNewCurrentState(client, new ChooseMember());
+                client.StateMachine.SetNewCurrentState(client, new PreMoveChecks());
             }
         }
 

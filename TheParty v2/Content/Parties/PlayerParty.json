@@ -1,9 +1,10 @@
 ﻿{
-	"TestParty" :
+	"PlayerParty" :
 	{
 		"AIControlled" : false,
 		"Members" :
 		[
+			"Hero",
 			"TestMember"
 		]
 	}

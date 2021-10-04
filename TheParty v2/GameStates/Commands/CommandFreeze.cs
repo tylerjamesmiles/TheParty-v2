@@ -31,6 +31,7 @@ namespace TheParty_v2
         public override void Enter(TheParty client)
         {
             Entity.Frozen = false;
+            Entered = true;
             Done = true;
         }
     }
@@ -40,6 +41,7 @@ namespace TheParty_v2
         public override void Enter(TheParty client)
         {
             client.Player.Frozen = true;
+            Entered = true;
             Done = true;
         }
     }
@@ -49,6 +51,7 @@ namespace TheParty_v2
         public override void Enter(TheParty client)
         {
             client.Player.Frozen = false;
+            Entered = true;
             Done = true;
         }
     }

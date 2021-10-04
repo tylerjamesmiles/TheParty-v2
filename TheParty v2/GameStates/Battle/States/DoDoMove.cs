@@ -15,7 +15,12 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             client.FromSprite.SetCurrentAnimation("Idle");
-            client.TargetSprite.SetCurrentAnimation("Hit");
+
+            if (client.CurrentMove.PositiveEffect)
+                client.TargetSprite.SetCurrentAnimation("PositiveHit");
+            else
+                client.TargetSprite.SetCurrentAnimation("NegativeHit");
+
             TempWait = new Timer(0.8f);
             MoveDone = false;
 

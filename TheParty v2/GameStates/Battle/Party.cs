@@ -9,11 +9,6 @@ namespace TheParty_v2
         public Move Move;
     }
 
-    struct Turn
-    {
-        public MemberMove[] MemberMoves;
-    }
-
     struct Party
     {
         public Member[] Members;
@@ -42,6 +37,8 @@ namespace TheParty_v2
             PartyCopy.AIControlled = party.AIControlled;
             return PartyCopy;
         }
+
+
 
         public static bool IsDead(Party party)
         {
@@ -89,69 +86,19 @@ namespace TheParty_v2
             return Result.ToArray();
         }
 
-        public static Turn[] AllPossibleTurns(Party party, int fromPartyIdx, BattleStore state)
-        {
-            List<Turn> Result = new List<Turn>();
-
-            // would rather this be recursive, but you can't have the whole world
-
-            foreach (MemberMove move1 in AllPossibleMemberMoves(party, fromPartyIdx, state))
-            {
-                if (party.Members.Length == 1)
-                {
-                    Turn Turn = new Turn() { MemberMoves = new MemberMove[1] { move1 } };
-                    Result.Add(Turn);
-                    continue;
-                }
-
-                foreach (MemberMove move2 in AllPossibleMemberMoves(party, fromPartyIdx, state))
-                {
-                    if (party.Members.Length == 2)
-                    {
-                        // same member can't go twice
-                        if (move1.Targeting.FromMemberIdx == move2.Targeting.FromMemberIdx)
-                            continue;
-
-                        Turn Turn = new Turn() { MemberMoves = new MemberMove[2] { move1, move2 } };
-                        Result.Add(Turn);
-                        continue;
-                    }
-
-                    foreach (MemberMove move3 in AllPossibleMemberMoves(party, fromPartyIdx, state))
-                    {
-                        if (party.Members.Length == 3)
-                        {
-                            // same member can't go twice
-                            if (move1.Targeting.FromMemberIdx == move3.Targeting.FromMemberIdx ||
-                                move2.Targeting.FromMemberIdx == move3.Targeting.FromMemberIdx)
-                                continue;
-
-                            Turn Turn = new Turn() { MemberMoves = new MemberMove[3] { move1, move2, move3 } };
-                            Result.Add(Turn);
-                            continue;
-                        }
-                    }
-
-                }
-            }
-
-            return Result.ToArray();
-        }
-
-        public static Turn BestTurn(Party party, int fromPartyIdx, BattleStore state)
+        public static MemberMove BestTurn(Party party, int fromPartyIdx, BattleStore state)
         {
             // Get all possible Turns
-            Turn BestTurnSoFar = new Turn();
+            MemberMove BestTurnSoFar = new MemberMove();
             int BestRatingSoFar = -int.MaxValue;
 
-            foreach (Turn turn in AllPossibleTurns(party, fromPartyIdx, state))
+            foreach (MemberMove turn in AllPossibleMemberMoves(party, fromPartyIdx, state))
             {
+                if (!Move.ValidOnMember(turn.Move, state, turn.Targeting))
+                    continue;
+
                 // Get the resulting state, after the turn is done
-                BattleStore ResultState = BattleStore.DeepCopyOf(state);
-                foreach (MemberMove memberMove in turn.MemberMoves)
-                {
-                    ResultState = Move.WithEffectDone(ResultState, memberMove.Move, memberMove.Targeting);   
-                }
+                BattleStore ResultState = Move.WithEffectDone(state, turn.Move, turn.Targeting);
 
                 // Rate the resulting state
                 int Rating = RateState(fromPartyIdx, ResultState);
@@ -180,11 +127,14 @@ namespace TheParty_v2
                 {
                     Member MemberInQuestion = state.Parties[party2].Members[member];
 
+                    // Ally
                     if (party2 == fromPartyIdx)
                     {
                         AllyHP += MemberInQuestion.HP;
                         AllyKOd += MemberInQuestion.KOdFor;
                     }
+
+                    // Opponent
                     else if (party2 != fromPartyIdx)
                     {
                         EnemyHP += MemberInQuestion.HP;

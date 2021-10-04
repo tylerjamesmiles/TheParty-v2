@@ -22,7 +22,8 @@ namespace TheParty_v2
             MemberIdxs = new List<int>();
             for (int i = 0; i < MembersInThisParty.Length; i++)
             {
-                if (MembersInThisParty[i].CanGo())
+                Move[] ValidMoves = Move.AllValidMovesFor(CurrentTurn, i, client.CurrentStore);
+                if (ValidMoves.Length > 0)
                 {
                     MemberIdxs.Add(i);
                     LegalMemberPositions.Add(MemberPositions[i]);
@@ -35,16 +36,8 @@ namespace TheParty_v2
         }
 
         public override void Update(CommandBattle client, float deltaTime)
-        { 
-            // If it's the AI's turn, make the move right away
-            //if (client.CurrentStore.CurrentTurnPartyIdx != 0)
-            //{
-            //    Party CurrentTurnPty = BattleStore.CurrentTurnPartyOf(client.CurrentStore);
-            //    int Idx = client.CurrentStore.CurrentTurnPartyIdx;
-            //    Turn BestTurn = Party.BestTurn(CurrentTurnPty, Idx, client.CurrentStore);
+        {
 
-            //    //BestTurn.
-            //}
 
             client.MemberChoice.Update(deltaTime, true);
 

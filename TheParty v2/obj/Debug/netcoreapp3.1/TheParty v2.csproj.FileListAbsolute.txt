@@ -64,3 +64,5 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\T
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\Hearts.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\Stances.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\HitAnimations.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\GameOver.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\Title.xnb
