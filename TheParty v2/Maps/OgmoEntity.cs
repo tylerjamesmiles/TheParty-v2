@@ -22,6 +22,7 @@ namespace TheParty_v2
         public FourDirSprite2D Sprite;
         public bool Frozen;
         public bool FacePlayer;
+        public bool Exists;
 
         const float MinInteractDist = 20f;
 
@@ -33,8 +34,58 @@ namespace TheParty_v2
             Frozen = false;
         }
 
+        private bool IExist()   // <- Deep questions
+        {
+            if (!values.ContainsKey("ExistsIf"))
+                return true;
+
+            string Condition = values["ExistsIf"];
+
+            if (Condition == "")
+                return true;
+
+            string[] Keywords = Condition.Split(' ');
+            string VarName = Keywords[0];
+            string Operator = Keywords[1];
+            string RHValString = Keywords[2];
+
+            if (GameContent.Switches.ContainsKey(VarName))
+            {
+                bool LHVal = GameContent.Switches[VarName];
+                bool RHVal = bool.Parse(RHValString);
+                switch (Operator)
+                {
+                    case "==": return LHVal == RHVal;
+                    case "!=": return LHVal != RHVal;
+                    default: throw new Exception("Invalid operator.");
+                }
+            }
+            else if (GameContent.Variables.ContainsKey(VarName))
+            {
+                int LHVal = GameContent.Variables[VarName];
+                int RHVal = int.Parse(RHValString);
+                switch (Operator)
+                {
+                    case "==": return LHVal == RHVal;
+                    case "!=": return LHVal != RHVal;
+                    case "<": return LHVal < RHVal;
+                    case ">": return LHVal > RHVal;
+                    case "<=": return LHVal <= RHVal;
+                    case ">=": return LHVal >= RHVal;
+                    default: throw new Exception("Invalid operator.");
+                }
+            }
+            else
+                throw new Exception("Invalid variable name.");
+        }
+
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, Player player, float deltaTime)
         {
+            Exists = IExist();
+
+            if (!Exists)
+                return;
+
             Vector2 Steering = new Vector2(5f, 0f);
 
             if (Frozen)
@@ -59,7 +110,8 @@ namespace TheParty_v2
 
         public void Draw( Vector2 cameraPos, SpriteBatch spriteBatch)
         {
-            Sprite.Draw(Transform.Position, cameraPos, spriteBatch);
+            if (Exists)
+                Sprite.Draw(Transform.Position, cameraPos, spriteBatch);
         }
 
         public bool PlayerCanInteract(Vector2 playerPos, Vector2 playerHeading)

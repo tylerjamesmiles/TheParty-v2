@@ -177,7 +177,11 @@ namespace TheParty_v2
             StateMachine.Update(this, deltaTime);
 
             if (GameOver)
+            {
                 client.StateMachine.SetNewCurrentState(client, new GameStateGameOver());
+                Done = true;
+                return;
+            }
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
@@ -193,8 +197,14 @@ namespace TheParty_v2
 
             Sorted.ForEach(s => s.Draw(spriteBatch));
 
-            StanceIndicators.ForEach(s => s.Draw(spriteBatch));
+            foreach (StanceIndicator si in StanceIndicators)
+            {
+                if (CurrentStore.AllMembers()[StanceIndicators.IndexOf(si)].HP > 0)
+                    si.Draw(spriteBatch);
 
+            }
+
+            // Exshtra Shtuff
             StateMachine.Draw(this, spriteBatch);
         }
 

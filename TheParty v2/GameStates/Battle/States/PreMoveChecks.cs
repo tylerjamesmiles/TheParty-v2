@@ -15,8 +15,18 @@ namespace TheParty_v2
         {
             // Is player dead?
             Party Player = client.CurrentStore.Parties[0];
-            if (Party.IsKOd(Player))
+            if (Party.IsDead(Player))
+            {
                 client.GameOver = true;
+            }
+
+            // Are the other parties dead?
+            bool OtherPartiesDead = true;
+            for (int i = 1; i < client.CurrentStore.Parties.Length; i++)
+                if (Party.IsDead(client.CurrentStore.Parties[i]) == false)
+                    OtherPartiesDead = false;
+            if (OtherPartiesDead)
+                client.StateMachine.SetNewCurrentState(client, new Victory());
 
             // Are there any moves for current party?
             Party CurrentTurnPty = BattleStore.CurrentTurnPartyOf(client.CurrentStore);

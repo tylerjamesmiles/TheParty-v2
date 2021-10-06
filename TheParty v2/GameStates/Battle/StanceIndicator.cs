@@ -43,12 +43,12 @@ namespace TheParty_v2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Point FrameSize = new Point(7, 10);
+            Point FrameSize = new Point(8, 10);
 
             Point DrawLoc = DrawPos.ToPoint() + new Point(0, (int)Bob.CurrentPosition);
             Rectangle DrawRect = new Rectangle(DrawLoc, FrameSize);
 
-            Point SourceLoc = new Point(CurrentFrame * 7, 0);
+            Point SourceLoc = new Point(CurrentFrame * FrameSize.X, 0);
             Rectangle SourceRect = new Rectangle(SourceLoc, FrameSize);
 
             spriteBatch.Draw(GameContent.Sprites["Stances"], DrawRect, SourceRect, Color.White);

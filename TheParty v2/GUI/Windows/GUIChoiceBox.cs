@@ -14,6 +14,7 @@ namespace TheParty_v2
         bool[] ChoiceValidity;
 
         public int CurrentChoice => Choice.CurrentChoiceIdx;
+        public bool ChoiceUpdatedThisFrame => Choice.ChoiceUpdatedThisFrame;
         public int NumChoices => Choice.NumChoices;
         public bool Done => Box.Done;
 
@@ -69,11 +70,18 @@ namespace TheParty_v2
                 Vector2.Zero;
 
             Texts = new List<GUIText>();
+            CurrentChoiceIdx = 0;
             for (int c = 0; c < Collumns.Length; c++)
-            {
-                Vector2 CollumnTL = TextTL + new Vector2(CollumnXOffsets[c], 0);
-                Texts.Add(new GUIText(Collumns[c], CollumnTL, int.MaxValue, float.MinValue));
-            }
+                for (int r = 0; r < ChoicesPerColumn; r++)
+                {
+                    if (CurrentChoiceIdx >= choices.Length)
+                        break;
+
+                    Vector2 TextPos = TextTL + new Vector2(CollumnXOffsets[c], r * 10);
+                    bool Light = choiceValidity != null && !choiceValidity[CurrentChoiceIdx];
+                    Texts.Add(new GUIText(choices[CurrentChoiceIdx], TextPos, int.MaxValue, float.MinValue, Light));
+                    CurrentChoiceIdx++;
+                }
 
             Point BoxLoc = TextTL.ToPoint() + new Point(-4, -4);
             Point BoxSize = TextSize.ToPoint() + new Point(8, 8);

@@ -12,6 +12,7 @@ namespace TheParty_v2
         Vector2[] ChoicePositions;
         public int CurrentChoiceIdx { get; private set; }
         public int NumChoices => ChoicePositions.Length;
+        public bool ChoiceUpdatedThisFrame { get; private set; }
         int[][] Edges;
         LerpV MovementLerp;
         Wobble HandWobble;
@@ -29,7 +30,7 @@ namespace TheParty_v2
             HandWobble = new Wobble(4f, 2f);
             Done = false;
             MovementLerp = new LerpV(ChoicePositions[0], ChoicePositions[0], 0f);
-
+            ChoiceUpdatedThisFrame = false;
         }
 
         public static int[][] PositionEdges(Vector2[] positions)
@@ -112,10 +113,10 @@ namespace TheParty_v2
             bool DirectionWasPressed = Direction != NoDirectionPressed;
             int NewChoiceIdx = DirectionWasPressed ? Edges[CurrentChoiceIdx][Direction] : -1;
             bool ChoiceIsValid = NewChoiceIdx != InvalidNode;
-            bool NewChoiceIsSelected = DirectionWasPressed && ChoiceIsValid;
-            Vector2 NewChoicePos = NewChoiceIsSelected ? ChoicePositions[NewChoiceIdx] : Vector2.Zero;
+            ChoiceUpdatedThisFrame = DirectionWasPressed && ChoiceIsValid;
+            Vector2 NewChoicePos = ChoiceUpdatedThisFrame ? ChoicePositions[NewChoiceIdx] : Vector2.Zero;
 
-            if (NewChoiceIsSelected)
+            if (ChoiceUpdatedThisFrame)
             {
                 MovementLerp = new LerpV(MovementLerp.CurrentPosition, NewChoicePos, HandTravelTime);
                 CurrentChoiceIdx = NewChoiceIdx;

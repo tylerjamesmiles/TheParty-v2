@@ -26,7 +26,7 @@ namespace TheParty_v2
         public OgmoLayer CollisionLayer => layers.Find(l => l.grid != null);
         public List<OgmoEntity> Entities => EntityLayer.entities;
         public List<Transform2D> EntityTransforms => 
-            Entities.FindAll(e => e.values["Solid"] == "true").ConvertAll(e => e.Transform);
+            Entities.FindAll(e => e.Exists && e.values["Solid"] == "true").ConvertAll(e => e.Transform);
 
         public void Initialize()
         {

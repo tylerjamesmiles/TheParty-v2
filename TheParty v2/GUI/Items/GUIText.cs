@@ -13,15 +13,17 @@ namespace TheParty_v2
         int CurrentChar;
         Timer NewCharTimer;
         Vector2 Location;
+        bool DrawLight;
         public bool Done => CurrentChar == Text.Length - 1;
 
-        public GUIText(string text, Vector2 location, int lineWidth, float popInRate)
+        public GUIText(string text, Vector2 location, int lineWidth, float popInRate, bool drawLight = false)
         {
             Text = WrappedByLineWidth(text, lineWidth);
             CurrentDisplayText = "";
             CurrentChar = 0;
             NewCharTimer = new Timer(popInRate);
             Location = location;
+            DrawLight = drawLight;
         }
 
         public void FullyDisplay()
@@ -86,7 +88,8 @@ namespace TheParty_v2
 
         public void Draw(SpriteBatch spriteBatch, bool isInFocus)
         {
-            spriteBatch.DrawString(GameContent.Font, CurrentDisplayText, Location, Color.White);
+            SpriteFont Font = (DrawLight) ? GameContent.FontLight : GameContent.Font;
+            spriteBatch.DrawString(Font, CurrentDisplayText, Location, Color.White);
         }
     }
 }

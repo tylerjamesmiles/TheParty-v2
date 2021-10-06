@@ -23,6 +23,7 @@ namespace TheParty_v2
     struct Move
     {
         public string Name;
+        public string Description;
         public string AnimationSheet;
         public string AnimationName;
         public bool PositiveEffect;
@@ -36,6 +37,8 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Hit",
+                Description = 
+                    "Hit stance by yours.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
@@ -46,9 +49,7 @@ namespace TheParty_v2
                 },
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
-                    Effects.HitStanceByStance,
-                    Effects.HitHPBy1,
-                    Effects.CasterLoseCharge
+                    Effects.HitStanceByStance
                 },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
                 {
@@ -64,6 +65,9 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Hurt",
+                Description = 
+                    "Hit HP by your stance. \n" +
+                    "(Target must be KOd)",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
@@ -93,6 +97,9 @@ namespace TheParty_v2
             {
                 Name = "Give",
                 PositiveEffect = true,
+                Description = 
+                    "Target St. +1. \n" +
+                    "#: Also heal their HP by 1.",
 
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
                 {
@@ -120,13 +127,15 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Help",
+                Description = 
+                    "Revive a KOd ally.\n" +
+                    "(Must be #Charged#)",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
 
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
                 {
-                    Effects.HitStanceByStance
                 },
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
                 {
@@ -146,14 +155,15 @@ namespace TheParty_v2
         public static Move Charge =>
             new Move()
             {
-                Name = "Charge",
+                Name = "#Charge",
+                Description = "#Charge up energy!#",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
 
                 UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
                 { 
-                    Effects.Charge 
+                    Effects.Charge,
                 },
                 ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] { },
                 MoveConditions = new Func<BattleStore, Targeting, bool>[]
@@ -170,6 +180,7 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Item",
+                Description = "Use an item.",
                 PositiveEffect = true,
 
                 MoveConditions = new Func<BattleStore, Targeting, bool>[] 
@@ -183,6 +194,7 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Talk",
+                Description = "Sway an enemy's feelings about you.",
                 PositiveEffect = true,
 
                 MoveConditions = new Func<BattleStore, Targeting, bool>[] 
@@ -207,8 +219,6 @@ namespace TheParty_v2
                     Result = effect(Result, targeting);
                 
             }
-
-            //BattleStore.Member(Result, targeting.FromPartyIdx, targeting.FromMemberIdx).HasGoneThisTurn = true;
 
             return Result;
         }
@@ -306,6 +316,18 @@ namespace TheParty_v2
 
     static class Effects
     {
+        public static BattleStore HitStanceBy1(BattleStore state, Targeting targeting)
+        {
+            BattleStore NewState = BattleStore.DeepCopyOf(state);
+
+            ref Member To = ref Targeting.ToMemberRef(targeting, NewState);
+            ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
+
+            To.Stance = MathUtility.RolledIfAtLimit(To.Stance + 1, 5);
+            To.KOd = (To.Stance == 0);
+
+            return NewState;
+        }
         public static BattleStore HitStanceByStance(BattleStore state, Targeting targeting)
         {
             BattleStore NewState = BattleStore.DeepCopyOf(state);
@@ -327,13 +349,12 @@ namespace TheParty_v2
             ref Member To = ref Targeting.ToMemberRef(targeting, NewState);
             ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
 
-            To.HP -= From.Stance;
+            To.HP -= From.Stance * 2;
             if (To.HP < 0)
                 To.HP = 0;
 
-            //if (To.KOdFor > 0)
-            if (To.KOd)
-                To.HP -= 1;
+            //if (To.KOd)
+            //    To.HP -= 1;
 
             return NewState;
         }
@@ -358,7 +379,7 @@ namespace TheParty_v2
             ref Member To = ref Targeting.ToMemberRef(targeting, NewState);
             ref Member From = ref Targeting.FromMemberRef(targeting, NewState);
 
-            To.HP += 1;
+            To.HP += 2;
 
             return NewState;
         }

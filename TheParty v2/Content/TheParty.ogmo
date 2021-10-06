@@ -99,6 +99,7 @@
       "values": [
         {"name": "Name", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "SpriteName", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
+        {"name": "ExistsIf", "definition": "String", "display": 0, "defaults": "", "maxLength": 0, "trimWhitespace": true},
         {"name": "Solid", "definition": "Boolean", "display": 0, "defaults": false},
         {"name": "TriggerOnTouch", "definition": "Boolean", "display": 0, "defaults": false},
         {"name": "Script", "definition": "Text", "display": 0, "defaults": ""}

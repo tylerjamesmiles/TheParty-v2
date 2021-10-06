@@ -28,6 +28,7 @@ namespace TheParty_v2
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
         public static SpriteFont Font;
+        public static SpriteFont FontLight;
 
         private static Dictionary<string, T> LoadedWith<T>(ContentManager content, string folderName)
         {
@@ -184,6 +185,16 @@ namespace TheParty_v2
 
             Font = new SpriteFont(
                 FontSprite,
+                ListBounds,
+                ListCropping,
+                ListCharacters,
+                LineSpacing,
+                Spacing,
+                ListKerning,
+                null);
+
+            FontLight = new SpriteFont(
+                Sprites["FontLight"],
                 ListBounds,
                 ListCropping,
                 ListCharacters,

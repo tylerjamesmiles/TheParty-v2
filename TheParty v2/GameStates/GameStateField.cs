@@ -35,6 +35,7 @@ namespace TheParty_v2
                 foreach (var entity in Entities)
                 {
                     if (client.EventsCanHappenTimer.TicsSoFar >= 1 &&
+                        entity.Exists &&
                         entity.PlayerCanInteract(client.Player.Transform.Position, client.Player.Movement.Heading) &&
                         (entity.values["TriggerOnTouch"] == "true" || InputManager.JustPressed(Keys.Space)))
                     {

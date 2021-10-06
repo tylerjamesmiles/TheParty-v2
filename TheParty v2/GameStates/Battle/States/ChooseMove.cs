@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,8 @@ namespace TheParty_v2
 {
     class ChooseMove : State<CommandBattle>
     {
+        GUIDialogueBox Description;
+
         public override void Enter(CommandBattle client)
         {
             Member Selected = client.FromMember;
@@ -16,11 +19,24 @@ namespace TheParty_v2
                 ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.Moves[i]);
                     
             client.MoveChoice = new GUIChoiceBox(Selected.MoveNames(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
+
+            int CurrentChoice = client.MoveChoice.CurrentChoice;
+            string DescrTxt = client.FromMember.Moves[CurrentChoice].Description;
+            Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
         }
 
         public override void Update(CommandBattle client, float deltaTime)
         {
             client.MoveChoice.Update(deltaTime, true);
+
+            if (client.MoveChoice.ChoiceUpdatedThisFrame)
+            {
+                int CurrentChoice = client.MoveChoice.CurrentChoice;
+                string DescrTxt = client.FromMember.Moves[CurrentChoice].Description;
+                Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
+            }
+
+            Description.Updated(deltaTime, true);
 
             if (client.MoveChoice.Done)
             {
@@ -35,6 +51,7 @@ namespace TheParty_v2
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
             client.MoveChoice.Draw(spriteBatch, true);
+            Description.Draw(spriteBatch, true);
         }
 
         public override void Exit(CommandBattle client)

@@ -20,7 +20,15 @@ namespace TheParty_v2
             client.Movement.Update(deltaTime);
             client.FromSprite.DrawPos = client.Movement.CurrentPosition;
             if (client.Movement.Reached)
-                client.StateMachine.SetNewCurrentState(client, new DoDoMove());
+            {
+                if (client.CurrentMove.Name == "Hit")
+                    client.StateMachine.SetNewCurrentState(client, new AnimateHit());
+                else if (client.CurrentMove.Name == "Hurt")
+                    client.StateMachine.SetNewCurrentState(client, new AnimateHurt());
+                else
+                    client.StateMachine.SetNewCurrentState(client, new DoDoMove());
+
+            }
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)

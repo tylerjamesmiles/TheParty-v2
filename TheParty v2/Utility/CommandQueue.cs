@@ -8,7 +8,7 @@ namespace TheParty_v2
     class Command<T>
     {
         public bool Entered { get; protected set; }
-        public bool Done { get; protected set; }
+        public bool Done;
         public virtual void Enter(T client) { Entered = true; }
         public virtual void Update(T client, float deltaTime) { Done = true; }
         public virtual void Draw(T client, SpriteBatch spriteBatch) { }

@@ -31,22 +31,25 @@ namespace TheParty_v2
             }
 
             client.MemberChoice = new GUIChoice(LegalMemberPositions.ToArray());
-
         }
 
         public override void Update(CommandBattle client, float deltaTime)
         {
-
-
             client.MemberChoice.Update(deltaTime, true);
+            client.CurrentTargeting = new Targeting()
+            {
+                FromPartyIdx = client.CurrentStore.CurrentTurnPartyIdx,
+                FromMemberIdx = MemberIdxs[client.MemberChoice.CurrentChoiceIdx]
+            };
+
+            client.SetAppropriateAnimations();
+            if (!client.FromMember.Charged)
+                client.FromSprite.SetCurrentAnimation("Move");
+
 
             if (client.MemberChoice.Done)
             {
-                client.CurrentTargeting = new Targeting()
-                {
-                    FromPartyIdx = client.CurrentStore.CurrentTurnPartyIdx,
-                    FromMemberIdx = MemberIdxs[client.MemberChoice.CurrentChoiceIdx]
-                };
+
                 client.StateMachine.SetNewCurrentState(client, new ChooseMove());
 
             }
