@@ -5,16 +5,14 @@ using System.Text.Json;
 
 namespace TheParty_v2
 {
-    struct Member
+    class Member
     {
         public int HP; // 0 - 10
         public int Stance; // 0 - 4
         public bool Charged;
-        //public int KOdFor; // Down by 1 each turn
         public bool KOd;
-        public Move[] Moves;
-
-        //public bool HasGoneThisTurn;
+        public List<Move> Moves;
+        public List<StatusEffect> StatusEffects;
 
         private static readonly int StanceLimit = 5;
 
@@ -24,10 +22,7 @@ namespace TheParty_v2
             HP = Mem.GetProperty("HP").GetInt32();
             Stance = Mem.GetProperty("Stance").GetInt32();
             Charged = Mem.GetProperty("Charged").GetBoolean();
-            //KOdFor = Mem.GetProperty("KOdFor").GetInt32();
             KOd = false;
-
-            //HasGoneThisTurn = false;
 
             Func<string, Move> StringToMove = (s) =>
                 s == "Hit" ? Move.Hit :
@@ -40,40 +35,30 @@ namespace TheParty_v2
                 Move.Hit;
 
             int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
-            Moves = new Move[NumMoves];
+            Moves = new List<Move>();
             for (int i = 0; i < NumMoves; i++)
-            {
-                Moves[i] = StringToMove(Mem.GetProperty("Moves")[i].GetString());
-            }
+                Moves.Add(StringToMove(Mem.GetProperty("Moves")[i].GetString()));
+
+            StatusEffects = new List<StatusEffect>();
         }
 
-        public static Member DeepCopyOf(Member m) =>
-            new Member() 
-            { 
-                HP = m.HP, 
-                Stance = m.Stance, 
-                Charged = m.Charged, 
-                //KOdFor = m.KOdFor,
-                KOd = m.KOd,
-                Moves = m.Moves,
+        public bool CanGo => HP > 0 && Stance > 0;
+        public List<string> MoveNames => Moves.ConvertAll(m => m.Name);
 
-                //HasGoneThisTurn = m.HasGoneThisTurn
-            };
-
-        public static int StanceAfterHit(int oldStance, int hitBy) =>
-            MathUtility.RolledIfAtLimit(oldStance + hitBy, StanceLimit);
-
-        public string[] MoveNames()
+        public void HitStance(int by)
         {
-            List<string> Result = new List<string>();
-            foreach (Move move in Moves)
-                Result.Add(move.Name);
-            return Result.ToArray();
+            Stance = MathUtility.RolledIfAtLimit(Stance + by, StanceLimit);
+            if (Stance == 0)
+                KOd = true;
         }
 
-        public bool CanGo()
+        public void HitHP(int by)
         {
-            return HP > 0 && Stance > 0;
+            HP += by;
+            if (HP < 0)
+                HP = 0;
         }
+
+
     }
 }

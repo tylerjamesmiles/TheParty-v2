@@ -35,7 +35,7 @@ namespace TheParty_v2
             if (!MoveDone)
             {
                 client.CurrentStore = Move.WithEffectDone(client.CurrentStore, client.CurrentMove, client.CurrentTargeting);
-                client.CurrentStore = BattleStore.TimePassed(client.CurrentStore);
+                client.CurrentStore = Battle.TimePassed(client.CurrentStore);
                 
                 MoveDone = true;
             }

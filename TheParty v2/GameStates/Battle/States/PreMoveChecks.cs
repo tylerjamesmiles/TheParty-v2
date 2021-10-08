@@ -29,12 +29,12 @@ namespace TheParty_v2
                 client.StateMachine.SetNewCurrentState(client, new Victory());
 
             // Are there any moves for current party?
-            Party CurrentTurnPty = BattleStore.CurrentTurnPartyOf(client.CurrentStore);
+            Party CurrentTurnPty = Battle.CurrentTurnPartyOf(client.CurrentStore);
             int CurrentTurnIdx = client.CurrentStore.CurrentTurnPartyIdx;
             MemberMove[] PossibleMoves = Party.AllPossibleMemberMoves(CurrentTurnPty, CurrentTurnIdx, client.CurrentStore);
             if (PossibleMoves.Length == 0)
             {
-                client.CurrentStore = BattleStore.TimePassed(client.CurrentStore);
+                client.CurrentStore = Battle.TimePassed(client.CurrentStore);
             }
 
             // Current Turn is player

@@ -3,18 +3,99 @@ using System.Collections.Generic;
 
 namespace TheParty_v2
 {
-    struct Move
+    // E N V I R O N M E N T A L   E F F E C T S
+    // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ 
+    // ( you can tell 1 turn ahead of time who will be affected? )
+    //
+    // Wind occasionally blows and modifies one stance by 1
+    // Heat occasionally hurts everybody by 1/2 heart
+    // Bright light occasionally stuns
+    //
+
+    // S T A T U S   E F F E C T   I D E A S
+    // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+    // [ ] POISON
+    // [ ] ATTACK UP
+    // [ ] ATTACK DOWN
+    // [ ] DEFENSE UP
+    // [ ] DEFENSE DOWN
+    // [ ] EVADE
+    // [ ] (CAN'T CHARGE)
+    // [ ] STUNNED
+    // [ ] 
+    // [ ] 
+    // [ ]
+
+
+    //  M O V E S   S O   F A R
+    // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+    //
+    //  N O R M A L   M O V E S
+    //
+    //[x]   HIT - Hit stance by yours
+    //[x]   HURT - Hurt KOd target's HP by your stance
+    //[x]   CHARGE - Charge up energy
+    //[x]   ITEM - Use an item
+    //
+    //  S P E C I A L   M O V E S   (Need to be charged)                    C L A S S   I D E A S
+    //
+    //[x]   HELP - Give KOd member your stance                              Fireman
+    //[x]   GIVE - Give target 1 stance point of yours                      Communist
+    //[x]   TAKE - Take one stance point from target                        Communist
+    //[ ]   SUCK - Steal 1 Heart from target                                Vampire
+    //[ ]   DEMORALIZE - Steal charge. Target can't charge next turn.       (someone who's a jerk)
+    //[ ]   HEAL - Restore 2 hearts                                         Doctor
+    //[ ]   SACRIFICE - Give as many hearts as completely heals a target    Monk/Nun
+    //[ ]   STUN - Stun target for 1 turn                                   Martial Artist
+    //[ ]   POKE - Deal 1 heart of damage and keep charge                   Fencer
+    //[ ]   ENCOURAGE - Give target charge                                  Motivational Speaker
+    //[ ]   TALK - Try to sway the enemy your way                           Cult Leader
+    //[ ]   TRADE - Trade stance with the target                            Merchant
+    //[ ]   PUNCH - Hit enemy HP by your stance                             Martial Artist
+    //[ ]   ??? - Hit enemy by 1/2 HP, even if you're KO'd                  Zombie
+    //[ ]   DEATH - 1/5 chance to instantly kill
+    //[ ]   DOUBLE - Inflicts Double
+    //[ ]   TELEPORT - Brings party back to the world map
+    //[ ]   SLANDER - Encourage one party to dislike the other
+    //[ ]   KAMIKAZE - Kills target. Leaves 1/2 heart.
+    //[ ]   DIVE - KOs target and self.
+    //[ ]   LIFE - Brings target back to life, at the expense of your own.
+    //[ ]   SCAN - Tells you info about the enemy
+    //[ ]   
+    //[ ]
+    //[ ]
+    //[ ]
+
+    //      O N   T H E   F E N C E   A B O U T
+    //[ ]   POISON - Target takes 1/2 heart of damage every turn
+    //[ ]   ANTIDOTE - Heals poison
+    //
+    //
+    //
+    //
+    //
+
+    //
+
+    class Move
     {
         public string Name;
         public string Description;
         public string AnimationSheet;
         public string AnimationName;
         public bool PositiveEffect;
-        public Func<BattleStore, Targeting, BattleStore>[] UnChargedEffects;
-        public Func<BattleStore, Targeting, BattleStore>[] ChargedEffects;
-        public Func<BattleStore, Targeting, bool>[] MoveConditions;
+        public List<Action<Battle, Targeting>> UnChargedEffects;
+        public List<Action<Battle, Targeting>> ChargedEffects;
+        public List<Func<Battle, Targeting, bool>> MoveConditions;
 
         public static string InvalidMoveName = "Invalid";
+
+        public List<Action<Battle, Targeting>> Effects(Battle b, Targeting t) =>
+            b.From(t).Charged ? ChargedEffects : UnChargedEffects;
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // N O R M A L   M O V E S
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         public static Move Hit =>
             new Move()
@@ -25,22 +106,22 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
+                UnChargedEffects = new List<Action<Battle, Targeting>> 
                 { 
-                    Effects.HitStanceByStance,
-                    Effects.HitHPBy1
+                    Battle.HitStanceByStance,
+                    Battle.HitHPBy1
                 },
-                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
+                ChargedEffects = new List<Action<Battle, Targeting>> 
                 { 
-                    Effects.HitStanceByStance
+                    Battle.HitStanceByStance
                 },
-                MoveConditions = new Func<BattleStore, Targeting, bool>[]
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                    MoveCondition.TargetAlive,
-                    MoveCondition.TargetAlert,
-                    MoveCondition.TargetIsInDifferentParty
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                    Battle.TargetAlive,
+                    Battle.TargetAlert,
+                    Battle.TargetIsInDifferentParty
                 }
             };
 
@@ -49,31 +130,72 @@ namespace TheParty_v2
             {
                 Name = "Hurt",
                 Description = 
-                    "Hit HP by your stance. \n" +
+                    "Hit % by your stance. \n" +
                     "(Target must be KOd)",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
 
-                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
+                UnChargedEffects = new List<Action<Battle, Targeting>> 
                 { 
-                    Effects.HitHPByStance 
+                    Battle.HitHPByStance 
                 },
-                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
+                ChargedEffects = new List<Action<Battle, Targeting>> 
                 { 
-                    Effects.HitHPByStance, 
-                    Effects.HitHPBy1,
-                    Effects.CasterLoseCharge
+                    Battle.HitHPByStance, 
+                    Battle.HitHPBy1,
+                    Battle.CasterLoseCharge
                 },
-                MoveConditions = new Func<BattleStore, Targeting, bool>[]
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                    MoveCondition.TargetAlive,
-                    MoveCondition.TargetKOd,
-                    MoveCondition.TargetIsInDifferentParty
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                    Battle.TargetAlive,
+                    Battle.TargetKOd,
+                    Battle.TargetIsInDifferentParty
                 }
             };
+
+        public static Move Charge =>
+            new Move()
+            {
+                Name = "#Charge#",
+                Description = "#Charge up energy!#",
+                AnimationSheet = "HitAnimations",
+                AnimationName = "Charge",
+                PositiveEffect = true,
+
+                UnChargedEffects = new List<Action<Battle, Targeting>>
+                {
+                            Battle.Charge,
+                },
+                ChargedEffects = new List<Action<Battle, Targeting>> { },
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
+                {
+                            Battle.CasterAlive,
+                            Battle.CasterAlert,
+                            Battle.TargetIsSelf,
+                            Battle.CasterNotCharged
+                }
+            };
+
+        public static Move Item =>
+            new Move()
+            {
+                Name = "Item",
+                Description = "Use an item.",
+                PositiveEffect = true,
+
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
+                {
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                }
+            };
+
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        // S P E C I A L  M O V E S
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
         public static Move Give =>
             new Move()
@@ -81,28 +203,24 @@ namespace TheParty_v2
                 Name = "Give",
                 PositiveEffect = true,
                 Description = 
-                    "Target St. +1. \n" +
-                    "#: Also heal their HP by 1.",
+                    "Give one pt. of Stance.\n" +
+                    "(Must be #Charged#)",
 
-                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                UnChargedEffects = new List<Action<Battle, Targeting>>
+                {},
+                ChargedEffects = new List<Action<Battle, Targeting>>
                 {
-                    Effects.Give1Stance
+                    Battle.Give1Stance,
+                    Battle.CasterLoseCharge
                 },
-                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
-                    Effects.Give1Stance,
-                    Effects.HealHPBy1,
-                    Effects.CasterLoseCharge
-
-                },
-                MoveConditions = new Func<BattleStore, Targeting, bool>[]
-                {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                    MoveCondition.TargetAlive,
-                    MoveCondition.TargetAlert,
-                    MoveCondition.TargetIsInSameParty,
-                    MoveCondition.TargetIsOTher
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                    Battle.TargetAlive,
+                    Battle.TargetAlert,
+                    Battle.TargetIsInSameParty,
+                    Battle.TargetIsOTher
                 }
             };
 
@@ -117,60 +235,50 @@ namespace TheParty_v2
                 AnimationName = "Charge",
                 PositiveEffect = true,
 
-                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                UnChargedEffects = new List<Action<Battle, Targeting>>
                 {
                 },
-                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[]
+                ChargedEffects = new List<Action<Battle, Targeting>>
                 {
-                    Effects.HitStanceByStance,
-                    Effects.CasterLoseCharge
+                    Battle.HitStanceByStance,
+                    Battle.HealHPBy1,
+                    Battle.TargetLoseCharge,
+                    Battle.CasterLoseCharge
                 },
-                MoveConditions = new Func<BattleStore, Targeting, bool>[]
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                    MoveCondition.CasterCharged,
-                    MoveCondition.TargetAlive,
-                    MoveCondition.TargetKOd
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                    Battle.CasterCharged,
+                    Battle.TargetAlive,
+                    Battle.TargetKOd
                 }
             };
 
-        public static Move Charge =>
+
+        public static Move Suck =>
             new Move()
             {
-                Name = "#Charge",
-                Description = "#Charge up energy!#",
+                Name = "Suck",
+                Description = "Steal 1%\n" +
+                    "(Must be #Charged#)",
                 AnimationSheet = "HitAnimations",
-                AnimationName = "Charge",
-                PositiveEffect = true,
+                AnimationName = "Hit",
+                PositiveEffect = false,
+                UnChargedEffects = new List<Action<Battle, Targeting>> { },
+                ChargedEffects = new List<Action<Battle, Targeting>>
+                {
 
-                UnChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] 
-                { 
-                    Effects.Charge,
                 },
-                ChargedEffects = new Func<BattleStore, Targeting, BattleStore>[] { },
-                MoveConditions = new Func<BattleStore, Targeting, bool>[]
+                MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                    MoveCondition.ChargeAvailable,
-                    MoveCondition.TargetIsSelf,
-                    MoveCondition.CasterNotCharged
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
+                    Battle.CasterCharged,
+                    Battle.TargetAlive,
+                    Battle.TargetIsInDifferentParty
                 }
-            };
 
-        public static Move Item =>
-            new Move()
-            {
-                Name = "Item",
-                Description = "Use an item.",
-                PositiveEffect = true,
-
-                MoveConditions = new Func<BattleStore, Targeting, bool>[] 
-                {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
-                }
             };
 
         public static Move Talk =>
@@ -180,79 +288,27 @@ namespace TheParty_v2
                 Description = "Sway an enemy's feelings about you.",
                 PositiveEffect = true,
 
-                MoveConditions = new Func<BattleStore, Targeting, bool>[] 
+                MoveConditions = new List<Func<Battle, Targeting, bool>> 
                 {
-                    MoveCondition.CasterAlive,
-                    MoveCondition.CasterAlert,
+                    Battle.CasterAlive,
+                    Battle.CasterAlert,
                 }
             };
 
-        public static BattleStore WithEffectDone(BattleStore state, Move move, Targeting targeting)
-        {
-            BattleStore Result = BattleStore.DeepCopyOf(state);
+        public bool ValidOnMember(Battle state, Targeting targeting)
+            => MoveConditions.TrueForAll(c => c(state, targeting));
 
-            if (Targeting.FromMemberRef(targeting, state).Charged)
-            {
-                foreach (var effect in move.ChargedEffects)
-                    Result = effect(Result, targeting);
-            }
-            else
-            {
-                foreach (var effect in move.UnChargedEffects)
-                    Result = effect(Result, targeting);
-                
-            }
+        public bool ValidOnAnyone(Battle state, int fromPartyIdx, int fromMemberIdx)
+            => state.AllTargetingFor(fromPartyIdx, fromMemberIdx).Exists(t => ValidOnMember(state, t));
 
-            return Result;
-        }
-
-        public static bool ValidOnMember(Move move, BattleStore state, Targeting targeting)
-        {
-            bool SatisfiesAllConditions = true;
-            foreach (var condition in move.MoveConditions)
-            {
-                if (condition(state, targeting) == false)
-                    SatisfiesAllConditions = false;
-            }
-            return SatisfiesAllConditions;
-        }
-        public static bool ValidOnAnyone(Move move, BattleStore state, int fromPartyIdx, int fromMemberIdx)
-        {
-            bool ValidOnAnyone = false;
-
-            for (int party = 0; party < state.Parties.Length; party++)
-                for (int member = 0; member < state.Parties[party].Members.Length; member++)
-                {
-                    Targeting Targeting = new Targeting()
-                    {
-                        FromPartyIdx = fromPartyIdx,
-                        FromMemberIdx = fromMemberIdx,
-                        ToPartyIdx = party,
-                        ToMemberIdx = member
-                    };
-
-                    if (ValidOnMember(move, state, Targeting))
-                        ValidOnAnyone = true;
-                }
-
-            return ValidOnAnyone;
-        }
-        public static Move[] AllValidMovesFor(int fromPartyIdx, int fromMemberIdx, BattleStore state)
+        public static Move[] AllValidMovesFor(int fromPartyIdx, int fromMemberIdx, Battle state)
         {
             List<Move> Result = new List<Move>();
-            Member From = BattleStore.Member(state, fromPartyIdx, fromMemberIdx);
+            Member From = state.Member(state, fromPartyIdx, fromMemberIdx);
             foreach (Move move in From.Moves)
                 if (ValidOnAnyone(move, state, fromPartyIdx, fromMemberIdx))
                     Result.Add(move);
             return Result.ToArray();
         }
-        public static Move MoveWithName(string name, Move[] moves)
-        {
-            foreach (Move move in moves)
-                if (move.Name == name)
-                    return move;
-            return new Move() { Name = InvalidMoveName };
-        }
     }
-
 }

@@ -9,71 +9,39 @@ namespace TheParty_v2
         public Move Move;
     }
 
-    struct Party
+    class Party
     {
-        public Member[] Members;
+        public List<Member> Members;
         public bool AIControlled;
 
         public Party(string partyName, JsonDocument doc)
         {
             JsonElement party = doc.RootElement.GetProperty(partyName);
             JsonElement members = party.GetProperty("Members");
-            Members = new Member[members.GetArrayLength()];
+            Members = new List<Member>();
             for (int i = 0; i < members.GetArrayLength(); i++)
             {
                 string MemberName = members[i].GetString();
-                Members[i] = GameContent.Members[MemberName];
+                Members.Add(GameContent.Members[MemberName]);
             }
 
             AIControlled = party.GetProperty("AIControlled").GetBoolean();
         }
 
-        public static Party DeepCopyOf(Party party)
-        {
-            Party PartyCopy = new Party();
-            PartyCopy.Members = new Member[party.Members.Length];
-            for (int i = 0; i < party.Members.Length; i++)
-                PartyCopy.Members[i] = Member.DeepCopyOf(party.Members[i]);
-            PartyCopy.AIControlled = party.AIControlled;
-            return PartyCopy;
-        }
+        public bool IsKOd => Members.TrueForAll(m => m.KOd);
+        public bool IsDead => Members.TrueForAll(m => m.HP == 0);
 
 
-        public static bool IsKOd(Party party)
-        {
-            bool Result = true;
-            foreach (Member member in party.Members)
-                if (member.KOd == false)
-                    Result = false;
-            return Result;
-        }
-
-
-        public static bool IsDead(Party party)
-        {
-            bool Result = true;
-            foreach (Member member in party.Members)
-                if (member.HP > 0)
-                    Result = false;
-            return Result;
-        }
-
-        public static MemberMove[] AllPossibleMemberMoves(Party party, int fromPartyIdx, BattleStore state)
+        public static MemberMove[] AllPossibleMemberMoves(Party party, int fromPartyIdx, Battle state)
         {
             List<MemberMove> Result = new List<MemberMove>();
-            for (int fromMember = 0; fromMember < party.Members.Length; fromMember++)
+            for (int fromMember = 0; fromMember < party.Members.Count; fromMember++)
             {
-                for (int toParty = 0; toParty < state.Parties.Length; toParty++)
+                for (int toParty = 0; toParty < state.Parties.Count; toParty++)
                 {
-                    for (int toMember = 0; toMember < state.Parties[toParty].Members.Length; toMember++)
-                    { 
-                        Targeting PotentialTargeting = new Targeting()
-                        {
-                            FromPartyIdx = fromPartyIdx,
-                            FromMemberIdx = fromMember,
-                            ToPartyIdx = toParty,
-                            ToMemberIdx = toMember
-                        };
+                    for (int toMember = 0; toMember < state.Parties[toParty].Members.Count; toMember++)
+                    {
+                        Targeting PotentialTargeting = new Targeting(fromPartyIdx, fromMember, toParty, toMember);
 
                         foreach (Move move in Move.AllValidMovesFor(fromPartyIdx, fromMember, state))
                         {
@@ -92,7 +60,7 @@ namespace TheParty_v2
             return Result.ToArray();
         }
 
-        public static MemberMove BestTurn(Party party, int fromPartyIdx, BattleStore state)
+        public static MemberMove BestTurn(Party party, int fromPartyIdx, Battle state)
         {
             // Get all possible Turns
             MemberMove BestTurnSoFar = new MemberMove();
@@ -104,7 +72,7 @@ namespace TheParty_v2
                     continue;
 
                 // Get the resulting state, after the turn is done
-                BattleStore ResultState = Move.WithEffectDone(state, turn.Move, turn.Targeting);
+                Battle ResultState = Move.WithEffectDone(state, turn.Move, turn.Targeting);
 
                 // Rate the resulting state
                 int Rating = RateState(fromPartyIdx, ResultState);
@@ -119,7 +87,7 @@ namespace TheParty_v2
             return BestTurnSoFar;
         }
 
-        private static int RateState(int fromPartyIdx, BattleStore state)
+        private static int RateState(int fromPartyIdx, Battle state)
         {
             int AllyHP = 0;
             int EnemyHP = 0;

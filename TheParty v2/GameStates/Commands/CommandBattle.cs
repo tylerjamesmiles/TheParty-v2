@@ -8,7 +8,7 @@ namespace TheParty_v2
 {
     class CommandBattle : Command<TheParty>
     {
-        public BattleStore CurrentStore;
+        public Battle CurrentStore;
         string BackgroundName;
         public List<AnimatedSprite2D> Sprites;
         public List<HeartsIndicator> HPIndicators;
@@ -76,7 +76,7 @@ namespace TheParty_v2
             }
         }
         public Member FromMember
-            => BattleStore.Member(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
+            => Battle.Member(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
         
         public bool MoveValidOnAnyone(Move move)
             => Move.ValidOnAnyone(move, CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
