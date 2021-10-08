@@ -19,8 +19,18 @@ namespace TheParty_v2
             CurrentTurnPartyIdx = 0;
         }
 
+        public Battle(List<Party> parties, int currentTurn)
+        {
+            Parties = parties;
+            CurrentTurnPartyIdx = currentTurn;
+        }
+        public Battle DeepCopy() => new Battle(Parties.ConvertAll(p => p.DeepCopy()), CurrentTurnPartyIdx);
+
+
+
         // GETTERS
 
+        public int NumParties => Parties.Count;
         public Member To(Targeting targeting) => Parties[targeting.ToPartyIdx].Members[targeting.ToMemberIdx];
         public Member From(Targeting targeting) => Parties[targeting.FromPartyIdx].Members[targeting.FromMemberIdx];
         public Party CurrentTurnParty => Parties[CurrentTurnPartyIdx];

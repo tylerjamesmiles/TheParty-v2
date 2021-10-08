@@ -300,15 +300,5 @@ namespace TheParty_v2
 
         public bool ValidOnAnyone(Battle state, int fromPartyIdx, int fromMemberIdx)
             => state.AllTargetingFor(fromPartyIdx, fromMemberIdx).Exists(t => ValidOnMember(state, t));
-
-        public static Move[] AllValidMovesFor(int fromPartyIdx, int fromMemberIdx, Battle state)
-        {
-            List<Move> Result = new List<Move>();
-            Member From = state.Member(state, fromPartyIdx, fromMemberIdx);
-            foreach (Move move in From.Moves)
-                if (ValidOnAnyone(move, state, fromPartyIdx, fromMemberIdx))
-                    Result.Add(move);
-            return Result.ToArray();
-        }
     }
 }

@@ -16,6 +16,17 @@ namespace TheParty_v2
 
         private static readonly int StanceLimit = 5;
 
+        public Member(int hp, int stance, bool charged, bool kod, List<Move> moves, List<StatusEffect> effects)
+        {
+            HP = hp;
+            Stance = stance;
+            Charged = charged;
+            KOd = kod;
+            Moves = moves;
+            StatusEffects = effects;
+        }
+        public Member DeepCopy() => new Member(HP, Stance, Charged, KOd, Moves, StatusEffects);
+
         public Member(string memberName, JsonDocument doc)
         {
             JsonElement Mem = doc.RootElement.GetProperty(memberName);
@@ -42,9 +53,22 @@ namespace TheParty_v2
             StatusEffects = new List<StatusEffect>();
         }
 
+        // ~ ~ ~ ~ GETTERS ~ ~ ~ ~
+
         public bool CanGo => HP > 0 && Stance > 0;
         public List<string> MoveNames => Moves.ConvertAll(m => m.Name);
+        public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
+        {
+            List<MemberMove> Result = new List<MemberMove>();
+            foreach (Move move in Moves)
+                foreach (Targeting targeting in state.AllTargetingFor(partyIdx, memberIdx))
+                    if (move.ValidOnMember(state, targeting))
+                        Result.Add(new MemberMove(targeting, move));
+            return Result;
+        }
 
+
+        // ~ ~ ~ ~ SETTERS ~ ~ ~ ~
         public void HitStance(int by)
         {
             Stance = MathUtility.RolledIfAtLimit(Stance + by, StanceLimit);

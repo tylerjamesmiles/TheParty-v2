@@ -7,12 +7,13 @@ namespace TheParty_v2
     {
         public Targeting Targeting;
         public Move Move;
+
+        public MemberMove(Targeting t, Move m) { Targeting = t; Move = m; }
     }
 
     class Party
     {
         public List<Member> Members;
-        public bool AIControlled;
 
         public Party(string partyName, JsonDocument doc)
         {
@@ -24,58 +25,41 @@ namespace TheParty_v2
                 string MemberName = members[i].GetString();
                 Members.Add(GameContent.Members[MemberName]);
             }
-
-            AIControlled = party.GetProperty("AIControlled").GetBoolean();
         }
 
+        public Party(List<Member> members) { Members = members; }
+        public Party DeepCopy() => new Party(Members.ConvertAll(m => m.DeepCopy()));
+
+
+        // ~ ~ ~ ~ GETTERS ~ ~ ~ ~ 
+
+        public int NumMembers => Members.Count;
         public bool IsKOd => Members.TrueForAll(m => m.KOd);
         public bool IsDead => Members.TrueForAll(m => m.HP == 0);
 
 
-        public static MemberMove[] AllPossibleMemberMoves(Party party, int fromPartyIdx, Battle state)
+        public List<MemberMove> AllPossibleMemberMoves(int pIdx, Battle state)
         {
             List<MemberMove> Result = new List<MemberMove>();
-            for (int fromMember = 0; fromMember < party.Members.Count; fromMember++)
-            {
-                for (int toParty = 0; toParty < state.Parties.Count; toParty++)
-                {
-                    for (int toMember = 0; toMember < state.Parties[toParty].Members.Count; toMember++)
-                    {
-                        Targeting PotentialTargeting = new Targeting(fromPartyIdx, fromMember, toParty, toMember);
-
-                        foreach (Move move in Move.AllValidMovesFor(fromPartyIdx, fromMember, state))
-                        {
-                            MemberMove MemberMove = new MemberMove()
-                            {
-                                Targeting = PotentialTargeting,
-                                Move = move
-                            };
-
-                            Result.Add(MemberMove);
-                        }
-                    }
-                }
-            }
-
-            return Result.ToArray();
+            foreach (Member member in Members)
+                foreach (MemberMove mm in member.AllValidMoves(pIdx, Members.IndexOf(member), state))
+                    Result.Add(mm);
+            return Result;
         }
 
-        public static MemberMove BestTurn(Party party, int fromPartyIdx, Battle state)
+        public MemberMove BestTurn(int pIdx, Battle state)
         {
             // Get all possible Turns
             MemberMove BestTurnSoFar = new MemberMove();
             int BestRatingSoFar = -int.MaxValue;
 
-            foreach (MemberMove turn in AllPossibleMemberMoves(party, fromPartyIdx, state))
+            foreach (MemberMove turn in AllPossibleMemberMoves(pIdx, state))
             {
-                if (!Move.ValidOnMember(turn.Move, state, turn.Targeting))
-                    continue;
-
-                // Get the resulting state, after the turn is done
-                Battle ResultState = Move.WithEffectDone(state, turn.Move, turn.Targeting);
+                Battle copy = state.DeepCopy();
+                copy.DoMove(turn.Move, turn.Targeting);
 
                 // Rate the resulting state
-                int Rating = RateState(fromPartyIdx, ResultState);
+                int Rating = RateState(pIdx, copy);
 
                 if (Rating > BestRatingSoFar)
                 {
@@ -87,7 +71,7 @@ namespace TheParty_v2
             return BestTurnSoFar;
         }
 
-        private static int RateState(int fromPartyIdx, Battle state)
+        private int RateState(int fromPartyIdx, Battle state)
         {
             int AllyHP = 0;
             int EnemyHP = 0;
@@ -95,11 +79,11 @@ namespace TheParty_v2
             int EnemyKOd = 0;
             int MeVulnerable = 0;
 
-            for (int party2 = 0; party2 < state.Parties.Length; party2++)
+            for (int party2 = 0; party2 < state.NumParties; party2++)
             {
-                for (int member = 0; member < state.Parties[party2].Members.Length; member++)
+                for (int member = 0; member < state.Parties[party2].NumMembers; member++)
                 {
-                    Member MemberInQuestion = state.Parties[party2].Members[member];
+                    Member MemberInQuestion = state.Member(party2, member);
 
                     // Ally
                     if (party2 == fromPartyIdx)
@@ -114,7 +98,7 @@ namespace TheParty_v2
                         EnemyHP += MemberInQuestion.HP;
                         EnemyKOd += MemberInQuestion.KOd ? 1 : 0;
 
-                        for (int myMember = 0; myMember < state.Parties[fromPartyIdx].Members.Length; myMember++)
+                        for (int myMember = 0; myMember < state.Parties[fromPartyIdx].NumMembers; myMember++)
                         {
                             Member MyMember = state.Parties[fromPartyIdx].Members[myMember];
                             if (MemberInQuestion.Stance + MyMember.Stance == 5)
