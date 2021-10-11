@@ -77,7 +77,8 @@ namespace TheParty_v2
 
         }
 
-        public void DoMove(Move move, Targeting t) => move.Effects(this, t).ForEach(e => e(this, t));
+        public void DoMove(Move move, Targeting t) 
+            => move.Effects(this, t).ForEach(e => e(this, t));
 
 
         // ~ ~ ~ ~ MOVE EFFECTS ~ ~ ~ ~

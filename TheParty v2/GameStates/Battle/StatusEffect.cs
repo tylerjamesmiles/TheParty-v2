@@ -26,7 +26,7 @@ namespace TheParty_v2
                 ToMemberIdx = memberIdx
             };
 
-            Battle Result = Battle.DeepCopyOf(state);
+            Battle Result = state.DeepCopy();
             foreach (var effect in EveryTurnEffect)
             {
                 Result = effect(Result, statusTargeting);

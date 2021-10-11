@@ -13,14 +13,14 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             List<Targeting> PotentialTargets = new List<Targeting>();
-            for (int targetParty = 0; targetParty < client.CurrentStore.Parties.Length; targetParty++)
+            for (int targetParty = 0; targetParty < client.CurrentStore.NumParties; targetParty++)
             {
-                for (int targetMem = 0; targetMem < client.CurrentStore.Parties[targetParty].Members.Length; targetMem++)
+                for (int targetMem = 0; targetMem < client.CurrentStore.Parties[targetParty].NumMembers; targetMem++)
                 {
                     client.CurrentTargeting.ToPartyIdx = targetParty;
                     client.CurrentTargeting.ToMemberIdx = targetMem;
 
-                    if (Move.ValidOnMember(client.CurrentMove, client.CurrentStore, client.CurrentTargeting))
+                    if (client.CurrentMove.ValidOnMember(client.CurrentStore, client.CurrentTargeting))
                     {
                         PotentialTargets.Add(client.CurrentTargeting);
                     }
@@ -54,10 +54,6 @@ namespace TheParty_v2
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
             client.TargetChoice.Draw(spriteBatch, true);
-        }
-
-        public override void Exit(CommandBattle client)
-        {
         }
     }
 }

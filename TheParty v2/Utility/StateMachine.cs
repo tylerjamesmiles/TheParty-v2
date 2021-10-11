@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TheParty_v2
 {
-    abstract class State<T>
+    class State<T>
     {
-        public abstract void Enter(T client);
-        public abstract void Update(T client, float deltaTime);
-        public abstract void Draw(T client, SpriteBatch spriteBatch);
-        public abstract void Exit(T client);
+        public virtual void Enter(T client) { }
+        public virtual void Update(T client, float deltaTime) { }
+        public virtual void Draw(T client, SpriteBatch spriteBatch) { }
+        public virtual void Exit(T client) { }
     }
 
     class StateMachine<T>

@@ -18,12 +18,12 @@ namespace TheParty_v2
             List<Vector2> MemberPositions = client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos + new Vector2(-3, 0));
 
             List<Vector2> LegalMemberPositions = new List<Vector2>();
-            Member[] MembersInThisParty = client.CurrentStore.MembersOfParty(CurrentTurn);
+            List<Member> MembersInThisParty = client.CurrentStore.MembersOfParty(CurrentTurn);
             MemberIdxs = new List<int>();
-            for (int i = 0; i < MembersInThisParty.Length; i++)
-            {
-                Move[] ValidMoves = Move.AllValidMovesFor(CurrentTurn, i, client.CurrentStore);
-                if (ValidMoves.Length > 0)
+            for (int i = 0; i < MembersInThisParty.Count; i++)
+            { 
+                List<MemberMove> ValidMoves = MembersInThisParty[i].AllValidMoves(CurrentTurn, i, client.CurrentStore);
+                if (ValidMoves.Count > 0)
                 {
                     MemberIdxs.Add(i);
                     LegalMemberPositions.Add(MemberPositions[i]);
@@ -46,13 +46,8 @@ namespace TheParty_v2
             if (!client.FromMember.Charged)
                 client.FromSprite.SetCurrentAnimation("Move");
 
-
             if (client.MemberChoice.Done)
-            {
-
                 client.StateMachine.SetNewCurrentState(client, new ChooseMove());
-
-            }
 
             if (InputManager.JustReleased(Keys.Escape))
                 client.StateMachine.SetNewCurrentState(client, new FightOrFlee());
@@ -61,11 +56,6 @@ namespace TheParty_v2
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
             client.MemberChoice.Draw(spriteBatch, true);
-        }
-
-        public override void Exit(CommandBattle client)
-        {
-
         }
     }
 }

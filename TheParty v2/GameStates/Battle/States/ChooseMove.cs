@@ -14,11 +14,11 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             Member Selected = client.FromMember;
-            bool[] ChoiceValidity = new bool[Selected.Moves.Length];
-            for (int i = 0; i < Selected.Moves.Length; i++)
+            bool[] ChoiceValidity = new bool[Selected.Moves.Count];
+            for (int i = 0; i < Selected.Moves.Count; i++)
                 ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.Moves[i]);
                     
-            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
+            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames.ToArray(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
             string DescrTxt = client.FromMember.Moves[CurrentChoice].Description;
@@ -52,11 +52,6 @@ namespace TheParty_v2
         {
             client.MoveChoice.Draw(spriteBatch, true);
             Description.Draw(spriteBatch, true);
-        }
-
-        public override void Exit(CommandBattle client)
-        {
-
         }
     }
 }

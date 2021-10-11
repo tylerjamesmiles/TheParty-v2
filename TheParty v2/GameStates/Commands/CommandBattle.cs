@@ -43,8 +43,8 @@ namespace TheParty_v2
         {
             List<int> Result = new List<int>();
             int Idx = 0;
-            for (int p = 0; p < CurrentStore.Parties.Length; p++)
-                for (int m = 0; m < CurrentStore.Parties[p].Members.Length; m++)
+            for (int p = 0; p < CurrentStore.NumParties; p++)
+                for (int m = 0; m < CurrentStore.Parties[p].NumMembers; m++)
                 {
                     if (p == partyIdx) 
                         Result.Add(Idx);
@@ -65,7 +65,7 @@ namespace TheParty_v2
             // Set Appropriate animations in aftermath
             for (int s = 0; s < Sprites.Count; s++)
             {
-                Member[] AllMembers = CurrentStore.AllMembers();
+                List<Member> AllMembers = CurrentStore.AllMembers();
                 string Animation = 
                     AllMembers[s].HP <= 0 ? "Dead" :
                     AllMembers[s].KOd ? "KOd" : 
@@ -76,10 +76,10 @@ namespace TheParty_v2
             }
         }
         public Member FromMember
-            => Battle.Member(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
+            => CurrentStore.Member(CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
         
         public bool MoveValidOnAnyone(Move move)
-            => Move.ValidOnAnyone(move, CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
+            => move.ValidOnAnyone(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
 
         public int FromSpriteIdx
             => MemberSpriteIdx(CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
@@ -98,8 +98,8 @@ namespace TheParty_v2
         public int PartyIdxOf(int memberIdx)
         {
             int i = 0;
-            for (int party = 0; party < CurrentStore.Parties.Length; party++)
-                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
+            for (int party = 0; party < CurrentStore.NumParties; party++)
+                for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
                     if (i == memberIdx)
                         return party;
@@ -111,8 +111,8 @@ namespace TheParty_v2
         public int PartyMemberIdxOf(int memberIdx)
         {
             int i = 0;
-            for (int party = 0; party < CurrentStore.Parties.Length; party++)
-                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
+            for (int party = 0; party < CurrentStore.NumParties; party++)
+                for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
                     if (i == memberIdx)
                         return member;
@@ -128,9 +128,9 @@ namespace TheParty_v2
             Sprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             StanceIndicators = new List<StanceIndicator>();
-            for (int party = 0; party < CurrentStore.Parties.Length; party++)
+            for (int party = 0; party < CurrentStore.NumParties; party++)
             {
-                for (int member = 0; member < CurrentStore.Parties[party].Members.Length; member++)
+                for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
                     Vector2 MemberDrawOffset = new Vector2(-16, -16);
                     int MemberDrawStartX = (party == 0) ? 110 : 48;
@@ -164,7 +164,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            Member[] AllMembers = CurrentStore.AllMembers();
+            List<Member> AllMembers = CurrentStore.AllMembers();
             HPIndicators.ForEach(h => h.SetHP(AllMembers[HPIndicators.IndexOf(h)].HP));
             StanceIndicators.ForEach(s => s.SetStance(AllMembers[StanceIndicators.IndexOf(s)].Stance));
 

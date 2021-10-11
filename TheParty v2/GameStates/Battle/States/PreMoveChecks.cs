@@ -15,26 +15,24 @@ namespace TheParty_v2
         {
             // Is player dead?
             Party Player = client.CurrentStore.Parties[0];
-            if (Party.IsDead(Player))
-            {
+            if (Player.IsDead)
                 client.GameOver = true;
-            }
 
             // Are the other parties dead?
             bool OtherPartiesDead = true;
-            for (int i = 1; i < client.CurrentStore.Parties.Length; i++)
-                if (Party.IsDead(client.CurrentStore.Parties[i]) == false)
+            for (int i = 1; i < client.CurrentStore.NumParties; i++)
+                if (client.CurrentStore.Parties[i].IsDead == false)
                     OtherPartiesDead = false;
             if (OtherPartiesDead)
                 client.StateMachine.SetNewCurrentState(client, new Victory());
 
             // Are there any moves for current party?
-            Party CurrentTurnPty = Battle.CurrentTurnPartyOf(client.CurrentStore);
+            Party CurrentTurnPty = client.CurrentStore.CurrentTurnParty;
             int CurrentTurnIdx = client.CurrentStore.CurrentTurnPartyIdx;
-            MemberMove[] PossibleMoves = Party.AllPossibleMemberMoves(CurrentTurnPty, CurrentTurnIdx, client.CurrentStore);
-            if (PossibleMoves.Length == 0)
+            List<MemberMove> PossibleMoves = CurrentTurnPty.AllPossibleMemberMoves(CurrentTurnIdx, client.CurrentStore);
+            if (PossibleMoves.Count == 0)
             {
-                client.CurrentStore = Battle.TimePassed(client.CurrentStore);
+                client.CurrentStore.TimePass();
             }
 
             // Current Turn is player
@@ -46,16 +44,12 @@ namespace TheParty_v2
             else
             {
                 int Idx = client.CurrentStore.CurrentTurnPartyIdx;
-                MemberMove BestTurn = Party.BestTurn(CurrentTurnPty, Idx, client.CurrentStore);
+                MemberMove BestTurn = CurrentTurnPty.BestTurn(Idx, client.CurrentStore);
 
                 client.CurrentMove = BestTurn.Move;
                 client.CurrentTargeting = BestTurn.Targeting;
                 client.StateMachine.SetNewCurrentState(client, new DoMoveForward());
             }
-        }
-
-        public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
-        {
         }
 
         public override void Exit(CommandBattle client)

@@ -34,8 +34,8 @@ namespace TheParty_v2
         {
             if (!MoveDone)
             {
-                client.CurrentStore = Move.WithEffectDone(client.CurrentStore, client.CurrentMove, client.CurrentTargeting);
-                client.CurrentStore = Battle.TimePassed(client.CurrentStore);
+                client.CurrentStore.DoMove(client.CurrentMove, client.CurrentTargeting);
+                client.CurrentStore.TimePass();
                 
                 MoveDone = true;
             }
@@ -53,10 +53,6 @@ namespace TheParty_v2
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
             Sheet.Draw(spriteBatch);
-        }
-
-        public override void Exit(CommandBattle client)
-        {
         }
     }
 }
