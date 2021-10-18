@@ -23,7 +23,7 @@ namespace TheParty_v2
             for (int i = 0; i < members.GetArrayLength(); i++)
             {
                 string MemberName = members[i].GetString();
-                Members.Add(GameContent.Members[MemberName]);
+                Members.Add(GameContent.Members[MemberName].DeepCopy());
             }
         }
 

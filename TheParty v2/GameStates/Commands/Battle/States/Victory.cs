@@ -26,7 +26,7 @@ namespace TheParty_v2
 
         public override void Update(CommandBattle client, float deltaTime)
         {
-            Msg.Updated(deltaTime, true);
+            Msg.Update(deltaTime, true);
 
             if (Msg.Done)
                 client.Done = true;

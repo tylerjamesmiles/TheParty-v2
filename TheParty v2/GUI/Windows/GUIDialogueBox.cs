@@ -24,6 +24,16 @@ namespace TheParty_v2
         int CurrentDialgoue;
         public bool Done { get; private set; }
 
+        public GUIDialogueBox(Rectangle bounds, string[] dialogues, float popInRate = 0.1f)
+        {
+            Rectangle BoxBounds = bounds;
+            Box = new GUIBox(BoxBounds);
+            Dialogues = dialogues;
+            CurrentDialgoue = 0;
+            Done = false;
+            Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate);
+        }
+
         public GUIDialogueBox(Position pos, string[] dialogues, float popInRate = 0.1f)
         {
             Rectangle BoxBounds =
@@ -42,7 +52,7 @@ namespace TheParty_v2
             Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate);
         }
 
-        public void Updated(float deltaTime, bool isInFocus)
+        public void Update(float deltaTime, bool isInFocus)
         {
             Box.Update(deltaTime, true);
 

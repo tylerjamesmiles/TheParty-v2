@@ -44,6 +44,9 @@ namespace TheParty_v2
                         break;
                     }
                 }
+
+                if (InputManager.JustReleased(Keys.Escape))
+                    client.StateMachine.SetNewCurrentState(client, new GameStateFieldMenu());
             }
 
             Camera.Update(client.CurrentMap.Size, client.Player.Transform.Position);

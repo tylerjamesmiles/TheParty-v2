@@ -13,15 +13,17 @@ namespace TheParty_v2
         int Y;
         int NumHearts;
         int CurrentBouncing;
+        bool BeMeat;
         Timer BounceMoveTimer;
 
-        public HeartsIndicator(int startHP, int centerX, int y)
+        public HeartsIndicator(int startHP, int centerX, int y, bool beMeat = false)
         {
             SetHP(startHP);
             CenterX = centerX;
             Y = y;
             BounceMoveTimer = new Timer(0.1f);
             CurrentBouncing = new Random().Next(NumHearts * 10);
+            BeMeat = beMeat;
         }
 
         public void Update(float deltaTime)
@@ -65,8 +67,10 @@ namespace TheParty_v2
                 Point SourcePos = (i == NumHearts - 1) ?
                     new Point(LastSourceX, 0) : new Point(0, 0);
 
+                string SpriteName = (BeMeat) ? "Meats" : "Hearts";
+
                 spriteBatch.Draw(
-                    GameContent.Sprites["Hearts"],
+                    GameContent.Sprites[SpriteName],
                     new Rectangle(DrawPoses[i], new Point(5, 5)),
                     new Rectangle(SourcePos, new Point(5, 5)),
                     Color.White);

@@ -16,7 +16,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            Box.Updated(deltaTime, true);
+            Box.Update(deltaTime, true);
 
             Done = Box.Done;
         }

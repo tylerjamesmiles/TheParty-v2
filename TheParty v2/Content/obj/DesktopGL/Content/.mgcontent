@@ -16,14 +16,20 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GameOver.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HitAnimations.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HocusBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Meats.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PlusSign.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Stances.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/StatusAnimations.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestBackground.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -103,7 +103,7 @@ namespace TheParty_v2
             if (FacePlayer)
             {
                 Vector2 ToPlayer = player.Transform.Position - Transform.Position;
-                Sprite.CurrentFacing = MathUtility.GeneralDirection(ToPlayer);
+                Sprite.CurrentFacing = Utility.GeneralDirection(ToPlayer);
             }
 
         }

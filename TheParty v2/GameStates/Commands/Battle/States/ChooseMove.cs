@@ -36,7 +36,7 @@ namespace TheParty_v2
                 Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
             }
 
-            Description.Updated(deltaTime, true);
+            Description.Update(deltaTime, true);
 
             if (client.MoveChoice.Done)
             {

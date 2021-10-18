@@ -18,7 +18,7 @@ namespace TheParty_v2
             Rectangle CameraLimitRect = new Rectangle(CameraLimitTL, CameraLimitSize);
 
             Vector2 UnlimitedCameraPos = targetPos - HalfScreenSize;
-            Vector2 LimitedCameraPos = MathUtility.KeptInRect(UnlimitedCameraPos, CameraLimitRect);
+            Vector2 LimitedCameraPos = Utility.KeptInRect(UnlimitedCameraPos, CameraLimitRect);
 
             Position = LimitedCameraPos;
         }

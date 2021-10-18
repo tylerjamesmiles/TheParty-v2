@@ -13,6 +13,9 @@ namespace TheParty_v2
         public List<AnimatedSprite2D> Sprites;
         public List<HeartsIndicator> HPIndicators;
         public List<StanceIndicator> StanceIndicators;
+        public List<AnimatedSprite2D> StatusIndicators;
+        public Timer StatusRotateTimer;
+        public int StatusCounter;
         public StateMachine<CommandBattle> StateMachine;
 
         public GUIChoiceBox FightOrFlee;
@@ -128,6 +131,8 @@ namespace TheParty_v2
             Sprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             StanceIndicators = new List<StanceIndicator>();
+            StatusIndicators = new List<AnimatedSprite2D>();
+
             for (int party = 0; party < CurrentStore.NumParties; party++)
             {
                 for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
@@ -156,8 +161,14 @@ namespace TheParty_v2
 
                     int Stance = CurrentStore.Parties[party].Members[member].Stance;
                     StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
+
+                    StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());
+                    
                 }
             }
+
+            StatusCounter = 0;
+            StatusRotateTimer = new Timer(0.8f);
 
             Entered = true;
         }
@@ -173,6 +184,30 @@ namespace TheParty_v2
             HPIndicators.ForEach(h => h.Update(deltaTime));
             StanceIndicators.ForEach(s => s.DrawPos = Sprites[StanceIndicators.IndexOf(s)].DrawPos + new Vector2(-4, -26));
             StanceIndicators.ForEach(s => s.Update(deltaTime));
+            StatusIndicators.ForEach(s => s.DrawPos = Sprites[StatusIndicators.IndexOf(s)].DrawPos + new Vector2(-4, -26));
+            StatusIndicators.ForEach(s => s.Update(deltaTime));
+
+            // Rotate through status effects every second or so
+            StatusRotateTimer.Update(deltaTime);
+            if (StatusRotateTimer.TicThisFrame)
+            {
+                StatusCounter++;
+                foreach (var StatusIndicator in StatusIndicators)
+                {
+                    int Idx = StatusIndicators.IndexOf(StatusIndicator);
+                    Member Member = CurrentStore.AllMembers()[Idx];
+                    if (Member.StatusEffects.Count > 0)
+                    {
+                        int NewStatusIdx = StatusCounter % Member.StatusEffects.Count;
+                        StatusEffect ToShow = Member.StatusEffects[NewStatusIdx];
+                        StatusIndicator.SetCurrentAnimation(ToShow.AnimationName);
+                    }
+                    else
+                    {
+                        StatusIndicator.SetCurrentAnimation("None");
+                    }
+                }
+            }
 
             StateMachine.Update(this, deltaTime);
 
@@ -197,11 +232,15 @@ namespace TheParty_v2
 
             Sorted.ForEach(s => s.Draw(spriteBatch));
 
-            foreach (StanceIndicator si in StanceIndicators)
+            List<Member> AllMembers = CurrentStore.AllMembers();
+            foreach (Member member in AllMembers)
             {
-                if (CurrentStore.AllMembers()[StanceIndicators.IndexOf(si)].HP > 0)
-                    si.Draw(spriteBatch);
-
+                int Idx = AllMembers.IndexOf(member);
+                if (member.HP > 0)
+                {
+                    StanceIndicators[Idx].Draw(spriteBatch);
+                    StatusIndicators[Idx].Draw(spriteBatch);
+                }
             }
 
             // Exshtra Shtuff

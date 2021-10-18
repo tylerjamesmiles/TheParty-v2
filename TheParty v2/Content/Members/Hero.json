@@ -7,7 +7,7 @@
 		"KOdFor" : 0,
 		"HasGoneThisTurn" : false,
 		"Moves" : [
-			"Hit", "Hurt", "Help", "Charge"
+			"Hit", "Hurt", "Help", "Charge", "Poison"
 		]
 	}
 }

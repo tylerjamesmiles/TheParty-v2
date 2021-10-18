@@ -1,10 +1,21 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Reflection;
 
 namespace TheParty_v2
 {
-    static class MathUtility
+    static class Utility
     {
+        public static object CallMethod(Type t, string name) // seemed easier than subclassing
+        {
+            MethodInfo[] Methods = t.GetMethods();
+            foreach (MethodInfo info in Methods)
+                if (info.Name == "get_" + name)
+                    return info.Invoke(null, new object[] { });
+
+            return null;
+        }
+
         public static int RolledIfAtLimit(int start, int limit) =>
             start >= limit ? start - limit : start;
 

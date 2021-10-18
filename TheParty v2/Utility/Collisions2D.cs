@@ -53,8 +53,8 @@ namespace TheParty_v2
             Vector2 circlePos, float circleRadius, Rectangle rect)
         {
             Vector2 rectBR = (rect.Location + rect.Size).ToVector2();
-            float NearestX = MathUtility.Clamped(circlePos.X, rect.Location.X, rectBR.X);
-            float NearestY = MathUtility.Clamped(circlePos.Y, rect.Location.Y, rectBR.Y);
+            float NearestX = Utility.Clamped(circlePos.X, rect.Location.X, rectBR.X);
+            float NearestY = Utility.Clamped(circlePos.Y, rect.Location.Y, rectBR.Y);
             Vector2 NearestPointToCircle = new Vector2(NearestX, NearestY);
             Vector2 ToCircle = circlePos - NearestPointToCircle;
             float DistToNearestPoint = ToCircle.Length();

@@ -35,7 +35,7 @@ namespace TheParty_v2
                 FrameTimer.Update(deltaTime);
 
                 if (FrameTimer.TicThisFrame)
-                    CurrentFrame = MathUtility.RolledIfAtLimit(CurrentFrame + 1, 4);
+                    CurrentFrame = Utility.RolledIfAtLimit(CurrentFrame + 1, 4);
 
                 CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X)) ?
                     velocity.Y < 0 ? 0 : 1 :

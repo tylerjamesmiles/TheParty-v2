@@ -26,7 +26,7 @@ namespace TheParty_v2
             Vector2 Accel = steeringForce / Mass;
             Vector2 DeltaVel = Accel * deltaTime;
             Vector2 NewVel = Velocity + DeltaVel;
-            Vector2 NewVelCapped = MathUtility.Capped(NewVel, MaxSpeed);
+            Vector2 NewVelCapped = Utility.Capped(NewVel, MaxSpeed);
             Vector2 VelWithDrag = NewVelCapped - (NewVelCapped * Drag);
 
             Velocity = VelWithDrag;

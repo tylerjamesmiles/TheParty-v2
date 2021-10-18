@@ -61,7 +61,7 @@ namespace TheParty_v2
         public Vector2 DrawPos { get; set; }
         Vector2 Offset;
         public bool Flip { get; private set; }
-        Dictionary<string, SpriteAnimation> Animations;
+        public Dictionary<string, SpriteAnimation> Animations;
 
         public AnimatedSprite2D(string spriteName, Point frameSize, Vector2 drawPos, Vector2 offset, bool flip = false)
         {
@@ -94,6 +94,13 @@ namespace TheParty_v2
                 string name = anim.GetProperty("Name").GetString();
                 Animations.Add(name, new SpriteAnimation(anim));
             }
+        }
+
+        public AnimatedSprite2D DeepCopy()
+        {
+            AnimatedSprite2D Result = new AnimatedSprite2D(SpriteName, FrameSize, DrawPos, Offset);
+            Result.Animations = Animations;
+            return Result;
         }
 
         public SpriteAnimation CurrentAnimation =>
