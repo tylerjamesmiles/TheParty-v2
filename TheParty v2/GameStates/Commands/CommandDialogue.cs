@@ -7,11 +7,35 @@ namespace TheParty_v2
 {
     class CommandDialogue : Command<TheParty>
     {
+        string[] InputDialogues;
         GUIDialogueBox Box;
 
         public CommandDialogue(params string[] dialogues)
         {
-            Box = new GUIDialogueBox(GUIDialogueBox.Position.Bottom, dialogues);
+            InputDialogues = dialogues;
+        }
+
+        public override void Enter(TheParty client)
+        {
+            string[] CorrectedDialogues = new string[InputDialogues.Length];
+            for (int i = 0; i < InputDialogues.Length; i++)
+            {
+                string str = InputDialogues[i];
+                string[] words = str.Split(' ');
+                foreach (string word in words)
+                {
+                    if (word[0] == '*')
+                    {
+                        string VarName = word.Substring(1);
+                        if (GameContent.Variables.ContainsKey(VarName))
+                            str = str.Replace(word, GameContent.Variables[VarName].ToString());
+                    }
+                }
+                CorrectedDialogues[i] = str;
+            }
+
+            Box = new GUIDialogueBox(GUIDialogueBox.Position.Bottom, CorrectedDialogues);
+            Entered = true;
         }
 
         public override void Update(TheParty client, float deltaTime)

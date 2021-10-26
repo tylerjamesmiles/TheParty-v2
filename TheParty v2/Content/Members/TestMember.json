@@ -1,6 +1,7 @@
 ﻿{
 	"TestMember" :
 	{
+		"Name" : "Shannon",
 		"HP" : 10,
 		"Stance" : 1,
 		"Charged" : false,
@@ -8,6 +9,11 @@
 		"HasGoneThisTurn" : false,
 		"Moves" : [
 			"Hit", "Hurt", "Help", "Charge"
+		],
+		"MovesToLearn" :
+		[
+			"Poison"
 		]
+
 	}
 }

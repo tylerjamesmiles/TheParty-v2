@@ -14,21 +14,21 @@ namespace TheParty_v2
         public FourDirSprite2D Sprite;
 
         public Party ActiveParty;
-        public List<Member> AllMembers;
+        public List<Member> CampMembers;
 
         public bool Frozen;
 
         public Player(Vector2 position)
         {
             Steering = new ControllerSteering2D(30f);
-            Movement = new Movement2D(1f, 15f);
+            Movement = new Movement2D(1f, 5f);
             Transform = new Transform2D(position, 8f);
             Sprite = new FourDirSprite2D("CharacterBase", new Point(-16, -24));
             Frozen = false;
 
             ActiveParty = GameContent.Parties["PlayerParty"];
 
-            AllMembers = new List<Member>(ActiveParty.Members);
+            CampMembers = new List<Member>(ActiveParty.Members);
             
 
 

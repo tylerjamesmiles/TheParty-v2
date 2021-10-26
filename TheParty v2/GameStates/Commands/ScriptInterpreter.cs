@@ -45,6 +45,18 @@ namespace TheParty_v2
 
                 switch (CommandName.ToLower())
                 {
+                    case "wait":
+                        ResultList.Add(new CommandWait(float.Parse(Arguments[0])));
+                        break;
+
+                    case "fadein":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.In));
+                        break;
+
+                    case "fadeout":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.Out));
+                        break;
+
                     case "dialogue":
                         ResultList.Add(new CommandDialogue(Arguments));
                         break;
@@ -77,10 +89,15 @@ namespace TheParty_v2
 
                     case "battle":
                         ResultList.Add(new CommandBattle(Arguments[0]));
+                        ResultList.Add(new CommandLevelUp());
+                        ResultList.Add(new CommandDecrementHunger());
+                        ResultList.Add(new CommandLeaveDead());
                         break;
 
                     case "teleport":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
+                        ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         break;
 
                     case "set":
@@ -89,6 +106,10 @@ namespace TheParty_v2
 
                     case "incr":
                         ResultList.Add(new CommandIncrementVar(Arguments[0], Arguments[1]));
+                        break;
+
+                    case "hitpartyhp":
+                        ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
                         break;
 
                     case "if":
@@ -126,15 +147,27 @@ namespace TheParty_v2
                         ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
+                    case "levelup":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.Out));
+                        ResultList.Add(new CommandLevelUp());
+                        ResultList.Add(new CommandFade(CommandFade.Direction.In));
+
+                        break;
+
                     case "daypass":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
-                        ResultList.Add(new CommandIncrementVar("Day", "1"));
-                        ResultList.Add(new CommandDialogue((100 - GameContent.Variables["Day"]).ToString() + " days until the world ends."));
+                        ResultList.Add(new CommandDecrementHunger());
+                        ResultList.Add(new CommandLeaveDead());
+                        ResultList.Add(new CommandFade(CommandFade.Direction.In));
+                        ResultList.Add(new CommandIncrementVar("DaysRemaining", "-1"));
+                        ResultList.Add(new CommandDialogue("*DaysRemaining days until the world ends."));
                         break;
                 }
 
             }
 
+            ResultList.Add(new CommandWait(0.1f));
             return ResultList;
         }
     }

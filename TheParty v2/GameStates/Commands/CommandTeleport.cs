@@ -17,10 +17,6 @@ namespace TheParty_v2
             NewPlayerPos = new Vector2(newX, newY);
         }
 
-        public override void Enter(TheParty client)
-        {
-        }
-
         public override void Update(TheParty client, float deltaTime)
         {
             client.CurrentMap = GameContent.Maps[NewMap];
@@ -32,10 +28,12 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-        }
-
-        public override void Exit(TheParty client)
-        {
+            // to accomodate fades
+            spriteBatch.Draw(
+                GameContent.Sprites["FadeIn"],
+                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                Color.White);
         }
     }
 }

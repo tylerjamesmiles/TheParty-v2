@@ -4,8 +4,6 @@
 		"AIControlled" : false,
 		"Members" :
 		[
-			"TestMember",
-			"TestMember",
 			"TestMember"
 		]
 	}

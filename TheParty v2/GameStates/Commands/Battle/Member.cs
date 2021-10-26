@@ -7,44 +7,56 @@ namespace TheParty_v2
 {
     class Member
     {
+        public string Name;
         public int HP; // 0 - 10
+        public int MaxHP;
         public int Stance;
         public bool Charged;
         public bool KOd;
         public int Hunger;
+        public int MaxHunger;
         public List<Move> Moves;
+        public List<Move> MovesToLearn;
         public List<StatusEffect> StatusEffects;
 
         private static readonly int StanceLimit = 5;
 
-        public Member(int hp, int stance, int hunger, bool charged, bool kod, List<Move> moves, List<StatusEffect> effects)
+        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<Move> moves, List<Move> movesToLearn, List<StatusEffect> effects)
         {
+            Name = name;
             HP = hp;
             Stance = stance;
             Hunger = hunger;
+            MaxHunger = maxHunger;
             Charged = charged;
             KOd = kod;
             Moves = moves;
+            MovesToLearn = movesToLearn;
             StatusEffects = new List<StatusEffect>(effects);
         }
-        public Member DeepCopy() => new Member(HP, Stance, Hunger, Charged, KOd, Moves, StatusEffects);
+        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Charged, KOd, Moves, MovesToLearn, StatusEffects);
 
         public Member(string memberName, JsonDocument doc)
         {
             JsonElement Mem = doc.RootElement.GetProperty(memberName);
+            Name = Mem.GetProperty("Name").GetString();
             HP = Mem.GetProperty("HP").GetInt32();
+            MaxHP = 10;
             Stance = Mem.GetProperty("Stance").GetInt32();
             Charged = Mem.GetProperty("Charged").GetBoolean();
             Hunger = 7;
+            MaxHunger = 10;
             KOd = false;
 
             int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
             Moves = new List<Move>();
             for (int i = 0; i < NumMoves; i++)
-                Moves.Add(
-                    (Move)Utility.CallMethod(
-                        typeof(Move), 
-                        (Mem.GetProperty("Moves")[i].GetString())));
+                Moves.Add((Move)Utility.CallMethod(typeof(Move), Mem.GetProperty("Moves")[i].GetString()));
+
+            int NumMovesToLearn = Mem.GetProperty("MovesToLearn").GetArrayLength();
+            MovesToLearn = new List<Move>();
+            for (int i = 0; i < NumMovesToLearn; i++)
+                MovesToLearn.Add((Move)Utility.CallMethod(typeof(Move), Mem.GetProperty("MovesToLearn")[i].GetString()));
 
             StatusEffects = new List<StatusEffect>();
         }

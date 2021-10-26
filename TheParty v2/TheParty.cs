@@ -49,7 +49,7 @@ namespace TheParty_v2
             Target.Enable();
 
             GameContent.Load(Content);
-            Player = new Player(new Vector2(832, 656));
+            Player = new Player(new Vector2(1585, 1602));
 
 
             StateMachine = new StateMachine<TheParty>();

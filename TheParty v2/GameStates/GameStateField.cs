@@ -25,19 +25,19 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            client.EventsCanHappenTimer.Update(deltaTime);
-            client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
-            client.CurrentMap.Update(client.Player, deltaTime);
-
             if (client.CommandQueue.Empty)
             {
+                client.EventsCanHappenTimer.Update(deltaTime);
+                client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
+                client.CurrentMap.Update(client.Player, deltaTime);
+
                 var Entities = client.CurrentMap.EntityLayer.entities;
                 foreach (var entity in Entities)
                 {
                     if (client.EventsCanHappenTimer.TicsSoFar >= 1 &&
                         entity.Exists &&
                         entity.PlayerCanInteract(client.Player.Transform.Position, client.Player.Movement.Heading) &&
-                        (entity.values["TriggerOnTouch"] == "true" || InputManager.JustPressed(Keys.Space)))
+                        (entity.values["TriggerOnTouch"] == "true" || InputManager.JustReleased(Keys.Space)))
                     {
                         var Commands = ScriptInterpreter.Interpret(client, entity, entity.values["Script"]);
                         client.CommandQueue.AddCommands(Commands);

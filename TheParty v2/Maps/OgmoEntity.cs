@@ -24,6 +24,7 @@ namespace TheParty_v2
         public bool FacePlayer;
         public bool Exists;
 
+        public Timer CanInteractTimer;
         const float MinInteractDist = 20f;
 
         public void Initialize()

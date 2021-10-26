@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png</SourceFile>
-  <SourceTime>2021-10-18T10:12:10.8424083-05:00</SourceTime>
+  <SourceTime>2021-10-18T14:06:55.5525548-05:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/Font.xnb</DestFile>
-  <DestTime>2021-10-18T10:49:58.6440142-05:00</DestTime>
+  <DestTime>2021-10-19T12:04:07.5354578-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

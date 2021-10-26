@@ -125,7 +125,7 @@ namespace TheParty_v2
             MovementLerp.Update(deltaTime);
             HandWobble.Update(deltaTime);
 
-            if (isInFocus && InputManager.JustPressed(Keys.Space) && onLegalChoice)
+            if (isInFocus && InputManager.JustReleased(Keys.Space) && onLegalChoice)
                 Done = true;
         }
 

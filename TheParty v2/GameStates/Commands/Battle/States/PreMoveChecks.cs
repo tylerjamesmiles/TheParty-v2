@@ -24,7 +24,10 @@ namespace TheParty_v2
                 if (client.CurrentStore.Parties[i].IsDead == false)
                     OtherPartiesDead = false;
             if (OtherPartiesDead)
+            {
                 client.StateMachine.SetNewCurrentState(client, new Victory());
+                return;
+            }
 
             // Are there any moves for current party?
             Party CurrentTurnPty = client.CurrentStore.CurrentTurnParty;

@@ -15,7 +15,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            client.Player.AllMembers.Add(GameContent.Members[MemberName]);
+            client.Player.CampMembers.Add(GameContent.Members[MemberName]);
         }
     }
 }
