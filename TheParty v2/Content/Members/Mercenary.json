@@ -1,8 +1,9 @@
 ﻿{
-	"TestMember" :
+	"Mercenary" :
 	{
-		"Name" : "Shannon",
-		"HP" : 10,
+		"Name" : "Mercenary",
+		"SpriteName" : "TheFlurryFighter",
+		"HP" : 5,
 		"Stance" : 1,
 		"Charged" : false,
 		"KOdFor" : 0,
@@ -12,8 +13,7 @@
 		],
 		"MovesToLearn" :
 		[
-			"Poison"
-		]
 
+		]
 	}
 }

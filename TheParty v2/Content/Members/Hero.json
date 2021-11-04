@@ -2,6 +2,7 @@
 	"Hero" :
 	{
 		"Name" : "Hero",
+		"SpriteName" : "TestFighter",
 		"HP" : 5,
 		"Stance" : 2,
 		"Charged" : false,

@@ -18,13 +18,15 @@ namespace TheParty_v2
         public List<Move> Moves;
         public List<Move> MovesToLearn;
         public List<StatusEffect> StatusEffects;
+        public string SpriteName;
 
         private static readonly int StanceLimit = 5;
 
-        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<Move> moves, List<Move> movesToLearn, List<StatusEffect> effects)
+        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<Move> moves, List<Move> movesToLearn, List<StatusEffect> effects, string spriteName)
         {
             Name = name;
             HP = hp;
+            MaxHP = maxHP;
             Stance = stance;
             Hunger = hunger;
             MaxHunger = maxHunger;
@@ -33,8 +35,9 @@ namespace TheParty_v2
             Moves = moves;
             MovesToLearn = movesToLearn;
             StatusEffects = new List<StatusEffect>(effects);
+            SpriteName = spriteName;
         }
-        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Charged, KOd, Moves, MovesToLearn, StatusEffects);
+        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Charged, KOd, Moves, MovesToLearn, StatusEffects, SpriteName);
 
         public Member(string memberName, JsonDocument doc)
         {
@@ -59,6 +62,8 @@ namespace TheParty_v2
                 MovesToLearn.Add((Move)Utility.CallMethod(typeof(Move), Mem.GetProperty("MovesToLearn")[i].GetString()));
 
             StatusEffects = new List<StatusEffect>();
+
+            SpriteName = Mem.GetProperty("SpriteName").GetString();
         }
 
         // ~ ~ ~ ~ GETTERS ~ ~ ~ ~
@@ -82,7 +87,7 @@ namespace TheParty_v2
         {
             Stance += by;
             if (Stance >= StanceLimit)
-                Stance -= StanceLimit;
+                Stance = 0;
             KOd = Stance == 0;
         }
 
@@ -91,6 +96,8 @@ namespace TheParty_v2
             HP += by;
             if (HP < 0)
                 HP = 0;
+            if (HP > MaxHP)
+                HP = MaxHP;
         }
 
         public void AddEffect(string effectName)

@@ -79,8 +79,10 @@ namespace TheParty_v2
             SoundEffects = LoadedWith<SoundEffect>(content, "Sfx");
 
             Maps = FromJson<OgmoTileMap>("Maps");
-            foreach (var map in Maps.Values)
-                map.Initialize();
+            foreach (var map in Maps)
+            {
+                map.Value.Initialize(map.Key);
+            }
 
             AnimationSheets = new Dictionary<string, AnimatedSprite2D>();
             foreach (var item in JsonDocs("AnimatedSprites"))

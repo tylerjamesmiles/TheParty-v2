@@ -25,11 +25,12 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
+            client.CurrentMap.Update(client.Player, deltaTime);
+            client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
+
             if (client.CommandQueue.Empty)
             {
                 client.EventsCanHappenTimer.Update(deltaTime);
-                client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
-                client.CurrentMap.Update(client.Player, deltaTime);
 
                 var Entities = client.CurrentMap.EntityLayer.entities;
                 foreach (var entity in Entities)
@@ -54,8 +55,12 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            client.CurrentMap.Draw(Camera.Position, spriteBatch);
+            client.CurrentMap.DrawLayer(0, Camera.Position, spriteBatch);
+            client.CurrentMap.DrawLayer(1, Camera.Position, spriteBatch);
             client.Player.Draw(Camera.Position, spriteBatch);
+            client.CurrentMap.DrawLayer(2, Camera.Position, spriteBatch);
+            client.CurrentMap.DrawLayer(3, Camera.Position, spriteBatch);
+
         }
 
         public override void Exit(TheParty client)

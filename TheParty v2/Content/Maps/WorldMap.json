@@ -65565,7 +65565,7 @@
       "gridCellHeight": 16,
       "gridCellsX": 256,
       "gridCellsY": 256,
-      "tileset": "basictiles",
+      "tileset": "WorldMap",
       "data": [
         -1,
         -1,
@@ -131119,13 +131119,43 @@
       "entities": [
         {
           "name": "Entity",
-          "id": 14,
+          "id": 16,
           "_eid": "23557279",
-          "x": 1584,
-          "y": 1600,
+          "x": 1408,
+          "y": 1392,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "PlayerStart", "SpriteName": "", "ExistsIf": "", "Solid": false, "TriggerOnTouch": false, "Script": ""}
+          "values": {"Name": "Monster1", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Dialogue(Hello!)\nErase(Me)"}
+        },
+        {
+          "name": "Entity",
+          "id": 18,
+          "_eid": "23557279",
+          "x": 1456,
+          "y": 1568,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "Talker", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FollowPath", "Path": "To 96 97\nTo 95 99\nTo 90 100\nTo 99 103\nTo 97 100\nTo 91 98", "RepeatPath": true, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "FacePlayer(Me)\nFreeze(Me)\nFreeze(Player)\nDialogue(\"Hello!\")\nUnfreeze(Me)\nUnfreeze(Player)\nStopFacingPlayer(Me)"}
+        },
+        {
+          "name": "Entity",
+          "id": 19,
+          "_eid": "23557279",
+          "x": 1584,
+          "y": 1536,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(Capricorn, 32, 60)"}
+        },
+        {
+          "name": "Entity",
+          "id": 20,
+          "_eid": "23557279",
+          "x": 1088,
+          "y": 752,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FarawayHeightsBase, 16, 31)"}
         }
       ]
     },
@@ -131138,7 +131168,7 @@
       "gridCellHeight": 16,
       "gridCellsX": 256,
       "gridCellsY": 256,
-      "tileset": "basictiles",
+      "tileset": "WorldMap",
       "data": [
         -1,
         -1,
@@ -208534,8 +208564,7 @@
         "0",
         "0",
         "0",
-        "0",
-        "0",
+        "1",
         "0",
         "0",
         "0",
@@ -208792,6 +208821,7 @@
         "0",
         "1",
         "0",
+        "1",
         "0",
         "0",
         "0",

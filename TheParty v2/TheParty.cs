@@ -49,7 +49,7 @@ namespace TheParty_v2
             Target.Enable();
 
             GameContent.Load(Content);
-            Player = new Player(new Vector2(1585, 1602));
+
 
 
             StateMachine = new StateMachine<TheParty>();
@@ -57,7 +57,8 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["WorldMap"];
+            CurrentMap = GameContent.Maps["FarawayHeightsCave2"];
+            Player = new Player(new Vector2(32, 15) * 16);
         }
 
         protected override void Update(GameTime gameTime)

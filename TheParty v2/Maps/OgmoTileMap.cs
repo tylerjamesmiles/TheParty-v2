@@ -11,6 +11,7 @@ namespace TheParty_v2
 {
     class OgmoTileMap
     {
+        public string Name;
         public string ogmoVersion;
         public int width;
         public int height;
@@ -28,8 +29,9 @@ namespace TheParty_v2
         public List<Transform2D> EntityTransforms => 
             Entities.FindAll(e => e.Exists && e.values["Solid"] == "true").ConvertAll(e => e.Transform);
 
-        public void Initialize()
+        public void Initialize(string name)
         {
+            Name = name;
             CollisionBoxes = GenerateCollisionBoxes();
             layers.ForEach(l => l.Initialize());
         }
@@ -80,9 +82,9 @@ namespace TheParty_v2
             layers.ForEach(l => l.Update(CollisionBoxes, EntityTransforms, player, deltaTime));
         }
 
-        public void Draw(Vector2 cameraPos, SpriteBatch spriteBatch)
+        public void DrawLayer(int layer, Vector2 cameraPos, SpriteBatch spriteBatch)
         {
-            layers.ForEach(l => l.Draw(cameraPos, spriteBatch));  
+            layers[layer].Draw(cameraPos, spriteBatch);
         }
     }
 

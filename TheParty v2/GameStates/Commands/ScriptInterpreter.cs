@@ -88,10 +88,12 @@ namespace TheParty_v2
                         break;
 
                     case "battle":
+                        ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBattle(Arguments[0]));
                         ResultList.Add(new CommandLevelUp());
                         ResultList.Add(new CommandDecrementHunger());
                         ResultList.Add(new CommandLeaveDead());
+                        ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         break;
 
                     case "teleport":
@@ -108,8 +110,17 @@ namespace TheParty_v2
                         ResultList.Add(new CommandIncrementVar(Arguments[0], Arguments[1]));
                         break;
 
+                    case "erase":
+                        string Name = (Arguments[0].ToLower() == "me") ? caller.values["Name"] : Arguments[0];
+                        ResultList.Add(new CommandEraseMe(Name));
+                        break;
+
                     case "hitpartyhp":
                         ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
+                        break;
+
+                    case "addpartymember":
+                        ResultList.Add(new CommandAddPartyMember(Arguments[0]));
                         break;
 
                     case "if":

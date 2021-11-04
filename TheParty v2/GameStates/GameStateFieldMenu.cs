@@ -40,7 +40,8 @@ namespace TheParty_v2
             {
                 Vector2 MemberDrawPos = new Vector2(16 + i * 48, 48);
                 Vector2 MemberDrawOffset = new Vector2();
-                AnimatedSprite2D Sprite = new AnimatedSprite2D("TestFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset);
+                string SpriteName = ActiveMembers[i].SpriteName;
+                AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                 Sprite.SetCurrentAnimation("Idle");
                 MemberSprites.Add(Sprite);

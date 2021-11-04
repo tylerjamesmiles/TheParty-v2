@@ -84,3 +84,4 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\T
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\TheFlurryFighter.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\WorldMap.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\MonsterBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\ChupasnakeraFighter.xnb

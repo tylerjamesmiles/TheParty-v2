@@ -29,6 +29,8 @@ namespace TheParty_v2
         public bool Empty => Commands.Count == 0;
         private Command<T> Top => Commands.Peek();
 
+        public void ClearCommands() => Commands.Clear();
+
         public void Update(T client, float deltaTime)
         {
             if (!Empty)
@@ -38,7 +40,7 @@ namespace TheParty_v2
 
                 Top.Update(client, deltaTime);
 
-                if (Top.Done)
+                if (!Empty && Top.Done)
                 {
                     Commands.Dequeue().Exit(client);
 
@@ -50,7 +52,7 @@ namespace TheParty_v2
 
         public void Draw(T client, SpriteBatch spriteBatch)
         {
-            if (!Empty)
+            if (!Empty && Top.Entered)
                 Top.Draw(client, spriteBatch);
         }
     }

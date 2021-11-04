@@ -14,7 +14,7 @@ namespace TheParty_v2
         public CommandTeleport(string newMap, int newX, int newY)
         {
             NewMap = newMap;
-            NewPlayerPos = new Vector2(newX, newY);
+            NewPlayerPos = new Vector2(newX * 16 + 8, newY * 16 + 8);
         }
 
         public override void Update(TheParty client, float deltaTime)

@@ -45,6 +45,9 @@ namespace TheParty_v2
 
 
             Position = PotentialPos;
+
+            if (Position.X == float.NaN)
+                ;
         }
     }
 }

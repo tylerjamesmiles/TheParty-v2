@@ -34,16 +34,93 @@ namespace TheParty_v2
                 NumTurnsRemaining = 3
             };
 
+        public static StatusEffect CantCharge =>
+            new StatusEffect()
+            {
+                Name = "CantCharge",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                },
+                NumTurnsRemaining = 3
+            };
+
+        public static StatusEffect Evade =>
+            new StatusEffect()
+            {
+                Name = "Evade",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                },
+                NumTurnsRemaining = 3
+            };
+
+        public static StatusEffect Stun =>
+            new StatusEffect()
+            {
+                Name = "Stun",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                },
+                NumTurnsRemaining = 3
+            };
+
         public static StatusEffect AttackUp =>
             new StatusEffect()
             {
                 Name = "AttackUp",
-                SpriteAnimation = "Hit",
-                AnimationSheet = "StatusAnimations",
-                AnimationName = "Poison",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
-                    Battle.HitHPBy1
+                },
+                NumTurnsRemaining = 3
+            };
+
+        public static StatusEffect AttackDown =>
+            new StatusEffect()
+            {
+                Name = "AttackDown",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                },
+                NumTurnsRemaining = 3
+            };
+
+        public static StatusEffect DefenseUp =>
+            new StatusEffect()
+            {
+                Name = "DefenseUp",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                },
+                NumTurnsRemaining = 3
+            };
+
+        public static StatusEffect DefenseDown =>
+            new StatusEffect()
+            {
+                Name = "DefenseDown",
+                SpriteAnimation = "",
+                AnimationSheet = "",
+                AnimationName = "",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
                 },
                 NumTurnsRemaining = 3
             };

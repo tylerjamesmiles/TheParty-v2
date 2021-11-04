@@ -108,11 +108,6 @@ namespace TheParty_v2
                             ActiveMembers[member].HitHP(-2);
                             Sprites[member].SetCurrentAnimation("NegativeHit");
                         }
-                        else
-                        {
-                            ActiveMembers[member].HitHP(+1);
-                            Sprites[member].SetCurrentAnimation("PositiveHit");
-                        }
                         Hearts[member].SetHP(ActiveMembers[member].HP);
 
                     }

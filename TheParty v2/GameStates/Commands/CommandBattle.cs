@@ -145,7 +145,8 @@ namespace TheParty_v2
                     int MemberDrawY = MemberDrawStartY + member * 16;
                     Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
 
-                    AnimatedSprite2D Sprite = new AnimatedSprite2D("HocusFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                    Member ThisMember = CurrentStore.Parties[party].Members[member];
+                    AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                     Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                     Sprite.AddAnimation("Move", 1, 4, 0.15f);
                     Sprite.AddAnimation("Charged", 2, 4, 0.15f);
@@ -213,6 +214,7 @@ namespace TheParty_v2
 
             if (GameOver)
             {
+                client.CommandQueue.ClearCommands();
                 client.StateMachine.SetNewCurrentState(client, new GameStateGameOver());
                 Done = true;
                 return;

@@ -37,8 +37,15 @@ namespace TheParty_v2
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, float deltaTime)
         {
             if (!Frozen)
+            {
                 Steering.Update();
-            Movement.Update(Steering.SteeringForce, deltaTime);
+                Movement.Update(Steering.SteeringForce, deltaTime);
+            }
+            else
+            {
+                Movement.Velocity = new Vector2(0, 0);
+            }
+
             Transform.Update(Movement.Velocity, collisionBoxes, entityTransforms);
             Sprite.Update(Movement.Velocity, deltaTime);
         }

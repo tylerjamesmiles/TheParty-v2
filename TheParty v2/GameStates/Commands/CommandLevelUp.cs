@@ -17,8 +17,9 @@ namespace TheParty_v2
         GUIChoice MemberChoice;
         GUIChoiceBox LevelUpTypeChoice;
         GUIChoiceBox MoveChoice;
+        Timer WaitTimer2;
 
-        enum State { WaitForMoment, ChooseMember, ChooseType, ChooseMove };
+        enum State { WaitForMoment, ChooseMember, ChooseType, ChooseMove, WaitAnotherMoment };
         State CurrentState;
 
         public override void Enter(TheParty client)
@@ -40,15 +41,16 @@ namespace TheParty_v2
                 int MemberDrawY = MemberDrawStartY + member * 16;
                 Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
 
-                AnimatedSprite2D Sprite = new AnimatedSprite2D("TestFighter", new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                Member mem = ActiveMembers[member];
+                AnimatedSprite2D Sprite = new AnimatedSprite2D(mem.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
-                Sprite.AddAnimation("PositiveHit", 5, 1, 0.15f);
+                Sprite.AddAnimation("PositiveHit", 4, 1, 0.15f);
                 Sprite.AddAnimation("Dead", 6, 1, 0.15f);
                 Sprite.SetCurrentAnimation("Idle");
                 Sprites.Add(Sprite);
 
                 int HP = ActiveMembers[member].HP;
-                Hearts.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
+                Hearts.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18, false, true, ActiveMembers[member].MaxHP));
 
                 int Hunger = ActiveMembers[member].Hunger;
                 Meats.Add(new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, true));
@@ -65,6 +67,8 @@ namespace TheParty_v2
             };
 
             LevelUpTypeChoice = new GUIChoiceBox(new[] { "+1 Max%'s", "New Move" }, GUIChoiceBox.Position.Center);
+
+            WaitTimer2 = new Timer(1f);
 
             CurrentState = State.WaitForMoment;
 
@@ -109,6 +113,11 @@ namespace TheParty_v2
                         {
                             case 0:     // +1 max HP
                                 Selected.MaxHP += 2;
+                                Selected.HP = Selected.MaxHP;
+                                Hearts[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHP;
+                                Hearts[MemberChoice.CurrentChoiceIdx].SetHP(Selected.HP);
+                                Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
+                                CurrentState = State.WaitAnotherMoment;
                                 break;
 
                             case 1:     // new move
@@ -127,6 +136,15 @@ namespace TheParty_v2
                     {
                         Selected.Moves.Add(Selected.MovesToLearn[MoveChoice.CurrentChoice]);
                         Selected.MovesToLearn.RemoveAt(MoveChoice.CurrentChoice);
+                        Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
+                        CurrentState = State.WaitAnotherMoment;
+                    }
+                    break;
+
+                case State.WaitAnotherMoment:
+                    WaitTimer2.Update(deltaTime);
+                    if (WaitTimer2.TicThisFrame)
+                    {
                         Done = true;
                     }
                     break;
@@ -140,8 +158,11 @@ namespace TheParty_v2
             Hearts.ForEach(h => h.Draw(spriteBatch));
             Meats.ForEach(m => m.Draw(spriteBatch));
 
-            MemberChoice.Draw(spriteBatch, true);
-            LevelUpTypeChoice.Draw(spriteBatch, true);
+            if (CurrentState == State.ChooseMember)
+                MemberChoice.Draw(spriteBatch, true);
+
+            if (CurrentState == State.ChooseType)
+                LevelUpTypeChoice.Draw(spriteBatch, true);
 
             if (MoveChoice != null)
                 MoveChoice.Draw(spriteBatch, true);

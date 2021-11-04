@@ -21,6 +21,7 @@ namespace TheParty_v2
                     Commands.AddCommand(new CommandDialogue("There is nothing more that anyone can do."));
                     Commands.AddCommand(new CommandRemovePartyMember(member.Name));
                 }
+            Entered = true;
         }
 
         public override void Update(TheParty client, float deltaTime)
