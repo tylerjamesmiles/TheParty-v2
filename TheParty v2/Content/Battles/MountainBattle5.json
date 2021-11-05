@@ -1,0 +1,10 @@
+﻿{
+	"MountainBattle5" :
+	{
+		"Parties" :
+		[
+			"PlayerParty",
+			"MountainParty5"
+		]
+	}
+}

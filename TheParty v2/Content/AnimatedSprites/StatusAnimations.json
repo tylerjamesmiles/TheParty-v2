@@ -18,6 +18,12 @@
 				"FrameRow" : 1,
 				"NumFrames" : 4,
 				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Stunned",
+				"FrameRow" : 2,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
 			}
 		]
 	}

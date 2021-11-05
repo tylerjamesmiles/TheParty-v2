@@ -7,7 +7,6 @@
 		"Stance" : 1,
 		"Charged" : false,
 		"KOdFor" : 0,
-		"HasGoneThisTurn" : false,
 		"Moves" : [
 			"Hit", "Hurt", "Help", "Charge"
 		],

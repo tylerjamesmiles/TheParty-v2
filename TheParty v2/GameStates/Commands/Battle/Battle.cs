@@ -96,6 +96,7 @@ namespace TheParty_v2
 
         // STANCE - - -
         public static void HitStanceBy1(Member from, Member to) => to.HitStance(1);
+        public static void HitStanceByMinus1(Member from, Member to) => to.HitStance(-1);
         public static void HitStanceByStance(Member from, Member to) => to.HitStance(from.Stance);
         public static void HitHPByStance(Member from, Member to) => to.HitHP(-from.Stance * 2);
         public static void KOCaster(Member from, Member to) => from.HitStance(5 - from.Stance);

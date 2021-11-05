@@ -73,7 +73,9 @@ namespace TheParty_v2
                 ChargedEffects = new List<Action<Member, Member>> 
                 { 
                     Battle.HitStanceByStance,
-                    Battle.HitHPBy1
+                    Battle.HitHPBy1,
+                    Battle.AddStunned,
+                    Battle.CasterLoseCharge
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -114,13 +116,17 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "#Charge#",
-                Description = "#Charge up energy!#",
+                Description = "#Charge up energy!# \n" +
+                    "Lower stance by 1.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
                 UnChargedEffects = new List<Action<Member, Member>>
                 {
-                    Battle.Charge
+                    Battle.Charge,
+                    Battle.HealHPBy2,
+                    Battle.HitStanceByMinus1
+
                 },
                 ChargedEffects = new List<Action<Member, Member>> { },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>

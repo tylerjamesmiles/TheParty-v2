@@ -68,7 +68,11 @@ namespace TheParty_v2
 
         // ~ ~ ~ ~ GETTERS ~ ~ ~ ~
 
-        public bool CanGo => HP > 0 && Stance > 0;
+        public bool CanGo => 
+            HP > 0 && 
+            Stance > 0 &&
+            !HasEffect("Stunned");
+
         public List<string> MoveNames => Moves.ConvertAll(m => m.Name);
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
@@ -85,6 +89,13 @@ namespace TheParty_v2
         // ~ ~ ~ ~ SETTERS ~ ~ ~ ~
         public void HitStance(int by)
         {
+            // charge
+            if (Stance == 1 && by == -1)
+            {
+                Stance = 1;
+                return;
+            }
+
             Stance += by;
             if (Stance >= StanceLimit)
                 Stance = 0;

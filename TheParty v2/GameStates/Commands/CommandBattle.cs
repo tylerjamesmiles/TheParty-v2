@@ -34,7 +34,7 @@ namespace TheParty_v2
         public CommandBattle(string name)
         {
             BackgroundName = "TestBackground";
-            CurrentStore = GameContent.Battles["TestBattle"];
+            CurrentStore = GameContent.Battles[name];
 
             StateMachine = new StateMachine<CommandBattle>();
             StateMachine.SetNewCurrentState(this, new FightOrFlee());
@@ -147,13 +147,13 @@ namespace TheParty_v2
 
                     Member ThisMember = CurrentStore.Parties[party].Members[member];
                     AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
-                    Sprite.AddAnimation("Idle", 0, 4, 0.15f);
-                    Sprite.AddAnimation("Move", 1, 4, 0.15f);
-                    Sprite.AddAnimation("Charged", 2, 4, 0.15f);
-                    Sprite.AddAnimation("KOd", 3, 2, 0.15f);
-                    Sprite.AddAnimation("PositiveHit", 4, 4, 0.15f);
-                    Sprite.AddAnimation("NegativeHit", 5, 1, 0.15f);
-                    Sprite.AddAnimation("Dead", 6, 1, 0.15f);
+                    Sprite.AddAnimation("Idle",         0, 4, 0.15f);
+                    Sprite.AddAnimation("Move",         1, 4, 0.15f);
+                    Sprite.AddAnimation("Charged",      2, 4, 0.15f);
+                    Sprite.AddAnimation("KOd",          3, 2, 0.15f);
+                    Sprite.AddAnimation("PositiveHit",  4, 2, 0.15f);
+                    Sprite.AddAnimation("NegativeHit",  5, 1, 0.15f);
+                    Sprite.AddAnimation("Dead",         6, 1, 0.15f);
                     Sprite.SetCurrentAnimation("Idle");
                     Sprites.Add(Sprite);
 

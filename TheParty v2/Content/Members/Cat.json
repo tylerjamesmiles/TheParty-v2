@@ -1,0 +1,18 @@
+﻿{
+	"Cat" :
+	{
+		"Name" : "Cat",
+		"SpriteName" : "CatFighter",
+		"HP" : 5,
+		"Stance" : 1,
+		"Charged" : false,
+		"KOdFor" : 0,
+		"Moves" : [
+			"Hit", "Hurt", "Charge", "Evade"
+		],
+		"MovesToLearn" : [
+			
+		]
+	}
+}
+

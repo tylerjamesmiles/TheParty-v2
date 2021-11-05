@@ -60,13 +60,13 @@ namespace TheParty_v2
                 NumTurnsRemaining = 3
             };
 
-        public static StatusEffect Stun =>
+        public static StatusEffect Stunned =>
             new StatusEffect()
             {
                 Name = "Stun",
                 SpriteAnimation = "",
-                AnimationSheet = "",
-                AnimationName = "",
+                AnimationSheet = "StatusAnimations",
+                AnimationName = "Stunned",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },

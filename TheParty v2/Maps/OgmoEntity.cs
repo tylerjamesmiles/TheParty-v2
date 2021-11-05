@@ -115,11 +115,9 @@ namespace TheParty_v2
             Vector2 Pos = new Vector2(x + 8, y + 8);
             Transform = new Transform2D(Pos, 5f);
             Movement = new Movement2D(1f, 26f);
-            Sprite = new FourDirSprite2D(values["SpriteName"], new Point(-16, -24));
+            Sprite = new FourDirSprite2D(values["SpriteName"], new Point(-16, -24), values["AnimateWhenStatic"] == "true");
             Frozen = false;
             ManualExists = true;
-
-
 
             if (values.ContainsKey("PassiveBehavior"))
             {
@@ -192,7 +190,6 @@ namespace TheParty_v2
         {
             if (!Exists)
                 return;
-
 
             Vector2 ToPlayer = player.Transform.Position - Transform.Position;
 

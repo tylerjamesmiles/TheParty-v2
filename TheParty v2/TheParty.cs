@@ -57,8 +57,8 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["FarawayHeightsCave2"];
-            Player = new Player(new Vector2(32, 15) * 16);
+            CurrentMap = GameContent.Maps["FarawayHeightsMountain1"];
+            Player = new Player(new Vector2(5, 29) * 16);
         }
 
         protected override void Update(GameTime gameTime)

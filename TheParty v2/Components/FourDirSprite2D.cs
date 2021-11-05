@@ -16,7 +16,9 @@ namespace TheParty_v2
         public int CurrentFacing;
         public Timer FrameTimer;
 
-        public FourDirSprite2D(string spriteName, Point drawOffset)
+        public bool AnimateWhenStatic;
+
+        public FourDirSprite2D(string spriteName, Point drawOffset, bool animateWhenStatic = false)
         {
             SpriteName = spriteName;
             DrawOffset = drawOffset;
@@ -24,25 +26,29 @@ namespace TheParty_v2
             CurrentFrame = 0;
             CurrentFacing = 0;
             FrameTimer = new Timer(0.15f);
+            AnimateWhenStatic = animateWhenStatic;
         }
 
         public void Update(Vector2 velocity, float deltaTime)
         {
             bool Moving = velocity.LengthSquared() > 0.05f;
 
-            if (Moving)
+            if (Moving || AnimateWhenStatic)
             {
                 FrameTimer.Update(deltaTime);
 
                 if (FrameTimer.TicThisFrame)
                     CurrentFrame = Utility.RolledIfAtLimit(CurrentFrame + 1, 4);
+            }
+            else
+                CurrentFrame = 0;
 
+            if (Moving)
+            {
                 CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X)) ?
                     velocity.Y < 0 ? 0 : 1 :
                     velocity.X < 0 ? 2 : 3;
             }
-            else
-                CurrentFrame = 0;
         }
 
         public void Draw(Vector2 mapPos, Vector2 cameraPos, SpriteBatch spriteBatch)

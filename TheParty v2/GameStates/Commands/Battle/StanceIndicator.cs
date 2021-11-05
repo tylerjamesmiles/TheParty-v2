@@ -13,6 +13,8 @@ namespace TheParty_v2
         Timer AnimationTimer;
         Wobble Bob;
         public Vector2 DrawPos;
+        bool Moving;
+        bool Direction; // true = up, false = down
     
         public StanceIndicator(int startStance, Vector2 drawPos)
         {
@@ -21,6 +23,7 @@ namespace TheParty_v2
             AnimationTimer = new Timer(0.08f);
             Bob = new Wobble(2f, 2f);
             DrawPos = drawPos;
+            Moving = false;
         }
 
         public void Update(float deltaTime)
@@ -29,16 +32,32 @@ namespace TheParty_v2
 
             AnimationTimer.Update(deltaTime);
 
-            if (CurrentFrame != CurrentStance * 4 && AnimationTimer.TicThisFrame)
-                CurrentFrame++;
+            if (Moving && AnimationTimer.TicThisFrame)
+            {
+                if (CurrentFrame == CurrentStance * 4)
+                {
+                    Moving = false;
+                }
+                else
+                {
+                    CurrentFrame += Direction ? +1 : -1;
 
-            if (CurrentFrame > 5 * 4)
-                CurrentFrame = 0;
+                    if (CurrentFrame > 5 * 4)
+                        CurrentFrame = 0;
+                }
+            }
+           
         }
 
         public void SetStance(int newStance)
         {
-            CurrentStance = newStance;
+            if (newStance != CurrentStance)
+            {
+                Direction = newStance > CurrentStance;
+                Moving = true;
+                CurrentStance = newStance;
+            }
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
