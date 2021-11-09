@@ -100,6 +100,9 @@ namespace TheParty_v2
             if (Stance >= StanceLimit)
                 Stance = 0;
             KOd = Stance == 0;
+
+            if (KOd)
+                StatusEffects.RemoveAll(s => s.Name == "Stunned");
         }
 
         public void HitHP(int by)

@@ -125,7 +125,7 @@ namespace TheParty_v2
 
             // Font
             Texture2D FontSprite = Sprites["Font"];
-            Point GlyphSize = new Point(5, 9);
+            Point GlyphSize = new Point(6, 8);
             int FontSpritePixelWidth = FontSprite.Bounds.Width;
             int FontSpriteGlyphWidth = FontSpritePixelWidth / GlyphSize.X;
 

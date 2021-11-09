@@ -45,7 +45,7 @@ namespace TheParty_v2
 
             GraphicsGlobals.Setup(GraphicsDevice);
 
-            Target = new FixedResolutionTarget(160, 144, GraphicsDevice);
+            Target = new FixedResolutionTarget(160, 140, GraphicsDevice);
             Target.Enable();
 
             GameContent.Load(Content);
@@ -57,8 +57,8 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["FarawayHeightsMountain1"];
-            Player = new Player(new Vector2(5, 29) * 16);
+            CurrentMap = GameContent.Maps["WorldMap"];
+            Player = new Player(new Vector2(99, 100) * 16 + new Vector2(8, 8));
         }
 
         protected override void Update(GameTime gameTime)

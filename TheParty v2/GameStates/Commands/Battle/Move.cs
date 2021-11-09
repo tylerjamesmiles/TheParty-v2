@@ -61,7 +61,7 @@ namespace TheParty_v2
             {
                 Name = "Hit",
                 Description = 
-                    "Hit stance by yours.",
+                    "Hit enemy's stance by yours.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
@@ -75,7 +75,8 @@ namespace TheParty_v2
                     Battle.HitStanceByStance,
                     Battle.HitHPBy1,
                     Battle.AddStunned,
-                    Battle.CasterLoseCharge
+                    Battle.CasterLoseCharge,
+                    Battle.TargetLoseCharge
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -124,7 +125,7 @@ namespace TheParty_v2
                 UnChargedEffects = new List<Action<Member, Member>>
                 {
                     Battle.Charge,
-                    Battle.HealHPBy2,
+                    Battle.HealHPByHalf,
                     Battle.HitStanceByMinus1
 
                 },

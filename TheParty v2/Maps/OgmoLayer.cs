@@ -47,38 +47,48 @@ namespace TheParty_v2
                 entities.ForEach(e => e.Update(collisionRects, entityTransforms, player , deltaTime));
         }
 
-        public void Draw(Vector2 cameraPos, SpriteBatch spriteBatch)
+        public void Draw(Vector2 cameraPos, Player player, SpriteBatch spriteBatch)
         {
             if (data != null)
-                DrawTiles(cameraPos, spriteBatch);
-            else if (entities != null)
-                DrawEntities(cameraPos, spriteBatch);
-        }
-
-        private void DrawEntities(Vector2 cameraPos, SpriteBatch spriteBatch)
-        {
-            entities.ForEach(e => e.Draw(cameraPos, spriteBatch));
-        }
-
-        private void DrawTiles(Vector2 cameraPos, SpriteBatch spriteBatch)
-        {
-            Texture2D TileSet = GameContent.Sprites[tileset];
-            Point TileSize = new Point(gridCellWidth, gridCellHeight);
-            int TileSetTileWidth = TileSet.Width / TileSize.X;
-            int MapTileWidth = gridCellsX;
-
-            Func<int, int, Rectangle> GetRect = (id, width) =>
-                new Rectangle(new Point(id % width, id / width) * TileSize, TileSize);
-
-            for (int i = 0; i < data.Length; i++)
             {
-                if (data[i] == -1) continue;
+                Texture2D TileSet = GameContent.Sprites[tileset];
+                Point TileSize = new Point(gridCellWidth, gridCellHeight);
+                int TileSetTileWidth = TileSet.Width / TileSize.X;
+                int MapTileWidth = gridCellsX;
 
-                Rectangle SourceRect = GetRect(data[i], TileSetTileWidth);
-                Rectangle DrawRect = GetRect(i, MapTileWidth);
-                DrawRect.Location -= cameraPos.ToPoint();
+                Func<int, int, Rectangle> GetRect = (id, width) =>
+                    new Rectangle(new Point(id % width, id / width) * TileSize, TileSize);
 
-                spriteBatch.Draw(TileSet, DrawRect, SourceRect, Color.White);
+                for (int i = 0; i < data.Length; i++)
+                {
+                    if (data[i] == -1) continue;
+
+                    Rectangle SourceRect = GetRect(data[i], TileSetTileWidth);
+                    Rectangle DrawRect = GetRect(i, MapTileWidth);
+                    DrawRect.Location -= cameraPos.ToPoint();
+
+                    spriteBatch.Draw(TileSet, DrawRect, SourceRect, Color.White);
+                }
+            }
+            else if (entities != null)
+            {
+                player.Draw(cameraPos, spriteBatch);
+
+                // lazy y-sorting
+                foreach (var entity in entities)
+                {
+                    if (player.Transform.Position.Y < entity.Transform.Position.Y)
+                    {
+                        player.Draw(cameraPos, spriteBatch);
+                        entity.Draw(cameraPos, spriteBatch);
+                    }
+                    else
+                    {
+                        entity.Draw(cameraPos, spriteBatch);
+                        player.Draw(cameraPos, spriteBatch);
+                    }
+                }
+                
             }
         }
     }

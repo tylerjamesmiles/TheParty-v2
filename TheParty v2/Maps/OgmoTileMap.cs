@@ -82,9 +82,12 @@ namespace TheParty_v2
             layers.ForEach(l => l.Update(CollisionBoxes, EntityTransforms, player, deltaTime));
         }
 
-        public void DrawLayer(int layer, Vector2 cameraPos, SpriteBatch spriteBatch)
+        public void Draw(Vector2 cameraPos, Player player, SpriteBatch spriteBatch)
         {
-            layers[layer].Draw(cameraPos, spriteBatch);
+            for (int layer = 0; layer < layers.Count; layer++)
+            {
+                layers[layer].Draw(cameraPos, player, spriteBatch);
+            }
         }
     }
 

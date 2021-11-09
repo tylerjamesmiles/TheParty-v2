@@ -182,6 +182,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(CapricornFood, 7, 11)"}
+        },
+        {
+          "name": "Entity",
+          "id": 25,
+          "_eid": "23557279",
+          "x": 528,
+          "y": 768,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "HelperMe", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Hey! It's me! Tyler!)\nDialogue(Thanks for testing my game Bibby!)\nDialogue(Right now there's just 1-this little half-town and 2-a mountain to the north)\nDialogue(See if you can climb to the top of the mountain!)\nDialogue(Here in town you can rest + purchase a helper + buy food.)\nDialogue(Food is pretty important. You use it to heal people.)\nDialogue(But make sure to keep everyone fed.)\nDialogue(You can feed everyone in the ESC. menu.)\nDialogue(Yes I KNOW this is a lot of dialogue.)\nDialogue(But you know what?)\nDialogue(Your Mom's a lot of dialogue.)\nDialogue(Hell yeah.)\nDialogue(Sick burn.)\nDialogue(Gotcha there.)\nDialogue(Gotcha with my sick burn.)\nDialogue(Okay that's it.)\nDialogue(*Poof*)\nErase(Me)"}
         }
       ]
     },

@@ -42,8 +42,7 @@ namespace TheParty_v2
         {
             List<MemberMove> Result = new List<MemberMove>();
             foreach (Member member in Members.FindAll(m => m.CanGo))
-                foreach (MemberMove mm in member.AllValidMoves(pIdx, Members.IndexOf(member), state))
-                    Result.Add(mm);
+                Result.AddRange(member.AllValidMoves(pIdx, Members.IndexOf(member), state));
             return Result;
         }
 

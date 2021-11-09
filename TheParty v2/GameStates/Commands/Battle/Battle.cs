@@ -131,6 +131,7 @@ namespace TheParty_v2
 
 
         // HP - - -
+        public static void HealHPByHalf(Member from, Member to) => to.HitHP(+1);
         public static void HealHPBy1(Member from, Member to) => to.HitHP(+2);
         public static void HealHPBy2(Member from, Member to) => to.HitHP(+4);
         public static void HitHPBy1(Member from, Member to) => to.HitHP(-1);

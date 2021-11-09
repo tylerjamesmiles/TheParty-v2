@@ -39,9 +39,12 @@ namespace TheParty_v2
                 if (CurrentEffectIdx < Effects.Count)
                 {
                     StatusEffect CurrentEffect = Effects[CurrentEffectIdx];
-                    AnimatedSprite2D Sprite = client.Sprites[AllMembers.IndexOf(member)];
-                    Sprite.SetCurrentAnimation(CurrentEffect.SpriteAnimation);
-                    CurrentEffect.Do(client.CurrentStore, member);
+                    if (CurrentEffect.SpriteAnimation != "")
+                    {
+                        AnimatedSprite2D Sprite = client.Sprites[AllMembers.IndexOf(member)];
+                        Sprite.SetCurrentAnimation(CurrentEffect.SpriteAnimation);
+                        CurrentEffect.Do(client.CurrentStore, member);
+                    }
                 }
             }
 
@@ -61,7 +64,16 @@ namespace TheParty_v2
             {
                 PostTimer.Update(deltaTime);
                 if (PostTimer.TicThisFrame)
+                {
+                    foreach (Member member in client.CurrentStore.AllMembers())
+                    {
+                        member.StatusEffects.ForEach(se => se.DecrementTurnsRemaining());
+                        member.StatusEffects.RemoveAll(se => se.NumTurnsRemaining == 0);
+                    }
+
                     client.StateMachine.SetNewCurrentState(client, new PreMoveChecks());
+
+                }
             }
             else
             {

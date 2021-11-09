@@ -63,14 +63,14 @@ namespace TheParty_v2
         public static StatusEffect Stunned =>
             new StatusEffect()
             {
-                Name = "Stun",
+                Name = "Stunned",
                 SpriteAnimation = "",
                 AnimationSheet = "StatusAnimations",
                 AnimationName = "Stunned",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 2
             };
 
         public static StatusEffect AttackUp =>

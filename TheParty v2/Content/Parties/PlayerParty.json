@@ -4,8 +4,7 @@
 		"AIControlled" : false,
 		"Members" :
 		[
-			"Hero",
-			"Mercenary"
+			"Hero"
 		]
 	}
 }

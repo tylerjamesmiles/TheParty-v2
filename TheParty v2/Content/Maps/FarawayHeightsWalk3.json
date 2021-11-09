@@ -101,7 +101,7 @@
           "y": 208,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Fight5", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(MonsterBattle5)\nErase(Me)"}
+          "values": {"Name": "Fight5", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(MountainBattle5)\nErase(Me)"}
         }
       ]
     },

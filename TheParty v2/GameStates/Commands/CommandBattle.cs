@@ -240,8 +240,8 @@ namespace TheParty_v2
                 int Idx = AllMembers.IndexOf(member);
                 if (member.HP > 0)
                 {
-                    StanceIndicators[Idx].Draw(spriteBatch);
                     StatusIndicators[Idx].Draw(spriteBatch);
+                    StanceIndicators[Idx].Draw(spriteBatch);
                 }
             }
 

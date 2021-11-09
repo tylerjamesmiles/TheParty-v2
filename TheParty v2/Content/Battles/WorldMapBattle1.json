@@ -1,0 +1,10 @@
+﻿{
+	"WorldMapBattle1" :
+	{
+		"Parties" :
+		[
+			"PlayerParty",
+			"WorldMapParty1"
+		]
+	}
+}

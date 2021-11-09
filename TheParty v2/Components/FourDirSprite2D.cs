@@ -33,6 +33,7 @@ namespace TheParty_v2
         {
             bool Moving = velocity.LengthSquared() > 0.05f;
 
+
             if (Moving || AnimateWhenStatic)
             {
                 FrameTimer.Update(deltaTime);

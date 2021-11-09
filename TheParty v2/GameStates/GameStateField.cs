@@ -55,12 +55,7 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            client.CurrentMap.DrawLayer(0, Camera.Position, spriteBatch);
-            client.CurrentMap.DrawLayer(1, Camera.Position, spriteBatch);
-            client.Player.Draw(Camera.Position, spriteBatch);
-            client.CurrentMap.DrawLayer(2, Camera.Position, spriteBatch);
-            client.CurrentMap.DrawLayer(3, Camera.Position, spriteBatch);
-
+            client.CurrentMap.Draw(Camera.Position, client.Player, spriteBatch);
         }
 
         public override void Exit(TheParty client)
