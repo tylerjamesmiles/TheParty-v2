@@ -146,6 +146,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandAddPartyMember(Arguments[0]));
                         break;
 
+                    case "changeplayersprite":
+                        ResultList.Add(new CommandChangePlayerSprite(Arguments[0]));
+                        break;
+
                     case "if":
                         string SubScript = "";
                         for (

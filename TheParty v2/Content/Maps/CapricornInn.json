@@ -61,7 +61,7 @@
           "y": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to stay for the night? $5 for a bed.)\nChoice(Yes, No)\n   Case Yes\n      Incr(Money, -5)\n      HitPartyHP(+10)\n      DayPass(WorldMap, 99, 98)\n   Case No"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to stay for the night? $5 for a bed.)\nChoice(Yes, No)\n   Case Yes\n      FadeOut()\n      Dialogue(The party was healed.)\n      Incr(Money, -5)\n      HitPartyHP(+10)\n      DayPass(WorldMap, 99, 98)\n   Case No"}
         },
         {
           "name": "Entity",

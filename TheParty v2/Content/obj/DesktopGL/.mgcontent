@@ -11,6 +11,8 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Box.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CatFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterClimbingBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterSmallBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChupasnakeraFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Circle.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png</File>
@@ -44,6 +46,8 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

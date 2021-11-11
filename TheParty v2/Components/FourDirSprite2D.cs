@@ -8,7 +8,7 @@ namespace TheParty_v2
 {
     class FourDirSprite2D
     {
-        public string SpriteName { get; private set; }
+        public string SpriteName { get; set; }
         public Point DrawOffset { get; private set; }
         public Point SpriteSize { get; private set; }
 

@@ -131125,7 +131125,7 @@
           "y": 1536,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(Capricorn, 32, 60)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)\nTeleport(Capricorn, 32, 60)"}
         },
         {
           "name": "Entity",
@@ -131135,7 +131135,7 @@
           "y": 752,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FarawayHeightsBase, 16, 31)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)\nTeleport(FarawayHeightsBase, 16, 31)"}
         },
         {
           "name": "Entity",
@@ -131175,7 +131175,7 @@
           "y": 1536,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to buy some food? $5 for a bite.)\nSet(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Yes, No)\n      Case Yes\n         Incr(Money, -5)\n         Incr(FoodSupply, +1)\n      Case No\n         Set(StillShopping, false)"}
+          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to buy some food? $5 for a bite.)\nSet(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Yes, No)\n      Case Yes\n         If(Money >= 5)\n            Incr(Money, -5)\n            Incr(FoodSupply, +1)\n         If(Money < 5)\n            Dialogue(Not enough money!)\n            Set(StillShopping, false)\n      Case No\n         Set(StillShopping, false)"}
         },
         {
           "name": "Entity",
@@ -131191,8 +131191,8 @@
           "name": "Entity",
           "id": 27,
           "_eid": "23557279",
-          "x": 1456,
-          "y": 1552,
+          "x": 1392,
+          "y": 1472,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "StopFacingPlayer(Me)\nMove(Me, Up 5)\nFace(Me, Down)\nMove(Me, Down 2)\nFace(Me, Left)\nMove(Me, Left 4)\nFace(Me, Right)\nMove(Me, Right 3)\nFacePlayer(Me)"}

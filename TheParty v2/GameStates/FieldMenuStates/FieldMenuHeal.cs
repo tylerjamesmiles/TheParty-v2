@@ -24,15 +24,15 @@ namespace TheParty_v2
             if (Choice.Done)
             {
                 Member ToHeal = client.ActiveMembers[Choice.CurrentChoiceIdx];
-                if (ToHeal.Hunger > 0)
+                if (ToHeal.HP < ToHeal.MaxHP && ToHeal.Hunger > 0)
                 {
                     ToHeal.Hunger -= 1;
                     ToHeal.HitHP(+1);
                     client.HungerIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.Hunger);
                     client.HPIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.HP);
-
-                    Choice.Done = false;
                 }
+
+                Choice.Done = false;
             }
 
             if (InputManager.JustReleased(Keys.Escape))

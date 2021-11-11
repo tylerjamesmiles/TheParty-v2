@@ -92,6 +92,46 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FarawayHeightsCave3, 16, 31)"}
+        },
+        {
+          "name": "Entity",
+          "id": 5,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 272,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
+        },
+        {
+          "name": "Entity",
+          "id": 6,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
+        },
+        {
+          "name": "Entity",
+          "id": 7,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}
+        },
+        {
+          "name": "Entity",
+          "id": 8,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 256,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}
         }
       ]
     },

@@ -61,7 +61,7 @@
           "y": 96,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to buy some food? $5 for a bite.)\nSet(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Yes, No)\n      Case Yes\n         Incr(Money, -5)\n         Incr(FoodSupply, +1)\n      Case No\n         Set(StillShopping, false)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to buy some food? $5 for a bite.)\nSet(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Yes, No)\n      Case Yes\n         If (Money >= 5)\n            Incr(Money, -5)\n            Incr(FoodSupply, +1)\n         If (Money < 5)\n            Dialogue(Sorry. You don't have enough money.)\n            Set(StillShopping, false)\n      Case No\n         Set(StillShopping, false)"}
         },
         {
           "name": "Entity",

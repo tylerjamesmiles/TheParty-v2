@@ -61,7 +61,8 @@ namespace TheParty_v2
             {
                 Name = "Hit",
                 Description = 
-                    "Hit enemy's stance by yours.",
+                    "Hit enemy's stance by yours.\n" +
+                    "(#Charged#: Remove target's charge.)",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
@@ -74,7 +75,6 @@ namespace TheParty_v2
                 { 
                     Battle.HitStanceByStance,
                     Battle.HitHPBy1,
-                    Battle.AddStunned,
                     Battle.CasterLoseCharge,
                     Battle.TargetLoseCharge
                 },

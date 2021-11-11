@@ -24,7 +24,8 @@ namespace TheParty_v2
             if (Choice.Done)
             {
                 Member ToFeed = client.ActiveMembers[Choice.CurrentChoiceIdx];
-                if (ToFeed.Hunger < 10)
+                if (GameContent.Variables["FoodSupply"] > 0 && 
+                    ToFeed.Hunger < ToFeed.MaxHunger)
                 {
                     ToFeed.Hunger += 1;
                     GameContent.Variables["FoodSupply"] -= 1;
@@ -32,8 +33,9 @@ namespace TheParty_v2
                     Rectangle FoodBounds = new Rectangle(new Point(32, 4), new Point(32, 18));
                     client.Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
 
-                    Choice.Done = false;
+
                 }
+                Choice.Done = false;
             }
 
             if (InputManager.JustReleased(Keys.Escape))
