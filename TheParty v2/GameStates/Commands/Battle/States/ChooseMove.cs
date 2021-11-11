@@ -16,12 +16,12 @@ namespace TheParty_v2
             Member Selected = client.FromMember;
             bool[] ChoiceValidity = new bool[Selected.Moves.Count];
             for (int i = 0; i < Selected.Moves.Count; i++)
-                ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.Moves[i]);
+                ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.GetMoves()[i]);
                     
             client.MoveChoice = new GUIChoiceBox(Selected.MoveNames.ToArray(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
-            string DescrTxt = client.FromMember.Moves[CurrentChoice].Description;
+            string DescrTxt = client.FromMember.GetMoves()[CurrentChoice].Description;
             Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
         }
 
@@ -32,7 +32,7 @@ namespace TheParty_v2
             if (client.MoveChoice.ChoiceUpdatedThisFrame)
             {
                 int CurrentChoice = client.MoveChoice.CurrentChoice;
-                string DescrTxt = client.FromMember.Moves[CurrentChoice].Description;
+                string DescrTxt = client.FromMember.GetMoves()[CurrentChoice].Description;
                 Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
             }
 
@@ -40,7 +40,7 @@ namespace TheParty_v2
 
             if (client.MoveChoice.Done)
             {
-                client.CurrentMove = client.FromMember.Moves[client.MoveChoice.CurrentChoice];
+                client.CurrentMove = client.FromMember.GetMoves()[client.MoveChoice.CurrentChoice];
                 client.StateMachine.SetNewCurrentState(client, new ChooseTarget());
             }
 

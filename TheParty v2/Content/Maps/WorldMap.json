@@ -131171,7 +131171,7 @@
           "name": "Entity",
           "id": 25,
           "_eid": "23557279",
-          "x": 1472,
+          "x": 1520,
           "y": 1536,
           "originX": 0,
           "originY": 0,
@@ -131186,6 +131186,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Load()"}
+        },
+        {
+          "name": "Entity",
+          "id": 27,
+          "_eid": "23557279",
+          "x": 1456,
+          "y": 1552,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "StopFacingPlayer(Me)\nMove(Me, Up 5)\nFace(Me, Down)\nMove(Me, Down 2)\nFace(Me, Left)\nMove(Me, Left 4)\nFace(Me, Right)\nMove(Me, Right 3)\nFacePlayer(Me)"}
         }
       ]
     },

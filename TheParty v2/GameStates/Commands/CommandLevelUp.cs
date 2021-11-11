@@ -121,7 +121,7 @@ namespace TheParty_v2
                                 break;
 
                             case 1:     // new move
-                                List<string> MoveNames = Selected.MovesToLearn.ConvertAll(m => m.Name);
+                                List<string> MoveNames = Selected.MovesToLearn;
                                 MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.Center);
                                 CurrentState = State.ChooseMove;
                                 break;

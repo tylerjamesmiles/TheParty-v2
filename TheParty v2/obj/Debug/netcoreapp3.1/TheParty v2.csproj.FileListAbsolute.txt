@@ -89,3 +89,4 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\B
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\CatFighter.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\MonkBase.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\FontLight.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\MonoGame.Extended.dll

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.Json;
@@ -29,6 +30,7 @@ namespace TheParty_v2
             }
         }
 
+        [JsonConstructor]
         public Party(List<Member> members) { Members = members; }
         public Party DeepCopy() => new Party(Members.ConvertAll(m => m.DeepCopy()));
 

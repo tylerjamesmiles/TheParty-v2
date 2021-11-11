@@ -6,15 +6,16 @@ using System.Text;
 
 namespace TheParty_v2
 {
-    class PathFollower
+    class PathFollower2D
     {
         Queue<Vector2> PointsBackStore;
         Queue<Vector2> Points;
         public Vector2 SteeringForce { get; private set; }
         public float MinPointDistance = 10f;
         private bool Repeat;
+        public bool Done { get; private set; }
 
-        public PathFollower(string pathScript, Vector2 startingPos, bool repeat)
+        public PathFollower2D(string pathScript, Vector2 startingPos, bool repeat)
         {
             string Path = pathScript;
             string[] PathCommands = Path.Split('\n');
@@ -50,14 +51,15 @@ namespace TheParty_v2
             Points = new Queue<Vector2>(PathPoints);
             PointsBackStore = new Queue<Vector2>(PathPoints); // used when looping the path
             Repeat = repeat;
-
+            Done = false;
         }
 
-        public PathFollower(Queue<Vector2> points, bool repeat)
+        public PathFollower2D(Queue<Vector2> points, bool repeat)
         {
             Points = new Queue<Vector2>(points);
             PointsBackStore = new Queue<Vector2>(points); // used when looping the path
             Repeat = repeat;
+            Done = false;
         }
 
         public void Update(Vector2 currentPos, float maxSpeed, float deltaTime)
@@ -70,7 +72,12 @@ namespace TheParty_v2
                     Points.Dequeue();
 
                     if (Points.Count == 0)
-                        Points = new Queue<Vector2>(PointsBackStore);
+                    {
+                        if (Repeat)
+                            Points = new Queue<Vector2>(PointsBackStore);
+                        else
+                            Done = true;
+                    }
                 }
             }
 
@@ -97,12 +104,13 @@ namespace TheParty_v2
 
         public Transform2D Transform;
         public Movement2D Movement;
-        public PathFollower PathFollower;
+        public PathFollower2D PathFollower;
         public FourDirSprite2D Sprite;
         public bool Frozen;
         public bool FacePlayer;
         public bool ChasePlayer;
         public bool FollowPath;
+        public bool TemporaryFollowPath;
         public float VisionRange = 60f;
         public bool ManualExists;
         public bool Exists => IExist();
@@ -132,8 +140,14 @@ namespace TheParty_v2
 
             if (FollowPath)
             {
-                PathFollower = new PathFollower(values["Path"], Pos, values["RepeatPath"] == "true");
+                PathFollower = new PathFollower2D(values["Path"], Pos, values["RepeatPath"] == "true");
             }
+        }
+
+        public void SetPath(string path)
+        {
+            FollowPath = true;
+            PathFollower = new PathFollower2D(path, Transform.Position, false);
         }
 
         private bool IExist()   // <- Deep questions
@@ -199,10 +213,13 @@ namespace TheParty_v2
                 if (ToPlayer.LengthSquared() < VisionRange * VisionRange)
                     Steering = Vector2.Normalize(ToPlayer) * 26f;
             }
-            else if (FollowPath)
+            else if (FollowPath || TemporaryFollowPath)
             {
                 PathFollower.Update(Transform.Position, Movement.MaxSpeed, deltaTime);
                 Steering = PathFollower.SteeringForce;
+
+                if (PathFollower.Done)
+                    TemporaryFollowPath = false;
             }
             
             if (Frozen)

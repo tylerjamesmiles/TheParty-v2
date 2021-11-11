@@ -102,7 +102,7 @@ namespace TheParty_v2
             if (!target.HasEffect("Evade"))
                 target.HitStance(amt);
             else
-                target.RemoveEffect("Evade");
+                target.RemoveStatusEffect("Evade");
         }
         public static void HitStanceBy1(Member from, Member to) => HitTargetStance(to, 1);
         public static void HitStanceByMinus1(Member from, Member to) => HitTargetStance(to, -1);
@@ -120,23 +120,23 @@ namespace TheParty_v2
         }
 
         // STATUS - - -
-        public static void AddPoison(Member from, Member to) => to.AddEffect("Poison");
-        public static void AddAttackUp(Member from, Member to) => to.AddEffect("AttackUp");
-        public static void AddAttackDown(Member from, Member to) => to.AddEffect("AttackDown");
-        public static void AddDefenseUp(Member from, Member to) => to.AddEffect("DefenseUp");
-        public static void AddDefenseDown(Member from, Member to) => to.AddEffect("DefenseDown");
-        public static void AddEvade(Member from, Member to) => to.AddEffect("Evade");
-        public static void AddCantCharge(Member from, Member to) => to.AddEffect("CantCharge");
-        public static void AddStunned(Member from, Member to) => to.AddEffect("Stunned");
+        public static void AddPoison(Member from, Member to) => to.AddStatusEffect("Poison");
+        public static void AddAttackUp(Member from, Member to) => to.AddStatusEffect("AttackUp");
+        public static void AddAttackDown(Member from, Member to) => to.AddStatusEffect("AttackDown");
+        public static void AddDefenseUp(Member from, Member to) => to.AddStatusEffect("DefenseUp");
+        public static void AddDefenseDown(Member from, Member to) => to.AddStatusEffect("DefenseDown");
+        public static void AddEvade(Member from, Member to) => to.AddStatusEffect("Evade");
+        public static void AddCantCharge(Member from, Member to) => to.AddStatusEffect("CantCharge");
+        public static void AddStunned(Member from, Member to) => to.AddStatusEffect("Stunned");
 
-        public static void RemovePoison(Member from, Member to) => to.RemoveEffect("Poison");
-        public static void RemoveAttackUp(Member from, Member to) => to.RemoveEffect("AttackUp");
-        public static void RemoveAttackDown(Member from, Member to) => to.RemoveEffect("AttackDown");
-        public static void RemoveDefenseUp(Member from, Member to) => to.RemoveEffect("DefenseUp");
-        public static void RemoveDefenseDown(Member from, Member to) => to.RemoveEffect("DefenseDown");
-        public static void RemoveEvade(Member from, Member to) => to.RemoveEffect("Evade");
-        public static void RemoveCantCharge(Member from, Member to) => to.RemoveEffect("CantCharge");
-        public static void RemoveStunned(Member from, Member to) => to.RemoveEffect("Stunned");
+        public static void RemovePoison(Member from, Member to) => to.RemoveStatusEffect("Poison");
+        public static void RemoveAttackUp(Member from, Member to) => to.RemoveStatusEffect("AttackUp");
+        public static void RemoveAttackDown(Member from, Member to) => to.RemoveStatusEffect("AttackDown");
+        public static void RemoveDefenseUp(Member from, Member to) => to.RemoveStatusEffect("DefenseUp");
+        public static void RemoveDefenseDown(Member from, Member to) => to.RemoveStatusEffect("DefenseDown");
+        public static void RemoveEvade(Member from, Member to) => to.RemoveStatusEffect("Evade");
+        public static void RemoveCantCharge(Member from, Member to) => to.RemoveStatusEffect("CantCharge");
+        public static void RemoveStunned(Member from, Member to) => to.RemoveStatusEffect("Stunned");
 
 
         // HP - - -
@@ -145,7 +145,7 @@ namespace TheParty_v2
             if (!to.HasEffect("Evade"))
                 to.HitHP(amt);
             else
-                to.RemoveEffect("Evade");
+                to.RemoveStatusEffect("Evade");
         }
 
         public static void HealHPByHalf(Member from, Member to) => to.HitHP(+1);

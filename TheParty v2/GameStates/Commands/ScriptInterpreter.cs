@@ -69,6 +69,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandLoad());
                         break;
 
+                    case "move":
+                        ResultList.Add(new CommandFollowPath(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
+                        break;
+
                     case "freeze":
                         foreach (string entityName in Arguments)
                             if (entityName.ToLower() == "player")
@@ -83,6 +87,10 @@ namespace TheParty_v2
                                 ResultList.Add(new CommandUnfreezePlayer());
                             else
                                 ResultList.Add(new CommandUnFreeze(EntityFromName(entityName, EntityLayer, caller)));
+                        break;
+
+                    case "face":
+                        ResultList.Add(new CommandFace(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
 
                     case "faceplayer":

@@ -1,1 +1,123 @@
-{"Steering":{"SteeringForce":{},"MaxForce":30},"Movement":{"Velocity":{},"Heading":{},"Mass":1,"MaxSpeed":5},"Transform":{"Position":{},"BoundingRadius":8},"Sprite":{"SpriteName":"CharacterBase","DrawOffset":{},"SpriteSize":{},"CurrentFrame":0,"CurrentFacing":0,"FrameTimer":{"TicThisFrame":false,"TicsSoFar":12},"AnimateWhenStatic":false},"ActiveParty":{"NumMembers":1,"NumAlertMembers":1,"IsKOd":false,"IsDead":false},"CampMembers":[{"CanGo":true,"MoveNames":["Hit","Hurt","Help","#Charge#","Evade"]}],"Frozen":false}
+{
+  "CurrentMap": "WorldMap",
+  "Variables": {
+    "TestVariable1": 0,
+    "TestVariable2": 6,
+    "DaysRemaining": 100,
+    "Money": 100,
+    "FoodSupply": 16,
+    "Character1Feeling": 0
+  },
+  "Switches": {
+    "TestSwitch1": false,
+    "TestSwitch2": false,
+    "WorldMonster1": true
+  },
+  "Player": {
+    "Steering": {
+      "SteeringForce": "0 0",
+      "MaxForce": 30.0
+    },
+    "Movement": {
+      "Velocity": "0 0",
+      "Heading": "-0.0003006017 -0.9999999",
+      "Mass": 1.0,
+      "MaxSpeed": 5.0
+    },
+    "Transform": {
+      "Position": "1534.8533 1555.0469",
+      "BoundingRadius": 8.0
+    },
+    "Sprite": {
+      "SpriteName": "CharacterBase",
+      "DrawOffset": {
+        "X": -16,
+        "Y": -24
+      },
+      "SpriteSize": {
+        "X": 32,
+        "Y": 32
+      },
+      "CurrentFrame": 0,
+      "CurrentFacing": 0,
+      "FrameTimer": {
+        "TicThisFrame": false,
+        "TicsSoFar": 8
+      },
+      "AnimateWhenStatic": false
+    },
+    "ActiveParty": {
+      "Members": [
+        {
+          "Name": "Hero",
+          "HP": 5,
+          "MaxHP": 10,
+          "Stance": 1,
+          "Charged": false,
+          "KOd": false,
+          "Hunger": 7,
+          "MaxHunger": 10,
+          "Moves": [
+            "Hit",
+            "Hurt",
+            "Help",
+            "Charge",
+            "Evade"
+          ],
+          "MovesToLearn": [
+            "Punch",
+            "Antidote"
+          ],
+          "StatusEffects": [],
+          "SpriteName": "TestFighter",
+          "CanGo": true,
+          "MoveNames": [
+            "Hit",
+            "Hurt",
+            "Help",
+            "Charge",
+            "Evade"
+          ]
+        }
+      ],
+      "NumMembers": 1,
+      "NumAlertMembers": 1,
+      "IsKOd": false,
+      "IsDead": false
+    },
+    "CampMembers": [
+      {
+        "Name": "Hero",
+        "HP": 5,
+        "MaxHP": 10,
+        "Stance": 1,
+        "Charged": false,
+        "KOd": false,
+        "Hunger": 7,
+        "MaxHunger": 10,
+        "Moves": [
+          "Hit",
+          "Hurt",
+          "Help",
+          "Charge",
+          "Evade"
+        ],
+        "MovesToLearn": [
+          "Punch",
+          "Antidote"
+        ],
+        "StatusEffects": [],
+        "SpriteName": "TestFighter",
+        "CanGo": true,
+        "MoveNames": [
+          "Hit",
+          "Hurt",
+          "Help",
+          "Charge",
+          "Evade"
+        ]
+      }
+    ],
+    "Frozen": false
+  }
+}
