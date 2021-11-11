@@ -7,20 +7,15 @@ using System.Text;
 
 namespace TheParty_v2
 { 
-
-
     class GameStateField : State<TheParty>
     {
         Camera2D Camera;
 
+
+
         public GameStateField()
         {
             Camera = new Camera2D();
-        }
-
-        public override void Enter(TheParty client)
-        {
-
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -41,7 +36,7 @@ namespace TheParty_v2
                         (entity.values["TriggerOnTouch"] == "true" || InputManager.JustReleased(Keys.Space)))
                     {
                         var Commands = ScriptInterpreter.Interpret(client, entity, entity.values["Script"]);
-                        client.CommandQueue.AddCommands(Commands);
+                        client.CommandQueue.EnqueueCommands(Commands);
                         break;
                     }
                 }
@@ -56,11 +51,6 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             client.CurrentMap.Draw(Camera.Position, client.Player, spriteBatch);
-        }
-
-        public override void Exit(TheParty client)
-        {
-
         }
     }
 }

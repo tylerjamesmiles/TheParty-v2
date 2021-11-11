@@ -13,7 +13,7 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
-            Choice = new GUIChoiceBox(new[] { "Play", "Quit" }, GUIChoiceBox.Position.BottomRight);
+            Choice = new GUIChoiceBox(new[] { "New", "Load", "Quit" }, GUIChoiceBox.Position.BottomRight);
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -28,6 +28,11 @@ namespace TheParty_v2
                         break;
 
                     case 1:
+                        client.CommandQueue.EnqueueCommand(new CommandLoad());
+                        client.StateMachine.SetNewCurrentState(client, new GameStateField());
+                        break;
+
+                    case 2:
                         client.Exit();
                         break;
                 }

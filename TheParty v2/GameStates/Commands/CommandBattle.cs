@@ -36,9 +36,6 @@ namespace TheParty_v2
             BackgroundName = "TestBackground";
             CurrentStore = GameContent.Battles[name];
 
-            StateMachine = new StateMachine<CommandBattle>();
-
-            GameOver = false;
         }
 
         public List<int> PartyIdxs(int partyIdx)
@@ -125,6 +122,10 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
+            StateMachine = new StateMachine<CommandBattle>();
+
+            GameOver = false;
+
             CurrentStore.Parties[0] = client.Player.ActiveParty;
 
             Sprites = new List<AnimatedSprite2D>();

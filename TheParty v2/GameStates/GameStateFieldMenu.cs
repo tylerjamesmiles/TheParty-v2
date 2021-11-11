@@ -20,16 +20,17 @@ namespace TheParty_v2
 
         public StateMachine<GameStateFieldMenu> StateMachine;
         public bool Done;
+        public bool Quit;
 
         public override void Enter(TheParty client)
         {
-            Rectangle FoodBounds = new Rectangle(new Point(32, 4), new Point(32, 18));
+            Rectangle FoodBounds = new Rectangle(new Point(28, 4), new Point(36, 18));
             Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
 
-            Rectangle MoneyBounds = new Rectangle(new Point(64, 4), new Point(32, 18));
+            Rectangle MoneyBounds = new Rectangle(new Point(64, 4), new Point(36, 18));
             Money = new GUIDialogueBox(MoneyBounds, new[] { "$" + GameContent.Variables["Money"].ToString() });
 
-            Rectangle DaysBounds = new Rectangle(new Point(96, 4), new Point(32, 18));
+            Rectangle DaysBounds = new Rectangle(new Point(100, 4), new Point(36, 18));
             Days = new GUIDialogueBox(DaysBounds, new[] { "&" + GameContent.Variables["DaysRemaining"].ToString() });
 
             ActiveMembers = client.Player.ActiveParty.Members;
@@ -57,6 +58,7 @@ namespace TheParty_v2
             StateMachine.SetNewCurrentState(this, new FieldMenuMain());
 
             Done = false;
+            Quit = false;
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -75,6 +77,9 @@ namespace TheParty_v2
             StateMachine.Update(this, deltaTime);
             if (Done)
                 client.StateMachine.SetNewCurrentState(client, new GameStateField());
+
+            if (Quit)
+                client.StateMachine.SetNewCurrentState(client, new GameStateTitle());
 
         }
 

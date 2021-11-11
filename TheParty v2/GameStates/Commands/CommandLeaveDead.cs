@@ -16,10 +16,10 @@ namespace TheParty_v2
             foreach (Member member in client.Player.ActiveParty.Members)
                 if (member.HP == 0)
                 {
-                    Commands.AddCommand(new CommandDialogue(member.Name + " is gone."));
-                    Commands.AddCommand(new CommandDialogue("The party mourns, buries the body and moves on."));
-                    Commands.AddCommand(new CommandDialogue("There is nothing more that anyone can do."));
-                    Commands.AddCommand(new CommandRemovePartyMember(member.Name));
+                    Commands.EnqueueCommand(new CommandDialogue(member.Name + " is gone."));
+                    Commands.EnqueueCommand(new CommandDialogue("The party mourns, buries the body and moves on."));
+                    Commands.EnqueueCommand(new CommandDialogue("There is nothing more that anyone can do."));
+                    Commands.EnqueueCommand(new CommandRemovePartyMember(member.Name));
                 }
             Entered = true;
         }

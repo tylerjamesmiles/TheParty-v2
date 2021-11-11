@@ -17,6 +17,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
+
             GameContent.Variables[VarName] += IncrBy;
             Done = true;
         }

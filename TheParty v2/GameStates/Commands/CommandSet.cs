@@ -23,6 +23,9 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
+            if (NewValue == "false")
+                ;
+
             if (VarType == Type.Switch)
                 GameContent.Switches[VarName] = bool.Parse(NewValue);
             else if (VarType == Type.Variable)

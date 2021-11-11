@@ -12,7 +12,7 @@ namespace TheParty_v2
 
         public override void Enter(GameStateFieldMenu client)
         {
-            Choices = new GUIChoiceBox(new[] { "Feed", "Heal", "Save", "Quit" }, GUIChoiceBox.Position.BottomRight, 2);
+            Choices = new GUIChoiceBox(new[] { "Feed", "Heal", "Back", "Title" }, GUIChoiceBox.Position.BottomRight, 2);
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)
@@ -25,8 +25,8 @@ namespace TheParty_v2
                 {
                     case 0: client.StateMachine.SetNewCurrentState(client, new FieldMenuFeed()); break;
                     case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuHeal()); break;
-                    case 2: break;
-                    case 3: break;
+                    case 2: client.Done = true; break;
+                    case 3: client.Quit = true; break;
                 }
             }
 

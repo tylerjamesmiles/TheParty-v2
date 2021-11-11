@@ -20,12 +20,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "-0.0003006017 -0.9999999",
+      "Heading": "-3.010836E-05 -1",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "1534.8533 1555.0469",
+      "Position": "1526.6223 1556.9268",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -41,8 +41,8 @@
       "CurrentFrame": 0,
       "CurrentFacing": 0,
       "FrameTimer": {
-        "TicThisFrame": false,
-        "TicsSoFar": 8
+        "TicThisFrame": true,
+        "TicsSoFar": 22
       },
       "AnimateWhenStatic": false
     },

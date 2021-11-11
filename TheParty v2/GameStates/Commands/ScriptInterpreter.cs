@@ -158,26 +158,64 @@ namespace TheParty_v2
                         ResultList.Add(new CommandIf(Tokens[0], Tokens[1], Tokens[2], Commands));
                         break;
 
+                    case "while":
+                        string WhileSubScript = "";
+                        for (
+                            int subLine = line + 1;
+                            subLine < Lines.Length && Lines[subLine] != "" && Lines[subLine].Substring(0, 3) == "   ";
+                            subLine++)
+                            WhileSubScript += Lines[subLine].Remove(0, 3) + '\n';    // remove first character (\t)
+                        var WhileCommands = Interpret(game, caller, WhileSubScript);
+                        string[] WhileTokens = Arguments[0].Split(' ');
+                        ResultList.Add(new CommandWhile(WhileTokens[0], WhileTokens[1], WhileTokens[2], WhileCommands));
+                        break;
+
                     case "choice":
-                        string[] Choices = Arguments;
+                        string Arg1 = Arguments[0];
+                        bool Show = Arg1.Split(' ')[0].ToLower() == "show";
+
+                        string[] Choices;
+                        if (Show)
+                        {
+                            Choices = new string[Arguments.Length - 1];
+                            for (int i = 1; i < Arguments.Length; i++)
+                                Choices[i - 1] = Arguments[i];
+                        }
+                        else
+                            Choices = Arguments;
+
+
                         List<Command<TheParty>>[] ChoiceCommands = new List<Command<TheParty>>[Choices.Length];
                         int CommandIdx = 0;
-                        for (int subLine = line+1; subLine < Lines.Length && Lines[subLine].Substring(0, 3) == "   "; subLine++)
+                        // look through all lines below
+                        for (int subLine = line +1 ; subLine < Lines.Length; subLine++)
                         {
-                            if (Lines[subLine].Substring(0, 7) == "   Case")
+                            // if line begins with "   Case", gather commands below it
+                            if (Lines[subLine].Length > 0 &&
+                                Lines[subLine].Substring(0, 7) == "   Case")
                             {
                                 string SubSubScript = "";
-                                for (int subsub = subLine+1; subsub < Lines.Length && Lines[subsub].Substring(0, 6) == "      "; subsub++)
+                                for (int subsub = subLine + 1; subsub < Lines.Length; subsub++)
                                 {
-                                    SubSubScript += Lines[subsub].Remove(0, 6) + '\n';
+                                    if (Lines[subsub].Length > 0 && 
+                                        Lines[subsub].Substring(0, 6) == "      ")
+                                        SubSubScript += Lines[subsub].Remove(0, 6) + '\n';
+                                    else
+                                        break;
                                 }
                                 ChoiceCommands[CommandIdx] = Interpret(game, caller, SubSubScript);
                                 CommandIdx++;
                             }
+                            
                         }
 
                         ResultList.Add(new CommandFreezePlayer());
-                        ResultList.Add(new CommandChoice(Choices, ChoiceCommands));
+
+                        if (Show)
+                            ResultList.Add(new CommandChoice(Choices, Arguments[0], ChoiceCommands));
+                        else
+                            ResultList.Add(new CommandChoice(Choices, null, ChoiceCommands));
+
                         ResultList.Add(new CommandUnfreezePlayer());
                         break;
 

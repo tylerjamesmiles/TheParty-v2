@@ -54,7 +54,68 @@ namespace TheParty_v2
             }
 
             if (True)
-                client.CommandQueue.AddCommands(Commands);
+                client.CommandQueue.EnqueueCommands(Commands);
+
+            Done = true;
+        }
+    }
+
+    class CommandWhile : Command<TheParty>
+    {
+        string VarName;
+        enum Type { Switch, Variable, Undefined };
+        Type VarType;
+        string Operator;
+        string RHValue;
+        List<Command<TheParty>> Commands;
+
+        public CommandWhile(string varName, string op, string rhValue, List<Command<TheParty>> commands)
+        {
+            VarName = varName;
+            VarType =
+                GameContent.Switches.ContainsKey(VarName) ? Type.Switch :
+                GameContent.Variables.ContainsKey(VarName) ? Type.Variable :
+                Type.Undefined;
+            Operator = op;
+            RHValue = rhValue;
+            Commands = commands;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            bool True = false;
+            if (VarType == Type.Switch)
+            {
+                bool LH = GameContent.Switches[VarName];
+                bool RH = bool.Parse(RHValue);
+                switch (Operator)
+                {
+                    case "==": True = LH == RH; break;
+                    case "!=": True = LH != RH; break;
+                }
+            }
+            else if (VarType == Type.Variable)
+            {
+                int LH = GameContent.Variables[VarName];
+                int RH = int.Parse(RHValue);
+                switch (Operator)
+                {
+                    case "==": True = LH == RH; break;
+                    case "!=": True = LH != RH; break;
+                    case "<": True = LH < RH; break;
+                    case ">": True = LH > RH; break;
+                    case "<=": True = LH <= RH; break;
+                    case ">=": True = LH >= RH; break;
+                }
+            }
+
+            if (True)
+            {
+                Commands.ForEach(c => c.Entered = false);
+                Commands.ForEach(c => c.Done = false);
+                client.CommandQueue.EnqueueCommands(Commands);
+                client.CommandQueue.EnqueueCommand(new CommandWhile(VarName, Operator, RHValue, Commands));
+            }
 
             Done = true;
         }

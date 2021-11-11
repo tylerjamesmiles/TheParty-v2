@@ -7,7 +7,7 @@ namespace TheParty_v2
 {
     class Command<T>
     {
-        public bool Entered { get; protected set; }
+        public bool Entered;
         public bool Done;
         public virtual void Enter(T client) { Entered = true; }
         public virtual void Update(T client, float deltaTime) { Done = true; }
@@ -17,17 +17,18 @@ namespace TheParty_v2
 
     class CommandQueue<T>
     {
-        Queue<Command<T>> Commands;
+        LinkedList<Command<T>> Commands;
 
         public CommandQueue()
         {
-            Commands = new Queue<Command<T>>();
+            Commands = new LinkedList<Command<T>>();
         }
 
-        public void AddCommand(Command<T> command) => Commands.Enqueue(command);
-        public void AddCommands(List<Command<T>> commands) => commands.ForEach(c => Commands.Enqueue(c));
+        public void PushCommand(Command<T> command) => Commands.AddFirst(command);
+        public void EnqueueCommand(Command<T> command) => Commands.AddLast(command);
+        public void EnqueueCommands(List<Command<T>> commands) => commands.ForEach(c => Commands.AddLast(c));
         public bool Empty => Commands.Count == 0;
-        private Command<T> Top => Commands.Peek();
+        private Command<T> Top => Commands.First.Value;
 
         public void ClearCommands() => Commands.Clear();
 
@@ -42,7 +43,8 @@ namespace TheParty_v2
 
                 if (!Empty && Top.Done)
                 {
-                    Commands.Dequeue().Exit(client);
+                    Commands.First.Value.Exit(client);
+                    Commands.RemoveFirst();
 
                     if (!Empty)
                         Top.Enter(client);
