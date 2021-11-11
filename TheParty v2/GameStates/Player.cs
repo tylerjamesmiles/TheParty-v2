@@ -8,15 +8,20 @@ namespace TheParty_v2
 {
     class Player
     {
-        public ControllerSteering2D Steering;
-        public Movement2D Movement;
-        public Transform2D Transform;
-        public FourDirSprite2D Sprite;
+        public ControllerSteering2D Steering { get; private set; }
+        public Movement2D Movement { get; private set; }
+        public Transform2D Transform { get; private set; }
+        public FourDirSprite2D Sprite { get; private set; }
 
-        public Party ActiveParty;
-        public List<Member> CampMembers;
+        public Party ActiveParty { get; private set; }
+        public List<Member> CampMembers { get; private set; }
 
-        public bool Frozen;
+        public bool Frozen { get; set; }
+
+        public Player()
+        {
+
+        }
 
         public Player(Vector2 position)
         {
@@ -29,9 +34,6 @@ namespace TheParty_v2
             ActiveParty = GameContent.Parties["PlayerParty"];
 
             CampMembers = new List<Member>(ActiveParty.Members);
-            
-
-
         }
 
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, float deltaTime)
@@ -43,7 +45,7 @@ namespace TheParty_v2
             }
             else
             {
-                Movement.Velocity = new Vector2(0, 0);
+                Movement.Stop();
             }
 
             Transform.Update(Movement.Velocity, collisionBoxes, entityTransforms);

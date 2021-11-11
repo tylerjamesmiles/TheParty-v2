@@ -47,7 +47,7 @@ namespace TheParty_v2
             else
             {
                 int Idx = client.CurrentStore.CurrentTurnPartyIdx;
-                MemberMove BestTurn = CurrentTurnPty.BestTurn(Idx, client.CurrentStore);
+                MemberMove BestTurn = client.CurrentStore.CurrentTurnParty.BestTurn(Idx, client.CurrentStore);
 
                 client.CurrentMove = BestTurn.Move;
                 client.CurrentTargeting = BestTurn.Targeting;

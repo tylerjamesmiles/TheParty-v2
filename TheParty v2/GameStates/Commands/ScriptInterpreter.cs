@@ -61,6 +61,14 @@ namespace TheParty_v2
                         ResultList.Add(new CommandDialogue(Arguments));
                         break;
 
+                    case "save":
+                        ResultList.Add(new CommandSave());
+                        break;
+
+                    case "load":
+                        ResultList.Add(new CommandLoad());
+                        break;
+
                     case "freeze":
                         foreach (string entityName in Arguments)
                             if (entityName.ToLower() == "player")
@@ -88,18 +96,25 @@ namespace TheParty_v2
                         break;
 
                     case "battle":
+                        ResultList.Add(new CommandFreeze(caller));
+                        ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBattle(Arguments[0]));
                         ResultList.Add(new CommandLevelUp());
                         ResultList.Add(new CommandDecrementHunger());
                         ResultList.Add(new CommandLeaveDead());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
+                        ResultList.Add(new CommandUnFreeze(caller));
+                        ResultList.Add(new CommandUnfreezePlayer());
+
                         break;
 
                     case "teleport":
+                        ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
+                        ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
                     case "set":

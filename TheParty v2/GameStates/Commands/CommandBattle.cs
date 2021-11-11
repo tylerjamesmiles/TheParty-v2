@@ -37,7 +37,6 @@ namespace TheParty_v2
             CurrentStore = GameContent.Battles[name];
 
             StateMachine = new StateMachine<CommandBattle>();
-            StateMachine.SetNewCurrentState(this, new FightOrFlee());
 
             GameOver = false;
         }
@@ -171,6 +170,9 @@ namespace TheParty_v2
             StatusCounter = 0;
             StatusRotateTimer = new Timer(0.8f);
 
+            StateMachine.SetNewCurrentState(this, new ChooseMember());
+
+
             Entered = true;
         }
 
@@ -245,7 +247,7 @@ namespace TheParty_v2
                 }
             }
 
-            // Exshtra Shtuff
+            // Extra Shtuff
             StateMachine.Draw(this, spriteBatch);
         }
 

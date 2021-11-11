@@ -52,12 +52,12 @@ namespace TheParty_v2
             {
                 Name = "Evade",
                 SpriteAnimation = "",
-                AnimationSheet = "",
-                AnimationName = "",
+                AnimationSheet = "StatusAnimations",
+                AnimationName = "Evade",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 999
             };
 
         public static StatusEffect Stunned =>

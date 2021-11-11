@@ -7,7 +7,7 @@ namespace TheParty_v2
 {
     class Transform2D
     {
-        public Vector2 Position;
+        public Vector2 Position { get; set; }
         public float BoundingRadius { get; private set; }
 
         public Transform2D(Vector2 pos, float br)

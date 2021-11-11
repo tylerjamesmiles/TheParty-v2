@@ -22,7 +22,7 @@ namespace TheParty_v2
             CurrentDisplayText = "";
             CurrentChar = 0;
             NewCharTimer = new Timer(popInRate);
-            Location = location;
+            Location = location.ToPoint().ToVector2();  // had issues w shaky text
             DrawLight = drawLight;
         }
 

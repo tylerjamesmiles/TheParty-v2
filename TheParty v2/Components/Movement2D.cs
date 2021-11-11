@@ -8,11 +8,13 @@ namespace TheParty_v2
 {
     class Movement2D
     {
-        public Vector2 Velocity;
-        public Vector2 Heading;
-        public float Mass;
-        public float MaxSpeed;
+        public Vector2 Velocity { get; private set; }
+        public Vector2 Heading { get; private set; }
+        public float Mass { get; private set; }
+        public float MaxSpeed { get; private set; }
         public const float Drag = 0.25f;
+
+        public void Stop() => Velocity = new Vector2();
 
         public Movement2D(float mass, float maxSpeed)
         {

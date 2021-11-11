@@ -95,12 +95,21 @@ namespace TheParty_v2
 
 
         // STANCE - - -
-        public static void HitStanceBy1(Member from, Member to) => to.HitStance(1);
-        public static void HitStanceByMinus1(Member from, Member to) => to.HitStance(-1);
-        public static void HitStanceByStance(Member from, Member to) => to.HitStance(from.Stance);
+
+        // for convenience
+        private static void HitTargetStance(Member target, int amt)
+        {
+            if (!target.HasEffect("Evade"))
+                target.HitStance(amt);
+            else
+                target.RemoveEffect("Evade");
+        }
+        public static void HitStanceBy1(Member from, Member to) => HitTargetStance(to, 1);
+        public static void HitStanceByMinus1(Member from, Member to) => HitTargetStance(to, -1);
+        public static void HitStanceByStance(Member from, Member to) => HitTargetStance(to, from.Stance);
         public static void HitHPByStance(Member from, Member to) => to.HitHP(-from.Stance * 2);
         public static void KOCaster(Member from, Member to) => from.HitStance(5 - from.Stance);
-        public static void KOTarget(Member from, Member to) => to.HitStance(5 - to.Stance);
+        public static void KOTarget(Member from, Member to) => HitTargetStance(to, 5 - to.Stance);
         public static void Give1Stance(Member from, Member to) { from.HitStance(-1); to.HitStance(+1); }
         public static void Take1Stance(Member from, Member to) { from.HitStance(+1); to.HitStance(-1); }
         public static void TradeStance(Member from, Member to)
@@ -131,10 +140,18 @@ namespace TheParty_v2
 
 
         // HP - - -
+        private static void HitHP(Member to, int amt)
+        {
+            if (!to.HasEffect("Evade"))
+                to.HitHP(amt);
+            else
+                to.RemoveEffect("Evade");
+        }
+
         public static void HealHPByHalf(Member from, Member to) => to.HitHP(+1);
         public static void HealHPBy1(Member from, Member to) => to.HitHP(+2);
         public static void HealHPBy2(Member from, Member to) => to.HitHP(+4);
-        public static void HitHPBy1(Member from, Member to) => to.HitHP(-1);
+        public static void HitHPBy1(Member from, Member to) => HitHP(to, -1);
         public static void GiveEnoughHP(Member from, Member to)
         {
             int Amt = 10 - to.HP;

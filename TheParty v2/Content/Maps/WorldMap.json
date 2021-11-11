@@ -131166,6 +131166,26 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "WorldMonster3", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(WorldMapBattle2)\nErase(Me)"}
+        },
+        {
+          "name": "Entity",
+          "id": 25,
+          "_eid": "23557279",
+          "x": 1472,
+          "y": 1536,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Save()"}
+        },
+        {
+          "name": "Entity",
+          "id": 26,
+          "_eid": "23557279",
+          "x": 1664,
+          "y": 1520,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Load()"}
         }
       ]
     },

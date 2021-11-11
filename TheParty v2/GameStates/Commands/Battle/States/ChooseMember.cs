@@ -49,8 +49,8 @@ namespace TheParty_v2
             if (client.MemberChoice.Done)
                 client.StateMachine.SetNewCurrentState(client, new ChooseMove());
 
-            if (InputManager.JustReleased(Keys.Escape))
-                client.StateMachine.SetNewCurrentState(client, new FightOrFlee());
+            //if (InputManager.JustReleased(Keys.Escape))
+            //    client.StateMachine.SetNewCurrentState(client, new FightOrFlee());
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)

@@ -687,7 +687,7 @@ namespace TheParty_v2
                 Description = "Will dodge next attack.\n" +
                     "(Must be #charged#)",
                 AnimationSheet = "HitAnimations",
-                AnimationName = "Hit",
+                AnimationName = "Charge",
                 PositiveEffect = true,
                 UnChargedEffects = new List<Action<Member, Member>>{},
                 ChargedEffects = new List<Action<Member, Member>>
@@ -699,6 +699,7 @@ namespace TheParty_v2
                 {
                     Battle.CasterAlertAndAlive,
                     Battle.CasterCharged,
+                    Battle.TargetIsSelf,
                     Battle.TargetAlertAndAlive,
                     Battle.DoesntHaveEvade
                 }

@@ -24,6 +24,12 @@
 				"FrameRow" : 2,
 				"NumFrames" : 1,
 				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Evade",
+				"FrameRow": 3,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
 			}
 		]
 	}

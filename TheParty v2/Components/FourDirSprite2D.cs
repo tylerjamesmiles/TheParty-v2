@@ -8,15 +8,15 @@ namespace TheParty_v2
 {
     class FourDirSprite2D
     {
-        public string SpriteName;
-        public Point DrawOffset;
-        public Point SpriteSize;
+        public string SpriteName { get; private set; }
+        public Point DrawOffset { get; private set; }
+        public Point SpriteSize { get; private set; }
 
-        public int CurrentFrame;
-        public int CurrentFacing;
-        public Timer FrameTimer;
+        public int CurrentFrame { get; set; }
+        public int CurrentFacing { get; set; }
+        public Timer FrameTimer { get; private set; }
 
-        public bool AnimateWhenStatic;
+        public bool AnimateWhenStatic { get; private set; }
 
         public FourDirSprite2D(string spriteName, Point drawOffset, bool animateWhenStatic = false)
         {

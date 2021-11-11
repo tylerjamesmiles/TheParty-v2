@@ -21,7 +21,7 @@ namespace TheParty_v2
         {
             client.CurrentMap = GameContent.Maps[NewMap];
             client.Player.Transform.Position = NewPlayerPos;
-            client.Player.Movement.Velocity = new Vector2(0, 0);
+            client.Player.Movement.Stop();
             client.EventsCanHappenTimer.Reset();
             Done = true;
         }

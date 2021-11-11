@@ -207,7 +207,7 @@ namespace TheParty_v2
             
             if (Frozen)
             {
-                Movement.Velocity = new Vector2(0, 0);
+                Movement.Stop();
                 Sprite.CurrentFrame = 0;
             }
             else
