@@ -1,0 +1,18 @@
+﻿{
+	"Crystal" :
+	{
+		"Name" : "Crystal",
+		"SpriteName" : "CrystalFighter",
+		"HP" : 5,
+		"Stance" : 1,
+		"Charged" : false,
+		"KOdFor" : 0,
+		"Moves" : [
+			"Hit", "Hurt", "Charge"
+		],
+		"MovesToLearn" : [
+			"Poison", "Antidote"
+		]
+	}
+}
+

@@ -46,7 +46,7 @@ namespace TheParty_v2
 
             ActiveParty = GameContent.Parties["PlayerParty"];
 
-            CampMembers = new List<Member>(ActiveParty.Members);
+            CampMembers = new List<Member>();
         }
 
         public void Update(List<Rectangle> collisionBoxes, List<Transform2D> entityTransforms, float deltaTime)

@@ -14,6 +14,7 @@ namespace TheParty_v2
         public GUIDialogueBox Days;
 
         public List<Member> ActiveMembers;
+        public List<Member> BackupMembers;
         public List<AnimatedSprite2D> MemberSprites;
         public List<HeartsIndicator> HPIndicators;
         public List<HeartsIndicator> HungerIndicators;
@@ -34,6 +35,7 @@ namespace TheParty_v2
             Days = new GUIDialogueBox(DaysBounds, new[] { "&" + GameContent.Variables["DaysRemaining"].ToString() });
 
             ActiveMembers = client.Player.ActiveParty.Members;
+            BackupMembers = client.Player.CampMembers;
             MemberSprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             HungerIndicators = new List<HeartsIndicator>();
@@ -44,6 +46,7 @@ namespace TheParty_v2
                 string SpriteName = ActiveMembers[i].SpriteName;
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
+                Sprite.AddAnimation("Selected", 0, 1, 0.15f);
                 Sprite.SetCurrentAnimation("Idle");
                 MemberSprites.Add(Sprite);
 
