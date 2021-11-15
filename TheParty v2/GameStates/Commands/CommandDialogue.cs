@@ -9,10 +9,18 @@ namespace TheParty_v2
     {
         string[] InputDialogues;
         GUIDialogueBox Box;
+        GUIDialogueBox.Position Pos;
 
         public CommandDialogue(params string[] dialogues)
         {
             InputDialogues = dialogues;
+            Pos = GUIDialogueBox.Position.Bottom;
+        }
+
+        public CommandDialogue(GUIDialogueBox.Position pos, params string[] dialogues)
+        {
+            InputDialogues = dialogues;
+            Pos = pos;
         }
 
         public override void Enter(TheParty client)
@@ -34,7 +42,7 @@ namespace TheParty_v2
                 CorrectedDialogues[i] = str;
             }
 
-            Box = new GUIDialogueBox(GUIDialogueBox.Position.Bottom, CorrectedDialogues);
+            Box = new GUIDialogueBox(Pos, CorrectedDialogues);
             Entered = true;
         }
 

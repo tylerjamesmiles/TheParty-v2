@@ -12,7 +12,16 @@ namespace TheParty_v2
 
         public override void Enter(GameStateFieldMenu client)
         {
-            Choices = new GUIChoiceBox(new[] { "Feed", "Heal", "Party", "Back", "Title" }, GUIChoiceBox.Position.BottomRight, 2);
+            bool[] ChoiceValidity = new bool[5];
+            for (int i = 0; i < ChoiceValidity.Length; i++)
+                ChoiceValidity[i] = true;
+
+            ChoiceValidity[2] = client.BackupMembers.Count > 0;
+
+            Choices = new GUIChoiceBox(
+                new[] { "Feed", "Heal", "Party", "Back", "Title" }, 
+                GUIChoiceBox.Position.BottomRight, 
+                2, ChoiceValidity);
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)

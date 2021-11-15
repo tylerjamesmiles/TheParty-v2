@@ -34,6 +34,34 @@ namespace TheParty_v2
                 NumTurnsRemaining = 3
             };
 
+        public static StatusEffect Restore =>
+            new StatusEffect()
+            {
+                Name = "Restore",
+                SpriteAnimation = "PositiveHit",
+                AnimationSheet = "StatusAnimations",
+                AnimationName = "Charge",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+                    Battle.HealHPByHalf
+                },
+                NumTurnsRemaining = 5
+            };
+
+        public static StatusEffect Convicted =>
+            new StatusEffect()
+            {
+                Name = "Convicted",
+                SpriteAnimation = "NegativeHit",
+                AnimationSheet = "StatusAnimations",
+                AnimationName = "Stunned",
+                EveryTurnEffects = new List<Action<Member, Member>>
+                {
+
+                },
+                NumTurnsRemaining = 5
+            };
+
         public static StatusEffect CantCharge =>
             new StatusEffect()
             {

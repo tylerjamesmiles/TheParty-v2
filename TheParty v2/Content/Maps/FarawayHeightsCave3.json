@@ -72,7 +72,19 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "Fight4", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(MountainBattle4)\nErase(Me)"}
-        }
+        },
+        {"name": "Food", "id": 3, "_eid": "99106260", "x": 368, "y": 368, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 4, "_eid": "99106260", "x": 384, "y": 400, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 5, "_eid": "99106260", "x": 352, "y": 400, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 6, "_eid": "99106260", "x": 400, "y": 416, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 7, "_eid": "99106260", "x": 368, "y": 432, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 8, "_eid": "99106260", "x": 400, "y": 448, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 9, "_eid": "99094923", "x": 224, "y": 112, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 10, "_eid": "99094923", "x": 256, "y": 128, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 11, "_eid": "99094923", "x": 224, "y": 144, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 12, "_eid": "99094923", "x": 272, "y": 160, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 13, "_eid": "99094923", "x": 304, "y": 144, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 14, "_eid": "99094923", "x": 192, "y": 128, "originX": 0, "originY": 0}
       ]
     },
     {

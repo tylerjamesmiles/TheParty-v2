@@ -73,6 +73,14 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFollowPath(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
 
+                    case "playanimation":
+                        ResultList.Add(new CommandPlayAnimation(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1], Arguments[2]));
+                        break;
+
+                    case "clearqueue":
+                        ResultList.Add(new CommandClearQueue());
+                        break;
+
                     case "freeze":
                         foreach (string entityName in Arguments)
                             if (entityName.ToLower() == "player")
@@ -237,7 +245,7 @@ namespace TheParty_v2
                         ResultList.Add(new CommandLeaveDead());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandIncrementVar("DaysRemaining", "-1"));
-                        ResultList.Add(new CommandDialogue("*DaysRemaining days until the world ends."));
+                        ResultList.Add(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "*DaysRemaining days until the world ends."));
                         break;
                 }
 

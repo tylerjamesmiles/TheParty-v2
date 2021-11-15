@@ -14,6 +14,8 @@ namespace TheParty_v2
         int CurrentFrame;
         Timer Timer;
 
+        public float AmtOfTime => (float)NumFrames * Timer.TicRate;
+
         public SpriteAnimation(int row, int numFrames, float speed)
         {
             FrameRow = row;
@@ -30,6 +32,8 @@ namespace TheParty_v2
             Timer = new Timer(FrameRate);
             CurrentFrame = 0;
         }
+
+        public void GoToRandomFrame() => CurrentFrame = new Random().Next(NumFrames);
 
         public void Update(float deltaTime)
         {
@@ -110,6 +114,7 @@ namespace TheParty_v2
             => Animations.Add(name, new SpriteAnimation(row, numFrames, speed));
 
         public void SetCurrentAnimation(string name) => CurrentAnimationName = name;
+        public void GoToRandomFrame() => CurrentAnimation.GoToRandomFrame();
 
         public void Update(float deltaTime)
         {
@@ -119,6 +124,13 @@ namespace TheParty_v2
         public void Draw(SpriteBatch spriteBatch)
         {
             Point DrawPosPoint = DrawPos.ToPoint() + Offset.ToPoint();
+            Rectangle DrawRect = new Rectangle(DrawPosPoint, FrameSize);
+            CurrentAnimation?.Draw(SpriteName, DrawRect, spriteBatch, Flip);
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPos)
+        {
+            Point DrawPosPoint = DrawPos.ToPoint() + Offset.ToPoint() - cameraPos.ToPoint();
             Rectangle DrawRect = new Rectangle(DrawPosPoint, FrameSize);
             CurrentAnimation?.Draw(SpriteName, DrawRect, spriteBatch, Flip);
         }

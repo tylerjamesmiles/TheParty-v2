@@ -2,16 +2,16 @@
 	"The Flurry" :
 	{
 		"Name" : "The Flurry",
-		"SpriteName" : "FlurryFighter",
+		"SpriteName" : "TheFlurryFighter",
 		"HP" : 5,
 		"Stance" : 1,
 		"Charged" : false,
 		"KOdFor" : 0,
 		"Moves" : [
-			"Hit", "Hurt", "Help", "Evade"
+			"Hit", "Hurt", "Charge", "Help", "Punch"
 		],
 		"MovesToLearn" : [
-			"Stun", "Punch"
+			"Evade", "Dive", "Encourage", "Weaken" 
 		]
 	}
 }

@@ -24,6 +24,9 @@ namespace TheParty_v2
                 switch (Choice.CurrentChoice)
                 {
                     case 0:
+                        client.CurrentMap = GameContent.Maps["Camp"];
+                        client.Player = new Player(new Vector2(9, 6) * 16 + new Vector2(8, 8));
+                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
                         client.StateMachine.SetNewCurrentState(client, new GameStateField());
                         break;
 

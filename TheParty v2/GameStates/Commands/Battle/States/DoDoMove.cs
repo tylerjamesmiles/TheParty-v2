@@ -27,7 +27,6 @@ namespace TheParty_v2
             Sheet = GameContent.AnimationSheets[client.CurrentMove.AnimationSheet];
             Sheet.SetCurrentAnimation(client.CurrentMove.AnimationName);
             Sheet.DrawPos = client.TargetSprite.DrawPos;
-
         }
 
         public override void Update(CommandBattle client, float deltaTime)

@@ -92,7 +92,12 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FarawayHeightsRockClimb2, 13, 20)"}
-        }
+        },
+        {"name": "Coin", "id": 5, "_eid": "99094923", "x": 272, "y": 256, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 6, "_eid": "99094923", "x": 336, "y": 256, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 9, "_eid": "99094923", "x": 304, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 10, "_eid": "99094923", "x": 256, "y": 288, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 11, "_eid": "99094923", "x": 224, "y": 304, "originX": 0, "originY": 0}
       ]
     },
     {

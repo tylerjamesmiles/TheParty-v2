@@ -19,9 +19,8 @@ namespace TheParty_v2
 
         public Player Player;
         public Timer EventsCanHappenTimer;
+        public Camera2D Camera;
 
-
-        int HP = 10;
 
         public TheParty()
         {
@@ -35,6 +34,7 @@ namespace TheParty_v2
         protected override void Initialize()
         {
             DrawPrimitives2D.Initialize(GraphicsDevice);
+            Camera = new Camera2D();
 
             base.Initialize();
         }
@@ -57,8 +57,7 @@ namespace TheParty_v2
 
             CommandQueue = new CommandQueue<TheParty>();
 
-            CurrentMap = GameContent.Maps["FarawayHeightsBase"];
-            Player = new Player(new Vector2(16, 30) * 16 + new Vector2(8, 8));
+
         }
 
         protected override void Update(GameTime gameTime)

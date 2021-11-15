@@ -11,7 +11,7 @@ namespace TheParty_v2
         Queue<Vector2> PointsBackStore;
         Queue<Vector2> Points;
         public Vector2 SteeringForce { get; private set; }
-        public float MinPointDistance = 10f;
+        public float MinPointDistance;
         private bool Repeat;
         public bool Done { get; private set; }
 
@@ -20,11 +20,16 @@ namespace TheParty_v2
             string Path = pathScript;
             string[] PathCommands = Path.Split('\n');
             Queue<Vector2> PathPoints = new Queue<Vector2>();
+
             for (int i = 0; i < PathCommands.Length; i++)
             {
                 Vector2 LastPoint = i > 0 ? PathPoints.Peek() : startingPos;
 
                 string Line = PathCommands[i];
+
+                if (Line == "")
+                    continue;
+
                 string[] Keywords = Line.Split(' ');
                 string Command = Keywords[0];
                 string[] Arguments = new string[Keywords.Length - 1];
@@ -105,7 +110,8 @@ namespace TheParty_v2
         public Transform2D Transform;
         public Movement2D Movement;
         public PathFollower2D PathFollower;
-        public FourDirSprite2D Sprite;
+        public FourDirSprite2D Sprite;      // for characters
+        public AnimatedSprite2D AnimatedSprite; // for coins/meats
         public bool Frozen;
         public bool FacePlayer;
         public bool ChasePlayer;
@@ -116,32 +122,91 @@ namespace TheParty_v2
         public bool Exists => IExist();
 
         public Timer CanInteractTimer;
-        const float MinInteractDist = 25f;
+        float MinInteractDist;
 
+        static int ArbitraryNum = 0;    // for naming coins and foods
         public void Initialize()
         {
             Vector2 Pos = new Vector2(x + 8, y + 8);
             Transform = new Transform2D(Pos, 5f);
-            Movement = new Movement2D(1f, 26f);
-            Sprite = new FourDirSprite2D(values["SpriteName"], new Point(-16, -24), values["AnimateWhenStatic"] == "true");
-            Frozen = false;
-            ManualExists = true;
 
-            if (values.ContainsKey("PassiveBehavior"))
+            if (name == "Coin" || name == "Food")
             {
-                if (values["PassiveBehavior"] == "FaceUp") Sprite.CurrentFacing = 0;
-                if (values["PassiveBehavior"] == "FaceDown") Sprite.CurrentFacing = 1;
-                if (values["PassiveBehavior"] == "FaceLeft") Sprite.CurrentFacing = 2;
-                if (values["PassiveBehavior"] == "FaceRight") Sprite.CurrentFacing = 3;
-                if (values["PassiveBehavior"] == "FacePlayer") FacePlayer = true;
-                if (values["PassiveBehavior"] == "ChaseIfPlayerInRange") ChasePlayer = true;
-                if (values["PassiveBehavior"] == "FollowPath") FollowPath = true;
+                Frozen = false;
+
+                if (name == "Coin")
+                    AnimatedSprite = new AnimatedSprite2D("Coin", new Point(16, 16), Pos, new Vector2(0, 0));
+                else if (name == "Food")
+                    AnimatedSprite = new AnimatedSprite2D("MeatField", new Point(16, 16), Pos, new Vector2(0, 0));
+
+                AnimatedSprite.AddAnimation("Loop", 0, 8, 0.15f);
+                AnimatedSprite.SetCurrentAnimation("Loop");
+                AnimatedSprite.GoToRandomFrame();
+
+                Movement = new Movement2D(1f, 26f);
+
+                values = new Dictionary<string, string>();
+                values.Add("Solid", "false");
+                values.Add("TriggerOnTouch", "true");
+                values.Add("Path", "");
+                values.Add("RepeatPath", "false");
+
+                if (name == "Coin")
+                {
+                    string Script =
+                        "Incr(Money, 1)\n" +
+                        "Erase(Me)\n" +
+                        "PlayAnimation(Me, CollectAnimations, Coin)"
+                        ;
+                    values.Add("Script", Script);
+                    values.Add("Name", "Coin" + ArbitraryNum.ToString());
+                    ArbitraryNum++;
+                }
+                else if (name == "Food")
+                {
+                    string Script =
+                        "Incr(FoodSupply, 1)\n" +
+                        "Erase(Me)\n" +
+                        "PlayAnimation(Me, CollectAnimations, Coin)"
+                        ;
+                    values.Add("Script", Script);
+                    values.Add("Name", "Food" + ArbitraryNum.ToString());
+                    ArbitraryNum++;
+                }
+
+                FollowPath = true;
+            }
+            else
+            {
+                Movement = new Movement2D(1f, 26f);
+                Sprite = new FourDirSprite2D(values["SpriteName"], new Point(-16, -24), values["AnimateWhenStatic"] == "true");
+                Frozen = false;
+
+                if (values.ContainsKey("PassiveBehavior"))
+                {
+                    if (values["PassiveBehavior"] == "FaceUp") Sprite.CurrentFacing = 0;
+                    if (values["PassiveBehavior"] == "FaceDown") Sprite.CurrentFacing = 1;
+                    if (values["PassiveBehavior"] == "FaceLeft") Sprite.CurrentFacing = 2;
+                    if (values["PassiveBehavior"] == "FaceRight") Sprite.CurrentFacing = 3;
+                    if (values["PassiveBehavior"] == "FacePlayer") FacePlayer = true;
+                    if (values["PassiveBehavior"] == "ChaseIfPlayerInRange") ChasePlayer = true;
+                    if (values["PassiveBehavior"] == "FollowPath") FollowPath = true;
+
+
+                }
             }
 
             if (FollowPath)
             {
                 PathFollower = new PathFollower2D(values["Path"], Pos, values["RepeatPath"] == "true");
             }
+
+            if (values["Solid"] == "true")
+                MinInteractDist = 25f;
+            else
+                MinInteractDist = 18f;
+
+            ManualExists = true;
         }
 
         public void SetPath(string path)
@@ -156,6 +221,9 @@ namespace TheParty_v2
             {
                 return false;
             }
+
+            if (name == "Coin" || name == "Food")
+                return true;
 
             if (!values.ContainsKey("ExistsIf"))
                 return true;
@@ -225,7 +293,9 @@ namespace TheParty_v2
             if (Frozen)
             {
                 Movement.Stop();
-                Sprite.CurrentFrame = 0;
+
+                if (Sprite != null)
+                    Sprite.CurrentFrame = 0;
             }
             else
             {
@@ -233,7 +303,11 @@ namespace TheParty_v2
             }
 
             Transform.Update(Movement.Velocity, collisionBoxes, entityTransforms, values["Solid"] == "true");
-            Sprite.Update(Movement.Velocity, deltaTime);
+
+            if (Sprite != null)
+                Sprite.Update(Movement.Velocity, deltaTime);
+            else if (AnimatedSprite != null)
+                AnimatedSprite.Update(deltaTime);
 
             if (FacePlayer)
             {
@@ -244,12 +318,20 @@ namespace TheParty_v2
         public void Draw( Vector2 cameraPos, SpriteBatch spriteBatch)
         {
             if (Exists)
-                Sprite.Draw(Transform.Position, cameraPos, spriteBatch);
+            {
+                if (name == "Coin" || name == "Food")
+                {
+                    AnimatedSprite.Draw(spriteBatch, cameraPos);
+                }
+                else
+                    Sprite.Draw(Transform.Position, cameraPos, spriteBatch);
+            }
         }
 
         public bool PlayerCanInteract(Vector2 playerPos, Vector2 playerHeading)
         {
             Vector2 ToMe = Transform.Position - playerPos;
+
             bool CloseEnough = ToMe.LengthSquared() < MinInteractDist * MinInteractDist;
 
             if (values["Solid"] == "false")

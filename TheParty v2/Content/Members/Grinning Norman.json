@@ -8,10 +8,10 @@
 		"Charged" : false,
 		"KOdFor" : 0,
 		"Moves" : [
-			"Hit", "Hurt", "Charge", "Give"
+			"Hit", "Hurt", "Charge", "Help", "Trade"
 		],
 		"MovesToLearn" : [
-			"Take", "Trade"
+			"Give", "Take", "Demoralize", "TradeHP" 
 		]
 	}
 }

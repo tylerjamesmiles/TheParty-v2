@@ -8,10 +8,10 @@
 		"Charged" : false,
 		"KOdFor" : 0,
 		"Moves" : [
-			"Hit", "Hurt", "Charge", "Heal"
+			"Hit", "Hurt", "Charge", "Help",  "Restore"
 		],
 		"MovesToLearn" : [
-			"Restore", "Self Sacrifice"
+			"Heal", "Sacrifice", "Antidote", "GiveLife"
 		]
 	}
 }

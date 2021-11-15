@@ -43,7 +43,7 @@ namespace TheParty_v2
                 client.CurrentTargeting.ToPartyIdx = client.PartyIdxOf(MemberIdx);
                 client.CurrentTargeting.ToMemberIdx = client.PartyMemberIdxOf(MemberIdx);
 
-                client.StateMachine.SetNewCurrentState(client, new DoMoveForward());
+                client.StateMachine.SetNewCurrentState(client, new DoMoveName());
 
             }
 

@@ -23,17 +23,10 @@ namespace TheParty_v2
         public bool Done;
         public bool Quit;
 
-        public override void Enter(TheParty client)
+        public bool ReloadSprites;
+
+        public void LoadSprites(TheParty client)
         {
-            Rectangle FoodBounds = new Rectangle(new Point(28, 4), new Point(36, 18));
-            Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
-
-            Rectangle MoneyBounds = new Rectangle(new Point(64, 4), new Point(36, 18));
-            Money = new GUIDialogueBox(MoneyBounds, new[] { "$" + GameContent.Variables["Money"].ToString() });
-
-            Rectangle DaysBounds = new Rectangle(new Point(100, 4), new Point(36, 18));
-            Days = new GUIDialogueBox(DaysBounds, new[] { "&" + GameContent.Variables["DaysRemaining"].ToString() });
-
             ActiveMembers = client.Player.ActiveParty.Members;
             BackupMembers = client.Player.CampMembers;
             MemberSprites = new List<AnimatedSprite2D>();
@@ -56,12 +49,28 @@ namespace TheParty_v2
                 HeartsIndicator Meats = new HeartsIndicator(ActiveMembers[i].Hunger, (int)MemberDrawPos.X + 16, (int)MemberDrawPos.Y + 32 + 10, true);
                 HungerIndicators.Add(Meats);
             }
+        }
+
+        public override void Enter(TheParty client)
+        {
+            Rectangle FoodBounds = new Rectangle(new Point(28, 4), new Point(36, 18));
+            Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
+
+            Rectangle MoneyBounds = new Rectangle(new Point(64, 4), new Point(36, 18));
+            Money = new GUIDialogueBox(MoneyBounds, new[] { "$" + GameContent.Variables["Money"].ToString() });
+
+            Rectangle DaysBounds = new Rectangle(new Point(100, 4), new Point(36, 18));
+            Days = new GUIDialogueBox(DaysBounds, new[] { "&" + GameContent.Variables["DaysRemaining"].ToString() });
+
+            LoadSprites(client);
 
             StateMachine = new StateMachine<GameStateFieldMenu>();
             StateMachine.SetNewCurrentState(this, new FieldMenuMain());
 
             Done = false;
             Quit = false;
+
+            ReloadSprites = false;
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -84,6 +93,11 @@ namespace TheParty_v2
             if (Quit)
                 client.StateMachine.SetNewCurrentState(client, new GameStateTitle());
 
+            if (ReloadSprites)
+            {
+                LoadSprites(client);
+                ReloadSprites = false;
+            }
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)

@@ -7,7 +7,7 @@ namespace TheParty_v2
     class Timer
     {
         float TimeElapsed;
-        float TicRate;
+        public float TicRate { get; private set; }
         public bool TicThisFrame { get; private set; }
         public int TicsSoFar { get; private set; }
 

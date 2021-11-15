@@ -131166,36 +131166,6 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "WorldMonster3", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(WorldMapBattle2)\nErase(Me)"}
-        },
-        {
-          "name": "Entity",
-          "id": 25,
-          "_eid": "23557279",
-          "x": 1520,
-          "y": 1536,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to buy some food? $5 for a bite.)\nSet(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Yes, No)\n      Case Yes\n         If(Money >= 5)\n            Incr(Money, -5)\n            Incr(FoodSupply, +1)\n         If(Money < 5)\n            Dialogue(Not enough money!)\n            Set(StillShopping, false)\n      Case No\n         Set(StillShopping, false)"}
-        },
-        {
-          "name": "Entity",
-          "id": 26,
-          "_eid": "23557279",
-          "x": 1664,
-          "y": 1520,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Load()"}
-        },
-        {
-          "name": "Entity",
-          "id": 27,
-          "_eid": "23557279",
-          "x": 1392,
-          "y": 1472,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "StopFacingPlayer(Me)\nMove(Me, Up 5)\nFace(Me, Down)\nMove(Me, Down 2)\nFace(Me, Left)\nMove(Me, Left 4)\nFace(Me, Right)\nMove(Me, Right 3)\nFacePlayer(Me)"}
         }
       ]
     },

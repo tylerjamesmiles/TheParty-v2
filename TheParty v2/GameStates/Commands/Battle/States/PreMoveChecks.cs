@@ -51,7 +51,7 @@ namespace TheParty_v2
 
                 client.CurrentMove = BestTurn.Move;
                 client.CurrentTargeting = BestTurn.Targeting;
-                client.StateMachine.SetNewCurrentState(client, new DoMoveForward());
+                client.StateMachine.SetNewCurrentState(client, new DoMoveName());
             }
         }
 

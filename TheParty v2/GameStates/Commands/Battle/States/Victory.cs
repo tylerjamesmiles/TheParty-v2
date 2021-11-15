@@ -13,9 +13,7 @@ namespace TheParty_v2
         {
             string[] VictoryMsgs = new string[]
             {
-                "You win!",
-                "+1,000,000 exp",
-                "You leveled up!"
+                "Victory!"
             };
             Msg = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, VictoryMsgs);
         }

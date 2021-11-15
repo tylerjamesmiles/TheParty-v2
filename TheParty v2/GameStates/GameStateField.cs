@@ -9,13 +9,9 @@ namespace TheParty_v2
 { 
     class GameStateField : State<TheParty>
     {
-        Camera2D Camera;
-
-
-
         public GameStateField()
         {
-            Camera = new Camera2D();
+
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -45,12 +41,12 @@ namespace TheParty_v2
                     client.StateMachine.SetNewCurrentState(client, new GameStateFieldMenu());
             }
 
-            Camera.Update(client.CurrentMap.Size, client.Player.Transform.Position);
+            client.Camera.Update(client.CurrentMap.Size, client.Player.Transform.Position);
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            client.CurrentMap.Draw(Camera.Position, client.Player, spriteBatch);
+            client.CurrentMap.Draw(client.Camera.Position, client.Player, spriteBatch);
         }
     }
 }

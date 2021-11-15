@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,9 @@ namespace TheParty_v2
         GUIChoiceBox MoveChoice;
         Timer WaitTimer2;
 
+        GUIDialogueBox Description;
+
+        bool[] Living;
         enum State { WaitForMoment, ChooseMember, ChooseType, ChooseMove, WaitAnotherMoment };
         State CurrentState;
 
@@ -46,7 +50,12 @@ namespace TheParty_v2
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                 Sprite.AddAnimation("PositiveHit", 4, 1, 0.15f);
                 Sprite.AddAnimation("Dead", 6, 1, 0.15f);
-                Sprite.SetCurrentAnimation("Idle");
+
+                if (mem.HP > 0)
+                    Sprite.SetCurrentAnimation("Idle");
+                else
+                    Sprite.SetCurrentAnimation("Dead");
+
                 Sprites.Add(Sprite);
 
                 int HP = ActiveMembers[member].HP;
@@ -57,22 +66,36 @@ namespace TheParty_v2
             }
 
             List<Vector2> Positions = Sprites.ConvertAll(s => s.DrawPos + new Vector2(0, 0));
+
+            Living = new bool[ActiveMembers.Count];
+            for (int i = 0; i < ActiveMembers.Count; i++)
+                Living[i] = ActiveMembers[i].HP > 0;
+
             MemberChoice = new GUIChoice(Positions.ToArray());
 
-            string[] LevelUpChoices = new[]
-            {
-                "Recover all %'s",
-                "+1 Max%'s",
-                "#New Move#"
-            };
-
-            LevelUpTypeChoice = new GUIChoiceBox(new[] { "+1 Max%'s", "New Move" }, GUIChoiceBox.Position.Center);
+            
 
             WaitTimer2 = new Timer(1f);
 
             CurrentState = State.WaitForMoment;
 
             Entered = true;
+        }
+
+        private void SetupTypeChoice()
+        {
+            bool[] ChoiceValidity = new bool[3];
+            for (int i = 0; i < 3; i++)
+            {
+                ChoiceValidity[i] = true;
+                if (i == 2)
+                    ChoiceValidity[i] = ActiveMembers[MemberChoice.CurrentChoiceIdx].MovesToLearn.Count > 0;
+            }
+
+            LevelUpTypeChoice = new GUIChoiceBox(
+                new[] { "+1 Max%'s", "+1 Max\"'s", "New Move" },
+                GUIChoiceBox.Position.Center,
+                1, ChoiceValidity);
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -101,7 +124,13 @@ namespace TheParty_v2
                     MemberChoice.Update(deltaTime, true);
                     if (MemberChoice.Done)
                     {
-                        CurrentState = State.ChooseType;
+                        if (Living[MemberChoice.CurrentChoiceIdx])
+                        {
+                            SetupTypeChoice();
+                            CurrentState = State.ChooseType;
+                        }
+                        else
+                            MemberChoice.Done = false;
                     }
                     break;
 
@@ -120,24 +149,59 @@ namespace TheParty_v2
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
-                            case 1:     // new move
+                            case 1:     // +1 max Hunger
+                                Selected.MaxHunger += 2;
+                                Selected.Hunger = Selected.MaxHunger;
+                                Meats[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHunger;
+                                Meats[MemberChoice.CurrentChoiceIdx].SetHP(Selected.Hunger);
+                                Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
+                                CurrentState = State.WaitAnotherMoment;
+                                break;
+
+                            case 2:     // new move
                                 List<string> MoveNames = Selected.MovesToLearn;
                                 MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.Center);
+
+                                Move CurrentMove = Selected.GetMoves()[MoveChoice.CurrentChoice];
+                                Description = new GUIDialogueBox(
+                                    GUIDialogueBox.Position.SkinnyTop,
+                                    new[] { CurrentMove.Description }, 0.01f);
+
                                 CurrentState = State.ChooseMove;
                                 break;
                         }
+                    }
+                    else if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        MemberChoice.Done = false;
+                        CurrentState = State.ChooseMember;
                     }
 
                     break;
 
                 case State.ChooseMove:
                     MoveChoice.Update(deltaTime, true);
+
+                    if (MoveChoice.ChoiceUpdatedThisFrame)
+                    {
+                        Move CurrentMove = Selected.GetMoves()[MoveChoice.CurrentChoice];
+                        Description.SetNewText(CurrentMove.Description);
+                    }
+
+                    if (Description != null)
+                        Description.Update(deltaTime, true);
+
                     if (MoveChoice.Done)
                     {
                         Selected.Moves.Add(Selected.MovesToLearn[MoveChoice.CurrentChoice]);
                         Selected.MovesToLearn.RemoveAt(MoveChoice.CurrentChoice);
                         Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                         CurrentState = State.WaitAnotherMoment;
+                    }
+                    else if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        SetupTypeChoice();
+                        CurrentState = State.ChooseType;
                     }
                     break;
 
@@ -155,8 +219,15 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
             Sprites.ForEach(s => s.Draw(spriteBatch));
-            Hearts.ForEach(h => h.Draw(spriteBatch));
-            Meats.ForEach(m => m.Draw(spriteBatch));
+
+            for (int i = 0; i < Hearts.Count; i++)
+            {
+                if (Living[i])
+                {
+                    Hearts[i].Draw(spriteBatch);
+                    Meats[i].Draw(spriteBatch);
+                }
+            }
 
             if (CurrentState == State.ChooseMember)
                 MemberChoice.Draw(spriteBatch, true);
@@ -164,8 +235,13 @@ namespace TheParty_v2
             if (CurrentState == State.ChooseType)
                 LevelUpTypeChoice.Draw(spriteBatch, true);
 
-            if (MoveChoice != null)
+            if (CurrentState == State.ChooseMove)
+            {
                 MoveChoice.Draw(spriteBatch, true);
+
+
+                Description.Draw(spriteBatch, true);
+            }
         }
     }
 }

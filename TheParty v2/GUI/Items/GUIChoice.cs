@@ -10,7 +10,7 @@ namespace TheParty_v2
     class GUIChoice
     {
         Vector2[] ChoicePositions;
-        public int CurrentChoiceIdx { get; private set; }
+        public int CurrentChoiceIdx;
         public int NumChoices => ChoicePositions.Length;
         public bool ChoiceUpdatedThisFrame { get; private set; }
         int[][] Edges;
@@ -30,7 +30,13 @@ namespace TheParty_v2
             HandWobble = new Wobble(4f, 2f);
             Done = false;
             MovementLerp = new LerpV(ChoicePositions[0], ChoicePositions[0], 0f);
-            ChoiceUpdatedThisFrame = false;
+            ChoiceUpdatedThisFrame = true;
+        }
+
+        public void SetChoice(int choice)
+        {
+            CurrentChoiceIdx = choice;
+            MovementLerp = new LerpV(ChoicePositions[CurrentChoiceIdx], ChoicePositions[CurrentChoiceIdx], 0f);
         }
 
         public static int[][] PositionEdges(Vector2[] positions)

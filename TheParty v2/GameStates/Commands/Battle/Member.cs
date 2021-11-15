@@ -15,7 +15,7 @@ namespace TheParty_v2
         public bool Charged { get; set; }
         public bool KOd { get; private set; }
         public int Hunger { get; set; }
-        public int MaxHunger { get; private set; }
+        public int MaxHunger { get; set; }
         public List<string> Moves { get; private set; }
         public List<string> MovesToLearn { get; private set; }
         public List<StatusEffect> StatusEffects { get; private set; }
@@ -69,8 +69,8 @@ namespace TheParty_v2
             MaxHP = 10;
             Stance = Mem.GetProperty("Stance").GetInt32();
             Charged = Mem.GetProperty("Charged").GetBoolean();
-            Hunger = 7;
-            MaxHunger = 10;
+            Hunger = 2;
+            MaxHunger = 6;
             KOd = false;
 
             int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
@@ -100,7 +100,8 @@ namespace TheParty_v2
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
         {
             List<MemberMove> Result = new List<MemberMove>();
-            foreach (Move move in GetMoves())
+            List<Move> Moves = GetMoves();
+            foreach (Move move in Moves)
                 foreach (Targeting targeting in state.AllTargetingFor(partyIdx, memberIdx))
                     if (move.ValidOnMember(state, targeting))
                         Result.Add(new MemberMove(targeting, move));

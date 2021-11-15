@@ -148,7 +148,7 @@
           "id": 10,
           "_eid": "23557279",
           "x": 272,
-          "y": 400,
+          "y": 416,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
@@ -158,7 +158,7 @@
           "id": 11,
           "_eid": "23557279",
           "x": 272,
-          "y": 368,
+          "y": 352,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
@@ -168,7 +168,7 @@
           "id": 12,
           "_eid": "23557279",
           "x": 336,
-          "y": 368,
+          "y": 384,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
@@ -178,7 +178,7 @@
           "id": 13,
           "_eid": "23557279",
           "x": 336,
-          "y": 320,
+          "y": 304,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterBase)"}
@@ -188,7 +188,7 @@
           "id": 14,
           "_eid": "23557279",
           "x": 272,
-          "y": 384,
+          "y": 400,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}
@@ -198,7 +198,7 @@
           "id": 15,
           "_eid": "23557279",
           "x": 336,
-          "y": 352,
+          "y": 368,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}
@@ -208,7 +208,23 @@
           "id": 16,
           "_eid": "23557279",
           "x": 336,
-          "y": 336,
+          "y": 320,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}
+        },
+        {"name": "Food", "id": 19, "_eid": "99106260", "x": 320, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 20, "_eid": "99106260", "x": 336, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 21, "_eid": "99106260", "x": 352, "y": 288, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 22, "_eid": "99106260", "x": 336, "y": 288, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 24, "_eid": "99106260", "x": 304, "y": 288, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 25, "_eid": "99106260", "x": 320, "y": 304, "originX": 0, "originY": 0},
+        {
+          "name": "Entity",
+          "id": 27,
+          "_eid": "23557279",
+          "x": 272,
+          "y": 368,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterClimbingBase)"}

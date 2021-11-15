@@ -112,6 +112,7 @@ namespace TheParty_v2
         public static void KOTarget(Member from, Member to) => HitTargetStance(to, 5 - to.Stance);
         public static void Give1Stance(Member from, Member to) { from.HitStance(-1); to.HitStance(+1); }
         public static void Take1Stance(Member from, Member to) { from.HitStance(+1); to.HitStance(-1); }
+        public static void ResetStance(Member from, Member to) { to.Stance = 1; }
         public static void TradeStance(Member from, Member to)
         {
             int Temp = to.Stance;
@@ -120,38 +121,57 @@ namespace TheParty_v2
         }
 
         // STATUS - - -
-        public static void AddPoison(Member from, Member to) => to.AddStatusEffect("Poison");
-        public static void AddAttackUp(Member from, Member to) => to.AddStatusEffect("AttackUp");
-        public static void AddAttackDown(Member from, Member to) => to.AddStatusEffect("AttackDown");
-        public static void AddDefenseUp(Member from, Member to) => to.AddStatusEffect("DefenseUp");
-        public static void AddDefenseDown(Member from, Member to) => to.AddStatusEffect("DefenseDown");
-        public static void AddEvade(Member from, Member to) => to.AddStatusEffect("Evade");
-        public static void AddCantCharge(Member from, Member to) => to.AddStatusEffect("CantCharge");
-        public static void AddStunned(Member from, Member to) => to.AddStatusEffect("Stunned");
-
-        public static void RemovePoison(Member from, Member to) => to.RemoveStatusEffect("Poison");
-        public static void RemoveAttackUp(Member from, Member to) => to.RemoveStatusEffect("AttackUp");
-        public static void RemoveAttackDown(Member from, Member to) => to.RemoveStatusEffect("AttackDown");
-        public static void RemoveDefenseUp(Member from, Member to) => to.RemoveStatusEffect("DefenseUp");
-        public static void RemoveDefenseDown(Member from, Member to) => to.RemoveStatusEffect("DefenseDown");
-        public static void RemoveEvade(Member from, Member to) => to.RemoveStatusEffect("Evade");
-        public static void RemoveCantCharge(Member from, Member to) => to.RemoveStatusEffect("CantCharge");
-        public static void RemoveStunned(Member from, Member to) => to.RemoveStatusEffect("Stunned");
-
+        public static Action<Member, Member> AddStatus(string name) =>
+            new Action<Member, Member>((from, to) => to.AddStatusEffect(name));
+        public static Action<Member, Member> RemoveStatus(string name) =>
+            new Action<Member, Member>((from, to) => to.RemoveStatusEffect(name));
+       
 
         // HP - - -
-        private static void HitHP(Member to, int amt)
+        private static void HitHP(Member from, Member to, int amt)
         {
-            if (!to.HasEffect("Evade"))
-                to.HitHP(amt);
-            else
+            int Amt = amt;
+
+            if (to.HasEffect("Evade"))
+            {
                 to.RemoveStatusEffect("Evade");
+                return;
+            }
+            if (from.HasEffect("AttackUp"))
+            {
+                Amt += 2;
+                from.RemoveStatusEffect("AttackUp");
+            }
+            if (from.HasEffect("AttackDown"))
+            {
+                Amt -= 2;
+                from.RemoveStatusEffect("AttackDown");
+            }
+            if (to.HasEffect("DefenseUp"))
+            {
+                Amt -= 2;
+                to.RemoveStatusEffect("DfenseUp");
+            }
+            if (to.HasEffect("DefenseDown"))
+            {
+                Amt += 2;
+                to.RemoveStatusEffect("DefenseDown");
+            }
+
+            to.HitHP(Amt);
+
         }
 
+        public static void TradeHearts(Member from, Member to)
+        {
+            int FromHP = from.HP;
+            from.HP = to.HP;
+            to.HP = FromHP;
+        }
         public static void HealHPByHalf(Member from, Member to) => to.HitHP(+1);
         public static void HealHPBy1(Member from, Member to) => to.HitHP(+2);
         public static void HealHPBy2(Member from, Member to) => to.HitHP(+4);
-        public static void HitHPBy1(Member from, Member to) => HitHP(to, -1);
+        public static void HitHPBy1(Member from, Member to) => HitHP(from, to, -1);
         public static void GiveEnoughHP(Member from, Member to)
         {
             int Amt = 10 - to.HP;
