@@ -27,7 +27,14 @@ namespace TheParty_v2
             Msg.Update(deltaTime, true);
 
             if (Msg.Done)
+            {
+                if (client.ContinueAfter)
+                {
+                    GameContent.Switches[client.SwitchToSet] = true;
+                }
+
                 client.Done = true;
+            }
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)

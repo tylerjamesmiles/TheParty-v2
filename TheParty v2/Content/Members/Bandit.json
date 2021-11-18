@@ -8,7 +8,7 @@
 		"Charged" : false,
 		"KOdFor" : 0,
 		"Moves" : [
-			"Hit", "Hurt", "Charge", "Evade"
+			"Hit", "Hurt", "Charge", "Evade", "Take"
 		],
 		"MovesToLearn" : [
 			

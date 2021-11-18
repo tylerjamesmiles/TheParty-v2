@@ -11,7 +11,7 @@
 			"Hit", "Hurt", "Charge", "Help", "Bolster"
 		],
 		"MovesToLearn" : [
-			"Encourage", "Convict", "Weaken", "Lower", "Calm"
+			"Encourage", "Weaken", "Lower", "Calm"
 		]
 	}
 }

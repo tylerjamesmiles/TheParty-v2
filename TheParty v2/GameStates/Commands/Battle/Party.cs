@@ -168,7 +168,7 @@ namespace TheParty_v2
 
             return
                 + AllyHP
-                - AllyKOd * 3
+                - AllyKOd * 2
                 + AllyAlive * 4
                 - AllyDead * 5
                 + AllyCharged

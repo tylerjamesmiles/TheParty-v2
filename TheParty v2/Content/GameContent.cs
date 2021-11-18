@@ -27,6 +27,7 @@ namespace TheParty_v2
         public static Dictionary<string, Battle> Battles;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
+        public static List<int> ErasedEntities;
         public static SpriteFont Font;
         public static SpriteFont FontLight;
 
@@ -122,6 +123,8 @@ namespace TheParty_v2
                 int Value = int.Parse(Words[1]);
                 Variables.Add(Words[0], Value);
             }
+
+            ErasedEntities = new List<int>();
 
             // Font
             Texture2D FontSprite = Sprites["Font"];

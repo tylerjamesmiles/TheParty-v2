@@ -13,7 +13,7 @@ namespace TheParty_v2
         int NumFrames;
         int CurrentFrame;
         Timer Timer;
-
+        public int NumTimesLooped;
         public float AmtOfTime => (float)NumFrames * Timer.TicRate;
 
         public SpriteAnimation(int row, int numFrames, float speed)
@@ -22,6 +22,7 @@ namespace TheParty_v2
             NumFrames = numFrames;
             Timer = new Timer(speed);
             CurrentFrame = 0;
+            NumTimesLooped = 0;
         }
 
         public SpriteAnimation(JsonElement elem)
@@ -31,6 +32,7 @@ namespace TheParty_v2
             float FrameRate = (float)elem.GetProperty("FrameRate").GetDouble();
             Timer = new Timer(FrameRate);
             CurrentFrame = 0;
+            NumTimesLooped = 0;
         }
 
         public void GoToRandomFrame() => CurrentFrame = new Random().Next(NumFrames);
@@ -42,7 +44,10 @@ namespace TheParty_v2
             {
                 CurrentFrame += 1;
                 if (CurrentFrame >= NumFrames)
+                {
                     CurrentFrame -= NumFrames;
+                    NumTimesLooped++;
+                }
             }
         }
 

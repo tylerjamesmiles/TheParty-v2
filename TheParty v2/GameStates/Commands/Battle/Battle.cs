@@ -87,8 +87,7 @@ namespace TheParty_v2
         }
 
         public void DoMove(Move move, Targeting t)
-            => move.Effects(From(t)).ForEach(e => e(From(t), To(t)));
-
+            => move.Effects.ForEach(e => e(From(t), To(t)));
 
 
         // ~ ~ ~ ~ MOVE EFFECTS ~ ~ ~ ~
@@ -107,7 +106,7 @@ namespace TheParty_v2
         public static void HitStanceBy1(Member from, Member to) => HitTargetStance(to, 1);
         public static void HitStanceByMinus1(Member from, Member to) => HitTargetStance(to, -1);
         public static void HitStanceByStance(Member from, Member to) => HitTargetStance(to, from.Stance);
-        public static void HitHPByStance(Member from, Member to) => to.HitHP(-from.Stance * 2);
+        public static void HitHPByStance(Member from, Member to) => HitHP(from, to, -(from.Stance + to.Stance) * 2);
         public static void KOCaster(Member from, Member to) => from.HitStance(5 - from.Stance);
         public static void KOTarget(Member from, Member to) => HitTargetStance(to, 5 - to.Stance);
         public static void Give1Stance(Member from, Member to) { from.HitStance(-1); to.HitStance(+1); }
@@ -224,6 +223,7 @@ namespace TheParty_v2
         public static bool TargetAlertAndAlive(Battle b, Targeting t) => TargetAlive(b, t) && TargetAlert(b, t);
         public static bool TargetNotCharged(Battle b, Targeting t) => b.To(t).Charged == false;
         public static bool TargetCharged(Battle b, Targeting t) => b.To(t).Charged == true;
+        public static bool TargetStanceGreaterThan1(Battle b, Targeting t) => b.To(t).Stance > 1;
 
         public static bool TargetIsSelf(Battle b, Targeting t) => TargetIsInSameParty(b, t) && t.FromMemberIdx == t.ToMemberIdx;
         public static bool TargetIsOTher(Battle b, Targeting t) => TargetIsInDifferentParty(b, t) || t.FromMemberIdx != t.ToMemberIdx;

@@ -26,7 +26,7 @@ namespace TheParty_v2
         public enum LayerType { Tile, Entity, Collision, Undefined };
         public LayerType Type;
 
-        public OgmoEntity EntityWithName(string name) => entities.Find(e => e.name == name);
+        public OgmoEntity EntityWithName(string name) => entities.Find(e => e.values["Name"] == name);
 
         public void Initialize()
         {
@@ -72,23 +72,23 @@ namespace TheParty_v2
             }
             else if (entities != null)
             {
-                player.Draw(cameraPos, spriteBatch);
+                entities.Sort((e1, e2) => e1.Transform.Position.Y > e2.Transform.Position.Y ? +1 : -1);
 
-                // lazy y-sorting
-                foreach (var entity in entities)
+                bool PlayerDrawn = false;
+                for (int i = 0; i < entities.Count; i++)
                 {
-                    if (player.Transform.Position.Y < entity.Transform.Position.Y)
+                    entities[i].Draw(cameraPos, spriteBatch);
+
+                    if (player.Transform.Position.Y >= entities[i].Transform.Position.Y)
                     {
                         player.Draw(cameraPos, spriteBatch);
-                        entity.Draw(cameraPos, spriteBatch);
-                    }
-                    else
-                    {
-                        entity.Draw(cameraPos, spriteBatch);
-                        player.Draw(cameraPos, spriteBatch);
+                        PlayerDrawn = true;
                     }
                 }
-                
+
+                if (!PlayerDrawn)
+                    player.Draw(cameraPos, spriteBatch);
+
             }
         }
     }

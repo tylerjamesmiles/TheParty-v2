@@ -8,8 +8,9 @@ namespace TheParty_v2
     class Transform2D
     {
         public Vector2 Position { get; set; }
-        public float BoundingRadius { get; private set; }
+        public float BoundingRadius { get; set; }
 
+        
         public Transform2D(Vector2 pos, float br)
         {
             Position = pos;
@@ -45,9 +46,6 @@ namespace TheParty_v2
 
 
             Position = PotentialPos;
-
-            if (Position.X == float.NaN)
-                ;
         }
     }
 }

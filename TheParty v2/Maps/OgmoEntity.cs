@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace TheParty_v2
@@ -11,7 +12,7 @@ namespace TheParty_v2
         Queue<Vector2> PointsBackStore;
         Queue<Vector2> Points;
         public Vector2 SteeringForce { get; private set; }
-        public float MinPointDistance;
+        public float MinPointDistance = 5f;
         private bool Repeat;
         public bool Done { get; private set; }
 
@@ -124,11 +125,16 @@ namespace TheParty_v2
         public Timer CanInteractTimer;
         float MinInteractDist;
 
-        static int ArbitraryNum = 0;    // for naming coins and foods
+        public int EntityId;
+        static int NextEID = 0;
+
         public void Initialize()
         {
             Vector2 Pos = new Vector2(x + 8, y + 8);
             Transform = new Transform2D(Pos, 5f);
+
+            EntityId = NextEID;
+            NextEID++;
 
             if (name == "Coin" || name == "Food")
             {
@@ -155,23 +161,24 @@ namespace TheParty_v2
                 {
                     string Script =
                         "Incr(Money, 1)\n" +
-                        "Erase(Me)\n" +
-                        "PlayAnimation(Me, CollectAnimations, Coin)"
+                        "CollectAnimation(Coin)\n" +
+                        "Erase(Me)\n"
                         ;
                     values.Add("Script", Script);
-                    values.Add("Name", "Coin" + ArbitraryNum.ToString());
-                    ArbitraryNum++;
+                    values.Add("Name", "Coin" + EntityId.ToString());
+
+                    //EntityId++;
                 }
                 else if (name == "Food")
                 {
                     string Script =
                         "Incr(FoodSupply, 1)\n" +
-                        "Erase(Me)\n" +
-                        "PlayAnimation(Me, CollectAnimations, Coin)"
+                        "CollectAnimation(Meat)\n" +
+                        "Erase(Me)\n"
                         ;
                     values.Add("Script", Script);
-                    values.Add("Name", "Food" + ArbitraryNum.ToString());
-                    ArbitraryNum++;
+                    values.Add("Name", "Food" + EntityId.ToString());
+                    //EntityId++;
                 }
 
                 FollowPath = true;
@@ -211,7 +218,7 @@ namespace TheParty_v2
 
         public void SetPath(string path)
         {
-            FollowPath = true;
+            TemporaryFollowPath = true;
             PathFollower = new PathFollower2D(path, Transform.Position, false);
         }
 
@@ -222,8 +229,13 @@ namespace TheParty_v2
                 return false;
             }
 
-            if (name == "Coin" || name == "Food")
-                return true;
+            if (GameContent.ErasedEntities.Contains(EntityId))
+            {
+                return false;
+            }
+
+            //if (name == "Coin" || name == "Food")
+            //    return true;
 
             if (!values.ContainsKey("ExistsIf"))
                 return true;

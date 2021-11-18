@@ -142,18 +142,14 @@ namespace TheParty_v2
                         {
                             case 0:     // +1 max HP
                                 Selected.MaxHP += 2;
-                                Selected.HP = Selected.MaxHP;
                                 Hearts[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHP;
-                                Hearts[MemberChoice.CurrentChoiceIdx].SetHP(Selected.HP);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
                             case 1:     // +1 max Hunger
                                 Selected.MaxHunger += 2;
-                                Selected.Hunger = Selected.MaxHunger;
                                 Meats[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHunger;
-                                Meats[MemberChoice.CurrentChoiceIdx].SetHP(Selected.Hunger);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
@@ -184,7 +180,7 @@ namespace TheParty_v2
 
                     if (MoveChoice.ChoiceUpdatedThisFrame)
                     {
-                        Move CurrentMove = Selected.GetMoves()[MoveChoice.CurrentChoice];
+                        Move CurrentMove = Selected.GetMovesToLearn()[MoveChoice.CurrentChoice];
                         Description.SetNewText(CurrentMove.Description);
                     }
 

@@ -10,7 +10,7 @@ namespace TheParty_v2
 {
     class GUIDialogueBox
     {
-        private const int Height = 48;
+        private const int Height = 47;
         public static readonly Rectangle Top = new Rectangle(new Point(0, 0), new Point(GraphicsGlobals.ScreenSize.X, Height));
         public static readonly Rectangle SkinnyTop = new Rectangle(new Point(0, 0), new Point(GraphicsGlobals.ScreenSize.X, Height / 2 + 4));
         public static readonly Rectangle ReallySkinnyTop = new Rectangle(new Point(0, 0), new Point(GraphicsGlobals.ScreenSize.X, 17));

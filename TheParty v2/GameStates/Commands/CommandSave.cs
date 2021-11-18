@@ -16,14 +16,16 @@ namespace TheParty_v2
         public string CurrentMap { get; set; }
         public Dictionary<string, int> Variables { get; set; }
         public Dictionary<string, bool> Switches { get; set; }
+        public List<int> ErasedEntities { get; set; }
         public Player Player { get; set; }
 
     [JsonConstructor]
-        public SaveState(string currentMap, Dictionary<string, int> variables, Dictionary<string, bool> switches, Player player)
+        public SaveState(string currentMap, Dictionary<string, int> variables, Dictionary<string, bool> switches, List<int> erasedEntities, Player player)
         {
             CurrentMap = currentMap;
             Variables = variables;
             Switches = switches;
+            ErasedEntities = erasedEntities;
             Player = player;
         }
     }
@@ -36,6 +38,7 @@ namespace TheParty_v2
                 client.CurrentMap.Name,
                 GameContent.Variables,
                 GameContent.Switches,
+                GameContent.ErasedEntities,
                 client.Player);
 
             string save = JsonConvert.SerializeObject(
@@ -58,7 +61,10 @@ namespace TheParty_v2
             client.CurrentMap = GameContent.Maps[State.CurrentMap];
             GameContent.Variables = State.Variables;
             GameContent.Switches = State.Switches;
+            GameContent.ErasedEntities = State.ErasedEntities;
             client.Player = State.Player;
+            client.Player.Frozen = false;
+            
 
             Done = true;
         }

@@ -18,7 +18,7 @@ namespace TheParty_v2
             for (int i = 0; i < Selected.Moves.Count; i++)
                 ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.GetMoves()[i]);
                     
-            client.MoveChoice = new GUIChoiceBox(Selected.MoveNames.ToArray(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
+            client.MoveChoice = new GUIChoiceBox(Selected.Moves.ToArray(), GUIChoiceBox.Position.BottomRight, 2, ChoiceValidity);
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
             string DescrTxt = client.FromMember.GetMoves()[CurrentChoice].Description;

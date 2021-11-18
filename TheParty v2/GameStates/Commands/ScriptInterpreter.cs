@@ -115,10 +115,28 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFreeze(caller));
                         ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
-                        ResultList.Add(new CommandBattle(Arguments[0]));
-                        ResultList.Add(new CommandLevelUp());
-                        ResultList.Add(new CommandDecrementHunger());
-                        ResultList.Add(new CommandLeaveDead());
+
+                        // Normal battle
+                        if (Arguments.Length == 1)
+                        {
+                            ResultList.Add(new CommandBattle(Arguments[0]));
+                            ResultList.Add(new CommandLevelUp());
+                            ResultList.Add(new CommandDecrementHunger());
+                            ResultList.Add(new CommandLeaveDead());
+                        }
+                        // If battle operates a switch, only do level-up rigamarole if successful battle
+                        else if (Arguments.Length == 2)
+                        {
+                            ResultList.Add(new CommandBattle(Arguments[0], Arguments[1]));
+                            ResultList.Add(new CommandIf(Arguments[1], "==", "true",
+                                new List<Command<TheParty>>
+                                {
+                                    new CommandLevelUp(),
+                                    new CommandDecrementHunger(),
+                                    new CommandLeaveDead()
+                                }));
+                        }
+
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnFreeze(caller));
                         ResultList.Add(new CommandUnfreezePlayer());
@@ -146,6 +164,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandEraseMe(Name));
                         break;
 
+                    case "collectanimation":
+                        ResultList.Add(new CommandCollectAnimation(game.Player.Transform.Position, Arguments[0]));
+                        break;
+
                     case "hitpartyhp":
                         ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
                         break;
@@ -156,6 +178,14 @@ namespace TheParty_v2
 
                     case "changeplayersprite":
                         ResultList.Add(new CommandChangePlayerSprite(Arguments[0]));
+                        break;
+
+                    case "befaded":
+                        ResultList.Add(new CommandBeFaded());
+                        break;
+
+                    case "showscreen":
+                        ResultList.Add(new CommandShowScreen());
                         break;
 
                     case "if":
@@ -251,7 +281,7 @@ namespace TheParty_v2
 
             }
 
-            ResultList.Add(new CommandWait(0.1f));
+            ResultList.Add(new CommandWait(0.0001f));
             return ResultList;
         }
     }

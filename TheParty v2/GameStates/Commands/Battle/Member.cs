@@ -13,7 +13,7 @@ namespace TheParty_v2
         public int MaxHP { get; set; }
         public int Stance { get; set; }
         public bool Charged { get; set; }
-        public bool KOd { get; private set; }
+        public bool KOd { get; set; }
         public int Hunger { get; set; }
         public int MaxHunger { get; set; }
         public List<string> Moves { get; private set; }
@@ -61,6 +61,9 @@ namespace TheParty_v2
         public List<Move> GetMoves() =>
             Moves.ConvertAll(m => (Move)Utility.CallMethod(typeof(Move), m));
 
+        public List<Move> GetMovesToLearn() =>
+            MovesToLearn.ConvertAll(m => (Move)Utility.CallMethod(typeof(Move), m));
+
         public Member(string memberName, JsonDocument doc)
         {
             JsonElement Mem = doc.RootElement.GetProperty(memberName);
@@ -95,7 +98,6 @@ namespace TheParty_v2
             Stance > 0 &&
             !HasEffect("Stunned");
 
-        public List<string> MoveNames => Moves;
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
         {

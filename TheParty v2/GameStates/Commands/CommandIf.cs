@@ -7,7 +7,7 @@ namespace TheParty_v2
     class CommandIf : Command<TheParty>
     {
         string VarName;
-        enum Type { Switch, Variable, Undefined };
+        enum Type { Party, Switch, Variable, Undefined };
         Type VarType;
         string Operator;
         string RHValue;
@@ -17,6 +17,7 @@ namespace TheParty_v2
         {
             VarName = varName;
             VarType =
+                varName.ToLower() == "party" ? Type.Party :
                 GameContent.Switches.ContainsKey(VarName) ? Type.Switch :
                 GameContent.Variables.ContainsKey(VarName) ? Type.Variable :
                 Type.Undefined;
@@ -28,7 +29,38 @@ namespace TheParty_v2
         public override void Update(TheParty client, float deltaTime)
         {
             bool True = false;
-            if (VarType == Type.Switch)
+            if (VarType == Type.Party)
+            {
+                bool PartyAlive = client.Player.ActiveParty.Members.Exists(m => m.HP > 0);
+                bool PartyHealed = client.Player.ActiveParty.Members.TrueForAll(m => m.HP == m.MaxHP);
+
+                switch (RHValue.ToLower())
+                {
+                    case "alive":
+                        switch (Operator)
+                        {
+                            case "==": True = PartyAlive; break;
+                            case "!=": True = !PartyAlive; break;
+                        }
+                        break;
+                    case "dead":
+                        switch (Operator)
+                        {
+                            case "==": True = !PartyAlive; break;
+                            case "!=": True = PartyAlive; break;
+                        }
+                        break;
+                    case "healed":
+                        switch (Operator)
+                        {
+                            case "==": True = PartyHealed; break;
+                            case "!=": True = !PartyHealed; break;
+                        }
+                        break;
+                }
+
+            }
+            else if (VarType == Type.Switch)
             {
                 bool LH = GameContent.Switches[VarName];
                 bool RH = bool.Parse(RHValue);

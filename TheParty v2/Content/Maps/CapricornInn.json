@@ -61,7 +61,7 @@
           "y": 128,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to stay for the night? $5 for a bed.)\nChoice(Yes, No)\n   Case Yes\n      FadeOut()\n      Dialogue(The party was healed.)\n      Incr(Money, -5)\n      HitPartyHP(+10)\n      DayPass(WorldMap, 99, 98)\n   Case No"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Would you like to stay for the night? $5 for a bed.)\nChoice(Show Money, Yes, No)\n   Case Yes\n      If(Money >= 5)\n         If(Party != Healed)\n            FadeOut()\n            Dialogue(The party was healed.)\n            Incr(Money, -5)\n            HitPartyHP(+10)\n            DayPass(WorldMap, 99, 98)\n         If(Party == Healed)\n            Dialogue(You're all healed already! You don't need to stay here.)\n      If(Money < 5)\n         Dialogue(You don't have enough money.)\n   Case No\n      Dialogue(Have a great day!)"}
         },
         {
           "name": "Entity",

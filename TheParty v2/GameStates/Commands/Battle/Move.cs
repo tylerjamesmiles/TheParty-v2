@@ -39,17 +39,10 @@ namespace TheParty_v2
         public string AnimationSheet;
         public string AnimationName;
         public bool PositiveEffect;
-        public List<Action<Member, Member>> UnChargedEffects;
-        public List<Action<Member, Member>> ChargedEffects;
+        public List<Action<Member, Member>> Effects;
         public List<Func<Battle, Targeting, bool>> MoveConditions;
 
         public static string InvalidMoveName = "Invalid";
-
-        public List<Action<Member, Member>> Effects(Member m) =>
-            m.Charged ? ChargedEffects : UnChargedEffects;
-
-
-
 
 
         // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -61,19 +54,13 @@ namespace TheParty_v2
             {
                 Name = "Hit",
                 Description = 
-                    "Hit stance by yours.",
+                    "Hit % by your stance.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>> 
+                Effects = new List<Action<Member, Member>> 
                 { 
-                    Battle.HitStanceByStance,
-                    Battle.HitHPBy1
-                },
-                ChargedEffects = new List<Action<Member, Member>> 
-                { 
-                    Battle.HitStanceByStance,
-                    Battle.HitHPBy1
+                    Battle.HitHPByStance
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -83,53 +70,22 @@ namespace TheParty_v2
                 }
             };
 
-        public static Move Hurt =>
-            new Move()
-            {
-                Name = "Hurt",
-                Description = 
-                    "Hit % by your stance. \n" +
-                    "(Target must be KOd)",
-                AnimationSheet = "HitAnimations",
-                AnimationName = "Hit",
-                PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>> 
-                { 
-                    Battle.HitHPByStance 
-                },
-                ChargedEffects = new List<Action<Member, Member>> 
-                { 
-                    Battle.HitHPByStance
-                },
-                MoveConditions = new List<Func<Battle, Targeting, bool>>
-                {
-                    Battle.CasterAlertAndAlive,
-                    Battle.TargetAlive,
-                    Battle.TargetKOd,
-                    Battle.TargetIsInDifferentParty
-                }
-            };
-
         public static Move Charge =>
             new Move()
             {
                 Name = "#Charge#",
-                Description = "#Charge up energy!#\n" +
-                    "(Increases stance by 1)",
+                Description = "#Charge up energy!#",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.Charge,
                     Battle.HitStanceBy1
                 },
-                ChargedEffects = new List<Action<Member, Member>> { },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.TargetIsSelf,
-                    Battle.CasterNotCharged
+                    Battle.TargetIsSelf
                 }
             };
 
@@ -138,16 +94,13 @@ namespace TheParty_v2
             {
                 Name = "Give",
                 Description = 
-                    "Give one pt. of Stance.\n" +
-                    "(Must be #Charged#)",
+                    "Give one pt. of Stance.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.Give1Stance,
-                    Battle.CasterLoseCharge
+                    Battle.Give1Stance
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -166,11 +119,9 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.Take1Stance,
-                    Battle.CasterLoseCharge
+                    Battle.Take1Stance
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -189,43 +140,16 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.Take1Stance,
-                    Battle.CasterLoseCharge
+                    Battle.Take1Stance
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
+                    Battle.TargetIsInSameParty,
+                    Battle.TargetStanceGreaterThan1,
                     Battle.TargetAlertAndAlive
-                }
-            };
-
-        public static Move Help =>
-            new Move()
-            {
-                Name = "Help",
-                Description = 
-                    "Revive a KOd ally.\n" +
-                    "(Must be #Charged#)",
-                AnimationSheet = "HitAnimations",
-                AnimationName = "Charge",
-                PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.HitStanceByStance,
-                    Battle.HealHPBy1,
-                    Battle.TargetLoseCharge,
-                    Battle.CasterLoseCharge
-                },
-                MoveConditions = new List<Func<Battle, Targeting, bool>>
-                {
-                    Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
-                    Battle.TargetAlive,
-                    Battle.TargetKOd
                 }
             };
 
@@ -239,16 +163,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.SuckHP,
-                    Battle.CasterLoseCharge
+                    Battle.SuckHP
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
@@ -258,16 +179,13 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Heal",
-                Description = "Heal 2%\n" +
-                    "(Must be #Charged#)",
+                Description = "Heal 2%",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.HealHPBy2,
-                    Battle.CasterLoseCharge
+                    Battle.HealHPBy2
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -281,16 +199,13 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Heal",
-                Description = "Give enough % to heal\n" +
-                    "(Must be #Charged#)",
+                Description = "Give enough % to heal",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.GiveEnoughHP,
-                    Battle.CasterLoseCharge
+                    Battle.GiveEnoughHP
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
@@ -304,20 +219,17 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Fireball",
-                Description = "Hit 1% and keep charge.\n" +
-                    "(Must be #Charged#)",
+                Description = "Hit 1%",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
                     Battle.HitHPBy1
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
@@ -331,20 +243,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> 
+                Effects = new List<Action<Member, Member>> 
                 { 
-                    Battle.Charge,
-                    Battle.HealHPBy1
-                },
-                ChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.Charge,
-                    Battle.HealHPBy1
+                    Battle.HitStanceBy1
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlertAndAlive
                 }
             };
@@ -358,16 +263,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.TradeStance,
-                    Battle.CasterLoseCharge
+                    Battle.TradeStance
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlertAndAlive
                 }
             };
@@ -376,46 +278,18 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Trade%",
-                Description = "Trade %s with target.\n" +
-                    "(Must be #Charged#)",
+                Description = "Trade %s with target.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.TradeHearts,
-                    Battle.CasterLoseCharge
+                    Battle.TradeHearts
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlertAndAlive
-                }
-            };
-
-        public static Move Punch =>
-            new Move()
-            {
-                Name = "Punch",
-                Description = "Hit % by your stance.\n" +
-                    "(Must be #Charged#)",
-                AnimationSheet = "HitAnimations",
-                AnimationName = "Hit",
-                PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.HitHPByStance,
-                    Battle.CasterLoseCharge
-                },
-                MoveConditions = new List<Func<Battle, Targeting, bool>>
-                {
-                    Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
-                    Battle.TargetAlive,
-                    Battle.TargetIsInDifferentParty
                 }
             };
 
@@ -424,22 +298,19 @@ namespace TheParty_v2
             {
                 Name = "Haunt",
                 Description = "Hit 2 %s,\n" +
-                    "(Must be KO'd.)",
+                    "(Must be Dead.)",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.HitHPBy1
-                },
-                ChargedEffects = new List<Action<Member, Member>>
-                {
+                    Battle.HitHPBy1,
                     Battle.HitHPBy1
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlive,
-                    Battle.CasterKOd,
+                    Battle.CasterDead,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
@@ -449,21 +320,17 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Darkness",
-                Description = "1/5 chance to kill,\n" +
-                    "(Must be #Charged#.)",
+                Description = "1/5 chance to kill",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.Kill20,
-                    Battle.CasterLoseCharge
+                    Battle.Kill20
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
@@ -473,26 +340,22 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Kamikaze",
-                Description = "Kill target. Bring you,\n" +
-                    "to 1%. (Req. #Charge#.)",
+                Description = "Kill target.\n" +
+                    "Bring you to 1%.",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.Kamikaze,
-                    Battle.CasterLoseCharge
+                    Battle.Kamikaze
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
             };
-
         public static Move Dive =>
             new Move()
             {
@@ -501,12 +364,7 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.KOCaster,
-                    Battle.KOTarget
-                },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
                     Battle.KOCaster,
                     Battle.KOTarget
@@ -518,6 +376,7 @@ namespace TheParty_v2
                     Battle.TargetIsInDifferentParty
                 }
             };
+
 
         public static Move GiveLife =>
             new Move()
@@ -528,11 +387,7 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.GiveLife
-                },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
                     Battle.GiveLife
                 },
@@ -543,51 +398,17 @@ namespace TheParty_v2
                 }
             };
 
-        public static Move Demoralize =>
-            new Move()
-            {
-                Name = "Demoralize",
-                Description = "Steal charge.\n" +
-                    "Target can't charge next turn.",
-                AnimationSheet = "HitAnimations",
-                AnimationName = "Hit",
-                PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.Charge,
-                    Battle.TargetLoseCharge,
-                    Battle.AddStatus("CantCharge")
-                },
-                ChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.Charge,
-                    Battle.TargetLoseCharge,
-                    Battle.AddStatus("CantCharge")
-                },
-                MoveConditions = new List<Func<Battle, Targeting, bool>>
-                {
-                    Battle.CasterAlertAndAlive,
-                    Battle.TargetAlertAndAlive,
-                    Battle.TargetCharged,
-                    Battle.TargetIsInDifferentParty
-                }
-            };
-
         public static Move Stun =>
         new Move()
         {
             Name = "Stun",
-            Description = "Stun for 1 turn.\n" +
-                "(Must be #charged#)",
+            Description = "KO an enemy\n",
             AnimationSheet = "HitAnimations",
             AnimationName = "Hit",
             PositiveEffect = false,
-            UnChargedEffects = new List<Action<Member, Member>>
+            Effects = new List<Action<Member, Member>>
             {
-            },
-            ChargedEffects = new List<Action<Member, Member>>
-            {
-                Battle.AddStatus("Stunned")
+                Battle.KOTarget
             },
             MoveConditions = new List<Func<Battle, Targeting, bool>>
             {
@@ -606,16 +427,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("Poisoned"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("Poisoned")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInDifferentParty
                 }
@@ -630,16 +448,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>> 
                 {
-                    Battle.AddStatus("Restore"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("Restore")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.TargetIsInSameParty
                 }
@@ -654,16 +469,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.RemoveStatus("Poisoned"),
-                    Battle.CasterLoseCharge
+                    Battle.RemoveStatus("Poisoned")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.HasPoison
                 }
@@ -678,16 +490,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("AttackUp"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("AttackUp")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlertAndAlive,
                     Battle.DoesntHaveAttackUp
                 }
@@ -697,21 +506,17 @@ namespace TheParty_v2
             new Move()
             {
                 Name = "Weaken",
-                Description = "Weaken target's attack.\n" +
-                    "(Must be #charged#)",
+                Description = "Weaken target's attack.\n",
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("AttackDown"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("AttackDown")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlertAndAlive,
                     Battle.DoesntHaveAttackDown,
                     Battle.TargetIsInDifferentParty
@@ -727,16 +532,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("DefenseUp"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("DefenseUp")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.DoesntHaveDefenseUp
                 }
@@ -751,16 +553,13 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Hit",
                 PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("DefenseDown"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("DefenseDown")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetAlive,
                     Battle.DoesntHaveDefenseDown,
                     Battle.TargetIsInDifferentParty
@@ -776,43 +575,16 @@ namespace TheParty_v2
                 AnimationSheet = "HitAnimations",
                 AnimationName = "Charge",
                 PositiveEffect = true,
-                UnChargedEffects = new List<Action<Member, Member>>{},
-                ChargedEffects = new List<Action<Member, Member>>
+                Effects = new List<Action<Member, Member>>
                 {
-                    Battle.AddStatus("Evade"),
-                    Battle.CasterLoseCharge
+                    Battle.AddStatus("Evade")
                 },
                 MoveConditions = new List<Func<Battle, Targeting, bool>>
                 {
                     Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
                     Battle.TargetIsSelf,
                     Battle.TargetAlertAndAlive,
                     Battle.DoesntHaveEvade
-                }
-            };
-
-        public static Move Convict =>
-            new Move()
-            {
-                Name = "Convict",
-                Description = "Prevent charged moves.\n" +
-                    "(Must be #charged#)",
-                AnimationSheet = "HitAnimations",
-                AnimationName = "Charge",
-                PositiveEffect = false,
-                UnChargedEffects = new List<Action<Member, Member>> { },
-                ChargedEffects = new List<Action<Member, Member>>
-                {
-                    Battle.AddStatus("Convicted"),
-                    Battle.CasterLoseCharge
-                },
-                MoveConditions = new List<Func<Battle, Targeting, bool>>
-                {
-                    Battle.CasterAlertAndAlive,
-                    Battle.CasterCharged,
-                    Battle.TargetIsInDifferentParty,
-                    Battle.TargetAlertAndAlive
                 }
             };
 

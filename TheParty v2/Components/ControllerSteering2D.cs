@@ -9,7 +9,7 @@ namespace TheParty_v2
     class ControllerSteering2D
     {
         public Vector2 SteeringForce { get; private set; }
-        public float MaxForce { get; private set; }
+        public float MaxForce { get; set; }
 
         public ControllerSteering2D(float maxForce)
         {

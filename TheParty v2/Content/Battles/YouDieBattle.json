@@ -1,0 +1,10 @@
+﻿{
+	"YouDieBattle" :
+	{
+		"Parties" :
+		[
+			"PlayerParty",
+			"YouDieParty"
+		]
+	}
+}

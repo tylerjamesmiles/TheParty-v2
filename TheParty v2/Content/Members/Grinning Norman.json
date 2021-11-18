@@ -11,7 +11,7 @@
 			"Hit", "Hurt", "Charge", "Help", "Trade"
 		],
 		"MovesToLearn" : [
-			"Give", "Take", "Demoralize", "TradeHP" 
+			"Give", "Take", "TradeHP" 
 		]
 	}
 }

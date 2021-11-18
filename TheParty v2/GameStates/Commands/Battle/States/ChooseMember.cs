@@ -22,8 +22,7 @@ namespace TheParty_v2
             MemberIdxs = new List<int>();
             for (int i = 0; i < MembersInThisParty.Count; i++)
             { 
-                List<MemberMove> ValidMoves = MembersInThisParty[i].AllValidMoves(CurrentTurn, i, client.CurrentStore);
-                if (MembersInThisParty[i].CanGo && ValidMoves.Count > 0)
+                if (MembersInThisParty[i].CanGo)
                 {
                     MemberIdxs.Add(i);
                     LegalMemberPositions.Add(MemberPositions[i]);

@@ -30,12 +30,23 @@ namespace TheParty_v2
         public Vector2 ReturnToPos;
 
         public bool GameOver;
+        public bool ContinueAfter;
+        public string SwitchToSet;
 
         public CommandBattle(string name)
         {
             BackgroundName = "TestBackground";
             CurrentStore = GameContent.Battles[name];
+            ContinueAfter = false;
+            SwitchToSet = "";
+        }
 
+        public CommandBattle(string name, string switchToSet)
+        {
+            BackgroundName = "TestBackground";
+            CurrentStore = GameContent.Battles[name];
+            ContinueAfter = true;
+            SwitchToSet = switchToSet;
         }
 
         public List<int> PartyIdxs(int partyIdx)
@@ -126,6 +137,14 @@ namespace TheParty_v2
 
             GameOver = false;
 
+            // reset from prior battles
+            foreach (Member member in client.Player.ActiveParty.Members)
+            {
+                member.Stance = 1;
+                member.Charged = false;
+                member.KOd = false;
+            }
+
             CurrentStore.Parties[0] = client.Player.ActiveParty;
 
             Sprites = new List<AnimatedSprite2D>();
@@ -215,10 +234,19 @@ namespace TheParty_v2
 
             StateMachine.Update(this, deltaTime);
 
+
             if (GameOver)
             {
-                client.CommandQueue.ClearCommands();
-                client.StateMachine.SetNewCurrentState(client, new GameStateGameOver());
+                if (ContinueAfter)
+                {
+                    GameContent.Switches[SwitchToSet] = false;
+                }
+                else
+                {
+                    client.CommandQueue.ClearCommands();
+                    client.StateMachine.SetNewCurrentState(client, new GameStateGameOver());
+                }
+
                 Done = true;
                 return;
             }
