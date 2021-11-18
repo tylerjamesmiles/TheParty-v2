@@ -15,6 +15,7 @@ namespace TheParty_v2
         public Vector2 DrawPos;
         bool Moving;
         bool Direction; // true = up, false = down
+        public bool Reached { get; private set; }
     
         public StanceIndicator(int startStance, Vector2 drawPos)
         {
@@ -24,6 +25,7 @@ namespace TheParty_v2
             Bob = new Wobble(2f, 2f);
             DrawPos = drawPos;
             Moving = false;
+            Reached = false;
         }
 
         public void Update(float deltaTime)
@@ -37,12 +39,13 @@ namespace TheParty_v2
                 if (CurrentFrame == CurrentStance * 4)
                 {
                     Moving = false;
+                    Reached = true;
                 }
                 else
                 {
                     CurrentFrame += Direction ? +1 : -1;
 
-                    if (CurrentFrame > 5 * 4)
+                    if (CurrentFrame > 10 * 4)
                         CurrentFrame = 0;
                 }
             }
@@ -55,6 +58,7 @@ namespace TheParty_v2
             {
                 Direction = newStance > CurrentStance;
                 Moving = true;
+                Reached = false;
                 CurrentStance = newStance;
             }
 

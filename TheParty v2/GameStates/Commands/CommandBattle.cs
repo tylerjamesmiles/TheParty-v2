@@ -87,6 +87,9 @@ namespace TheParty_v2
         }
         public Member FromMember
             => CurrentStore.Member(CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);
+
+        public Member ToMember
+            => CurrentStore.Member(CurrentTargeting.ToPartyIdx, CurrentTargeting.ToMemberIdx);
         
         public bool MoveValidOnAnyone(Move move)
             => move.ValidOnAnyone(CurrentStore, CurrentTargeting.FromPartyIdx, CurrentTargeting.FromMemberIdx);

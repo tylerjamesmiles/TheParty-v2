@@ -3,12 +3,12 @@
 	{
 		"Name" : "Hocus",
 		"SpriteName" : "HocusFighter",
-		"HP" : 1,
+		"HP" : 10,
 		"Stance" : 1,
 		"Charged" : false,
 		"KOdFor" : 0,
 		"Moves" : [
-			"Hit", "Hurt", "Charge", "Help", "Strengthen"
+			"Hit", "Charge"
 		],
 		"MovesToLearn" : [
 			"Bolster", "Heal", "Restore", "Darkness", "Fireball" 
