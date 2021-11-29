@@ -15,6 +15,9 @@ namespace TheParty_v2
         {
             List<Vector2> Positions = client.MemberSprites.ConvertAll(s => s.DrawPos + new Vector2(10, 10));
             Choice = new GUIChoice(Positions.ToArray());
+
+            client.HPIndicators.ForEach(hp => hp.SetShowMax(true));
+            client.HPIndicators.ForEach(hp => hp.SetMax(client.ActiveMembers[client.HPIndicators.IndexOf(hp)].MaxHP));
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)
@@ -27,7 +30,7 @@ namespace TheParty_v2
                 if (ToHeal.HP < ToHeal.MaxHP && ToHeal.Hunger > 0)
                 {
                     ToHeal.Hunger -= 1;
-                    ToHeal.HitHP(+1);
+                    ToHeal.HitHP(+2);
                     client.HungerIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.Hunger);
                     client.HPIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.HP);
                 }
@@ -42,6 +45,11 @@ namespace TheParty_v2
         public override void Draw(GameStateFieldMenu client, SpriteBatch spriteBatch)
         {
             Choice.Draw(spriteBatch, true);
+        }
+
+        public override void Exit(GameStateFieldMenu client)
+        {
+            client.HPIndicators.ForEach(hp => hp.SetShowMax(false));
         }
     }
 }

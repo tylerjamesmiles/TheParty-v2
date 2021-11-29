@@ -29,7 +29,7 @@ namespace TheParty_v2
                 AnimationName = "Poison",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
-                    Battle.HitHPBy1
+                    Battle.HitHP(-1)
                 },
                 NumTurnsRemaining = 3
             };
@@ -43,7 +43,7 @@ namespace TheParty_v2
                 AnimationName = "Charge",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
-                    Battle.HealHPByHalf
+                    Battle.HitHP(-1)
                 },
                 NumTurnsRemaining = 5
             };
@@ -111,7 +111,7 @@ namespace TheParty_v2
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 5
             };
 
         public static StatusEffect AttackDown =>
@@ -124,7 +124,7 @@ namespace TheParty_v2
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 5
             };
 
         public static StatusEffect DefenseUp =>
@@ -132,12 +132,12 @@ namespace TheParty_v2
             {
                 Name = "DefenseUp",
                 SpriteAnimation = "",
-                AnimationSheet = "",
-                AnimationName = "",
+                AnimationSheet = "StatusAnimations",
+                AnimationName = "Defense Up",
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 5
             };
 
         public static StatusEffect DefenseDown =>
@@ -150,7 +150,7 @@ namespace TheParty_v2
                 EveryTurnEffects = new List<Action<Member, Member>>
                 {
                 },
-                NumTurnsRemaining = 3
+                NumTurnsRemaining = 5
             };
     }
 }

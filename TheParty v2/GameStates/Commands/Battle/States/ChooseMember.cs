@@ -14,6 +14,10 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             int CurrentTurn = client.CurrentStore.CurrentTurnPartyIdx;
+            if (CurrentTurn == 1)
+            {
+                return;
+            }
 
             List<Vector2> MemberPositions = client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos + new Vector2(-3, 0));
 
@@ -34,6 +38,19 @@ namespace TheParty_v2
 
         public override void Update(CommandBattle client, float deltaTime)
         {
+            // If AI, just choose the move and get on with it
+            int Idx = client.CurrentStore.CurrentTurnPartyIdx;
+            if (Idx == 1)
+            {
+                MemberMove BestTurn = client.CurrentStore.CurrentTurnParty.BestTurn(Idx, client.CurrentStore);
+
+                client.CurrentMove = BestTurn.Move;
+                client.CurrentTargeting = BestTurn.Targeting;
+                client.StateMachine.SetNewCurrentState(client, new DoMoveName());
+                return;
+            }
+
+
             client.MemberChoice.Update(deltaTime, true);
             client.CurrentTargeting = new Targeting()
             {

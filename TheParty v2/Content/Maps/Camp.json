@@ -51,7 +51,7 @@
           "y": 176,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Hocus", "SpriteName": "HocusBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(Good morning hero!)\nDialogue(I'm so sorry. I couldn't find any food for us this morning.)\nDialogue(...I'm sure your stomache hurts as much as mine does.)\nDialogue(But we can't give up! We're almost to Capricorn!)\nDialogue(Once we're there I'm sure we'll find some food and rest.)\nDialogue(And I bet this city is the one! Someone there will listen to our message!)\nDialogue(Until then we just have to do our best to stay out of trouble.)\nMove(Monster, Right 2)\nMove(Monster, Down 3)\nStopFacingPlayer(Me)\nFace(Me, Up)\nDialogue(Watch out hero!)\nMove(Me, Up 1)\nDialogue(I'll fight for you!)\nBattle(YouDieBattle, IBetYouLost)\nIf(IBetYouLost == false)\n   FadeOut()\n   BeFaded()\n   Wait(3)\n   ShowScreen()\n   Teleport(CapricornChurch, 24, 8)\n   HitPartyHP(+1)"}
+          "values": {"Name": "Hocus", "SpriteName": "HocusBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Dialogue(Good morning hero!)\nDialogue(I'm so sorry. I couldn't find any food for us this morning.)\nDialogue(...I'm sure your stomache hurts as much as mine does.)\nDialogue(But we can't give up! We're almost to Capricorn!)\nDialogue(Once we're there I'm sure we'll find some food and rest.)\nDialogue(And I bet this city is the one! Someone there will listen to our message!)\nDialogue(Until then we just have to do our best to stay out of trouble.)\nMove(Monster, Right 2)\nMove(Monster, Down 3)\nStopFacingPlayer(Me)\nFace(Me, Up)\nDialogue(Watch out hero!)\nMove(Me, Up 1)\nDialogue(I'll fight for you!)\nBattle(YouDieBattle, IBetYouLost)\nIf(IBetYouLost == false)\n   FadeOut()\n   BeFaded()\n   Wait(3)\n   ShowScreen()\n   Teleport(CapricornChurch, 24, 8)\n   HitPartyHP(+1)"}
         },
         {
           "name": "Entity",
@@ -62,7 +62,8 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "Monster", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": ""}
-        }
+        },
+        {"name": "Food", "id": 12, "_eid": "99106260", "x": 144, "y": 160, "originX": 0, "originY": 0}
       ]
     },
     {

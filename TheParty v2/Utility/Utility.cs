@@ -10,7 +10,7 @@ namespace TheParty_v2
         {
             MethodInfo[] Methods = t.GetMethods();
             foreach (MethodInfo info in Methods)
-                if (info.Name == "get_" + name)
+                if (info.Name == name)
                     return info.Invoke(null, new object[] { });
 
             return null;

@@ -16,7 +16,7 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             WaitTimer = new Timer(0.8f);
-            PostTimer = new Timer(0.25f);
+            PostTimer = new Timer(0.01f);
             DoneShowingStances = false;
 
             HighestNumEffects = int.MinValue;
@@ -65,6 +65,7 @@ namespace TheParty_v2
                 PostTimer.Update(deltaTime);
                 if (PostTimer.TicThisFrame)
                 {
+                    // Move forward in time
                     foreach (Member member in client.CurrentStore.AllMembers())
                     {
                         member.StatusEffects.ForEach(se => se.DecrementTurnsRemaining());
@@ -72,7 +73,6 @@ namespace TheParty_v2
                     }
 
                     client.StateMachine.SetNewCurrentState(client, new PreMoveChecks());
-
                 }
             }
             else

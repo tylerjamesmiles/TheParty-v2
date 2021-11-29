@@ -25,6 +25,7 @@ namespace TheParty_v2
         public static Dictionary<string, Member> Members;
         public static Dictionary<string, Party> Parties;
         public static Dictionary<string, Battle> Battles;
+        public static Dictionary<string, Move> Moves;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
         public static List<int> ErasedEntities;
@@ -90,16 +91,48 @@ namespace TheParty_v2
                 AnimationSheets.Add(item.Key, new AnimatedSprite2D(item.Key, item.Value));
 
             Members = new Dictionary<string, Member>();
-            foreach (var item in JsonDocs("Members"))
-                Members.Add(item.Key, new Member(item.Key, item.Value));
+            string MembersString = File.ReadAllText("../../../Content/Data/Members.json");
+            JsonDocument MembersDoc = JsonDocument.Parse(MembersString);
+            JsonElement MembersArray = MembersDoc.RootElement.GetProperty("Members");
+            int NumMembers = MembersArray.GetArrayLength();
+            for (int i = 0; i < NumMembers; i++)
+            {
+                string Name = MembersArray[i].GetProperty("Name").GetString();
+                Members.Add(Name, new Member(MembersArray[i]));
+            }
 
             Parties = new Dictionary<string, Party>();
-            foreach (var item in JsonDocs("Parties"))
-                Parties.Add(item.Key, new Party(item.Key, item.Value));
+            string PartiesString = File.ReadAllText("../../../Content/Data/Parties.json");
+            JsonDocument PartiesDoc = JsonDocument.Parse(PartiesString);
+            JsonElement PartiesArray = PartiesDoc.RootElement.GetProperty("Parties");
+            int NumParties = PartiesArray.GetArrayLength();
+            for (int i = 0; i < NumParties; i++)
+            {
+                string Name = PartiesArray[i].GetProperty("Name").GetString();
+                Parties.Add(Name, new Party(PartiesArray[i]));
+            }
 
             Battles = new Dictionary<string, Battle>();
-            foreach (var item in JsonDocs("Battles"))
-                Battles.Add(item.Key, new Battle(item.Key, item.Value));
+            string BattlesString = File.ReadAllText("../../../Content/Data/Battles.json");
+            JsonDocument BattlesDoc = JsonDocument.Parse(BattlesString);
+            JsonElement BattlesArray = BattlesDoc.RootElement.GetProperty("Battles");
+            int NumBattles = BattlesArray.GetArrayLength();
+            for (int i = 0; i < NumBattles; i++)
+            {
+                string Name = BattlesArray[i].GetProperty("Name").GetString();
+                Battles.Add(Name, new Battle(BattlesArray[i]));
+            }
+
+            Moves = new Dictionary<string, Move>();
+            string MovesString = File.ReadAllText("../../../Content/Data/Moves.json");
+            JsonDocument MovesDoc = JsonDocument.Parse(MovesString);
+            JsonElement MovesArray = MovesDoc.RootElement.GetProperty("Moves");
+            int NumMoves = MovesArray.GetArrayLength();
+            for (int i = 0; i < NumMoves; i++)
+            {
+                string Name = MovesArray[i].GetProperty("Name").GetString();
+                Moves.Add(Name, new Move(MovesArray[i]));
+            }
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();

@@ -112,16 +112,6 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "ChangePlayerSprite(CharacterSmallBase)\nTeleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 18,
-          "_eid": "23557279",
-          "x": 272,
-          "y": 320,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "LevelUp()"}
         }
       ]
     },

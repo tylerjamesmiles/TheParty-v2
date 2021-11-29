@@ -15,6 +15,10 @@ namespace TheParty_v2
         {
             List<Vector2> Positions = client.MemberSprites.ConvertAll(s => s.DrawPos + new Vector2(10, 10));
             Choice = new GUIChoice(Positions.ToArray());
+
+            
+            client.HungerIndicators.ForEach(hp => hp.SetShowMax(true));
+            client.HungerIndicators.ForEach(hp => hp.SetMax(client.ActiveMembers[client.HungerIndicators.IndexOf(hp)].MaxHunger));
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)
@@ -45,6 +49,11 @@ namespace TheParty_v2
         public override void Draw(GameStateFieldMenu client, SpriteBatch spriteBatch)
         {
             Choice.Draw(spriteBatch, true);
+        }
+
+        public override void Exit(GameStateFieldMenu client)
+        {
+            client.HungerIndicators.ForEach(hp => hp.SetShowMax(false));
         }
     }
 }

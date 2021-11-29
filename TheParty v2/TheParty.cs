@@ -56,14 +56,10 @@ namespace TheParty_v2
 
             GameContent.Load(Content);
 
-
-
             StateMachine = new StateMachine<TheParty>();
             StateMachine.SetNewCurrentState(this, new GameStateTitle());
 
             CommandQueue = new CommandQueue<TheParty>();
-
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -91,7 +87,6 @@ namespace TheParty_v2
 
         protected override void Draw(GameTime gameTime)
         {
-
             Target.Begin();
 
             SpriteBatch.Begin();

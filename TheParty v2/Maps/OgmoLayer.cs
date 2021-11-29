@@ -72,7 +72,13 @@ namespace TheParty_v2
             }
             else if (entities != null)
             {
-                entities.Sort((e1, e2) => e1.Transform.Position.Y > e2.Transform.Position.Y ? +1 : -1);
+                entities.Sort(delegate (OgmoEntity e1, OgmoEntity e2)
+                {
+                    if (e1 == null && e2 == null) return 0;
+                    else if (e1 == null) return -1;
+                    else if (e2 == null) return 1;
+                    else return e1.Transform.Position.Y.CompareTo(e2.Transform.Position.Y);
+                });
 
                 bool PlayerDrawn = false;
                 for (int i = 0; i < entities.Count; i++)

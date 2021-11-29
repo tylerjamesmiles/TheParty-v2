@@ -7,16 +7,15 @@ namespace TheParty_v2
 {
     class PreMoveChecks : State<CommandBattle>
     {
-        public override void Enter(CommandBattle client)
-        {
-        }
-
         public override void Update(CommandBattle client, float deltaTime)
         {
             // Is player dead?
             Party Player = client.CurrentStore.Parties[0];
             if (Player.IsDead)
+            {
                 client.GameOver = true;
+                return;
+            }
 
             // Are the other parties dead?
             bool OtherPartiesDead = true;
@@ -29,30 +28,7 @@ namespace TheParty_v2
                 return;
             }
 
-            // Are there any moves for current party?
-            Party CurrentTurnPty = client.CurrentStore.CurrentTurnParty;
-            int CurrentTurnIdx = client.CurrentStore.CurrentTurnPartyIdx;
-            List<MemberMove> PossibleMoves = CurrentTurnPty.AllPossibleMemberMoves(CurrentTurnIdx, client.CurrentStore);
-            if (PossibleMoves.Count == 0)
-            {
-                client.CurrentStore.TimePass();
-            }
-
-            // Current Turn is player
-            if (client.CurrentStore.CurrentTurnPartyIdx == 0)
-            {
-                client.StateMachine.SetNewCurrentState(client, new ChooseMember());
-            }
-            // Current Turn is AI
-            else
-            {
-                int Idx = client.CurrentStore.CurrentTurnPartyIdx;
-                MemberMove BestTurn = client.CurrentStore.CurrentTurnParty.BestTurn(Idx, client.CurrentStore);
-
-                client.CurrentMove = BestTurn.Move;
-                client.CurrentTargeting = BestTurn.Targeting;
-                client.StateMachine.SetNewCurrentState(client, new DoMoveName());
-            }
+            client.StateMachine.SetNewCurrentState(client, new ChooseMember());
         }
 
         public override void Exit(CommandBattle client)

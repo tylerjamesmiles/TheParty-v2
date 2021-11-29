@@ -12,6 +12,12 @@
 				"FrameRow" : 0,
 				"NumFrames" : 3,
 				"FrameRate" : 0.05
+			},
+			{
+				"Name" : "Meat",
+				"FrameRow" : 1,
+				"NumFrames" : 3,
+				"FrameRate" : 0.05
 			}
 		]
 	}

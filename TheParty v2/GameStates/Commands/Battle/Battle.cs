@@ -9,13 +9,21 @@ namespace TheParty_v2
     {
         public List<Party> Parties;
         public int CurrentTurnPartyIdx;
+        public string[] Rewards;
 
-        public Battle(string stateName, JsonDocument doc)
+        public Battle(JsonElement doc)
         {
-            JsonElement parties = doc.RootElement.GetProperty(stateName).GetProperty("Parties");
+            JsonElement parties = doc.GetProperty("Parties");
             Parties = new List<Party>();
             for (int i = 0; i < parties.GetArrayLength(); i++)
                 Parties.Add(GameContent.Parties[parties[i].GetString()]);
+
+            JsonElement rewards = doc.GetProperty("Rewards");
+            int NumRewards = rewards.GetArrayLength();
+            Rewards = new string[NumRewards];
+            for (int i = 0; i < NumRewards; i++)
+                Rewards[i] = rewards[i].GetString();
+
             CurrentTurnPartyIdx = 0;
         }
 
@@ -76,21 +84,28 @@ namespace TheParty_v2
 
         public void TimePass()
         {
+            // Reset everyone's GoneThisTurn
+            foreach (Member member in AllMembers())
+                member.GoneThisTurn = false;
+
             // CurrentTurnPartyIdx
             int NextTurnPartyIdx = CurrentTurnPartyIdx + 1;
             if (NextTurnPartyIdx >= Parties.Count)
                 NextTurnPartyIdx -= Parties.Count;
             CurrentTurnPartyIdx = NextTurnPartyIdx;
 
-            // Time pass on Status Effects
-
         }
 
         public void DoMove(Move move, Targeting t)
-            => move.Effects.ForEach(e => e(From(t), To(t)));
+            => move.Effects.ForEach(e => DoEffect(e, From(t), To(t)));
 
 
         // ~ ~ ~ ~ MOVE EFFECTS ~ ~ ~ ~
+
+        private static void DoEffect(string effect, Member from, Member to)
+        {
+
+        }
 
 
         // STANCE - - -
@@ -103,12 +118,14 @@ namespace TheParty_v2
             else
                 target.RemoveStatusEffect("Evade");
         }
-        public static void HitStanceBy1(Member from, Member to) => HitTargetStance(to, 1);
-        public static void HitStanceByMinus1(Member from, Member to) => HitTargetStance(to, -1);
-        public static void HitStanceByStance(Member from, Member to) => HitTargetStance(to, from.Stance);
-        public static void HitHPByStance(Member from, Member to) => HitHP(from, to, -(from.Stance + to.Stance) * 2);
-        public static void KOCaster(Member from, Member to) => from.HitStance(5 - from.Stance);
-        public static void KOTarget(Member from, Member to) => HitTargetStance(to, 5 - to.Stance);
+        public static Action<Member, Member> HitStance(string member, int amt)
+        {
+            if (member == "Caster") 
+                return (from, to) => HitTargetStance(from, amt);
+            else 
+                return (from, to) => HitTargetStance(to, amt);
+        }
+        public static void HitHPByStance(Member from, Member to) => HitHP(from, to, -(from.Stance * 2 + to.Stance));
         public static void Give1Stance(Member from, Member to) { from.HitStance(-1); to.HitStance(+1); }
         public static void Take1Stance(Member from, Member to) { from.HitStance(+1); to.HitStance(-1); }
         public static void ResetStance(Member from, Member to) { to.Stance = 1; }
@@ -138,23 +155,30 @@ namespace TheParty_v2
             }
             if (from.HasEffect("AttackUp"))
             {
-                Amt += 2;
-                from.RemoveStatusEffect("AttackUp");
+                Amt *= 2;
+                //from.RemoveStatusEffect("AttackUp");
             }
             if (from.HasEffect("AttackDown"))
             {
-                Amt -= 2;
-                from.RemoveStatusEffect("AttackDown");
+                Amt /= 2;
+                //from.RemoveStatusEffect("AttackDown");
             }
             if (to.HasEffect("DefenseUp"))
             {
-                Amt -= 2;
-                to.RemoveStatusEffect("DfenseUp");
+                Amt /= 2;
+
+                if (to.HP == 3)
+                    Amt = 1;
+
+                if (to.HP == 2)
+                    Amt = 0;
+
+                //to.RemoveStatusEffect("DefenseUp");
             }
             if (to.HasEffect("DefenseDown"))
             {
-                Amt += 2;
-                to.RemoveStatusEffect("DefenseDown");
+                Amt *= 2;
+                //to.RemoveStatusEffect("DefenseDown");
             }
 
             to.HitHP(Amt);
@@ -167,10 +191,9 @@ namespace TheParty_v2
             from.HP = to.HP;
             to.HP = FromHP;
         }
-        public static void HealHPByHalf(Member from, Member to) => to.HitHP(+1);
-        public static void HealHPBy1(Member from, Member to) => to.HitHP(+2);
-        public static void HealHPBy2(Member from, Member to) => to.HitHP(+4);
-        public static void HitHPBy1(Member from, Member to) => HitHP(from, to, -1);
+
+        public static Action<Member, Member> HitHP(int amt) => (from, to) => HitHP(from, to, amt);
+
         public static void GiveEnoughHP(Member from, Member to)
         {
             int Amt = 10 - to.HP;
@@ -201,29 +224,68 @@ namespace TheParty_v2
                 from.HP = 2;
         }
 
-        // CHARGE - - -
-        public static void Charge(Member from, Member to) => to.Charged = true;
-        public static void TargetLoseCharge(Member from, Member to) => to.Charged = false;
-        public static void CasterLoseCharge(Member from, Member to) => from.Charged = false;
-
-
         // ~ ~ ~ ~ MOVE CONDITIONS ~ ~ ~ ~
-        public static bool CasterAlive(Battle b, Targeting t) => b.From(t).HP > 0;
-        public static bool CasterDead(Battle b, Targeting t) => b.From(t).HP == 0;
-        public static bool CasterAlert(Battle b, Targeting t) => b.From(t).KOd == false;
-        public static bool CasterKOd(Battle b, Targeting t) => b.From(t).KOd == true;
-        public static bool CasterAlertAndAlive(Battle b, Targeting t) => CasterAlive(b, t) && CasterAlert(b, t);
-        public static bool CasterNotCharged(Battle b, Targeting t) => b.From(t).Charged == false;
-        public static bool CasterCharged(Battle b, Targeting t) => b.From(t).Charged == true;
 
-        public static bool TargetAlive(Battle b, Targeting t) => b.To(t).HP > 0;
-        public static bool TargetDead(Battle b, Targeting t) => b.To(t).HP == 0;
-        public static bool TargetAlert(Battle b, Targeting t) => b.To(t).KOd == false;
-        public static bool TargetKOd(Battle b, Targeting t) => b.To(t).KOd == true;
-        public static bool TargetAlertAndAlive(Battle b, Targeting t) => TargetAlive(b, t) && TargetAlert(b, t);
-        public static bool TargetNotCharged(Battle b, Targeting t) => b.To(t).Charged == false;
-        public static bool TargetCharged(Battle b, Targeting t) => b.To(t).Charged == true;
-        public static bool TargetStanceGreaterThan1(Battle b, Targeting t) => b.To(t).Stance > 1;
+        public static Func<Battle, Targeting, bool> HP(string member, string op, int amt)
+        { 
+            if (member == "Caster")
+            {
+                switch (op)
+                {
+                    case "==": return (b, t) => b.From(t).HP == amt;
+                    case "!=": return (b, t) => b.From(t).HP != amt;
+                    case ">": return (b, t) => b.From(t).HP > amt;
+                    case "<": return (b, t) => b.From(t).HP < amt;
+                    case ">=": return (b, t) => b.From(t).HP >= amt;
+                    case "<=": return (b, t) => b.From(t).HP <= amt;
+                }
+            }
+            else if (member == "Target")
+            {
+                switch (op)
+                {
+                    case "==": return (b, t) => b.To(t).HP == amt;
+                    case "!=": return (b, t) => b.To(t).HP != amt;
+                    case ">": return (b, t) => b.To(t).HP > amt;
+                    case "<": return (b, t) => b.To(t).HP < amt;
+                    case ">=": return (b, t) => b.To(t).HP >= amt;
+                    case "<=": return (b, t) => b.To(t).HP <= amt;
+                }
+            }
+
+            return (b, t) => false;
+        }
+
+        public static Func<Battle, Targeting, bool> Stance(string member, string op, int amt)
+        {
+            if (member == "Caster")
+            {
+                switch (op)
+                {
+                    case "==": return (b, t) => b.From(t).Stance == amt;
+                    case "!=": return (b, t) => b.From(t).Stance != amt;
+                    case ">": return (b, t) => b.From(t).Stance > amt;
+                    case "<": return (b, t) => b.From(t).Stance < amt;
+                    case ">=": return (b, t) => b.From(t).Stance >= amt;
+                    case "<=": return (b, t) => b.From(t).Stance <= amt;
+                }
+            }
+            else if (member == "Target")
+            {
+                switch (op)
+                {
+                    case "==": return (b, t) => b.To(t).Stance == amt;
+                    case "!=": return (b, t) => b.To(t).Stance != amt;
+                    case ">": return (b, t) => b.To(t).Stance > amt;
+                    case "<": return (b, t) => b.To(t).Stance < amt;
+                    case ">=": return (b, t) => b.To(t).Stance >= amt;
+                    case "<=": return (b, t) => b.To(t).Stance <= amt;
+                }
+            }
+
+            return (b, t) => false;
+        }
+
 
         public static bool TargetIsSelf(Battle b, Targeting t) => TargetIsInSameParty(b, t) && t.FromMemberIdx == t.ToMemberIdx;
         public static bool TargetIsOTher(Battle b, Targeting t) => TargetIsInDifferentParty(b, t) || t.FromMemberIdx != t.ToMemberIdx;
@@ -231,22 +293,22 @@ namespace TheParty_v2
         public static bool TargetIsInDifferentParty(Battle b, Targeting t) => t.FromPartyIdx != t.ToPartyIdx;
 
         // STATUS - - -
-        public static bool HasPoison(Battle b, Targeting t) => b.To(t).HasEffect("Poison");
-        public static bool HasAttackUp(Battle b, Targeting t) => b.To(t).HasEffect("AttackUp");
-        public static bool HasAttackDown(Battle b, Targeting t) => b.To(t).HasEffect("AttackDown");
-        public static bool HasDefenseUp(Battle b, Targeting t) => b.To(t).HasEffect("DefenseUp");
-        public static bool HasDefenseDown(Battle b, Targeting t) => b.To(t).HasEffect("DefenseDown");
-        public static bool HasEvade(Battle b, Targeting t) => b.To(t).HasEffect("Evade");
-        public static bool HasCantCharge(Battle b, Targeting t) => b.To(t).HasEffect("CantCharge");
-        public static bool HasStunned(Battle b, Targeting t) => b.To(t).HasEffect("Stunned");
-
-        public static bool DoesntHavePoison(Battle b, Targeting t) => !b.To(t).HasEffect("Poison");
-        public static bool DoesntHaveAttackUp(Battle b, Targeting t) => !b.To(t).HasEffect("AttackUp");
-        public static bool DoesntHaveAttackDown(Battle b, Targeting t) => !b.To(t).HasEffect("AttackDown");
-        public static bool DoesntHaveDefenseUp(Battle b, Targeting t) => !b.To(t).HasEffect("DefenseUp");
-        public static bool DoesntHaveDefenseDown(Battle b, Targeting t) => !b.To(t).HasEffect("DefenseDown");
-        public static bool DoesntHaveEvade(Battle b, Targeting t) => !b.To(t).HasEffect("Evade");
-        public static bool DoesntHaveCantCharge(Battle b, Targeting t) => !b.To(t).HasEffect("CantCharge");
-        public static bool DoesntHaveStunned(Battle b, Targeting t) => !b.To(t).HasEffect("Stunned");
+        public static Func<Battle, Targeting, bool> StatusEffect(string member, string hasOrNot, string effect)
+        {
+            if (hasOrNot == "Has")
+            {
+                if (member == "Caster")
+                    return (b, t) => b.From(t).HasEffect(effect);
+                else
+                    return (b, t) => b.To(t).HasEffect(effect);
+            }
+            else
+            {
+                if (member == "Caster")
+                    return (b, t) => !b.From(t).HasEffect(effect);
+                else
+                    return (b, t) => !b.To(t).HasEffect(effect);
+            }
+        }
     }
 }

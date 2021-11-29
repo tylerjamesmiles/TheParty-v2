@@ -22,9 +22,7 @@ namespace TheParty_v2
             if (client.Movement.Reached)
             {
                 if (client.CurrentMove.Name == "Hit")
-                    client.StateMachine.SetNewCurrentState(client, new AnimateHitOld());
-                else if (client.CurrentMove.Name == "Hurt")
-                    client.StateMachine.SetNewCurrentState(client, new AnimateHurt());
+                    client.StateMachine.SetNewCurrentState(client, new AnimateHit());
                 else
                     client.StateMachine.SetNewCurrentState(client, new DoDoMove());
 

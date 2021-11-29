@@ -21,7 +21,7 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            client.CollectionAnimations.Add(Pos, new SpriteAnimation(0, 8, 0.1f));
+            client.CollectionAnimations.Add(Pos, new SpriteAnimation(Row, 8, 0.1f));
             Done = true;
         }
     }

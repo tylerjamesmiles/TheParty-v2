@@ -34,8 +34,7 @@ namespace TheParty_v2
             if (!MoveDone)
             {
                 client.CurrentStore.DoMove(client.CurrentMove, client.CurrentTargeting);
-                client.CurrentStore.TimePass();
-                
+                client.FromMember.GoneThisTurn = true;
                 MoveDone = true;
             }
 

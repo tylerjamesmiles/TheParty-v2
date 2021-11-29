@@ -30,6 +30,12 @@
 				"FrameRow": 3,
 				"NumFrames" : 1,
 				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Defense Up",
+				"FrameRow": 4,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
 			}
 		]
 	}

@@ -1,0 +1,110 @@
+﻿{
+	"Battles" : [
+		{
+			"Name" : "YouDieBattle",
+			"Parties" :
+			[
+				"PlayerParty",
+				"YouDieParty"
+			],
+			"Rewards" :
+			[
+				"+5 $",
+				"+4 Food"
+			]
+		},
+		{
+			"Name" : "WorldMapBattle1",
+			"Parties" :
+			[
+				"PlayerParty",
+				"WorldMapParty1"
+			],
+			"Rewards" :
+			[
+				"+5 $",
+				"+2 Food"
+			]
+		},
+		{
+			"Name" : "WorldMapBattle2",
+			"Parties" :
+			[
+				"PlayerParty",
+				"WorldMapParty2"
+			],
+			"Rewards" :
+			[
+				"+4 $",
+				"+4 Food"
+			]
+		},
+		{
+			"Name" : "MountainBattle1",
+			"Parties" :
+			[
+				"PlayerParty",
+				"MountainParty1"
+			],
+			"Rewards" :
+			[
+				"+3 $",
+				"+4 Food"
+			]
+		},
+		{
+			"Name" : "MountainBattle2",
+			"Parties" :
+			[
+				"PlayerParty",
+				"MountainParty2"
+			],
+			"Rewards" :
+			[
+				"+1 $",
+				"+3 Food"
+			]
+		},
+		{
+			"Name" : "MountainBattle3",
+			"Parties" :
+			[
+				"PlayerParty",
+				"MountainParty3"
+			],
+			"Rewards" :
+			[
+				"+3 $",
+				"+4 Food"
+			]
+		},
+		{
+			"Name" : "MountainBattle4",
+			"Parties" :
+			[
+				"PlayerParty",
+				"MountainParty4"
+			],
+			"Rewards" :
+			[
+				"+5 $",
+				"+1 Food"
+			]
+		},
+		{
+			"Name" : "MountainBattle5",
+			"Parties" :
+			[
+				"PlayerParty",
+				"MountainParty5"
+			],
+			"Rewards" :
+			[
+				"+3 $",
+				"+4 Food"
+			]
+		}
+	]
+	
+
+}

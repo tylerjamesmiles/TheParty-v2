@@ -140,15 +140,16 @@ namespace TheParty_v2
 
             GameOver = false;
 
+            CurrentStore.Parties[0] = client.Player.ActiveParty;
+
             // reset from prior battles
-            foreach (Member member in client.Player.ActiveParty.Members)
+            foreach (Member member in CurrentStore.AllMembers())
             {
                 member.Stance = 1;
                 member.Charged = false;
                 member.KOd = false;
+                member.StatusEffects = new List<StatusEffect>();
             }
-
-            CurrentStore.Parties[0] = client.Player.ActiveParty;
 
             Sprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
@@ -203,7 +204,7 @@ namespace TheParty_v2
         {
             List<Member> AllMembers = CurrentStore.AllMembers();
             HPIndicators.ForEach(h => h.SetHP(AllMembers[HPIndicators.IndexOf(h)].HP));
-            StanceIndicators.ForEach(s => s.SetStance(AllMembers[StanceIndicators.IndexOf(s)].Stance));
+            StanceIndicators.ForEach(s => s.SetTarget(AllMembers[StanceIndicators.IndexOf(s)].Stance));
 
             Sprites.ForEach(s => s.Update(deltaTime));
             HPIndicators.ForEach(h => h.SetPos(Sprites[HPIndicators.IndexOf(h)].DrawPos.ToPoint() + new Point(0, 18)));

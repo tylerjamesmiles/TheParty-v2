@@ -97,8 +97,8 @@
           "name": "Entity",
           "id": 5,
           "_eid": "23557279",
-          "x": 208,
-          "y": 400,
+          "x": 176,
+          "y": 464,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "Fight1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(MountainBattle1)\nErase(Me)"}

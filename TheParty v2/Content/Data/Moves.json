@@ -1,0 +1,489 @@
+﻿{
+    "Moves" :
+    [
+        {
+            "Name" : "Pass",
+            "Description" : "Do nothing this turn.",
+            "AnimationSheet" : "",
+            "AnimationName" : "",
+            "PositiveEffect" : false,
+            "Effects" : [],
+            "MoveConditions" : [] 
+        },
+        {
+            "Name" : "Hit",
+            "Description" : "Hit % by your stance.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" : 
+            [
+                "HitHPByStance"
+            ], 
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "#Charge#",
+            "Description" :  "#Charge up energy!#\nRaise stance by 1.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "HitStance(\"Cater\", 1)"
+            ],
+            "MoveConditions" :
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "TargetIsSelf"
+            ]
+        },
+        {
+            "Name" : "Give",
+            "Description" : "Give one pt. of Stance.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "HitStance(\"Target\", +1)",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" :
+            [
+                "Stance(\"Caster\", \">\", 1)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Take",
+            "Description" : "Take one pt. of Stance.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [
+                "HitStance(\"Target\", -1)",
+                "HitStance(\"Caster\", +1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Target\", \">\", 1)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Calm",
+            "Description" : "Lower stance to 0",       
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [
+                "ResetStance",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "Stance(\"Target\", \">\", 1)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Suck",
+            "Description" :  "Steal 1%",     
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" : 
+            [
+                "SuckHP",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Heal",
+            "Description" :  "Heal 2%",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [
+                "HitHP(+4)",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Give Enough",
+            "Description" :  "Give enough % to heal",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "GiveEnoughHP",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "Stance(\"Caster\", \">\", 1)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Fireball",
+            "Description" :  "Hit 3%",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" : 
+            [
+                "HitHP(-6)",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Encourage",
+            "Description" :  "Charge someone else up.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [ 
+                "HitStance(\"Target\", 2)"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Trade",
+            "Description" :  "Trade stance with target.",                    
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "TradeStance"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Trade%",
+            "Description" :  "Trade %s with target.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [
+                "TradeHearts",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)"
+            ]
+        },
+        {
+            "Name" : "Haunt",
+            "Description" :  "Hit 2 %s,\n(Must be Dead.)",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "HitHP(-4)"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \"==\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Darkness",
+            "Description" :  "1/5 chance to kill",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "Kill20",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Kamikaze",
+            "Description" :  "Kill target.\nBring you to 1%.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "Kamikaze",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Dive",
+            "Description" :  "KO you and target.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "AddStatus(\"Stunned\")"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "GiveLife",
+            "Description" :  "Bring back to life,\nat the cost of yours.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "GiveLife"
+            ],
+            "MoveConditions" : 
+            [
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \"==\", 0)"
+            ]
+        },
+        {
+            "Name" : "Stun",
+            "Description" :  "KO an enemy\n",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "AddStatus(\"Stunned\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Poison",
+            "Description" :  "Poison a target.",                    
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "AddStatus(\"Poisoned\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Restore",
+            "Description" :  "Heal 1/2 % each turn.",                    
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" : 
+            [
+                "AddStatus(\"Restore\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "TargetIsInSameParty"
+            ]
+        },
+        {
+            "Name" : "Antidote",
+            "Description" :  "Heal poison.",                    
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "RemoveStatus(\"Poisoned\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Has\", \"Poison\")"
+            ]
+        },
+        {
+            "Name" : "Strengthen",
+            "Description" :  "Increase attack.",                   
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "AddStatus(\"AttackUp\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Doesn'tHave\", \"AttackUp\")"
+            ]
+        },
+        {
+            "Name" : "Weaken",
+            "Description" :  "Weaken target's attack.\n",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "AddStatus(\"AttackDown\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Doesn'tHave\", \"AttackDown\")",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Bolster",
+            "Description" :  "Increase defense.",         
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "AddStatus(\"DefenseUp\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Doesn'tHave\", \"DefenseUp\")"
+            ]
+        },
+        {
+            "Name" : "Lower",
+            "Description" :  "Weaken defense.", 
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Hit",
+            "PositiveEffect" : false,
+            "Effects" :
+            [
+                "AddStatus(\"DefenseDown\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Doesn'tHave\", \"DefenseDown\")",
+                "TargetIsInDifferentParty"
+            ]
+        },
+        {
+            "Name" : "Evade",
+            "Description" :  "Will dodge next attack.",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
+            "PositiveEffect" : true,
+            "Effects" :
+            [
+                "AddStatus(\"Evade\")",
+                "HitStance(\"Caster\", -1)"
+            ],
+            "MoveConditions" : 
+            [
+                "Stance(\"Caster\", \">\", 0)",
+                "HP(\"Caster\", \">\", 0)",
+                "TargetIsSelf",
+                "HP(\"Target\", \">\", 0)",
+                "StatusEffect(\"Target\", \"Doesn'tHave\", \"Evade\")"
+            ]
+        }
+    ]
+}
+
+            

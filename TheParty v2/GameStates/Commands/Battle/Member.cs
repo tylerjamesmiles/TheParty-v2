@@ -18,10 +18,12 @@ namespace TheParty_v2
         public int MaxHunger { get; set; }
         public List<string> Moves { get; private set; }
         public List<string> MovesToLearn { get; private set; }
-        public List<StatusEffect> StatusEffects { get; private set; }
+        public List<StatusEffect> StatusEffects { get; set; }
         public string SpriteName { get; private set; }
 
-        private static readonly int StanceLimit = 5;
+        public bool GoneThisTurn { get; set; }
+
+        private static readonly int StanceLimit = 10;
 
         public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<string> moves, List<string> movesToLearn, List<StatusEffect> effects, string spriteName)
         {
@@ -59,21 +61,20 @@ namespace TheParty_v2
         public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Charged, KOd, Moves, MovesToLearn, StatusEffects, SpriteName);
 
         public List<Move> GetMoves() =>
-            Moves.ConvertAll(m => (Move)Utility.CallMethod(typeof(Move), m));
+            Moves.ConvertAll(m => GameContent.Moves[m]);
 
         public List<Move> GetMovesToLearn() =>
-            MovesToLearn.ConvertAll(m => (Move)Utility.CallMethod(typeof(Move), m));
+            MovesToLearn.ConvertAll(m => GameContent.Moves[m]);
 
-        public Member(string memberName, JsonDocument doc)
+        public Member(JsonElement Mem)
         {
-            JsonElement Mem = doc.RootElement.GetProperty(memberName);
             Name = Mem.GetProperty("Name").GetString();
             HP = Mem.GetProperty("HP").GetInt32();
-            MaxHP = 10;
+            MaxHP = Mem.GetProperty("MaxHP").GetInt32();
             Stance = Mem.GetProperty("Stance").GetInt32();
             Charged = Mem.GetProperty("Charged").GetBoolean();
-            Hunger = 2;
-            MaxHunger = 6;
+            Hunger = Mem.GetProperty("Hunger").GetInt32();
+            MaxHunger = Mem.GetProperty("MaxHunger").GetInt32();
             KOd = false;
 
             int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
@@ -95,7 +96,7 @@ namespace TheParty_v2
 
         public bool CanGo => 
             HP > 0 && 
-            Stance > 0 &&
+            !GoneThisTurn &&
             !HasEffect("Stunned");
 
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
@@ -114,20 +115,11 @@ namespace TheParty_v2
         // ~ ~ ~ ~ SETTERS ~ ~ ~ ~
         public void HitStance(int by)
         {
-            // charge
-            if (Stance == 1 && by == -1)
-            {
-                Stance = 1;
-                return;
-            }
-
             Stance += by;
-            if (Stance >= StanceLimit)
+            if (Stance > StanceLimit)
+                Stance = StanceLimit;
+            if (Stance < 0)
                 Stance = 0;
-            KOd = Stance == 0;
-
-            if (KOd)
-                StatusEffects.RemoveAll(s => s.Name == "Stunned");
         }
 
         public void HitHP(int by)

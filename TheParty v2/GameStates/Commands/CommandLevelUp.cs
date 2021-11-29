@@ -59,10 +59,20 @@ namespace TheParty_v2
                 Sprites.Add(Sprite);
 
                 int HP = ActiveMembers[member].HP;
-                Hearts.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18, false, true, ActiveMembers[member].MaxHP));
+                Hearts.Add(new HeartsIndicator(
+                    HP, 
+                    (int)Sprite.DrawPos.X, 
+                    (int)Sprite.DrawPos.Y + 18, 
+                    false, true, 
+                    ActiveMembers[member].MaxHP));
 
                 int Hunger = ActiveMembers[member].Hunger;
-                Meats.Add(new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, true));
+                Meats.Add(new HeartsIndicator(
+                    Hunger, 
+                    (int)Sprite.DrawPos.X, 
+                    (int)Sprite.DrawPos.Y + 28, 
+                    true, true,
+                    ActiveMembers[member].MaxHunger));
             }
 
             List<Vector2> Positions = Sprites.ConvertAll(s => s.DrawPos + new Vector2(0, 0));
@@ -142,14 +152,14 @@ namespace TheParty_v2
                         {
                             case 0:     // +1 max HP
                                 Selected.MaxHP += 2;
-                                Hearts[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHP;
+                                Hearts[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHP);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
                             case 1:     // +1 max Hunger
                                 Selected.MaxHunger += 2;
-                                Meats[MemberChoice.CurrentChoiceIdx].MaxHP = Selected.MaxHunger;
+                                Meats[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHunger);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
@@ -158,7 +168,7 @@ namespace TheParty_v2
                                 List<string> MoveNames = Selected.MovesToLearn;
                                 MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.Center);
 
-                                Move CurrentMove = Selected.GetMoves()[MoveChoice.CurrentChoice];
+                                Move CurrentMove = Selected.GetMovesToLearn()[MoveChoice.CurrentChoice];
                                 Description = new GUIDialogueBox(
                                     GUIDialogueBox.Position.SkinnyTop,
                                     new[] { CurrentMove.Description }, 0.01f);

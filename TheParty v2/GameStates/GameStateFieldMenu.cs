@@ -43,10 +43,17 @@ namespace TheParty_v2
                 Sprite.SetCurrentAnimation("Idle");
                 MemberSprites.Add(Sprite);
 
-                HeartsIndicator HP = new HeartsIndicator(ActiveMembers[i].HP, (int)MemberDrawPos.X + 16, (int)MemberDrawPos.Y + 32 + 4);
+                HeartsIndicator HP = new HeartsIndicator(
+                    ActiveMembers[i].HP, 
+                    (int)MemberDrawPos.X + 16, 
+                    (int)MemberDrawPos.Y + 32 + 4);
                 HPIndicators.Add(HP);
 
-                HeartsIndicator Meats = new HeartsIndicator(ActiveMembers[i].Hunger, (int)MemberDrawPos.X + 16, (int)MemberDrawPos.Y + 32 + 10, true);
+                HeartsIndicator Meats = new HeartsIndicator(
+                    ActiveMembers[i].Hunger, 
+                    (int)MemberDrawPos.X + 16, 
+                    (int)MemberDrawPos.Y + 32 + 15, 
+                    true);
                 HungerIndicators.Add(Meats);
             }
         }

@@ -1,0 +1,83 @@
+﻿{
+	"Parties" : [
+		{
+			"Name" : "PlayerParty",
+			"Members" :
+			[
+				"Hocus"
+			]
+		},
+		{
+			"Name" : "BackupParty",
+			"Members" :
+			[
+
+			]
+		},
+		{
+			"Name" : "YouDieParty",
+			"Members" :
+			[
+				"Chupasnakera",
+				"Alien",
+				"Bandit"
+			]
+		},
+		{
+			"Name" : "WorldMapParty1",
+			"Members" :
+			[
+				"Chupasnakera"
+			]
+		},
+		{
+			"Name" : "WorldMapParty2",
+			"Members" :
+			[
+				"Chupasnakera",
+				"Chupasnakera"
+			]
+		},
+		{
+			"Name" : "MountainParty1",
+			"Members" :
+			[
+				"Alien",
+				"Alien"
+			]
+		},
+		{
+			"Name" : "MountainParty2",
+			"Members" :
+			[
+				"Bandit",
+				"Bandit"
+			]
+		},
+		{
+			"Name" : "MountainParty3",
+			"Members" :
+			[
+				"Cat"
+			]
+		},
+		{
+			"Name" : "MountainParty4",
+			"Members" :
+			[
+				"Alien",
+				"Alien",
+				"Bandit"
+			]
+		},
+		{
+			"Name" : "MountainParty5",
+			"Members" :
+			[
+				"Alien",
+				"Bandit",
+				"Cat"
+			]
+		}
+	]
+}

@@ -141,9 +141,9 @@ namespace TheParty_v2
                 Frozen = false;
 
                 if (name == "Coin")
-                    AnimatedSprite = new AnimatedSprite2D("Coin", new Point(16, 16), Pos, new Vector2(0, 0));
+                    AnimatedSprite = new AnimatedSprite2D("Coin", new Point(16, 16), Pos, new Vector2(-8, -8));
                 else if (name == "Food")
-                    AnimatedSprite = new AnimatedSprite2D("MeatField", new Point(16, 16), Pos, new Vector2(0, 0));
+                    AnimatedSprite = new AnimatedSprite2D("MeatField", new Point(16, 16), Pos, new Vector2(-8, -8));
 
                 AnimatedSprite.AddAnimation("Loop", 0, 8, 0.15f);
                 AnimatedSprite.SetCurrentAnimation("Loop");

@@ -52,7 +52,15 @@ namespace TheParty_v2
            
         }
 
-        public void SetStance(int newStance)
+        public void HardSet(int newStance)
+        {
+            Moving = false;
+            Reached = true;
+            CurrentStance = newStance;
+            CurrentFrame = CurrentStance * 4;
+        }
+
+        public void SetTarget(int newStance)
         {
             if (newStance != CurrentStance)
             {
