@@ -1,0 +1,91 @@
+﻿{
+	"StatusEffects" : [
+
+        {
+            "Name" : "Poison",
+            "SpriteAnimation" : "NegativeHit",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Poison",
+            "EveryTurnEffects" : 
+            [
+                "HitHP(-1)"
+            ],
+            "NumTurnsRemaining" : 3
+        }, 
+        {
+            "Name" : "Restore",
+            "SpriteAnimation" : "PositiveHit",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Charge",
+            "EveryTurnEffects" : 
+            [
+                "HitHP(-1)"
+            ],
+            "NumTurnsRemaining" : 5
+        },    
+        {
+            "Name" : "Convicted",
+            "SpriteAnimation" : "NegativeHit",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Stunned",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 5
+        }, 
+        {
+            "Name" : "CantCharge",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "",
+            "AnimationName" : "",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 3
+        }, 
+        {
+            "Name" : "Evade",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Evade",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 999
+        },  
+        {
+            "Name" : "Stunned",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Stunned",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 2
+        },     
+        {
+            "Name" : "AttackUp",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "",
+            "AnimationName" : "",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 5
+        },   
+        {
+            "Name" : "AttackDown",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "",
+            "AnimationName" : "",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 5
+        }, 
+        {
+            "Name" : "DefenseUp",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "StatusAnimations",
+            "AnimationName" : "Defense Up",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 5
+        },  
+        {
+            "Name" : "DefenseDown",
+            "SpriteAnimation" : "",
+            "AnimationSheet" : "",
+            "AnimationName" : "",
+            "EveryTurnEffects" : [],
+            "NumTurnsRemaining" : 5
+        }
+	]
+}

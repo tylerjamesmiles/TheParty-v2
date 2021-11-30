@@ -18,29 +18,29 @@
             "PositiveEffect" : false,
             "Effects" : 
             [
-                "HitHPByStance"
+                "HitHPByStance()"
             ], 
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
-            "Name" : "#Charge#",
+            "Name" : "Charge",
             "Description" :  "#Charge up energy!#\nRaise stance by 1.",
             "AnimationSheet" : "HitAnimations",
             "AnimationName" : "Charge",
             "PositiveEffect" : true,
             "Effects" :
             [
-                "HitStance(\"Cater\", 1)"
+                "HitStance(Caster, 1)"
             ],
             "MoveConditions" :
             [
-                "HP(\"Caster\", \">\", 0)",
-                "TargetIsSelf"
+                "HP(Caster, >, 0)",
+                "Is(Target, Self)"
             ]
         },
         {
@@ -51,14 +51,14 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "HitStance(\"Target\", +1)",
-                "HitStance(\"Caster\", -1)"
+                "HitStance(Target, +1)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" :
             [
-                "Stance(\"Caster\", \">\", 1)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "Stance(Caster, >, 1)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -69,14 +69,14 @@
             "PositiveEffect" : true,
             "Effects" : 
             [
-                "HitStance(\"Target\", -1)",
-                "HitStance(\"Caster\", +1)"
+                "HitStance(Target, -1)",
+                "HitStance(Caster, +1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Target\", \">\", 1)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "Stance(Target, >, 1)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -87,14 +87,14 @@
             "PositiveEffect" : true,
             "Effects" : 
             [
-                "ResetStance",
-                "HitStance(\"Caster\", -1)"
+                "ResetStance(Target)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "Stance(\"Target\", \">\", 1)",
-                "HP(\"Target\", \">\", 0)"
+                "HP(Caster, >, 0)",
+                "Stance(Target, >, 1)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -105,15 +105,16 @@
             "PositiveEffect" : false,
             "Effects" : 
             [
-                "SuckHP",
-                "HitStance(\"Caster\", -1)"
+                "HitHP(Target, -2)",
+                "HitHP(Caster, +2)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -125,13 +126,13 @@
             "Effects" : 
             [
                 "HitHP(+4)",
-                "HitStance(\"Caster\", -1)"
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -142,14 +143,14 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "GiveEnoughHP",
-                "HitStance(\"Caster\", -1)"
+                "GiveEnoughHP()",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "Stance(\"Caster\", \">\", 1)",
-                "HP(\"Target\", \">\", 0)"
+                "HP(Caster, >, 0)",
+                "Stance(Caster, >, 1)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -161,14 +162,14 @@
             "Effects" : 
             [
                 "HitHP(-6)",
-                "HitStance(\"Caster\", -1)"
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -179,12 +180,12 @@
             "PositiveEffect" : true,
             "Effects" : 
             [ 
-                "HitStance(\"Target\", 2)"
+                "HitStance(Target, 2)"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -195,12 +196,12 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "TradeStance"
+                "TradeStance()"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -211,14 +212,14 @@
             "PositiveEffect" : true,
             "Effects" : 
             [
-                "TradeHearts",
-                "HitStance(\"Caster\", -1)"
+                "TradeHP()",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)"
             ]
         },
         {
@@ -233,9 +234,9 @@
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \"==\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "HP(Caster, ==, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -246,15 +247,15 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "Kill20",
-                "HitStance(\"Caster\", -1)"
+                "KillChance(Target, 20)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -265,15 +266,16 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "Kamikaze",
-                "HitStance(\"Caster\", -1)"
+                "Kill(Target)",
+                "SetStance(Caster, 1)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -284,13 +286,13 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(\"Stunned\")"
+                "AddStatus(Target, Stunned)"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -301,12 +303,13 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "GiveLife"
+                "Kill(Caster)",
+                "HitHP(Target, +10)"
             ],
             "MoveConditions" : 
             [
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \"==\", 0)"
+                "HP(Caster, >, 0)",
+                "HP(Target, ==, 0)"
             ]
         },
         {
@@ -317,15 +320,15 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(\"Stunned\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, Stunned)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -336,15 +339,15 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(\"Poisoned\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, Poisoned)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -355,15 +358,15 @@
             "PositiveEffect" : true,
             "Effects" : 
             [
-                "AddStatus(\"Restore\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, Restore)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "TargetIsInSameParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "Is(Target, InSameParty)"
             ]
         },
         {
@@ -374,15 +377,15 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "RemoveStatus(\"Poisoned\")",
-                "HitStance(\"Caster\", -1)"
+                "RemoveStatus(Poisoned)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Has\", \"Poison\")"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Has, Poison)"
             ]
         },
         {
@@ -393,15 +396,15 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "AddStatus(\"AttackUp\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, AttackUp)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Doesn'tHave\", \"AttackUp\")"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Doesn'tHave, AttackUp)"
             ]
         },
         {
@@ -412,16 +415,16 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(\"AttackDown\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, AttackDown)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Doesn'tHave\", \"AttackDown\")",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Doesn'tHave, AttackDown)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -432,15 +435,15 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "AddStatus(\"DefenseUp\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, DefenseUp)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Doesn'tHave\", \"DefenseUp\")"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Doesn'tHave, DefenseUp)"
             ]
         },
         {
@@ -451,16 +454,16 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(\"DefenseDown\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, DefenseDown)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Doesn'tHave\", \"DefenseDown\")",
-                "TargetIsInDifferentParty"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Doesn'tHave, DefenseDown)",
+                "Is(Target, InDifferentParty)"
             ]
         },
         {
@@ -471,16 +474,16 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "AddStatus(\"Evade\")",
-                "HitStance(\"Caster\", -1)"
+                "AddStatus(Target, Evade)",
+                "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
             [
-                "Stance(\"Caster\", \">\", 0)",
-                "HP(\"Caster\", \">\", 0)",
-                "TargetIsSelf",
-                "HP(\"Target\", \">\", 0)",
-                "StatusEffect(\"Target\", \"Doesn'tHave\", \"Evade\")"
+                "Stance(Caster, >, 0)",
+                "HP(Caster, >, 0)",
+                "Is(Target, Self)",
+                "HP(Target, >, 0)",
+                "StatusEffect(Target, Doesn'tHave, Evade)"
             ]
         }
     ]

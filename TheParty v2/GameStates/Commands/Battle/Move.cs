@@ -36,9 +36,7 @@ namespace TheParty_v2
         public static string InvalidMoveName = "Invalid";
 
         public bool ValidOnMember(Battle state, Targeting targeting)
-        {
-            
-        }
+            => MoveConditions.TrueForAll(c => Battle.CheckCondition(c, state, targeting));
 
         public bool ValidOnAnyone(Battle state, int fromPartyIdx, int fromMemberIdx)
             => state.AllTargetingFor(fromPartyIdx, fromMemberIdx).Exists(t => ValidOnMember(state, t));

@@ -100,129 +100,158 @@ namespace TheParty_v2
             => move.Effects.ForEach(e => DoEffect(e, From(t), To(t)));
 
 
-        // ~ ~ ~ ~ MOVE EFFECTS ~ ~ ~ ~
-
-        private static void DoEffect(string effect, Member from, Member to)
+        // ~ ~ ~ ~ MOVE EFFECTS ~ ~ ~ ~\
+        public static void DoEffect(string effect, Member from, Member to)
         {
+            string Effect = effect.Remove(effect.IndexOf('('));
+            string ParamsWithParen = effect.Remove(0, Effect.Length);
+            string ParamsNoFirstParen = ParamsWithParen.Remove(0, 1);
+            string ParamsNoLastParen = ParamsNoFirstParen.Remove(ParamsWithParen.Length - 2, 1);
+            List<string> Arguments = new List<string>(ParamsNoLastParen.Split(','));
+            Arguments.ForEach(a => a = a.Trim());
 
-        }
+            // All Effect parameters are:
+            //      name(?target, ?amt)
 
+            Member Target = 
+                Arguments.Count > 0 ? 
+                    Arguments[0] == "Caster" ? from : to : 
+                    null;
+            int Amt = 
+                Arguments.Count > 1 ? 
+                    int.Parse(Arguments[1]) : 0;
 
-        // STANCE - - -
-
-        // for convenience
-        private static void HitTargetStance(Member target, int amt)
-        {
-            if (!target.HasEffect("Evade"))
-                target.HitStance(amt);
-            else
-                target.RemoveStatusEffect("Evade");
-        }
-        public static Action<Member, Member> HitStance(string member, int amt)
-        {
-            if (member == "Caster") 
-                return (from, to) => HitTargetStance(from, amt);
-            else 
-                return (from, to) => HitTargetStance(to, amt);
-        }
-        public static void HitHPByStance(Member from, Member to) => HitHP(from, to, -(from.Stance * 2 + to.Stance));
-        public static void Give1Stance(Member from, Member to) { from.HitStance(-1); to.HitStance(+1); }
-        public static void Take1Stance(Member from, Member to) { from.HitStance(+1); to.HitStance(-1); }
-        public static void ResetStance(Member from, Member to) { to.Stance = 1; }
-        public static void TradeStance(Member from, Member to)
-        {
-            int Temp = to.Stance;
-            to.Stance = from.Stance;
-            from.Stance = Temp;
-        }
-
-        // STATUS - - -
-        public static Action<Member, Member> AddStatus(string name) =>
-            new Action<Member, Member>((from, to) => to.AddStatusEffect(name));
-        public static Action<Member, Member> RemoveStatus(string name) =>
-            new Action<Member, Member>((from, to) => to.RemoveStatusEffect(name));
-       
-
-        // HP - - -
-        private static void HitHP(Member from, Member to, int amt)
-        {
-            int Amt = amt;
-
-            if (to.HasEffect("Evade"))
+            switch (Effect)
             {
-                to.RemoveStatusEffect("Evade");
-                return;
+                case "SetStance":
+                    Target.Stance = 1;
+                    break;
+
+                case "HitStance":
+                    Target.HitStance(Amt);
+                    break;
+
+                case "ResetStance":
+                    Target.Stance = 0;
+                    break;
+
+                case "TradeStance":
+                    int FromsStance = from.Stance;
+                    from.Stance = to.Stance;
+                    to.Stance = FromsStance;
+                    break;
+
+                case "GiveEnoughHP":
+                    int GiveAmt = to.MaxHP - to.HP;
+                    from.HitHP(-GiveAmt);
+                    to.HitHP(+GiveAmt);
+                    break;
+
+                case "TradeHP":
+                    int FromsHP = from.HP;
+                    from.HP = to.HP;
+                    to.HP = FromsHP;
+                    break;
+
+                case "HitHPByStance":
+                    int HitAmt = -(from.Stance * 2 + to.Stance);
+                    to.HitHP(HitAmt);
+                    break;
+
+                case "Kill":
+                    Target.HitHP(-Target.HP);
+                    break;
+                
+                case "KillChance":
+                    if (new Random().Next(100) < Amt)
+                        Target.HitHP(-Target.HP);
+                    break;
+
+                case "AddStatus":
+                    Target.AddStatusEffect(Arguments[1]);
+                    break;
+
+                case "RemoveStatus":
+                    Target.RemoveStatusEffect(Arguments[1]);
+                    break;
+
+                default:
+                    throw new Exception("Effect Keyword " + Effect + " not recognized.");
             }
-            if (from.HasEffect("AttackUp"))
+        }
+
+        public static bool CheckCondition(string condition, Battle state, Targeting targeting)
+        {
+            string Condition = condition.Remove(condition.IndexOf('('));
+            string ParamsWithParen = condition.Remove(0, Condition.Length);
+            string ParamsNoFirstParen = ParamsWithParen.Remove(0, 1);
+            string ParamsNoLastParen = ParamsNoFirstParen.Remove(ParamsWithParen.Length - 2, 1);
+            List<string> Arguments = new List<string>(ParamsNoLastParen.Split(','));
+
+            Member From = state.From(targeting);
+            Member To = state.To(targeting);
+            Member Target =
+                Arguments.Count > 0 ?
+                    Arguments[0] == "Caster" ? From : To :
+                    null;
+
+            switch (Condition)
             {
-                Amt *= 2;
-                //from.RemoveStatusEffect("AttackUp");
+                case "HP":
+                    int HPAmt = int.Parse(Arguments[2]);
+                    switch (Arguments[1].Trim())
+                    {
+                        case "<": return Target.HP < HPAmt; 
+                        case ">": return Target.HP > HPAmt; 
+                        case "<=": return Target.HP <= HPAmt; 
+                        case ">=": return Target.HP >= HPAmt; 
+                        case "==": return Target.HP == HPAmt; 
+                        case "!=": return Target.HP != HPAmt;
+                        default: throw new Exception("Sign " + Arguments[1] + " is not valid.");
+                    }
+
+                case "Stance":
+                    int StanceAmt = int.Parse(Arguments[2]);
+                    switch (Arguments[1].Trim())
+                    {
+                        case "<": return Target.Stance < StanceAmt;
+                        case ">": return Target.Stance > StanceAmt;
+                        case "<=": return Target.Stance <= StanceAmt;
+                        case ">=": return Target.Stance >= StanceAmt;
+                        case "==": return Target.Stance == StanceAmt;
+                        case "!=": return Target.Stance != StanceAmt;
+                        default: throw new Exception("Sign " + Arguments[1] + " is not valid.");
+                    }
+
+                case "Is":
+                    switch (Arguments[1].Trim())
+                    {
+                        case "Self":
+                            return targeting.FromPartyIdx == targeting.ToPartyIdx &&
+                                targeting.FromMemberIdx == targeting.ToMemberIdx;
+                        case "Other":
+                            return targeting.FromPartyIdx != targeting.ToPartyIdx ||
+                                targeting.FromMemberIdx != targeting.ToMemberIdx;
+                        case "InSameParty":
+                            return targeting.FromPartyIdx == targeting.ToPartyIdx;
+                        case "InDifferentParty":
+                            return targeting.FromPartyIdx != targeting.ToPartyIdx;
+                        default: throw new Exception("Condition " + Arguments[1] + " is not valid.");
+                    }
+
+                case "StatusEffect":
+                    switch (Arguments[1].Trim())
+                    {
+                        case "Has": return Target.HasEffect(Arguments[2].Trim());
+                        case "Doesn'tHave": return !Target.HasEffect(Arguments[2].Trim());
+                        default: throw new Exception("Keyword " + Arguments[1].Trim() + " is not valid.");
+                    }
+
+                default:
+                    throw new Exception("Keyword " + Condition + " is not valid.");
             }
-            if (from.HasEffect("AttackDown"))
-            {
-                Amt /= 2;
-                //from.RemoveStatusEffect("AttackDown");
-            }
-            if (to.HasEffect("DefenseUp"))
-            {
-                Amt /= 2;
-
-                if (to.HP == 3)
-                    Amt = 1;
-
-                if (to.HP == 2)
-                    Amt = 0;
-
-                //to.RemoveStatusEffect("DefenseUp");
-            }
-            if (to.HasEffect("DefenseDown"))
-            {
-                Amt *= 2;
-                //to.RemoveStatusEffect("DefenseDown");
-            }
-
-            to.HitHP(Amt);
-
         }
 
-        public static void TradeHearts(Member from, Member to)
-        {
-            int FromHP = from.HP;
-            from.HP = to.HP;
-            to.HP = FromHP;
-        }
-
-        public static Action<Member, Member> HitHP(int amt) => (from, to) => HitHP(from, to, amt);
-
-        public static void GiveEnoughHP(Member from, Member to)
-        {
-            int Amt = 10 - to.HP;
-            from.HitHP(-Amt);
-            to.HitHP(+Amt);
-        }
-        public static void SuckHP(Member from, Member to)
-        {
-            from.HP += 2;
-            to.HitHP(-2);
-        }
-        public static void GiveLife(Member from, Member to)
-        {
-            from.HitHP(-from.HP);
-            to.HitHP(+10);
-        }
-
-        // KILL - - -
-        public static void Kill20(Member from, Member to)
-        {
-            if (new Random().NextDouble() > 1 - 0.2)
-                to.HitHP(-to.HP);
-        }
-        public static void Kamikaze(Member from, Member to)
-        {
-            to.HitHP(-to.HP);
-            if (from.HP > 2)
-                from.HP = 2;
-        }
 
         // ~ ~ ~ ~ MOVE CONDITIONS ~ ~ ~ ~
 
