@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDawgFighter.png</SourceFile>
-  <SourceTime>2021-10-20T12:13:24.4356919-05:00</SourceTime>
+  <SourceTime>2021-11-28T10:32:41.914013-06:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/DirtDawgFighter.xnb</DestFile>
-  <DestTime>2021-10-20T14:01:35.8394756-05:00</DestTime>
+  <DestTime>2021-11-30T10:32:28.2183051-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

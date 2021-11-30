@@ -38,7 +38,6 @@ namespace TheParty_v2
 
         public int NumMembers => Members.Count;
         public int NumAlertMembers => Members.FindAll(m => m.CanGo).Count;
-        public bool IsKOd => Members.TrueForAll(m => m.KOd);
         public bool IsDead => Members.TrueForAll(m => m.HP == 0);
 
 

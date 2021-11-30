@@ -10,6 +10,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultWomanBase1.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultWomanBase2.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AlienFighter.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AttackIcon.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/BanditFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/basictiles.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Black.png</File>
@@ -64,6 +65,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

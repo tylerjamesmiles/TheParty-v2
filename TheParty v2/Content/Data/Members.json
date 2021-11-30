@@ -7,15 +7,11 @@
 			"MaxHP" : 10,	
 			"Hunger" : 0,
 			"MaxHunger" : 0,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Evade", "Calm"
 			],
-			"MovesToLearn" : [
-			
-			]
+			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Bandit",
@@ -24,15 +20,11 @@
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Evade", "Take"
 			],
-			"MovesToLearn" : [
-			
-			]
+			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Cat",
@@ -41,15 +33,11 @@
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Evade", "Fireball", "Poison"
 			],
-			"MovesToLearn" : [
-			
-			]
+			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Chupasnakera",
@@ -58,15 +46,11 @@
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Evade"
 			],
-			"MovesToLearn" : [
-			
-			]
+			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Crystal",
@@ -75,9 +59,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help", "Poison", "Pass"
 			],
@@ -92,9 +74,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Pass"
 			],
@@ -109,9 +89,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help",  "Restore", "Pass"
 			],
@@ -126,9 +104,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help", "Trade", "Pass"
 			],
@@ -143,9 +119,7 @@
 			"MaxHP" : 6,
 			"Hunger" : 1,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "Stick",
 			"Moves" : [
 				"Hit", "Charge", "Pass"
 			],
@@ -154,30 +128,13 @@
 			]
 		},
 		{
-			"Name" : "Mercenary",
-			"SpriteName" : "DirtDawgFighter",
-			"HP" : 10,
-			"MaxHP" : 10,
-			"Hunger" : 5,
-			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
-			"Moves" : [
-				"Hit", "Charge"
-			],
-			"MovesToLearn" : []
-		},
-		{
 			"Name" : "Pious",
 			"SpriteName" : "PiousFighter",
 			"HP" : 5,
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help", "Bolster", "Pass"
 			],
@@ -192,9 +149,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help", "Haunt", "Pass"
 			],
@@ -209,9 +164,7 @@
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
-			"Stance" : 1,
-			"Charged" : false,
-			"KOdFor" : 0,
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Help", "Punch", "Pass"
 			],

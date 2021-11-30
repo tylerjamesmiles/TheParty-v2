@@ -117,8 +117,9 @@ namespace TheParty_v2
                 Arguments.Count > 0 ? 
                     Arguments[0] == "Caster" ? from : to : 
                     null;
+            int x;
             int Amt = 
-                Arguments.Count > 1 ? 
+                Arguments.Count > 1 && int.TryParse(Arguments[1], out x) ?
                     int.Parse(Arguments[1]) : 0;
 
             switch (Effect)
@@ -154,8 +155,8 @@ namespace TheParty_v2
                     break;
 
                 case "HitHPByStance":
-                    int HitAmt = -(from.Stance * 2 + to.Stance);
-                    to.HitHP(HitAmt);
+                    int HitAmt = from.StanceWAttackBonus + to.StanceWDefenseBonus;
+                    to.HitHP(-HitAmt);
                     break;
 
                 case "Kill":

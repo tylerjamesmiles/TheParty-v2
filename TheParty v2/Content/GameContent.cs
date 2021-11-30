@@ -9,12 +9,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace TheParty_v2
 {
-    struct JsonSwitches { public Dictionary<string, bool> Switches; }
-    struct JsonVariables { public Dictionary<string, int> Variables; }
-
     static class GameContent
     {
         public static Dictionary<string, Texture2D> Sprites;
@@ -26,6 +24,8 @@ namespace TheParty_v2
         public static Dictionary<string, Party> Parties;
         public static Dictionary<string, Battle> Battles;
         public static Dictionary<string, Move> Moves;
+        public static Dictionary<string, Equipment> Equipment;
+        public static Dictionary<string, StatusEffect> StatusEffects;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
         public static List<int> ErasedEntities;
@@ -133,6 +133,18 @@ namespace TheParty_v2
                 string Name = MovesArray[i].GetProperty("Name").GetString();
                 Moves.Add(Name, new Move(MovesArray[i]));
             }
+
+            Equipment = new Dictionary<string, Equipment>();
+            string EquipmentString = File.ReadAllText("../../../Content/Data/Equipment.json");
+            var EquipmentList = JsonConvert.DeserializeObject<List<Equipment>>(EquipmentString);
+            foreach (var item in EquipmentList)
+                Equipment.Add(item.Name, item);
+
+            StatusEffects = new Dictionary<string, StatusEffect>();
+            string StatusString = File.ReadAllText("../../../Content/Data/StatusEffects.json");
+            var StatusList = JsonConvert.DeserializeObject<List<StatusEffect>>(StatusString);
+            foreach (var item in StatusList)
+                StatusEffects.Add(item.Name, item);
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();

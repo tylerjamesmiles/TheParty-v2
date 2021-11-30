@@ -12,15 +12,16 @@ namespace TheParty_v2
         StanceIndicator TargetStance;
         StanceIndicator ResultStance;
         HeartsIndicator TargetHearts;
+        string FromBonusText;
         LerpV FromStanceLerp;
-        LerpV From2XLerp;
+        LerpV BonusLerp;
         LerpV TargetStanceLerp;
         Timer WaitTimer;
         LerpV ResultLerp;
-        Vector2 From2xPos;
+        Vector2 FromBonusPos;
         Vector2 FromStartPos;
         Vector2 TargetStartPos;
-        Vector2 PlusSignPos;
+        Vector2 BonusPos;
         Vector2 TargetHeartsPos;
         Vector2 WindupSpot;
 
@@ -30,32 +31,33 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             FromStance = new StanceIndicator(client.FromMember.Stance, client.StanceIndicators[client.FromSpriteIdx].DrawPos);
-            int Doubled = client.FromMember.Stance * 2;
+            int NewAttackAmt = client.FromMember.StanceWAttackBonus;
             FromStance.HardSet(client.FromMember.Stance);
-            FromStance.SetTarget(Doubled);  // sets target
+            FromStance.SetTarget(NewAttackAmt);  // sets target
 
             TargetStance = client.StanceIndicators[client.TargetSpriteIdx];
 
             FromStartPos = FromStance.DrawPos;
             TargetStartPos = TargetStance.DrawPos;
 
-            From2xPos = FromStartPos + new Vector2(-8, -16);
-            From2XLerp = new LerpV(From2xPos, FromStartPos, 0.1f);
+            FromBonusText = "+" + client.FromMember.Equipped.Bonus("Attack").ToString();
+            FromBonusPos = FromStartPos + new Vector2(-8, -16);
+            BonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
 
-            PlusSignPos = (FromStartPos + TargetStartPos) / 2;
+            BonusPos = (FromStartPos + TargetStartPos) / 2;
 
-            int NewStance = Doubled + client.ToMember.Stance;
+            int NewStance = NewAttackAmt + client.ToMember.Stance;
             if (NewStance > 10)
                 NewStance = 10;
 
-            ResultStance = new StanceIndicator(0, PlusSignPos);
+            ResultStance = new StanceIndicator(0, BonusPos);
             ResultStance.HardSet(NewStance);
 
             
 
             TargetHearts = client.HPIndicators[client.TargetSpriteIdx];
             TargetHeartsPos = client.Sprites[client.TargetSpriteIdx].DrawPos + new Vector2(0, 16);
-            WindupSpot = PlusSignPos + ((PlusSignPos - TargetHeartsPos) * 0.3f);
+            WindupSpot = BonusPos + ((BonusPos - TargetHeartsPos) * 0.3f);
 
             WaitTimer = new Timer(0.3f);
 
@@ -75,9 +77,9 @@ namespace TheParty_v2
                     break;
 
                 case State.DoubleCollide:
-                    From2XLerp.Update(deltaTime);
-                    From2xPos = From2XLerp.CurrentPosition;
-                    if (From2XLerp.Reached)
+                    BonusLerp.Update(deltaTime);
+                    FromBonusPos = BonusLerp.CurrentPosition;
+                    if (BonusLerp.Reached)
                     {
                         AnimationState = State.Double;
                     }
@@ -120,8 +122,8 @@ namespace TheParty_v2
 
                     if (WaitTimer.TicsSoFar > 1)
                     {
-                        FromStanceLerp = new LerpV(FromStance.DrawPos, PlusSignPos, 0.1f);
-                        TargetStanceLerp = new LerpV(TargetStance.DrawPos, PlusSignPos, 0.1f);
+                        FromStanceLerp = new LerpV(FromStance.DrawPos, BonusPos, 0.1f);
+                        TargetStanceLerp = new LerpV(TargetStance.DrawPos, BonusPos, 0.1f);
                         AnimationState = State.Collide;
                     }
                     break;
@@ -180,7 +182,11 @@ namespace TheParty_v2
             if (AnimationState == State.Show ||
                 AnimationState == State.DoubleCollide)
             {
-                spriteBatch.Draw(GameContent.Sprites["2x"], new Rectangle(From2xPos.ToPoint(), new Point(16, 16)), Color.White);
+                spriteBatch.DrawString(
+                    GameContent.Font,
+                    FromBonusText,
+                    FromBonusPos,
+                    Color.White);
             }
 
             if (AnimationState == State.Show ||
@@ -192,7 +198,7 @@ namespace TheParty_v2
             {
                 FromStance.Draw(spriteBatch);
                 TargetStance.Draw(spriteBatch);
-                spriteBatch.Draw(GameContent.Sprites["PlusSign"], new Rectangle(PlusSignPos.ToPoint(), new Point(6, 6)), Color.White);
+                spriteBatch.Draw(GameContent.Sprites["PlusSign"], new Rectangle(BonusPos.ToPoint(), new Point(6, 6)), Color.White);
             }
 
             else if (AnimationState == State.ShowResult ||

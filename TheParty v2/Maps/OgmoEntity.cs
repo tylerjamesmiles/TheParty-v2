@@ -122,7 +122,6 @@ namespace TheParty_v2
         public bool ManualExists;
         public bool Exists => IExist();
 
-        public Timer CanInteractTimer;
         float MinInteractDist;
 
         public int EntityId;

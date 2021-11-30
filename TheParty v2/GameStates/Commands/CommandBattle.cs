@@ -18,7 +18,6 @@ namespace TheParty_v2
         public int StatusCounter;
         public StateMachine<CommandBattle> StateMachine;
 
-        public GUIChoiceBox FightOrFlee;
         public GUIChoice MemberChoice;
         public GUIChoiceBox MoveChoice;
         public GUIChoice TargetChoice;
@@ -78,8 +77,6 @@ namespace TheParty_v2
                 List<Member> AllMembers = CurrentStore.AllMembers();
                 string Animation = 
                     AllMembers[s].HP <= 0 ? "Dead" :
-                    AllMembers[s].KOd ? "KOd" : 
-                    AllMembers[s].Charged ? "Charged" :
                     "Idle";
 
                 Sprites[s].SetCurrentAnimation(Animation);
@@ -146,8 +143,6 @@ namespace TheParty_v2
             foreach (Member member in CurrentStore.AllMembers())
             {
                 member.Stance = 1;
-                member.Charged = false;
-                member.KOd = false;
                 member.StatusEffects = new List<StatusEffect>();
             }
 

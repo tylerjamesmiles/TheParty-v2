@@ -12,20 +12,19 @@ namespace TheParty_v2
         public int HP { get; set; } // 0 - 10
         public int MaxHP { get; set; }
         public int Stance { get; set; }
-        public bool Charged { get; set; }
-        public bool KOd { get; set; }
         public int Hunger { get; set; }
         public int MaxHunger { get; set; }
         public List<string> Moves { get; private set; }
         public List<string> MovesToLearn { get; private set; }
+        public string EquippedName { get; private set; }
         public List<StatusEffect> StatusEffects { get; set; }
         public string SpriteName { get; private set; }
-
         public bool GoneThisTurn { get; set; }
 
         private static readonly int StanceLimit = 10;
 
-        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<string> moves, List<string> movesToLearn, List<StatusEffect> effects, string spriteName)
+
+        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, List<StatusEffect> effects, string spriteName)
         {
             Name = name;
             HP = hp;
@@ -33,16 +32,15 @@ namespace TheParty_v2
             Stance = stance;
             Hunger = hunger;
             MaxHunger = maxHunger;
-            Charged = charged;
-            KOd = kod;
             Moves = moves;
             MovesToLearn = movesToLearn;
+            EquippedName = equipped;
             StatusEffects = new List<StatusEffect>(effects);
             SpriteName = spriteName;
         }
 
         [JsonConstructor]
-        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, bool charged, bool kod, List<string> moves, List<string> movesToLearn, string spriteName)
+        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, string spriteName)
         {
             Name = name;
             HP = hp;
@@ -50,15 +48,14 @@ namespace TheParty_v2
             Stance = stance;
             Hunger = hunger;
             MaxHunger = maxHunger;
-            Charged = charged;
-            KOd = kod;
             Moves = moves;
             MovesToLearn = movesToLearn;
+            EquippedName = equipped;
             StatusEffects = new List<StatusEffect>();
             SpriteName = spriteName;
         }
 
-        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Charged, KOd, Moves, MovesToLearn, StatusEffects, SpriteName);
+        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Moves, MovesToLearn, EquippedName, StatusEffects, SpriteName);
 
         public List<Move> GetMoves() =>
             Moves.ConvertAll(m => GameContent.Moves[m]);
@@ -71,11 +68,10 @@ namespace TheParty_v2
             Name = Mem.GetProperty("Name").GetString();
             HP = Mem.GetProperty("HP").GetInt32();
             MaxHP = Mem.GetProperty("MaxHP").GetInt32();
-            Stance = Mem.GetProperty("Stance").GetInt32();
-            Charged = Mem.GetProperty("Charged").GetBoolean();
+            Stance = 1;
             Hunger = Mem.GetProperty("Hunger").GetInt32();
             MaxHunger = Mem.GetProperty("MaxHunger").GetInt32();
-            KOd = false;
+            EquippedName = Mem.GetProperty("Equipped").GetString();
 
             int NumMoves = Mem.GetProperty("Moves").GetArrayLength();
             Moves = new List<string>();
@@ -100,6 +96,11 @@ namespace TheParty_v2
             !HasEffect("Stunned");
 
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
+        public Equipment Equipped => GameContent.Equipment[EquippedName];
+
+        public int StanceWAttackBonus => Equipped.StatWithBonus("Attack", Stance);
+        public int StanceWDefenseBonus => Equipped.StatWithBonus("Defense", Stance);
+
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
         {
             List<MemberMove> Result = new List<MemberMove>();
@@ -133,7 +134,7 @@ namespace TheParty_v2
 
         public void AddStatusEffect(string effectName)
         {
-            StatusEffect Effect = (StatusEffect)Utility.CallMethod(typeof(StatusEffect), effectName);
+            StatusEffect Effect = GameContent.StatusEffects[effectName].DeepCopy();
             StatusEffects.Add(Effect);
         }
 
