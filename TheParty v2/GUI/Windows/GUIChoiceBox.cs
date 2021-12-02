@@ -62,6 +62,10 @@ namespace TheParty_v2
                 if (CollumnSize.Y > TextSize.Y)
                     TextSize.Y = CollumnSize.Y;
             }
+            if (TextSize.X < 40)
+                TextSize.X = 40;
+            if (TextSize.Y < 16)
+                TextSize.Y = 16;
 
             Vector2 TextTL =
                 position == Position.Center ? ScreenCenter - TextSize / 2 :
@@ -84,7 +88,15 @@ namespace TheParty_v2
                 }
 
             Point BoxLoc = TextTL.ToPoint() + new Point(-4, -4);
+            if (BoxLoc.X > 120)
+                BoxLoc.X = 120;
+            if (BoxLoc.Y > 126)
+                BoxLoc.Y = 126;
             Point BoxSize = TextSize.ToPoint() + new Point(8, 8);
+            if (BoxSize.X < 40)
+                BoxSize.X = 40;
+            if (BoxSize.Y < 16)
+                BoxSize.Y = 16;
             Rectangle BoxBounds = new Rectangle(BoxLoc, BoxSize);
             Box = new GUIBox(BoxBounds);
 

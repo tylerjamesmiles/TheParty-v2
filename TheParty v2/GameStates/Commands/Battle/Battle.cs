@@ -142,6 +142,10 @@ namespace TheParty_v2
                     to.Stance = FromsStance;
                     break;
 
+                case "HitHP":
+                    to.HitHP(Amt);
+                    break;
+
                 case "GiveEnoughHP":
                     int GiveAmt = to.MaxHP - to.HP;
                     from.HitHP(-GiveAmt);
@@ -169,11 +173,11 @@ namespace TheParty_v2
                     break;
 
                 case "AddStatus":
-                    Target.AddStatusEffect(Arguments[1]);
+                    Target.AddStatusEffect(Arguments[1].Trim());
                     break;
 
                 case "RemoveStatus":
-                    Target.RemoveStatusEffect(Arguments[1]);
+                    Target.RemoveStatusEffect(Arguments[1].Trim());
                     break;
 
                 default:

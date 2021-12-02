@@ -70,8 +70,13 @@ namespace TheParty_v2
                         break;
 
                     case "move":
-                        ResultList.Add(new CommandFollowPath(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
+                        if (Arguments[0] == "Player")
+                            ResultList.Add(new CommandMovePlayer(Arguments[1]));
+                        else
+                            ResultList.Add(new CommandMoveEntity(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
+
+                    
 
                     case "playanimation":
                         ResultList.Add(new CommandPlayAnimation(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1], Arguments[2]));
@@ -98,7 +103,7 @@ namespace TheParty_v2
                         break;
 
                     case "face":
-                        ResultList.Add(new CommandFace(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
+                            ResultList.Add(new CommandFace(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
 
                     case "faceplayer":
@@ -168,6 +173,20 @@ namespace TheParty_v2
                         ResultList.Add(new CommandCollectAnimation(game.Player.Transform.Position, Arguments[0]));
                         break;
 
+                    case "additem":
+                        ResultList.Add(new CommandAddItem(Arguments[0]));
+                        break;
+
+                    case "chest":
+                        ResultList.Add(new CommandFace(caller, "Down"));
+                        ResultList.Add(new CommandWait(0.2f));
+                        ResultList.Add(new CommandFace(caller, "Left"));
+                        ResultList.Add(new CommandWait(0.2f));
+                        ResultList.Add(new CommandAddItem(Arguments[0]));
+                        ResultList.Add(new CommandDialogue("The party found a " + Arguments[0] + "!"));
+                        ResultList.Add(new CommandEraseMe(caller.values["Name"]));
+                        break;
+
                     case "hitpartyhp":
                         ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
                         break;
@@ -176,8 +195,11 @@ namespace TheParty_v2
                         ResultList.Add(new CommandAddPartyMember(Arguments[0]));
                         break;
 
-                    case "changeplayersprite":
-                        ResultList.Add(new CommandChangePlayerSprite(Arguments[0]));
+                    case "changesprite":
+                        if (Arguments[0] == "Player")
+                            ResultList.Add(new CommandChangePlayerSprite(Arguments[1]));
+                        else
+                            ResultList.Add(new CommandChangeEntitySprite(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
 
                     case "befaded":

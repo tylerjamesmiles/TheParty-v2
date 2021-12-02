@@ -13,25 +13,30 @@ namespace TheParty_v2
         StanceIndicator ResultStance;
         HeartsIndicator TargetHearts;
         string FromBonusText;
+        string ToBonusText;
         LerpV FromStanceLerp;
-        LerpV BonusLerp;
-        LerpV TargetStanceLerp;
+        LerpV FromBonusLerp;
+        LerpV ToStanceLerp;
+        LerpV ToBonusLerp;
         Timer WaitTimer;
         LerpV ResultLerp;
         Vector2 FromBonusPos;
+        Vector2 ToBonusPos;
+        Vector2 PlusSignPos;
         Vector2 FromStartPos;
         Vector2 TargetStartPos;
-        Vector2 BonusPos;
         Vector2 TargetHeartsPos;
         Vector2 WindupSpot;
 
-        enum State { Show, DoubleCollide, Double, Windup, Wait, Collide, ShowResult, ResultWindup, ResultCollide };
+        enum State { Show, BonusCollide, AddBonus, Windup, Wait, Collide, ShowResult, ResultWindup, ResultCollide };
         State AnimationState;
 
         public override void Enter(CommandBattle client)
         {
             FromStance = new StanceIndicator(client.FromMember.Stance, client.StanceIndicators[client.FromSpriteIdx].DrawPos);
             int NewAttackAmt = client.FromMember.StanceWAttackBonus;
+            int NewDefenseAmt = client.ToMember.StanceWDefenseBonus;
+
             FromStance.HardSet(client.FromMember.Stance);
             FromStance.SetTarget(NewAttackAmt);  // sets target
 
@@ -41,25 +46,29 @@ namespace TheParty_v2
             TargetStartPos = TargetStance.DrawPos;
 
             FromBonusText = "+" + client.FromMember.Equipped.Bonus("Attack").ToString();
-            FromBonusPos = FromStartPos + new Vector2(-8, -16);
-            BonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
+            FromBonusPos = FromStartPos + new Vector2(0, -20);
+            FromBonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
 
-            BonusPos = (FromStartPos + TargetStartPos) / 2;
+            ToBonusText = "-" + client.ToMember.Equipped.Bonus("Defense").ToString();
+            ToBonusPos = TargetStartPos + new Vector2(0, -20);
+            ToBonusLerp = new LerpV(ToBonusPos, TargetStartPos, 0.1f);
 
-            int NewStance = NewAttackAmt + client.ToMember.Stance;
+            PlusSignPos = (FromStartPos + TargetStartPos) / 2;
+
+            int NewStance = NewAttackAmt + NewDefenseAmt;
             if (NewStance > 10)
                 NewStance = 10;
 
-            ResultStance = new StanceIndicator(0, BonusPos);
+            ResultStance = new StanceIndicator(0, PlusSignPos);
             ResultStance.HardSet(NewStance);
 
             
 
             TargetHearts = client.HPIndicators[client.TargetSpriteIdx];
             TargetHeartsPos = client.Sprites[client.TargetSpriteIdx].DrawPos + new Vector2(0, 16);
-            WindupSpot = BonusPos + ((BonusPos - TargetHeartsPos) * 0.3f);
+            WindupSpot = PlusSignPos + ((PlusSignPos - TargetHeartsPos) * 0.3f);
 
-            WaitTimer = new Timer(0.3f);
+            WaitTimer = new Timer(0.6f);
 
             AnimationState = State.Show;
         }
@@ -72,20 +81,22 @@ namespace TheParty_v2
                     WaitTimer.Update(deltaTime);
                     if (WaitTimer.TicThisFrame)
                     {
-                        AnimationState = State.DoubleCollide;
+                        AnimationState = State.BonusCollide;
                     }
                     break;
 
-                case State.DoubleCollide:
-                    BonusLerp.Update(deltaTime);
-                    FromBonusPos = BonusLerp.CurrentPosition;
-                    if (BonusLerp.Reached)
+                case State.BonusCollide:
+                    FromBonusLerp.Update(deltaTime);
+                    ToBonusLerp.Update(deltaTime);
+                    FromBonusPos = FromBonusLerp.CurrentPosition;
+                    ToBonusPos = ToBonusLerp.CurrentPosition;
+                    if (FromBonusLerp.Reached)
                     {
-                        AnimationState = State.Double;
+                        AnimationState = State.AddBonus;
                     }
                     break;
 
-                case State.Double:
+                case State.AddBonus:
                     FromStance.Update(deltaTime);
                     if (FromStance.Reached)
                     {
@@ -96,7 +107,7 @@ namespace TheParty_v2
                         float TargetMoveX = (TargetFacingLeft) ? -MoveBy : MoveBy;
                         float TravelTime = 0.5f;
                         FromStanceLerp = new LerpV(FromStance.DrawPos, FromStance.DrawPos + new Vector2(FromMoveX, 0), TravelTime);
-                        TargetStanceLerp = new LerpV(TargetStance.DrawPos, TargetStance.DrawPos + new Vector2(TargetMoveX, 0), TravelTime);
+                        ToStanceLerp = new LerpV(TargetStance.DrawPos, TargetStance.DrawPos + new Vector2(TargetMoveX, 0), TravelTime);
                         AnimationState = State.Windup;
                     }
 
@@ -104,11 +115,11 @@ namespace TheParty_v2
 
                 case State.Windup:
                     FromStanceLerp.Update(deltaTime);
-                    TargetStanceLerp.Update(deltaTime);
+                    ToStanceLerp.Update(deltaTime);
                     FromStance.DrawPos = FromStanceLerp.CurrentPosition;
-                    TargetStance.DrawPos = TargetStanceLerp.CurrentPosition;
+                    TargetStance.DrawPos = ToStanceLerp.CurrentPosition;
 
-                    if (FromStanceLerp.Reached && TargetStanceLerp.Reached)
+                    if (FromStanceLerp.Reached && ToStanceLerp.Reached)
                     {
                         WaitTimer = new Timer(0.1f);
                         AnimationState = State.Wait;
@@ -118,23 +129,23 @@ namespace TheParty_v2
                 case State.Wait:
                     WaitTimer.Update(deltaTime);
                     FromStance.DrawPos = FromStanceLerp.CurrentPosition;
-                    TargetStance.DrawPos = TargetStanceLerp.CurrentPosition;
+                    TargetStance.DrawPos = ToStanceLerp.CurrentPosition;
 
                     if (WaitTimer.TicsSoFar > 1)
                     {
-                        FromStanceLerp = new LerpV(FromStance.DrawPos, BonusPos, 0.1f);
-                        TargetStanceLerp = new LerpV(TargetStance.DrawPos, BonusPos, 0.1f);
+                        FromStanceLerp = new LerpV(FromStance.DrawPos, FromBonusPos, 0.1f);
+                        ToStanceLerp = new LerpV(TargetStance.DrawPos, FromBonusPos, 0.1f);
                         AnimationState = State.Collide;
                     }
                     break;
 
                 case State.Collide:
                     FromStanceLerp.Update(deltaTime);
-                    TargetStanceLerp.Update(deltaTime);
+                    ToStanceLerp.Update(deltaTime);
                     FromStance.DrawPos = FromStanceLerp.CurrentPosition;
-                    TargetStance.DrawPos = TargetStanceLerp.CurrentPosition;
+                    TargetStance.DrawPos = ToStanceLerp.CurrentPosition;
 
-                    if (FromStanceLerp.Reached && TargetStanceLerp.Reached)
+                    if (FromStanceLerp.Reached && ToStanceLerp.Reached)
                     {
                         FromStance.DrawPos = FromStartPos;
                         TargetStance.DrawPos = TargetStartPos;
@@ -180,25 +191,31 @@ namespace TheParty_v2
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
 
             if (AnimationState == State.Show ||
-                AnimationState == State.DoubleCollide)
+                AnimationState == State.BonusCollide)
             {
                 spriteBatch.DrawString(
                     GameContent.Font,
                     FromBonusText,
                     FromBonusPos,
                     Color.White);
+
+                spriteBatch.DrawString(
+                    GameContent.Font,
+                    ToBonusText,
+                    ToBonusPos,
+                    Color.White);
             }
 
             if (AnimationState == State.Show ||
-                AnimationState == State.DoubleCollide ||
-                AnimationState == State.Double ||
+                AnimationState == State.BonusCollide ||
+                AnimationState == State.AddBonus ||
                 AnimationState == State.Windup ||
                 AnimationState == State.Wait ||
                 AnimationState == State.Collide)
             {
                 FromStance.Draw(spriteBatch);
                 TargetStance.Draw(spriteBatch);
-                spriteBatch.Draw(GameContent.Sprites["PlusSign"], new Rectangle(BonusPos.ToPoint(), new Point(6, 6)), Color.White);
+                spriteBatch.Draw(GameContent.Sprites["PlusSign"], new Rectangle(PlusSignPos.ToPoint(), new Point(6, 6)), Color.White);
             }
 
             else if (AnimationState == State.ShowResult ||

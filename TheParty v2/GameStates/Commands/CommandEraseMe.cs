@@ -16,7 +16,6 @@ namespace TheParty_v2
         public override void Update(TheParty client, float deltaTime)
         {
             OgmoEntity Entity = client.CurrentMap.Entities.Find(e => e.values["Name"] == EventName);
-            //Entity.ManualExists = false;
 
             GameContent.ErasedEntities.Add(Entity.EntityId);
 

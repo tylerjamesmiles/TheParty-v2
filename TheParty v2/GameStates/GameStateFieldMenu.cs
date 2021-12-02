@@ -9,6 +9,8 @@ namespace TheParty_v2
 {
     class GameStateFieldMenu : State<TheParty>
     {
+        public Player Player;
+
         public GUIDialogueBox Food;
         public GUIDialogueBox Money;
         public GUIDialogueBox Days;
@@ -78,6 +80,8 @@ namespace TheParty_v2
             Quit = false;
 
             ReloadSprites = false;
+
+            Player = client.Player;
         }
 
         public override void Update(TheParty client, float deltaTime)

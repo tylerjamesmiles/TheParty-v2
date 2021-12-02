@@ -119,7 +119,7 @@
 			"MaxHP" : 6,
 			"Hunger" : 1,
 			"MaxHunger" : 6,
-			"Equipped" : "Stick",
+			"Equipped" : "",
 			"Moves" : [
 				"Hit", "Charge", "Pass"
 			],
@@ -136,7 +136,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help", "Bolster", "Pass"
+				"Hit", "Charge", "Bolster", "Pass"
 			],
 			"MovesToLearn" : [
 				"Encourage", "Weaken", "Lower", "Calm"

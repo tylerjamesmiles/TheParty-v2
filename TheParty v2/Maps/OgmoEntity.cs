@@ -76,15 +76,15 @@ namespace TheParty_v2
                 if (ToNextPoint.LengthSquared() < MinPointDistance * MinPointDistance)
                 {
                     Points.Dequeue();
-
-                    if (Points.Count == 0)
-                    {
-                        if (Repeat)
-                            Points = new Queue<Vector2>(PointsBackStore);
-                        else
-                            Done = true;
-                    }
                 }
+            }
+
+            if (Points.Count == 0)
+            {
+                if (Repeat)
+                    Points = new Queue<Vector2>(PointsBackStore);
+                else
+                    Done = true;
             }
 
             SteeringForce = new Vector2();

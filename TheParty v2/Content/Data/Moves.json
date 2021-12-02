@@ -4,11 +4,14 @@
         {
             "Name" : "Pass",
             "Description" : "Do nothing this turn.",
-            "AnimationSheet" : "",
-            "AnimationName" : "",
+            "AnimationSheet" : "HitAnimations",
+            "AnimationName" : "Charge",
             "PositiveEffect" : false,
             "Effects" : [],
-            "MoveConditions" : [] 
+            "MoveConditions" : 
+            [
+                "Is(Target, Self)"
+            ] 
         },
         {
             "Name" : "Hit",
@@ -339,7 +342,7 @@
             "PositiveEffect" : false,
             "Effects" :
             [
-                "AddStatus(Target, Poisoned)",
+                "AddStatus(Target, Poison)",
                 "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 
@@ -377,7 +380,7 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "RemoveStatus(Poisoned)",
+                "RemoveStatus(Poison)",
                 "HitStance(Caster, -1)"
             ],
             "MoveConditions" : 

@@ -17,12 +17,15 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            Entity.Sprite.CurrentFacing =
-                Direction.ToLower() == "up" ? 0 :
-                Direction.ToLower() == "down" ? 1 :
-                Direction.ToLower() == "left" ? 2 :
-                Direction.ToLower() == "right" ? 3 : 0;
-            Done = true;
+            if (Entity.Movement.Velocity.LengthSquared() < 0.01)
+            {
+                Entity.Sprite.CurrentFacing =
+                    Direction.ToLower() == "up" ? 0 :
+                    Direction.ToLower() == "down" ? 1 :
+                    Direction.ToLower() == "left" ? 2 :
+                    Direction.ToLower() == "right" ? 3 : 0;
+                Done = true;
+            }
         }
     }
 }

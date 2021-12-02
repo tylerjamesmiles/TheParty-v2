@@ -14,12 +14,14 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             Member Selected = client.FromMember;
-            bool[] ChoiceValidity = new bool[Selected.Moves.Count];
-            for (int i = 0; i < Selected.Moves.Count; i++)
+            List<Move> Moves = Selected.GetMoves();
+            bool[] ChoiceValidity = new bool[Moves.Count];
+            for (int i = 0; i < Moves.Count; i++)
                 ChoiceValidity[i] = client.MoveValidOnAnyone(Selected.GetMoves()[i]);
-            int NumMoves = Selected.Moves.Count;
+            int NumMoves = Moves.Count;
             int NumCollumns = NumMoves == 2 ? 1 : 2;
-            client.MoveChoice = new GUIChoiceBox(Selected.Moves.ToArray(), GUIChoiceBox.Position.BottomRight, NumCollumns, ChoiceValidity);
+            List<string> MoveNames = Moves.ConvertAll(m => m.Name);
+            client.MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.BottomRight, NumCollumns, ChoiceValidity);
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
             string DescrTxt = client.FromMember.GetMoves()[CurrentChoice].Description;

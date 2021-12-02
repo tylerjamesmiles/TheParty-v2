@@ -16,7 +16,7 @@ namespace TheParty_v2
         public int MaxHunger { get; set; }
         public List<string> Moves { get; private set; }
         public List<string> MovesToLearn { get; private set; }
-        public string EquippedName { get; private set; }
+        public string EquippedName { get; set; }
         public List<StatusEffect> StatusEffects { get; set; }
         public string SpriteName { get; private set; }
         public bool GoneThisTurn { get; set; }
@@ -57,8 +57,13 @@ namespace TheParty_v2
 
         public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Moves, MovesToLearn, EquippedName, StatusEffects, SpriteName);
 
-        public List<Move> GetMoves() =>
-            Moves.ConvertAll(m => GameContent.Moves[m]);
+        public List<Move> GetMoves()
+        {
+            var Result = Moves.ConvertAll(m => GameContent.Moves[m]);
+            if (Equipped.Type == "+Move")
+                Result.Add(GameContent.Moves[Equipped.Detail]);
+            return Result;
+        }
 
         public List<Move> GetMovesToLearn() =>
             MovesToLearn.ConvertAll(m => GameContent.Moves[m]);

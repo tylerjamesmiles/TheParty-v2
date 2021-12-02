@@ -24,13 +24,16 @@ namespace TheParty_v2
                 switch (Choice.CurrentChoice)
                 {
                     case 0:
-                        //client.CurrentMap = GameContent.Maps["Camp"];
-                        //client.Player = new Player(new Vector2(9, 6) * 16 + new Vector2(8, 8));
+                        //client.CurrentMap = GameContent.Maps["Cave"];
+                        //client.Player = new Player(new Vector2(4, 24) * 16 + new Vector2(8, 8));
 
                         client.CurrentMap = GameContent.Maps["WorldMap"];
-                        client.Player = new Player(new Vector2(90, 93) * 16 + new Vector2(8, 8));
+                        client.Player = new Player(new Vector2(99, 101) * 16 + new Vector2(8, 8));
 
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
+                        client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());
+                        client.CommandQueue.EnqueueCommand(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "100 days until the world ends."));
+                        client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
                         client.StateMachine.SetNewCurrentState(client, new GameStateField());
                         break;
 

@@ -12,14 +12,14 @@ namespace TheParty_v2
 
         public override void Enter(GameStateFieldMenu client)
         {
-            bool[] ChoiceValidity = new bool[5];
+            bool[] ChoiceValidity = new bool[6];
             for (int i = 0; i < ChoiceValidity.Length; i++)
                 ChoiceValidity[i] = true;
 
             ChoiceValidity[2] = client.BackupMembers.Count > 0;
 
             Choices = new GUIChoiceBox(
-                new[] { "Feed", "Heal", "Party", "Back", "Title" }, 
+                new[] { "Feed", "Heal", "Party", "Equip", "Back", "Title" }, 
                 GUIChoiceBox.Position.BottomRight, 
                 2, ChoiceValidity);
         }
@@ -35,8 +35,9 @@ namespace TheParty_v2
                     case 0: client.StateMachine.SetNewCurrentState(client, new FieldMenuFeed()); break;
                     case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuHeal()); break;
                     case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
-                    case 3: client.Done = true; break;
-                    case 4: client.Quit = true; break;
+                    case 3: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
+                    case 4: client.Done = true; break;
+                    case 5: client.Quit = true; break;
                 }
             }
 

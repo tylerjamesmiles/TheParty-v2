@@ -6,7 +6,7 @@
         "AnimationName" : "Poison",
         "EveryTurnEffects" : 
         [
-            "HitHP(-1)"
+            "HitHP(Target, -1)"
         ],
         "NumTurnsRemaining" : 3
     }, 
@@ -17,7 +17,7 @@
         "AnimationName" : "Charge",
         "EveryTurnEffects" : 
         [
-            "HitHP(-1)"
+            "HitHP(Target, +1)"
         ],
         "NumTurnsRemaining" : 5
     },    
