@@ -24,11 +24,11 @@ namespace TheParty_v2
                 switch (Choice.CurrentChoice)
                 {
                     case 0:
-                        //client.CurrentMap = GameContent.Maps["Cave"];
-                        //client.Player = new Player(new Vector2(4, 24) * 16 + new Vector2(8, 8));
+                        client.CurrentMap = GameContent.Maps["Capricorn"];
+                        client.Player = new Player(new Vector2(14, 19) * 16 + new Vector2(8, 8));
 
-                        client.CurrentMap = GameContent.Maps["WorldMap"];
-                        client.Player = new Player(new Vector2(99, 101) * 16 + new Vector2(8, 8));
+                        //client.CurrentMap = GameContent.Maps["WorldMap"];
+                        //client.Player = new Player(new Vector2(99, 101) * 16 + new Vector2(8, 8));
 
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
                         client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());

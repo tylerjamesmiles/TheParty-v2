@@ -131125,7 +131125,7 @@
           "y": 1536,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Spend The Day Here, Go Elsewhere)\n   Case Spend The Day Here\n      Teleport(Capricorn, 15, 28)\n   Case Go Elsewhere\n      Move(Player, Down 1)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Spend The Day Here, Go Elsewhere)\n   Case Spend The Day Here\n      Teleport(Capricorn, 15, 56)\n   Case Go Elsewhere\n      Move(Player, Down 1)"}
         },
         {
           "name": "Entity",

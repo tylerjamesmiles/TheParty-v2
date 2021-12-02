@@ -637,6 +637,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/SkinnerFighter.png
 
+#begin Art/SoldierBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/SoldierBase.png
+
 #begin Art/Stances.png
 /importer:TextureImporter
 /processor:TextureProcessor

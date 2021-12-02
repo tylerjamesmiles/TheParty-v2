@@ -81,6 +81,9 @@ namespace TheParty_v2
                 });
 
                 bool PlayerDrawn = false;
+
+                player.Draw(cameraPos, spriteBatch);
+
                 for (int i = 0; i < entities.Count; i++)
                 {
                     entities[i].Draw(cameraPos, spriteBatch);
@@ -92,8 +95,6 @@ namespace TheParty_v2
                     }
                 }
 
-                if (!PlayerDrawn)
-                    player.Draw(cameraPos, spriteBatch);
 
             }
         }
