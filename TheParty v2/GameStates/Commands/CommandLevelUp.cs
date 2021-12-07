@@ -48,8 +48,8 @@ namespace TheParty_v2
                 Member mem = ActiveMembers[member];
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(mem.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
-                Sprite.AddAnimation("PositiveHit", 4, 1, 0.15f);
-                Sprite.AddAnimation("Dead", 6, 1, 0.15f);
+                Sprite.AddAnimation("PositiveHit", 3, 1, 0.15f);
+                Sprite.AddAnimation("Dead", 5, 1, 0.15f);
 
                 if (mem.HP > 0)
                     Sprite.SetCurrentAnimation("Idle");

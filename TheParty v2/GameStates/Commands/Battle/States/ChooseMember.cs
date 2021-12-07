@@ -59,11 +59,15 @@ namespace TheParty_v2
 
             if (client.MemberChoice.Done)
                 client.StateMachine.SetNewCurrentState(client, new ChooseMove());
+
+            else if (InputManager.JustReleased(Keys.Escape))
+                client.StateMachine.SetNewCurrentState(client, new FightOrFlee());
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
-            client.MemberChoice.Draw(spriteBatch, true);
+            if (client.CurrentStore.CurrentTurnPartyIdx == 0)
+                client.MemberChoice.Draw(spriteBatch, true);
         }
     }
 }

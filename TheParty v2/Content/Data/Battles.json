@@ -40,11 +40,11 @@
 			]
 		},
 		{
-			"Name" : "MountainBattle1",
+			"Name" : "CaveBattle1",
 			"Parties" :
 			[
 				"PlayerParty",
-				"MountainParty1"
+				"CaveParty1"
 			],
 			"Rewards" :
 			[
@@ -53,11 +53,11 @@
 			]
 		},
 		{
-			"Name" : "MountainBattle2",
+			"Name" : "CaveBattle2",
 			"Parties" :
 			[
 				"PlayerParty",
-				"MountainParty2"
+				"CaveParty2"
 			],
 			"Rewards" :
 			[
@@ -66,11 +66,11 @@
 			]
 		},
 		{
-			"Name" : "MountainBattle3",
+			"Name" : "CaveBattle3",
 			"Parties" :
 			[
 				"PlayerParty",
-				"MountainParty3"
+				"CaveParty3"
 			],
 			"Rewards" :
 			[
@@ -79,11 +79,11 @@
 			]
 		},
 		{
-			"Name" : "MountainBattle4",
+			"Name" : "CaveBattle4",
 			"Parties" :
 			[
 				"PlayerParty",
-				"MountainParty4"
+				"CaveParty4"
 			],
 			"Rewards" :
 			[
@@ -92,16 +92,29 @@
 			]
 		},
 		{
-			"Name" : "MountainBattle5",
+			"Name" : "CaveBattle5",
 			"Parties" :
 			[
 				"PlayerParty",
-				"MountainParty5"
+				"CaveParty5"
 			],
 			"Rewards" :
 			[
 				"+3 $",
 				"+4 Food"
+			]
+		},
+		{
+			"Name" : "RandallBattle",
+			"Parties" :
+			[
+				"PlayerParty",
+				"RandallBoss"
+			],
+			"Rewards" :
+			[
+				"+15 $",
+				"+8 Food"
 			]
 		}
 	]

@@ -106,7 +106,7 @@ namespace TheParty_v2
 
             foreach (var animation in CollectionAnimations)
             {
-                Vector2 DrawPos = Player.Transform.Position + new Vector2(-8, -48) - Camera.Position;
+                Vector2 DrawPos = animation.Key + new Vector2(-8, -48) - Camera.Position;
                 Rectangle DrawRect = new Rectangle(DrawPos.ToPoint(), new Point(16, 32));
                 animation.Value.Draw("CollectAnimations", DrawRect, SpriteBatch);
             }

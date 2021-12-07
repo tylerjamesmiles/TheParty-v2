@@ -167,11 +167,10 @@ namespace TheParty_v2
                     AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                     Sprite.AddAnimation("Idle",         0, 4, 0.15f);
                     Sprite.AddAnimation("Move",         1, 4, 0.15f);
-                    Sprite.AddAnimation("Charged",      2, 4, 0.15f);
-                    Sprite.AddAnimation("KOd",          3, 2, 0.15f);
-                    Sprite.AddAnimation("PositiveHit",  4, 2, 0.15f);
-                    Sprite.AddAnimation("NegativeHit",  5, 1, 0.15f);
-                    Sprite.AddAnimation("Dead",         6, 1, 0.15f);
+                    Sprite.AddAnimation("KOd",          2, 2, 0.15f);
+                    Sprite.AddAnimation("PositiveHit",  3, 2, 0.15f);
+                    Sprite.AddAnimation("NegativeHit",  4, 1, 0.15f);
+                    Sprite.AddAnimation("Dead",         5, 1, 0.15f);
                     Sprite.SetCurrentAnimation("Idle");
                     Sprites.Add(Sprite);
 
@@ -181,8 +180,7 @@ namespace TheParty_v2
                     int Stance = CurrentStore.Parties[party].Members[member].Stance;
                     StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
 
-                    StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());
-                    
+                    StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());  
                 }
             }
 
@@ -190,7 +188,6 @@ namespace TheParty_v2
             StatusRotateTimer = new Timer(0.8f);
 
             StateMachine.SetNewCurrentState(this, new ChooseMember());
-
 
             Entered = true;
         }
@@ -233,7 +230,6 @@ namespace TheParty_v2
 
             StateMachine.Update(this, deltaTime);
 
-
             if (GameOver)
             {
                 if (ContinueAfter)
@@ -275,7 +271,7 @@ namespace TheParty_v2
                 }
             }
 
-            // Extra Shtuff
+            // Any Extra Shtuff
             StateMachine.Draw(this, spriteBatch);
         }
 

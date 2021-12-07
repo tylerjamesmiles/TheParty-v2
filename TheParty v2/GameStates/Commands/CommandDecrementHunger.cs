@@ -40,9 +40,9 @@ namespace TheParty_v2
 
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(ActiveMembers[member].SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
-                Sprite.AddAnimation("PositiveHit", 4, 4, 0.15f);
-                Sprite.AddAnimation("NegativeHit", 5, 1, 0.15f);
-                Sprite.AddAnimation("Dead", 6, 1, 0.15f);
+                Sprite.AddAnimation("PositiveHit", 3, 4, 0.15f);
+                Sprite.AddAnimation("NegativeHit", 4, 1, 0.15f);
+                Sprite.AddAnimation("Dead", 5, 1, 0.15f);
                 Sprite.SetCurrentAnimation("Idle");
                 Sprites.Add(Sprite);
 

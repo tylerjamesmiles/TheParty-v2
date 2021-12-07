@@ -124,8 +124,12 @@ namespace TheParty_v2
                         // Normal battle
                         if (Arguments.Length == 1)
                         {
-                            ResultList.Add(new CommandBattle(Arguments[0]));
-                            ResultList.Add(new CommandLevelUp());
+                            ResultList.Add(new CommandBattle(Arguments[0], "DidntFlee"));
+                            ResultList.Add(new CommandIf("DidntFlee", "==", "true",
+                                new List<Command<TheParty>>
+                                {
+                                    new CommandLevelUp()
+                                }));
                             ResultList.Add(new CommandDecrementHunger());
                             ResultList.Add(new CommandLeaveDead());
                         }

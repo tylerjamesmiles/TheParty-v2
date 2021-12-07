@@ -9,7 +9,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Evade", "Calm"
+				"Hit", "Charge", "Calm", "Fireball"
 			],
 			"MovesToLearn" : []
 		},
@@ -48,7 +48,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Evade"
+				"Hit", "Charge"
 			],
 			"MovesToLearn" : []
 		},
@@ -68,7 +68,7 @@
 			]
 		},
 		{
-			"Name" : "Dirt Dawg",
+			"Name" : "DirtDawg",
 			"SpriteName" : "DirtDawgFighter",
 			"HP" : 5,
 			"MaxHP" : 10,
@@ -171,6 +171,19 @@
 			"MovesToLearn" : [
 				"Evade", "Dive", "Encourage", "Weaken" 
 			]
+		},
+		{
+			"Name" : "Randall",
+			"SpriteName": "RandallFighter",
+			"HP" : 10,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger": 5,
+			"Equipped" : "",
+			"Moves" : [
+				"Hit", "Charge", "Punch", "Lower"
+			],
+			"MovesToLearn" : []
 		}
 	]
 }

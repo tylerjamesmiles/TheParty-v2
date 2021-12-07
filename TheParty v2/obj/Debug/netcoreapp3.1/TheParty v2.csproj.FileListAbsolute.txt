@@ -114,3 +114,5 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\A
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\Chest.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\KingBase.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\SoldierBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\RandallBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\RandallFighter.xnb

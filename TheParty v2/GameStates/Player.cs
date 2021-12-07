@@ -46,7 +46,7 @@ namespace TheParty_v2
         {
             Steering = new ControllerSteering2D(30f);
             Movement = new Movement2D(1f, 5f);
-            Transform = new Transform2D(position, 7f);
+            Transform = new Transform2D(position, 8f);
             Sprite = new FourDirSprite2D("CharacterBase", new Point(-16, -24));
             Frozen = false;
 

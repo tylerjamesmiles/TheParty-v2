@@ -39,7 +39,7 @@
 			]
 		},
 		{
-			"Name" : "MountainParty1",
+			"Name" : "CaveParty1",
 			"Members" :
 			[
 				"Alien",
@@ -47,7 +47,7 @@
 			]
 		},
 		{
-			"Name" : "MountainParty2",
+			"Name" : "CaveParty2",
 			"Members" :
 			[
 				"Bandit",
@@ -55,14 +55,14 @@
 			]
 		},
 		{
-			"Name" : "MountainParty3",
+			"Name" : "CaveParty3",
 			"Members" :
 			[
 				"Cat"
 			]
 		},
 		{
-			"Name" : "MountainParty4",
+			"Name" : "CaveParty4",
 			"Members" :
 			[
 				"Alien",
@@ -71,12 +71,21 @@
 			]
 		},
 		{
-			"Name" : "MountainParty5",
+			"Name" : "CaveParty5",
 			"Members" :
 			[
 				"Alien",
 				"Bandit",
 				"Cat"
+			]
+		},
+		{
+			"Name" : "RandallBoss",
+			"Members" :
+			[
+				"Bandit",
+				"Randall",
+				"Bandit"
 			]
 		}
 	]

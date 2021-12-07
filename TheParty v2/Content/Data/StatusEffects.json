@@ -38,14 +38,6 @@
         "NumTurnsRemaining" : 3
     }, 
     {
-        "Name" : "Evade",
-        "SpriteAnimation" : "",
-        "AnimationSheet" : "StatusAnimations",
-        "AnimationName" : "Evade",
-        "EveryTurnEffects" : [],
-        "NumTurnsRemaining" : 999
-    },  
-    {
         "Name" : "Stunned",
         "SpriteAnimation" : "",
         "AnimationSheet" : "StatusAnimations",

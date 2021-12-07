@@ -299,7 +299,7 @@
             ]
         },
         {
-            "Name" : "GiveLife",
+            "Name" : "Sacrifice",
             "Description" :  "Bring back to life,\nat the cost of yours.",
             "AnimationSheet" : "HitAnimations",
             "AnimationName" : "Hit",
@@ -467,26 +467,6 @@
                 "HP(Target, >, 0)",
                 "StatusEffect(Target, Doesn'tHave, DefenseDown)",
                 "Is(Target, InDifferentParty)"
-            ]
-        },
-        {
-            "Name" : "Evade",
-            "Description" :  "Will dodge next attack.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "AddStatus(Target, Evade)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "Is(Target, Self)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Doesn'tHave, Evade)"
             ]
         }
     ]
