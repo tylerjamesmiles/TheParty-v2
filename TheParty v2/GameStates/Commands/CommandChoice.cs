@@ -76,11 +76,8 @@ namespace TheParty_v2
             {
                 Outcomes[Choice.CurrentChoice].ForEach(o => o.Done = false);
                 Outcomes[Choice.CurrentChoice].ForEach(o => o.Entered = false);
-                for (int i = Outcomes[Choice.CurrentChoice].Count - 1; i >= 0; i--)
-                {
-                    client.CommandQueue.PushCommand(Outcomes[Choice.CurrentChoice][i]);
+                client.CommandQueue.PushCommands(Outcomes[Choice.CurrentChoice]);
 
-                }
                 Done = true;
             }
         }

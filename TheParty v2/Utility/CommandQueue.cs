@@ -25,8 +25,20 @@ namespace TheParty_v2
         }
 
         public void PushCommand(Command<T> command) => Commands.AddFirst(command);
-        public void EnqueueCommand(Command<T> command) => Commands.AddLast(command);
-        public void EnqueueCommands(List<Command<T>> commands) => commands.ForEach(c => Commands.AddLast(c));
+        public void PushCommands(List<Command<T>> commands)
+        {
+            for (int i = commands.Count - 1; i >= 0; i--)
+                Commands.AddFirst(commands[i]);
+        }
+        public void EnqueueCommand(Command<T> command)
+        {
+            Commands.AddLast(command);
+        }
+        public void EnqueueCommands(List<Command<T>> commands)
+        {
+            commands.ForEach(c => Commands.AddLast(c));
+        }
+
         public bool Empty => Commands.Count == 0;
         private Command<T> Top => Commands.First.Value;
 
@@ -41,20 +53,32 @@ namespace TheParty_v2
 
                 Top.Update(client, deltaTime);
 
-                if (!Empty && Top.Done)
-                {
-                    Commands.First.Value.Exit(client);
-                    Commands.RemoveFirst();
+                // Are any commands 'Done'?
+                bool AtLeastOneIsDone = false;
+                foreach (var item in Commands)
+                    if (item.Done)
+                        AtLeastOneIsDone = true;
 
-                    if (!Empty)
-                        Top.Enter(client);
+                // If so, remove all of them (manually...)
+                if (AtLeastOneIsDone)
+                {
+                    LinkedList<Command<T>> Copy = new LinkedList<Command<T>>(Commands);
+                    Commands.Clear();
+
+                    foreach (var item in Copy)
+                    {
+                        if (item.Done)
+                            item.Exit(client);  // Call its exit command first
+                        else
+                            Commands.AddLast(item);
+                    }
                 }
             }
         }
 
         public void Draw(T client, SpriteBatch spriteBatch)
         {
-            if (!Empty && Top.Entered)
+            if (!Empty)
                 Top.Draw(client, spriteBatch);
         }
     }

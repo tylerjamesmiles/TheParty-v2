@@ -26,15 +26,19 @@ namespace TheParty_v2
         enum State { WaitForMoment, ChooseMember, ChooseType, ChooseMove, WaitAnotherMoment };
         State CurrentState;
 
-        public override void Enter(TheParty client)
+        public CommandLevelUp()
         {
             WaitTimer = new Timer(0.1f);
-
-            int party = 0;
-            ActiveMembers = client.Player.ActiveParty.Members;
             Sprites = new List<AnimatedSprite2D>();
             Hearts = new List<HeartsIndicator>();
             Meats = new List<HeartsIndicator>();
+        }
+
+        public override void Enter(TheParty client)
+        {
+            int party = 0;
+            ActiveMembers = client.Player.ActiveParty.Members;
+
             for (int member = 0; member < ActiveMembers.Count; member++)
             {
                 Vector2 MemberDrawOffset = new Vector2(-16, -16);
@@ -82,7 +86,6 @@ namespace TheParty_v2
                 Living[i] = ActiveMembers[i].HP > 0;
 
             MemberChoice = new GUIChoice(Positions.ToArray());
-
             
 
             WaitTimer2 = new Timer(1f);
@@ -104,7 +107,7 @@ namespace TheParty_v2
 
             LevelUpTypeChoice = new GUIChoiceBox(
                 new[] { "+1 Max%'s", "+1 Max\"'s", "New Move" },
-                GUIChoiceBox.Position.Center,
+                GUIChoiceBox.Position.BottomLeft,
                 1, ChoiceValidity);
         }
 
@@ -166,7 +169,7 @@ namespace TheParty_v2
 
                             case 2:     // new move
                                 List<string> MoveNames = Selected.MovesToLearn;
-                                MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.Center);
+                                MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.BottomLeft);
 
                                 Move CurrentMove = Selected.GetMovesToLearn()[MoveChoice.CurrentChoice];
                                 Description = new GUIDialogueBox(

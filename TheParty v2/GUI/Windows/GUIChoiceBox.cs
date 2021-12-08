@@ -69,7 +69,7 @@ namespace TheParty_v2
 
             Vector2 TextTL =
                 position == Position.Center ? ScreenCenter - TextSize / 2 :
-                position == Position.BottomLeft ? new Vector2(4, ScreenSize.Y - TextSize.Y) :
+                position == Position.BottomLeft ? new Vector2(8, ScreenSize.Y - TextSize.Y - 8) :
                 position == Position.BottomRight ? new Vector2(ScreenSize.X - TextSize.X - 8, ScreenSize.Y - TextSize.Y - 8) :
                 Vector2.Zero;
 

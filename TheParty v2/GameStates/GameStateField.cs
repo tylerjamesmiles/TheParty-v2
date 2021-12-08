@@ -32,7 +32,7 @@ namespace TheParty_v2
                         (entity.values["TriggerOnTouch"] == "true" || InputManager.JustReleased(Keys.Space)))
                     {
                         var Commands = ScriptInterpreter.Interpret(client, entity, entity.values["Script"]);
-                        client.CommandQueue.EnqueueCommands(Commands);
+                        client.CommandQueue.PushCommands(Commands);
                         break;
                     }
                 }

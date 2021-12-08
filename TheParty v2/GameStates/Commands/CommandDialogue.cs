@@ -15,15 +15,19 @@ namespace TheParty_v2
         {
             InputDialogues = dialogues;
             Pos = GUIDialogueBox.Position.Bottom;
+
+            GenerateBox();
         }
 
         public CommandDialogue(GUIDialogueBox.Position pos, params string[] dialogues)
         {
             InputDialogues = dialogues;
             Pos = pos;
+
+            GenerateBox();
         }
 
-        public override void Enter(TheParty client)
+        private void GenerateBox()
         {
             string[] CorrectedDialogues = new string[InputDialogues.Length];
             for (int i = 0; i < InputDialogues.Length; i++)
@@ -43,8 +47,9 @@ namespace TheParty_v2
             }
 
             Box = new GUIDialogueBox(Pos, CorrectedDialogues);
-            Entered = true;
         }
+
+
 
         public override void Update(TheParty client, float deltaTime)
         {
@@ -55,7 +60,7 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            Box.Draw(spriteBatch, true);
+             Box.Draw(spriteBatch, true);
         }
     }
 }

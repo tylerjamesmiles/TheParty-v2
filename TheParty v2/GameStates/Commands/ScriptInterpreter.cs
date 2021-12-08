@@ -288,10 +288,11 @@ namespace TheParty_v2
                         break;
 
                     case "levelup":
+                        ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandLevelUp());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
-
+                        ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
                     case "daypass":
@@ -307,7 +308,7 @@ namespace TheParty_v2
 
             }
 
-            ResultList.Add(new CommandWait(0.0001f));
+            //ResultList.Add(new CommandWait(0.0001f));
             return ResultList;
         }
     }

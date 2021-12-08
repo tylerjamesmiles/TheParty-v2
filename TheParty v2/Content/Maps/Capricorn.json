@@ -211,7 +211,7 @@
           "y": 144,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "King", "SpriteName": "RandallDead", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg: Your majesty! Your eyes - they're glowing. Are you okay?)\nDialogue(King: Don't speak to me!)\nDialogue(DirtDawg: But your majesty! It's me! Dirt Dawg! Your most trusted servant!)\nDialogue(King: Guards! Kill these intruders!)\nBattle(KingBoss)\nErase(King)\nDialogue(Hocus: We're surrounded by guards!)\nDialogue(DirtDawg: Run!)\nTeleport(WorldMap, 99, 99)"}
+          "values": {"Name": "King", "SpriteName": "", "ExistsIf": "RandallDead == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg: Your majesty! Your eyes - they're glowing. Are you okay?)\nDialogue(King: Don't speak to me!)\nDialogue(DirtDawg: But your majesty! It's me! Dirt Dawg! Your most trusted servant!)\nDialogue(King: Guards! Kill these intruders!)\nBattle(KingBoss)\nErase(King)\nDialogue(Hocus: We're surrounded by guards!)\nDialogue(DirtDawg: Run!)\nTeleport(WorldMap, 99, 99)"}
         }
       ]
     },

@@ -38,6 +38,8 @@ namespace TheParty_v2
             CurrentStore = GameContent.Battles[name];
             ContinueAfter = false;
             SwitchToSet = "";
+
+            Instantiate();
         }
 
         public CommandBattle(string name, string switchToSet)
@@ -46,7 +48,11 @@ namespace TheParty_v2
             CurrentStore = GameContent.Battles[name];
             ContinueAfter = true;
             SwitchToSet = switchToSet;
+
+            Instantiate();
         }
+
+
 
         public List<int> PartyIdxs(int partyIdx)
         {
@@ -131,25 +137,28 @@ namespace TheParty_v2
             throw new Exception("Party index of member " + memberIdx + " not found.");
         }
 
-        public override void Enter(TheParty client)
+        private void Instantiate()
         {
             StateMachine = new StateMachine<CommandBattle>();
-
-            GameOver = false;
-
-            CurrentStore.Parties[0] = client.Player.ActiveParty;
-
-            // reset from prior battles
-            foreach (Member member in CurrentStore.AllMembers())
-            {
-                member.Stance = 1;
-                member.StatusEffects = new List<StatusEffect>();
-            }
-
             Sprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             StanceIndicators = new List<StanceIndicator>();
             StatusIndicators = new List<AnimatedSprite2D>();
+
+            foreach (Member member in CurrentStore.AllMembers())
+            {
+                member.StatusEffects = new List<StatusEffect>();
+            }
+
+
+
+            GameOver = false;
+
+        }
+
+        public override void Enter(TheParty client)
+        {
+            CurrentStore.Parties[0] = client.Player.ActiveParty;
 
             for (int party = 0; party < CurrentStore.NumParties; party++)
             {
@@ -165,12 +174,12 @@ namespace TheParty_v2
 
                     Member ThisMember = CurrentStore.Parties[party].Members[member];
                     AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
-                    Sprite.AddAnimation("Idle",         0, 4, 0.15f);
-                    Sprite.AddAnimation("Move",         1, 4, 0.15f);
-                    Sprite.AddAnimation("KOd",          2, 2, 0.15f);
-                    Sprite.AddAnimation("PositiveHit",  3, 2, 0.15f);
-                    Sprite.AddAnimation("NegativeHit",  4, 1, 0.15f);
-                    Sprite.AddAnimation("Dead",         5, 1, 0.15f);
+                    Sprite.AddAnimation("Idle", 0, 4, 0.15f);
+                    Sprite.AddAnimation("Move", 1, 4, 0.15f);
+                    Sprite.AddAnimation("KOd", 2, 2, 0.15f);
+                    Sprite.AddAnimation("PositiveHit", 3, 2, 0.15f);
+                    Sprite.AddAnimation("NegativeHit", 4, 1, 0.15f);
+                    Sprite.AddAnimation("Dead", 5, 1, 0.15f);
                     Sprite.SetCurrentAnimation("Idle");
                     Sprites.Add(Sprite);
 
@@ -180,7 +189,7 @@ namespace TheParty_v2
                     int Stance = CurrentStore.Parties[party].Members[member].Stance;
                     StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
 
-                    StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());  
+                    StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());
                 }
             }
 
@@ -188,6 +197,8 @@ namespace TheParty_v2
             StatusRotateTimer = new Timer(0.8f);
 
             StateMachine.SetNewCurrentState(this, new ChooseMember());
+
+
 
             Entered = true;
         }
@@ -260,16 +271,20 @@ namespace TheParty_v2
 
             Sorted.ForEach(s => s.Draw(spriteBatch));
 
-            List<Member> AllMembers = CurrentStore.AllMembers();
-            foreach (Member member in AllMembers)
+            if (Entered)
             {
-                int Idx = AllMembers.IndexOf(member);
-                if (member.HP > 0)
+                List<Member> AllMembers = CurrentStore.AllMembers();
+                foreach (Member member in AllMembers)
                 {
-                    StatusIndicators[Idx].Draw(spriteBatch);
-                    StanceIndicators[Idx].Draw(spriteBatch);
+                    int Idx = AllMembers.IndexOf(member);
+                    if (member.HP > 0)
+                    {
+                        StatusIndicators[Idx].Draw(spriteBatch);
+                        StanceIndicators[Idx].Draw(spriteBatch);
+                    }
                 }
             }
+
 
             // Any Extra Shtuff
             StateMachine.Draw(this, spriteBatch);

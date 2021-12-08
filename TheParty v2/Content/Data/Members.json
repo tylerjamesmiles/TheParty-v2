@@ -70,7 +70,7 @@
 		{
 			"Name" : "DirtDawg",
 			"SpriteName" : "DirtDawgFighter",
-			"HP" : 5,
+			"HP" : 10,
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
@@ -115,11 +115,11 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 6,
-			"MaxHP" : 6,
+			"HP" : 10,
+			"MaxHP" : 10,
 			"Hunger" : 6,
 			"MaxHunger" : 6,
-			"Equipped" : "",
+			"Equipped" : "Stick",
 			"Moves" : [
 				"Hit", "Charge", "Pass"
 			],

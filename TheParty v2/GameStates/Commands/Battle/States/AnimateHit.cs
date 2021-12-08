@@ -39,8 +39,8 @@ namespace TheParty_v2
             int NewAttackAmt = client.FromMember.StanceWAttackBonus;
             int NewDefenseAmt = client.ToMember.StanceWDefenseBonus;
 
-            bool ShowFromBonus = NewAttackAmt != client.FromMember.Stance;
-            bool ShowToBonus = NewDefenseAmt != client.ToMember.Stance;
+            ShowFromBonus = NewAttackAmt != client.FromMember.Stance;
+            ShowToBonus = NewDefenseAmt != client.ToMember.Stance;
 
             FromStance.HardSet(client.FromMember.Stance);
             FromStance.SetTarget(NewAttackAmt);  // sets target
@@ -50,11 +50,11 @@ namespace TheParty_v2
             FromStartPos = FromStance.DrawPos;
             TargetStartPos = TargetStance.DrawPos;
 
-            FromBonusText = "+" + client.FromMember.Equipped.Bonus("Attack").ToString();
+            FromBonusText = "(+" + client.FromMember.Equipped.Bonus("Attack").ToString();
             FromBonusPos = FromStartPos + new Vector2(0, -20);
             FromBonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
 
-            ToBonusText = "-" + client.ToMember.Equipped.Bonus("Defense").ToString();
+            ToBonusText = ")-" + client.ToMember.Equipped.Bonus("Defense").ToString();
             ToBonusPos = TargetStartPos + new Vector2(0, -20);
             ToBonusLerp = new LerpV(ToBonusPos, TargetStartPos, 0.1f);
 
@@ -193,7 +193,11 @@ namespace TheParty_v2
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
+            spriteBatch.Draw(
+                GameContent.Sprites["Black"], 
+                new Rectangle(new Point(0, 0), 
+                new Point(160, 144)), 
+                Color.White);
 
             if (AnimationState == State.Show ||
                 AnimationState == State.BonusCollide)
@@ -202,14 +206,14 @@ namespace TheParty_v2
                     spriteBatch.DrawString(
                         GameContent.Font,
                         FromBonusText,
-                        FromBonusPos,
+                        FromBonusPos.ToPoint().ToVector2(),
                         Color.White);
 
                 if (ShowToBonus)
                     spriteBatch.DrawString(
                         GameContent.Font,
                         ToBonusText,
-                        ToBonusPos,
+                        ToBonusPos.ToPoint().ToVector2(),
                         Color.White);
             }
 
