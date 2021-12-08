@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TheParty_v2
 {
-    class PreMoveChecks : State<CommandBattle>
+    class PostMoveCheck : State<CommandBattle>
     {
         public override void Update(CommandBattle client, float deltaTime)
         {
@@ -28,7 +28,15 @@ namespace TheParty_v2
                 return;
             }
 
-            client.StateMachine.SetNewCurrentState(client, new ChooseMember());
+            // Has everybody in the current party gone?
+            if (client.CurrentStore.CurrentTurnParty.Members.TrueForAll(m => !m.CanGo))
+            {
+                client.StateMachine.SetNewCurrentState(client, new TimePass());
+            }
+            else
+            {
+                client.StateMachine.SetNewCurrentState(client, new ChooseMember());
+            }
         }
 
         public override void Exit(CommandBattle client)

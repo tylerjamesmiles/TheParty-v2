@@ -26,6 +26,7 @@ namespace TheParty_v2
 
             Sheet = GameContent.AnimationSheets[client.CurrentMove.AnimationSheet];
             Sheet.SetCurrentAnimation(client.CurrentMove.AnimationName);
+            Sheet.CurrentAnimation.NumTimesLooped = 0;
             Sheet.DrawPos = client.TargetSprite.DrawPos;
         }
 
@@ -41,7 +42,7 @@ namespace TheParty_v2
             Sheet.Update(deltaTime);
             
             TempWait.Update(deltaTime);
-            if (TempWait.TicThisFrame)
+            if (Sheet.CurrentAnimation.NumTimesLooped > 0)
             {
                 client.SetAppropriateAnimations();
                 client.StateMachine.SetNewCurrentState(client, new DoMoveBack());

@@ -131165,7 +131165,7 @@
           "y": 1520,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "LevelUp()"}
+          "values": {"Name": "", "SpriteName": "CharacterBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "GameOver()"}
         }
       ]
     },

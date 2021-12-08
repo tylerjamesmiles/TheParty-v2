@@ -21,13 +21,18 @@ namespace TheParty_v2
         Timer WaitTimer3;
         Timer WaitTimer4;
 
+        public CommandDecrementHunger()
+        {
+            Sprites = new List<AnimatedSprite2D>();
+            Hearts = new List<HeartsIndicator>();
+            Meats = new List<HeartsIndicator>();
+        }
+
         public override void Enter(TheParty client)
         {
             int party = 0;
             ActiveMembers = client.Player.ActiveParty.Members;
-            Sprites = new List<AnimatedSprite2D>();
-            Hearts = new List<HeartsIndicator>();
-            Meats = new List<HeartsIndicator>();
+
             for (int member = 0; member < ActiveMembers.Count; member++)
             {
                 Vector2 MemberDrawOffset = new Vector2(-16, -16);

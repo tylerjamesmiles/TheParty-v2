@@ -120,11 +120,18 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFreeze(caller));
                         ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
+                        ResultList.Add(new CommandBeFaded());
 
                         // Normal battle
                         if (Arguments.Length == 1)
                         {
                             ResultList.Add(new CommandBattle(Arguments[0], "DidntFlee"));
+                            ResultList.Add(new CommandIf("Party", "==", "Dead",
+                                new List<Command<TheParty>>
+                                {
+                                    new CommandShowScreen(),
+                                    new CommandGameOver()
+                                }));
                             ResultList.Add(new CommandIf("DidntFlee", "==", "true",
                                 new List<Command<TheParty>>
                                 {
@@ -137,6 +144,12 @@ namespace TheParty_v2
                         else if (Arguments.Length == 2)
                         {
                             ResultList.Add(new CommandBattle(Arguments[0], Arguments[1]));
+                            ResultList.Add(new CommandIf("Party", "==", "Dead",
+                            new List<Command<TheParty>>
+                            {
+                                    new CommandShowScreen(),
+                                    new CommandGameOver()
+                            }));
                             ResultList.Add(new CommandIf(Arguments[1], "==", "true",
                                 new List<Command<TheParty>>
                                 {
@@ -146,6 +159,7 @@ namespace TheParty_v2
                                 }));
                         }
 
+                        ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnFreeze(caller));
                         ResultList.Add(new CommandUnfreezePlayer());
@@ -175,6 +189,10 @@ namespace TheParty_v2
 
                     case "collectanimation":
                         ResultList.Add(new CommandCollectAnimation(game.Player.Transform.Position, Arguments[0]));
+                        break;
+
+                    case "gameover":
+                        ResultList.Add(new CommandGameOver());
                         break;
 
                     case "additem":

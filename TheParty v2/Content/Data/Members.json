@@ -9,7 +9,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Calm", "Fireball"
+				"Hit", "#Commit", "Calm", "Fireball"
 			],
 			"MovesToLearn" : []
 		},
@@ -22,7 +22,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Evade", "Take"
+				"Hit", "#Commit", "Evade", "Take"
 			],
 			"MovesToLearn" : []
 		},
@@ -35,7 +35,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Evade", "Fireball", "Poison"
+				"Hit", "#Commit", "Evade", "Fireball", "Poison"
 			],
 			"MovesToLearn" : []
 		},
@@ -48,7 +48,7 @@
 			"MaxHunger" : 0,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge"
+				"Hit", "#Commit"
 			],
 			"MovesToLearn" : []
 		},
@@ -61,7 +61,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help", "Poison", "Pass"
+				"Hit", "#Commit", "Help", "Poison", "Pass"
 			],
 			"MovesToLearn" : [
 				"Heal", "Antidote", "Darkness", "Strengthen", "Calm"
@@ -76,7 +76,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Pass"
+				"Hit", "#Commit", "Pass"
 			],
 			"MovesToLearn" : [
 				"Fireball", "Kamikaze", "Sacrifice", "Lower"
@@ -91,7 +91,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help",  "Restore", "Pass"
+				"Hit", "#Commit", "Help",  "Restore", "Pass"
 			],
 			"MovesToLearn" : [
 				"Heal", "Sacrifice", "Antidote", "GiveLife"
@@ -106,7 +106,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help", "Trade", "Pass"
+				"Hit", "#Commit", "Help", "Trade", "Pass"
 			],
 			"MovesToLearn" : [
 				"Give", "Take", "TradeHP" 
@@ -121,7 +121,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "Stick",
 			"Moves" : [
-				"Hit", "Charge", "Pass"
+				"Hit", "#Commit", "Pass", "Fireball"
 			],
 			"MovesToLearn" : [
 				"Bolster", "Heal", "Restore", "Darkness", "Fireball" 
@@ -136,7 +136,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Bolster", "Pass"
+				"Hit", "#Commit", "Bolster", "Pass"
 			],
 			"MovesToLearn" : [
 				"Encourage", "Weaken", "Lower", "Calm"
@@ -151,7 +151,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help", "Haunt", "Pass"
+				"Hit", "#Commit", "Help", "Haunt", "Pass"
 			],
 			"MovesToLearn" : [
 				"Suck", "Convict", "Poison", "Demoralize"
@@ -166,7 +166,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Help", "Punch", "Pass"
+				"Hit", "#Commit", "Help", "Punch", "Pass"
 			],
 			"MovesToLearn" : [
 				"Evade", "Dive", "Encourage", "Weaken" 
@@ -181,7 +181,7 @@
 			"MaxHunger": 5,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Punch", "Lower"
+				"Hit", "#Commit", "Punch", "Lower"
 			],
 			"MovesToLearn" : []
 		},
@@ -194,7 +194,7 @@
 			"MaxHunger": 5,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Punch", "Lower"
+				"Hit", "#Commit", "Punch", "Lower"
 			],
 			"MovesToLearn" : []
 		},
@@ -207,7 +207,7 @@
 			"MaxHunger" : 10,
 			"Equipped" : "",
 			"Moves" : [
-				"Hit", "Charge", "Poison"
+				"Hit", "#Commit", "Poison"
 			],
 			"MovesToLearn" : []
 		}

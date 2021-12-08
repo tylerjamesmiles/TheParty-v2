@@ -10,9 +10,14 @@ namespace TheParty_v2
     {
         CommandQueue<TheParty> Commands;
 
-        public override void Enter(TheParty client)
+        public CommandLeaveDead()
         {
             Commands = new CommandQueue<TheParty>();
+
+        }
+
+        public override void Enter(TheParty client)
+        {
             foreach (Member member in client.Player.ActiveParty.Members)
                 if (member.HP == 0)
                 {

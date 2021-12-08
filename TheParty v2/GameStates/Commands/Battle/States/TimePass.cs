@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TheParty_v2
 {
-    class DoStatusEffect : State<CommandBattle>
+    class TimePass : State<CommandBattle>
     {
         Timer WaitTimer;
         bool DoneShowingStances;
@@ -24,8 +24,10 @@ namespace TheParty_v2
                 if (member.StatusEffects.Count > HighestNumEffects)
                     HighestNumEffects = member.StatusEffects.Count;
 
+            client.CurrentStore.TimePass();
+
             if (HighestNumEffects == 0)
-                client.StateMachine.SetNewCurrentState(client, new PreMoveChecks());
+                client.StateMachine.SetNewCurrentState(client, new ChooseMember());
             else
                 UpdateStanceAnimations(client);
         }
@@ -72,7 +74,7 @@ namespace TheParty_v2
                         member.StatusEffects.RemoveAll(se => se.NumTurnsRemaining == 0);
                     }
 
-                    client.StateMachine.SetNewCurrentState(client, new PreMoveChecks());
+                    client.StateMachine.SetNewCurrentState(client, new ChooseMember());
                 }
             }
             else

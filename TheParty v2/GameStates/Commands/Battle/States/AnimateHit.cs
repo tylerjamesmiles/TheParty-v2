@@ -73,7 +73,7 @@ namespace TheParty_v2
             TargetHeartsPos = client.Sprites[client.TargetSpriteIdx].DrawPos + new Vector2(0, 16);
             WindupSpot = PlusSignPos + ((PlusSignPos - TargetHeartsPos) * 0.3f);
 
-            WaitTimer = new Timer(0.6f);
+            WaitTimer = new Timer(0.4f);
 
             AnimationState = State.Show;
         }
@@ -110,7 +110,7 @@ namespace TheParty_v2
                         float MoveBy = 30f;
                         float FromMoveX = (FromFacingLeft) ? -MoveBy : MoveBy;
                         float TargetMoveX = (TargetFacingLeft) ? -MoveBy : MoveBy;
-                        float TravelTime = 0.5f;
+                        float TravelTime = 0.3f;
                         FromStanceLerp = new LerpV(FromStance.DrawPos, FromStance.DrawPos + new Vector2(FromMoveX, 0), TravelTime);
                         ToStanceLerp = new LerpV(TargetStance.DrawPos, TargetStance.DrawPos + new Vector2(TargetMoveX, 0), TravelTime);
                         AnimationState = State.Windup;
