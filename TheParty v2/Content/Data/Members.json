@@ -184,6 +184,32 @@
 				"Hit", "Charge", "Punch", "Lower"
 			],
 			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Soldier",
+			"SpriteName": "SoldierFighter",
+			"HP" : 10,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger": 5,
+			"Equipped" : "",
+			"Moves" : [
+				"Hit", "Charge", "Punch", "Lower"
+			],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "King",
+			"SpriteName": "KingFighter",
+			"HP" : 20,
+			"MaxHP":20,
+			"Hunger" : 10,
+			"MaxHunger" : 10,
+			"Equipped" : "",
+			"Moves" : [
+				"Hit", "Charge", "Poison"
+			],
+			"MovesToLearn" : []
 		}
 	]
 }

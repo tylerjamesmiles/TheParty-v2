@@ -116,6 +116,19 @@
 				"+15 $",
 				"+8 Food"
 			]
+		},
+		{
+			"Name" : "KingBoss",
+			"Parties" :
+			[
+				"PlayerParty",
+				"KingBoss"
+			],
+			"Rewards" :
+			[
+				"+20 $",
+				"+7 Food"
+			]
 		}
 	]
 	

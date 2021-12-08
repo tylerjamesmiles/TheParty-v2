@@ -46,6 +46,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HocusBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HocusFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/KingBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/KingFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MeatField.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MeatPreview.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Meats.png</File>
@@ -53,12 +54,14 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MonsterBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PiousBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PiousFighter.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PiousFighterTest.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PlusSign.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RandallBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RandallFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SoldierBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SoldierFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Stances.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/StatusAnimations.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestBackground.png</File>
@@ -70,6 +73,9 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

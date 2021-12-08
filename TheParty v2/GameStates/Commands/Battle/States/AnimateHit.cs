@@ -12,6 +12,8 @@ namespace TheParty_v2
         StanceIndicator TargetStance;
         StanceIndicator ResultStance;
         HeartsIndicator TargetHearts;
+        bool ShowFromBonus;
+        bool ShowToBonus;
         string FromBonusText;
         string ToBonusText;
         LerpV FromStanceLerp;
@@ -36,6 +38,9 @@ namespace TheParty_v2
             FromStance = new StanceIndicator(client.FromMember.Stance, client.StanceIndicators[client.FromSpriteIdx].DrawPos);
             int NewAttackAmt = client.FromMember.StanceWAttackBonus;
             int NewDefenseAmt = client.ToMember.StanceWDefenseBonus;
+
+            bool ShowFromBonus = NewAttackAmt != client.FromMember.Stance;
+            bool ShowToBonus = NewDefenseAmt != client.ToMember.Stance;
 
             FromStance.HardSet(client.FromMember.Stance);
             FromStance.SetTarget(NewAttackAmt);  // sets target
@@ -193,17 +198,19 @@ namespace TheParty_v2
             if (AnimationState == State.Show ||
                 AnimationState == State.BonusCollide)
             {
-                spriteBatch.DrawString(
-                    GameContent.Font,
-                    FromBonusText,
-                    FromBonusPos,
-                    Color.White);
+                if (ShowFromBonus)
+                    spriteBatch.DrawString(
+                        GameContent.Font,
+                        FromBonusText,
+                        FromBonusPos,
+                        Color.White);
 
-                spriteBatch.DrawString(
-                    GameContent.Font,
-                    ToBonusText,
-                    ToBonusPos,
-                    Color.White);
+                if (ShowToBonus)
+                    spriteBatch.DrawString(
+                        GameContent.Font,
+                        ToBonusText,
+                        ToBonusPos,
+                        Color.White);
             }
 
             if (AnimationState == State.Show ||

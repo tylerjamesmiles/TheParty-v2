@@ -87,6 +87,15 @@
 				"Randall",
 				"Bandit"
 			]
+		},
+		{
+			"Name" : "KingBoss",
+			"Members" :
+			[
+				"Soldier",
+				"King",
+				"Soldier"
+			]
 		}
 	]
 }

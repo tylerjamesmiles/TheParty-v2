@@ -202,6 +202,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(The King is missing! What do we do!?)"}
+        },
+        {
+          "name": "Entity",
+          "id": 25,
+          "_eid": "23557279",
+          "x": 224,
+          "y": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "King", "SpriteName": "RandallDead", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg: Your majesty! Your eyes - they're glowing. Are you okay?)\nDialogue(King: Don't speak to me!)\nDialogue(DirtDawg: But your majesty! It's me! Dirt Dawg! Your most trusted servant!)\nDialogue(King: Guards! Kill these intruders!)\nBattle(KingBoss)\nErase(King)\nDialogue(Hocus: We're surrounded by guards!)\nDialogue(DirtDawg: Run!)\nTeleport(WorldMap, 99, 99)"}
         }
       ]
     },
