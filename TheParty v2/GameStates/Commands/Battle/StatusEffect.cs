@@ -9,26 +9,27 @@ namespace TheParty_v2
     class StatusEffect
     {
         public string Name;
-        public string SpriteAnimation;
-        public string AnimationSheet;
-        public string AnimationName;
         public List<string> EveryTurnEffects;
+        public List<string> PassiveEffects;
         public int NumTurnsRemaining;
 
         public StatusEffect() { }
 
+        // TODO: Change this constructor to something simpler
         public StatusEffect(JsonElement status)
         {
             Name = status.GetProperty("Name").GetString();
-            SpriteAnimation = status.GetProperty("SpriteAnimation").GetString();
-            AnimationSheet = status.GetProperty("AnimationSheet").GetString();
-            AnimationName = status.GetProperty("AnimationName").GetString();
 
-            var Effects = status.GetProperty("EveryTurnEffects");
-            int NumEffects = Effects.GetArrayLength();
+            var EveryTurnEffects = status.GetProperty("EveryTurnEffects");
+            int NumEffects = EveryTurnEffects.GetArrayLength();
             for (int i = 0; i < NumEffects; i++)
-                EveryTurnEffects.Add(Effects[i].GetString());
+                this.EveryTurnEffects.Add(EveryTurnEffects[i].GetString());
 
+            var PassiveEffects = status.GetProperty("PassiveEffects");
+            int NumPEffects = PassiveEffects.GetArrayLength();
+            for (int i = 0; i < NumPEffects; i++)
+                this.PassiveEffects.Add(PassiveEffects[i].GetString());
+            
             NumTurnsRemaining = status.GetProperty("NumTurnsRemaining").GetInt32();
         }
 
@@ -37,18 +38,39 @@ namespace TheParty_v2
             return new StatusEffect()
             {
                 Name = Name,
-                AnimationName = AnimationName,
-                AnimationSheet = AnimationSheet,
                 EveryTurnEffects = EveryTurnEffects,
-                NumTurnsRemaining = NumTurnsRemaining,
-                SpriteAnimation = SpriteAnimation
+                PassiveEffects = PassiveEffects,
+                NumTurnsRemaining = NumTurnsRemaining
             };
         }
 
         public bool Gone => NumTurnsRemaining == 0;
         public bool HasEveryTurnEffect => EveryTurnEffects.Count > 0;
         public void DecrementTurnsRemaining() => NumTurnsRemaining -= 1;
-        public void Do(Battle state, Member member)
+
+        public int StatBonus(string stat, int stance)
+        {
+            foreach (string effect in PassiveEffects)
+            {
+                string[] Keywords = effect.Split(' ');
+                string Type = Keywords[0];
+
+                if (Type == stat)   // e.g. "Attack", "Defense" . . .
+                {
+                    string Operation = Keywords[1];
+                    int Amt = int.Parse(Keywords[2]);
+                    switch (Operation)
+                    {
+                        case "+": return Amt;
+                        case "*": return stance * Amt;
+                        case "-": return -Amt;
+                        default: throw new Exception("Invalid operation " + Operation);
+                    }
+                }
+            }
+            return 0;
+        }
+        public void Do(Member member)
             => EveryTurnEffects.ForEach(e => Battle.DoEffect(e, member, member));
 
         

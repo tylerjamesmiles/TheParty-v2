@@ -8,34 +8,51 @@ namespace TheParty_v2
     class Equipment
     {
         public string Name { get; set; }
-        public string Type { get; set; }
-        public string Detail { get; set; }
+        public List<string> EveryTurnEffects { get; set; }
+        public List<string> PassiveEffects { get; set; }
 
         [JsonConstructor]
-        public Equipment(string name, string type, string detail)
+        public Equipment(string name, List<string> everyTurnEffects, List<string> passiveEffects)
         {
             Name = name;
-            Type = type;
-            Detail = detail;
+            EveryTurnEffects = everyTurnEffects;
+            PassiveEffects = passiveEffects;
         }
 
-        public int Bonus(string stat)
+        public List<string> BonusMoves()
         {
-            if (Type == stat)   // e.g. "Attack", "Defense" . . .
+            List<string> Result = new List<string>();
+            foreach (string effect in PassiveEffects)
             {
-                string Operation = Detail.Split(' ')[0];
-                string Amt = Detail.Split(' ')[1];
-                switch (Operation)
+                string[] Keywords = effect.Split(' ');
+                if (Keywords[0] == "+Move")
+                    Result.Add(Keywords[1]);
+            }
+            return Result;
+        }
+
+        public int StatBonuses(string stat)
+        {
+            foreach (string effect in PassiveEffects)
+            {
+                string[] Keywords = effect.Split(' ');
+                string Type = Keywords[0];
+
+                if (Type == stat)   // e.g. "Attack", "Defense" . . .
                 {
-                    case "+": return int.Parse(Amt);
-                    case "*": return int.Parse(Amt);
-                    default: throw new Exception("Invalid operation " + Operation);
+                    string Operation = Keywords[1];
+                    string Amt = Keywords[2];
+                    switch (Operation)
+                    {
+                        case "+": return int.Parse(Amt);
+                        case "*": return int.Parse(Amt);
+                        default: throw new Exception("Invalid operation " + Operation);
+                    }
                 }
             }
-            else
-                return 0;
+            return 0;
         }
 
-        public int StatWithBonus(string stat, int stance) => stance + Bonus(stat);
+        public int StatWithBonus(string stat, int stance) => stance + StatBonuses(stat);
     }
 }

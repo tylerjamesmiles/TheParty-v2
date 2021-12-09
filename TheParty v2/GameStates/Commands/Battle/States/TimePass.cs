@@ -37,16 +37,12 @@ namespace TheParty_v2
             List<Member> AllMembers = client.CurrentStore.AllMembers();
             foreach (Member member in AllMembers)
             {
-                var Effects = member.StatusEffects;
-                if (CurrentEffectIdx < Effects.Count)
+                var MemberStatusEffects = member.StatusEffects;
+                if (CurrentEffectIdx < MemberStatusEffects.Count)
                 {
-                    StatusEffect CurrentEffect = Effects[CurrentEffectIdx];
-                    if (CurrentEffect.SpriteAnimation != "")
-                    {
-                        AnimatedSprite2D Sprite = client.Sprites[AllMembers.IndexOf(member)];
-                        Sprite.SetCurrentAnimation(CurrentEffect.SpriteAnimation);
-                        CurrentEffect.Do(client.CurrentStore, member);
-                    }
+                    StatusEffect CurrentEffect = MemberStatusEffects[CurrentEffectIdx];
+                    string TurnEffect = CurrentEffect.EveryTurnEffects[0];
+                    Battle.DoEffect(TurnEffect, member, member);
                 }
             }
 

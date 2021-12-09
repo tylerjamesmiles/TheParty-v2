@@ -230,7 +230,7 @@ namespace TheParty_v2
                     {
                         int NewStatusIdx = StatusCounter % Member.StatusEffects.Count;
                         StatusEffect ToShow = Member.StatusEffects[NewStatusIdx];
-                        StatusIndicator.SetCurrentAnimation(ToShow.AnimationName);
+                        StatusIndicator.SetCurrentAnimation(ToShow.Name);
                     }
                     else
                     {

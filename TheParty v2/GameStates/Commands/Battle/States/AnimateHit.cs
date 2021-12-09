@@ -36,8 +36,8 @@ namespace TheParty_v2
         public override void Enter(CommandBattle client)
         {
             FromStance = new StanceIndicator(client.FromMember.Stance, client.StanceIndicators[client.FromSpriteIdx].DrawPos);
-            int NewAttackAmt = client.FromMember.StanceWAttackBonus;
-            int NewDefenseAmt = client.ToMember.StanceWDefenseBonus;
+            int NewAttackAmt = client.FromMember.StatAmt("Attack");
+            int NewDefenseAmt = client.ToMember.StatAmt("Defense");
 
             ShowFromBonus = NewAttackAmt != client.FromMember.Stance;
             ShowToBonus = NewDefenseAmt != client.ToMember.Stance;
@@ -45,17 +45,25 @@ namespace TheParty_v2
             FromStance.HardSet(client.FromMember.Stance);
             FromStance.SetTarget(NewAttackAmt);  // sets target
 
-            TargetStance = client.StanceIndicators[client.TargetSpriteIdx];
+            TargetStance = new StanceIndicator(client.ToMember.Stance, client.StanceIndicators[client.TargetSpriteIdx].DrawPos);
+            TargetStance.HardSet(client.ToMember.Stance);
+            TargetStance.SetTarget(NewDefenseAmt);
 
             FromStartPos = FromStance.DrawPos;
             TargetStartPos = TargetStance.DrawPos;
 
-            FromBonusText = "(+" + client.FromMember.Equipped.Bonus("Attack").ToString();
-            FromBonusPos = FromStartPos + new Vector2(0, -20);
+            bool TargetFacingRight = client.CurrentTargeting.FromPartyIdx == 0;
+            int FromBonusXOffset = TargetFacingRight ? +10 : -10;
+            int ToBonusXOffset = TargetFacingRight ? -10 : 10;
+
+            int FromBonusAmt = client.FromMember.StatBonus("Attack");
+            FromBonusText = "(+" + FromBonusAmt;
+            FromBonusPos = FromStartPos + new Vector2(FromBonusXOffset, -20);
             FromBonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
 
-            ToBonusText = ")-" + client.ToMember.Equipped.Bonus("Defense").ToString();
-            ToBonusPos = TargetStartPos + new Vector2(0, -20);
+            int ToBonusAmt = client.ToMember.StatBonus("Defense");
+            ToBonusText = ")" + ToBonusAmt.ToString();
+            ToBonusPos = TargetStartPos + new Vector2(ToBonusXOffset, -20);
             ToBonusLerp = new LerpV(ToBonusPos, TargetStartPos, 0.1f);
 
             PlusSignPos = (FromStartPos + TargetStartPos) / 2;
@@ -103,7 +111,8 @@ namespace TheParty_v2
 
                 case State.AddBonus:
                     FromStance.Update(deltaTime);
-                    if (FromStance.Reached)
+                    TargetStance.Update(deltaTime);
+                    if (FromStance.Reached && TargetStance.Reached)
                     {
                         bool FromFacingLeft = client.Sprites[client.FromSpriteIdx].Flip;
                         bool TargetFacingLeft = client.Sprites[client.TargetSpriteIdx].Flip;

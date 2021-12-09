@@ -33,23 +33,20 @@ namespace TheParty_v2
             
             ItemDescription = new GUIDialogueBox(
                 GUIDialogueBox.ReallySkinnyTop, 
-                new[] { SelectedMemberItemDescr() }, 
+                new[] { ItemDescr(SelectedMember.Equipped) }, 
                 0.01f);
 
             CurrentState = State.ChooseMember;
         }
 
-        private string SelectedMemberItemDescr()
+        private string ItemDescr(Equipment item)
         {
-            Equipment Item = SelectedMember.Equipped;
-            string Description = Item.Type + " " + Item.Detail;
-            return Description;
-        }
-
-        private string SelectedItemDescr()
-        {
-            Equipment Item = SelectedItem;
-            string Description = Item.Type + " " + Item.Detail;
+            if (item == null)
+                return "";
+            string Description = "";
+            item.PassiveEffects.ForEach(pe => Description += pe + ' ');
+            Description += "\n";
+            item.EveryTurnEffects.ForEach(ete => Description += ete + ' ');
             return Description;
         }
 
@@ -104,13 +101,13 @@ namespace TheParty_v2
                 case State.ChooseMember:
                     MemberChoice.Update(deltaTime, true);
                     if (MemberChoice.ChoiceUpdatedThisFrame)
-                        ItemDescription.SetNewText(SelectedMemberItemDescr());
+                        ItemDescription.SetNewText(ItemDescr(SelectedMember.Equipped));
 
                     if (MemberChoice.Done)
                     {
                         GenerateEquippedItemNames(client);
                         GenerateItemChoice(client);
-                        ItemDescription.SetNewText(SelectedItemDescr());
+                        ItemDescription.SetNewText(ItemDescr(SelectedItem));
                         CurrentState = State.ChooseItem;
                     }
 
@@ -122,7 +119,7 @@ namespace TheParty_v2
                 case State.ChooseItem:
                     InventoryBox.Update(deltaTime, true);
                     if (InventoryBox.ChoiceUpdatedThisFrame)
-                        ItemDescription.SetNewText(SelectedItemDescr());
+                        ItemDescription.SetNewText(ItemDescr(SelectedItem));
 
                     if (InventoryBox.Done)
                     {

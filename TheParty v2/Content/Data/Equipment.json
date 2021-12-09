@@ -1,23 +1,23 @@
 ﻿[
 {
 	"Name" : "",
-	"Type" : "",
-	"Detail" : ""
+	"EveryTurnEffects" : [],
+	"PassiveEffects" : []
 },
 {
 	"Name" : "Needl",
-	"Type" : "+Move",
-	"Detail" : "Poison"
+	"EveryTurnEffects" : [],
+	"PassiveEffects" : ["+Move Poison"]
 },
 {
 	"Name" : "Stick",
-	"Type" : "Attack",
-	"Detail" : "+ 1"
+	"EveryTurnEffects" : [],
+	"PassiveEffects" : ["Attack + 1"]
 },
 {
 	"Name" : "Lid",
-	"Type" : "Defense",
-	"Detail" : "+ 1"
+	"EveryTurnEffects" : [],
+	"PassiveEffects" : ["Defense + 1"]
 }
 ]
 

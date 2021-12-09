@@ -60,8 +60,9 @@ namespace TheParty_v2
         public List<Move> GetMoves()
         {
             var Result = Moves.ConvertAll(m => GameContent.Moves[m]);
-            if (Equipped.Type == "+Move")
-                Result.Add(GameContent.Moves[Equipped.Detail]);
+            List<string> BonusMoves = Equipped.BonusMoves();
+            if (BonusMoves.Count > 0)
+                BonusMoves.ForEach(bm => Result.Add(GameContent.Moves[bm]));
             return Result;
         }
 
@@ -103,8 +104,31 @@ namespace TheParty_v2
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
         public Equipment Equipped => GameContent.Equipment[EquippedName];
 
-        public int StanceWAttackBonus => Equipped.StatWithBonus("Attack", Stance);
-        public int StanceWDefenseBonus => Equipped.StatWithBonus("Defense", Stance);
+        public int StatBonus(string stat)
+        {
+            int StatusStatBonus = 0;
+            foreach (StatusEffect status in StatusEffects)
+                StatusStatBonus += status.StatBonus(stat, Stance);
+
+            int Bonus = Equipped.StatBonuses(stat) + StatusStatBonus;
+
+            return Bonus;
+        }
+
+        public int StatAmt(string stat)
+        {
+            int StatusStatBonus = 0;
+            foreach (StatusEffect status in StatusEffects)
+                StatusStatBonus += status.StatBonus(stat, Stance);
+
+            int Bonus = Equipped.StatBonuses(stat) + StatusStatBonus;
+
+            if (stat == "Attack")
+                return Stance + Bonus;
+            if (stat == "Defense")
+                return Stance - Bonus;
+            throw new Exception("Not a valid stat " + stat);
+        }
 
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
         {

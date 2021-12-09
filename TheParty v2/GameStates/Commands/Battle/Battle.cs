@@ -159,7 +159,7 @@ namespace TheParty_v2
                     break;
 
                 case "HitHPByStance":
-                    int HitAmt = from.StanceWAttackBonus + to.StanceWDefenseBonus;
+                    int HitAmt = from.StatAmt("Attack") + to.StatAmt("Defense");
                     to.HitHP(-HitAmt);
                     break;
 
