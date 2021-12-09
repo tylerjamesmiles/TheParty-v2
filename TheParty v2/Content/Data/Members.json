@@ -121,7 +121,7 @@
 			"MaxHunger" : 6,
 			"Equipped" : "Stick",
 			"Moves" : [
-				"Hit", "#Commit", "Pass", "Poison"
+				"Hit", "#Commit", "Pass", "Poison", "Strengthen"
 			],
 			"MovesToLearn" : [
 				"Bolster", "Heal", "Restore", "Darkness", "Fireball" 

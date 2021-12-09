@@ -22,16 +22,23 @@ namespace TheParty_v2
 
             bool[] ChoiceValidity = new bool[2];
             ChoiceValidity[0] = true;
-            ChoiceValidity[1] = MyStance > TheirStance;
+            ChoiceValidity[1] = MyStance > TheirStance && client.CanFlee;
 
             Choice = new GUIChoiceBox(
                 new[] { "Fight", "Flee" }, 
                 GUIChoiceBox.Position.Center, 
                 1, ChoiceValidity);
 
+            string DescriptionText =
+                (client.CanFlee) ? 
+                    MyStance > TheirStance ? 
+                        "You can flee!" : 
+                        "You need more commitment to flee!" : 
+                    "You cannot run from this fight.";
+
             Description = new GUIDialogueBox(
                 GUIDialogueBox.Position.SkinnyTop,
-                new[] { "You can flee if your stance is higher." },
+                new[] { DescriptionText },
                 0.01f);
         }
 

@@ -41,9 +41,13 @@ namespace TheParty_v2
                 if (CurrentEffectIdx < MemberStatusEffects.Count)
                 {
                     StatusEffect CurrentEffect = MemberStatusEffects[CurrentEffectIdx];
-                    string TurnEffect = CurrentEffect.EveryTurnEffects[0];
-                    Battle.DoEffect(TurnEffect, member, member);
+                    if (CurrentEffect.EveryTurnEffects.Count > 0)
+                    {
+                        string TurnEffect = CurrentEffect.EveryTurnEffects[0];
+                        Battle.DoEffect(TurnEffect, member, member);
+                    }
                 }
+
             }
 
             CurrentEffectIdx++;

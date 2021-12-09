@@ -4,6 +4,12 @@
         "EveryTurnEffects" : ["HitHP(Target, -1)"],
         "PassiveEffects" : ["Defense - 1"],
         "NumTurnsRemaining" : 3
+    },
+    {
+        "Name" : "AttackUp",
+        "EveryTurnEffects" : [],
+        "PassiveEffects" : ["Attack + 1"],
+        "NumTurnsRemaining" : 3
     }
 ]
 

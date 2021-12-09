@@ -398,8 +398,7 @@
             "PositiveEffect" : true,
             "Effects" :
             [
-                "AddStatus(Target, AttackUp)",
-                "HitStance(Caster, -1)"
+                "AddStatus(Target, AttackUp)"
             ],
             "MoveConditions" : 
             [

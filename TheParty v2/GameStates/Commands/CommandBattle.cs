@@ -32,15 +32,8 @@ namespace TheParty_v2
         public bool ContinueAfter;
         public string SwitchToSet;
 
-        public CommandBattle(string name)
-        {
-            BackgroundName = "TestBackground";
-            CurrentStore = GameContent.Battles[name];
-            ContinueAfter = false;
-            SwitchToSet = "";
+        public bool CanFlee;
 
-            Instantiate();
-        }
 
         public CommandBattle(string name, string switchToSet)
         {
@@ -48,6 +41,8 @@ namespace TheParty_v2
             CurrentStore = GameContent.Battles[name];
             ContinueAfter = true;
             SwitchToSet = switchToSet;
+
+            CanFlee = SwitchToSet == "DidntFlee";
 
             Instantiate();
         }
