@@ -24,7 +24,8 @@ namespace TheParty_v2
             AnimationTimer = new Timer(0.08f);
             Bob = new Wobble(2f, 2f);
             DrawPos = drawPos;
-            Moving = false;
+            Moving = true;
+            Direction = true;
             Reached = false;
         }
 

@@ -45,8 +45,6 @@ namespace TheParty_v2
                 return "";
             string Description = "";
             item.PassiveEffects.ForEach(pe => Description += pe + ' ');
-            Description += "\n";
-            item.EveryTurnEffects.ForEach(ete => Description += ete + ' ');
             return Description;
         }
 
@@ -62,7 +60,10 @@ namespace TheParty_v2
                 Vector2 BoxSize = new Vector2(44, 20);
                 EquippedItemBoxes.Add(new GUIBox(new Rectangle(BoxPos.ToPoint(), BoxSize.ToPoint())));
                 Equipment Equipped = ActiveParty[m].Equipped;
-                EquippedItemNames.Add(new GUIText(Equipped.Name, BoxPos + new Vector2(5, 5), 40, 0.01f));
+                string Name = "";
+                if (Equipped != null)
+                    Name = Equipped.Name;
+                EquippedItemNames.Add(new GUIText(Name, BoxPos + new Vector2(5, 5), 40, 0.01f));
             }
         }
 

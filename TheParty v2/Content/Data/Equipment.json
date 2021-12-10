@@ -1,4 +1,5 @@
 ﻿[
+{	"Name" : "",			"PassiveEffects" : []	},
 {	"Name" : "Axe",			"PassiveEffects" : ["Attack + 1", "Defense - 1"]	},
 {	"Name" : "Apron",		"PassiveEffects" : ["Defense + 1", "Attack - 1"]	},
 {	"Name" : "Scythe",		"PassiveEffects" : ["Attack + 2", "Defense - 2"]	},

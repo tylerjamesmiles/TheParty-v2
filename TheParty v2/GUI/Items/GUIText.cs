@@ -82,7 +82,7 @@ namespace TheParty_v2
 
             if (CurrentChar == Text.Length - 1)
                 CurrentDisplayText = Text;
-            else
+            else if (Text.Length > 0)
                 CurrentDisplayText = Text.Remove(CurrentChar);
         }
 

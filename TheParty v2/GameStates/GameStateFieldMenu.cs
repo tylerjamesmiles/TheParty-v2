@@ -20,6 +20,7 @@ namespace TheParty_v2
         public List<AnimatedSprite2D> MemberSprites;
         public List<HeartsIndicator> HPIndicators;
         public List<HeartsIndicator> HungerIndicators;
+        public List<StanceIndicator> StanceIndicators;
 
         public StateMachine<GameStateFieldMenu> StateMachine;
         public bool Done;
@@ -34,6 +35,8 @@ namespace TheParty_v2
             MemberSprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             HungerIndicators = new List<HeartsIndicator>();
+            StanceIndicators = new List<StanceIndicator>();
+
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
                 Vector2 MemberDrawPos = new Vector2(16 + i * 48, 48);
@@ -57,6 +60,11 @@ namespace TheParty_v2
                     (int)MemberDrawPos.Y + 32 + 15, 
                     true);
                 HungerIndicators.Add(Meats);
+
+                StanceIndicator Stance = new StanceIndicator(
+                    ActiveMembers[i].Stance,
+                    MemberDrawPos + new Vector2(+14, -10));
+                StanceIndicators.Add(Stance);
             }
         }
 
@@ -96,6 +104,8 @@ namespace TheParty_v2
                 hp.Update(deltaTime);
             foreach (HeartsIndicator hunger in HungerIndicators)
                 hunger.Update(deltaTime);
+            foreach (StanceIndicator stance in StanceIndicators)
+                stance.Update(deltaTime);
 
             StateMachine.Update(this, deltaTime);
             if (Done)
@@ -124,6 +134,8 @@ namespace TheParty_v2
                 hp.Draw(spriteBatch);
             foreach (HeartsIndicator hunger in HungerIndicators)
                 hunger.Draw(spriteBatch);
+            foreach (StanceIndicator stance in StanceIndicators)
+                stance.Draw(spriteBatch);
 
             StateMachine.Draw(this, spriteBatch);
         }
