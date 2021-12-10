@@ -147,8 +147,8 @@ namespace TheParty_v2
             {
                 Commands.ForEach(c => c.Entered = false);
                 Commands.ForEach(c => c.Done = false);
-                client.CommandQueue.PushCommands(Commands);
                 client.CommandQueue.PushCommand(new CommandWhile(VarName, Operator, RHValue, Commands));
+                client.CommandQueue.PushCommands(Commands);
             }
 
             Done = true;

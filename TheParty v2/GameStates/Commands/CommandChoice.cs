@@ -84,17 +84,21 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            Choice.Draw(spriteBatch, true);
-        
-            foreach (var show in ToShow)
+            if (Entered)
             {
-                switch (show)
+                Choice.Draw(spriteBatch, true);
+
+                foreach (var show in ToShow)
                 {
-                    case Show.Food: Food.Draw(spriteBatch, true); break;
-                    case Show.Money: Money.Draw(spriteBatch, true); break;
-                    case Show.Days: Days.Draw(spriteBatch, true); break;
+                    switch (show)
+                    {
+                        case Show.Food: Food.Draw(spriteBatch, true); break;
+                        case Show.Money: Money.Draw(spriteBatch, true); break;
+                        case Show.Days: Days.Draw(spriteBatch, true); break;
+                    }
                 }
             }
+            
         }
     }
 }

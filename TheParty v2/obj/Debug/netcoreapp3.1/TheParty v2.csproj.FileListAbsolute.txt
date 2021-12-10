@@ -119,3 +119,5 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\R
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\KingFighter.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\PiousFighterTest.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\SoldierFighter.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\BattleBackground.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\netcoreapp3.1\Content\Art\Capricorn.xnb

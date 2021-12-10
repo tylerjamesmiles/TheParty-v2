@@ -72,7 +72,7 @@
           "y": 272,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(CaveBattle1)\nErase(Me)"}
+          "values": {"Name": "Monster1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(CaveBattle1)\nErase(Me)"}
         }
       ]
     },

@@ -13,8 +13,10 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AttackIcon.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/BanditFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/basictiles.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/BattleBackground.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Black.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Box.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Capricorn.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CatFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterClimbingBase.png</File>
@@ -73,6 +75,8 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

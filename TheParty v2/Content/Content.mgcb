@@ -229,6 +229,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/basictiles.png
 
+#begin Art/BattleBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/BattleBackground.png
+
 #begin Art/Black.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -276,6 +288,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/Box.png
+
+#begin Art/Capricorn.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/Capricorn.png
 
 #begin Art/CatFighter.png
 /importer:TextureImporter
@@ -1033,6 +1057,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/KingFighter.png
 
+#begin Art/KingFighter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/KingFighter.png
+
 #begin Art/MeatField.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1213,6 +1249,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/PiousFighterTest.png
 
+#begin Art/PiousFighterTest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/PiousFighterTest.png
+
 #begin Art/PlusSign.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1356,6 +1404,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/SoldierBase.png
+
+#begin Art/SoldierFighter.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/SoldierFighter.png
 
 #begin Art/SoldierFighter.png
 /importer:TextureImporter

@@ -34,6 +34,9 @@ namespace TheParty_v2
 
         public bool CanFlee;
 
+        public LerpV BackgroundLerp1;
+        public LerpV BackgroundLerp2;
+
 
         public CommandBattle(string name, string switchToSet)
         {
@@ -145,7 +148,8 @@ namespace TheParty_v2
                 member.StatusEffects = new List<StatusEffect>();
             }
 
-
+            BackgroundLerp1 = new LerpV(new Vector2(0, 0), new Vector2(160, 144), 10f);
+            BackgroundLerp2 = new LerpV(new Vector2(160, 144), new Vector2(0, 0), 10f);
 
             GameOver = false;
 
@@ -251,13 +255,32 @@ namespace TheParty_v2
                 Done = true;
                 return;
             }
+
+            BackgroundLerp1.Update(deltaTime);
+            BackgroundLerp2.Update(deltaTime);
+
+            if (BackgroundLerp1.Reached)
+            {
+                BackgroundLerp1 = new LerpV(new Vector2(0, 0), new Vector2(160, 144), 10f);
+                BackgroundLerp2 = new LerpV(new Vector2(160, 144), new Vector2(0, 0), 10f);
+            }
+
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             // Background
             Rectangle BackgroundRect = new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize);
-            spriteBatch.Draw(GameContent.Sprites[BackgroundName], BackgroundRect, Color.White);
+            spriteBatch.Draw(GameContent.Sprites["Black"], BackgroundRect, Color.White);
+            Rectangle BackRect1 = new Rectangle(
+                BackgroundLerp1.CurrentPosition.ToPoint() - new Point(160, 144), 
+                new Point(320, 288));
+            Rectangle BackRect2 = new Rectangle(
+                BackgroundLerp2.CurrentPosition.ToPoint() - new Point(160, 144),
+                new Point(320, 288));
+
+            spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect1, Color.White);
+            spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect2, Color.White);
 
             List<AnimatedSprite2D> Sorted = new List<AnimatedSprite2D>(Sprites);
             Sorted.Sort((s1, s2) => s1.DrawPos.Y > s2.DrawPos.Y ? 1 : -1);
