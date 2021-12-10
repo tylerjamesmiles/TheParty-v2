@@ -10,35 +10,31 @@ namespace TheParty_v2
     {
         public string Name;
         public string Description;
-        public string AnimationSheet;
-        public string AnimationName;
-        public bool PositiveEffect;
         public List<string> Effects;
-        public List<string> MoveConditions;
+        public List<string> Conditions;
 
         public Move(JsonElement move)
         {
             Name = move.GetProperty("Name").GetString();
             Description = move.GetProperty("Description").GetString();
-            AnimationSheet = move.GetProperty("AnimationSheet").GetString();
-            AnimationName = move.GetProperty("AnimationName").GetString();
-            PositiveEffect = move.GetProperty("PositiveEffect").GetBoolean();
 
             Effects = new List<string>();
             for (int i = 0; i < move.GetProperty("Effects").GetArrayLength(); i++)
                 Effects.Add(move.GetProperty("Effects")[i].GetString());
 
-            MoveConditions = new List<string>();
-            for (int i = 0; i < move.GetProperty("MoveConditions").GetArrayLength(); i++)
-                MoveConditions.Add(move.GetProperty("MoveConditions")[i].GetString());
+            Conditions = new List<string>();
+            for (int i = 0; i < move.GetProperty("Conditions").GetArrayLength(); i++)
+                Conditions.Add(move.GetProperty("Conditions")[i].GetString());
         }
 
         public static string InvalidMoveName = "Invalid";
 
-        public bool ValidOnMember(Battle state, Targeting targeting)
-            => MoveConditions.TrueForAll(c => Battle.CheckCondition(c, state, targeting));
+        public bool ValidOnMember(Battle state, Targeting targeting) =>
+            state.From(targeting).HP > 0 &&
+            state.To(targeting).HP > 0 &&
+            Conditions.TrueForAll(c => Battle.CheckCondition(c, state, targeting));
 
-        public bool ValidOnAnyone(Battle state, int fromPartyIdx, int fromMemberIdx)
-            => state.AllTargetingFor(fromPartyIdx, fromMemberIdx).Exists(t => ValidOnMember(state, t));
+        public bool ValidOnAnyone(Battle state, int fromPartyIdx, int fromMemberIdx) => 
+            state.AllTargetingFor(fromPartyIdx, fromMemberIdx).Exists(t => ValidOnMember(state, t));
     }
 }

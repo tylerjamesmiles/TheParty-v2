@@ -227,7 +227,6 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
-            Sprites.ForEach(s => s.Draw(spriteBatch));
 
             for (int i = 0; i < Hearts.Count; i++)
             {
@@ -238,6 +237,8 @@ namespace TheParty_v2
                 }
             }
 
+            Sprites.ForEach(s => s.Draw(spriteBatch));
+
             if (CurrentState == State.ChooseMember)
                 MemberChoice.Draw(spriteBatch, true);
 
@@ -247,7 +248,6 @@ namespace TheParty_v2
             if (CurrentState == State.ChooseMove)
             {
                 MoveChoice.Draw(spriteBatch, true);
-
 
                 Description.Draw(spriteBatch, true);
             }

@@ -60,7 +60,9 @@ namespace TheParty_v2
         public List<Move> GetMoves()
         {
             var Result = Moves.ConvertAll(m => GameContent.Moves[m]);
-            List<string> BonusMoves = Equipped.BonusMoves();
+            List<string> BonusMoves = new List<string>();
+            if (Equipped != null)
+                BonusMoves = Equipped.BonusMoves();
             if (BonusMoves.Count > 0)
                 BonusMoves.ForEach(bm => Result.Add(GameContent.Moves[bm]));
             return Result;
@@ -102,26 +104,29 @@ namespace TheParty_v2
             !HasEffect("Stunned");
 
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
-        public Equipment Equipped => GameContent.Equipment[EquippedName];
-
+        public Equipment Equipped =>
+            GameContent.Equipment.ContainsKey(EquippedName) ?
+                GameContent.Equipment[EquippedName] :
+                null;
+                
         public int StatBonus(string stat)
         {
             int StatusStatBonus = 0;
             foreach (StatusEffect status in StatusEffects)
                 StatusStatBonus += status.StatBonus(stat, Stance);
 
-            int Bonus = Equipped.StatBonuses(stat) + StatusStatBonus;
+            int EquippedBonus = 0;
+            if (Equipped != null)
+                EquippedBonus = Equipped.StatBonuses(stat);
+
+            int Bonus = EquippedBonus + StatusStatBonus;
 
             return Bonus;
         }
 
         public int StatAmt(string stat)
         {
-            int StatusStatBonus = 0;
-            foreach (StatusEffect status in StatusEffects)
-                StatusStatBonus += status.StatBonus(stat, Stance);
-
-            int Bonus = Equipped.StatBonuses(stat) + StatusStatBonus;
+            int Bonus = StatBonus(stat);
 
             if (stat == "Attack")
                 return Stance + Bonus;

@@ -8,7 +8,6 @@ namespace TheParty_v2
 {
     class DoDoMove : State<CommandBattle>
     {
-        Timer TempWait;
         bool MoveDone;
         AnimatedSprite2D Sheet;
 
@@ -16,18 +15,22 @@ namespace TheParty_v2
         {
             client.FromSprite.SetCurrentAnimation("Idle");
 
-            if (client.CurrentMove.PositiveEffect)
-                client.TargetSprite.SetCurrentAnimation("PositiveHit");
-            else
-                client.TargetSprite.SetCurrentAnimation("NegativeHit");
+            //if (client.CurrentMove.PositiveEffect)
+            //    client.TargetSprite.SetCurrentAnimation("PositiveHit");
+            //else
+            //    client.TargetSprite.SetCurrentAnimation("NegativeHit");
 
-            TempWait = new Timer(0.8f);
             MoveDone = false;
 
-            Sheet = GameContent.AnimationSheets[client.CurrentMove.AnimationSheet];
-            Sheet.SetCurrentAnimation(client.CurrentMove.AnimationName);
-            Sheet.CurrentAnimation.NumTimesLooped = 0;
-            Sheet.DrawPos = client.TargetSprite.DrawPos;
+            Sheet = GameContent.AnimationSheets["HitAnimations"];
+            if (Sheet.Animations.ContainsKey(client.CurrentMove.Name))
+            {
+                Sheet.SetCurrentAnimation(client.CurrentMove.Name);
+                Sheet.CurrentAnimation.NumTimesLooped = 0;
+                Sheet.DrawPos = client.TargetSprite.DrawPos;
+            }
+            else
+                Sheet = null;
         }
 
         public override void Update(CommandBattle client, float deltaTime)
@@ -39,19 +42,21 @@ namespace TheParty_v2
                 MoveDone = true;
             }
 
-            Sheet.Update(deltaTime);
-            
-            TempWait.Update(deltaTime);
-            if (Sheet.CurrentAnimation.NumTimesLooped > 0)
+            if (Sheet != null)
+                Sheet.Update(deltaTime);
+
+            if ((Sheet != null && Sheet.CurrentAnimation.NumTimesLooped > 0) || Sheet == null)
             {
-                client.SetAppropriateAnimations();
+                //client.SetAppropriateAnimations();
                 client.StateMachine.SetNewCurrentState(client, new DoMoveBack());
             }
+
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
-            Sheet.Draw(spriteBatch);
+            if (Sheet != null)
+                Sheet.Draw(spriteBatch);
         }
     }
 }

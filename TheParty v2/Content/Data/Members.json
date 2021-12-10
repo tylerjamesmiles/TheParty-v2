@@ -8,9 +8,7 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Calm", "Fireball"
-			],
+			"Moves" : ["Hit"],
 			"MovesToLearn" : []
 		},
 		{
@@ -21,9 +19,7 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Evade", "Take"
-			],
+			"Moves" : ["Hit"],
 			"MovesToLearn" : []
 		},
 		{
@@ -34,9 +30,7 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Evade", "Fireball", "Poison"
-			],
+			"Moves" : ["Hit"],
 			"MovesToLearn" : []
 		},
 		{
@@ -47,9 +41,7 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit"
-			],
+			"Moves" : ["Hit"],
 			"MovesToLearn" : []
 		},
 		{
@@ -60,12 +52,8 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Help", "Poison", "Pass"
-			],
-			"MovesToLearn" : [
-				"Heal", "Antidote", "Darkness", "Strengthen", "Calm"
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Poison", "Antidote"]
 		},
 		{
 			"Name" : "DirtDawg",
@@ -75,12 +63,8 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Pass"
-			],
-			"MovesToLearn" : [
-				"Fireball", "Kamikaze", "Sacrifice", "Lower"
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Strengthen", "Kamikaze"]
 		},
 		{
 			"Name" : "Faeema",
@@ -90,27 +74,19 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Help",  "Restore", "Pass"
-			],
-			"MovesToLearn" : [
-				"Heal", "Sacrifice", "Antidote", "GiveLife"
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Heal", "Donate"]
 		},
 		{
-			"Name" : "Grinning Norman",
+			"Name" : "Norman",
 			"SpriteName" : "GrinningNormanFighter",
 			"HP" : 5,
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Help", "Trade", "Pass"
-			],
-			"MovesToLearn" : [
-				"Give", "Take", "TradeHP" 
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Give", "Take"]
 		},
 		{
 			"Name" : "Hocus",
@@ -119,13 +95,9 @@
 			"MaxHP" : 10,
 			"Hunger" : 6,
 			"MaxHunger" : 6,
-			"Equipped" : "Stick",
-			"Moves" : [
-				"Hit", "#Commit", "Pass", "Poison", "Strengthen"
-			],
-			"MovesToLearn" : [
-				"Bolster", "Heal", "Restore", "Darkness", "Fireball" 
-			]
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
 		},
 		{
 			"Name" : "Pious",
@@ -135,12 +107,8 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Bolster", "Pass"
-			],
-			"MovesToLearn" : [
-				"Encourage", "Weaken", "Lower", "Calm"
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Doubt", "Devote"]
 		},
 		{
 			"Name" : "Skinner",
@@ -150,27 +118,19 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Help", "Haunt", "Pass"
-			],
-			"MovesToLearn" : [
-				"Suck", "Convict", "Poison", "Demoralize"
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Freeze", "Harden"]
 		},
 		{
-			"Name" : "The Flurry",
+			"Name" : "Flurry",
 			"SpriteName" : "TheFlurryFighter",
 			"HP" : 5,
 			"MaxHP" : 10,
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Help", "Punch", "Pass"
-			],
-			"MovesToLearn" : [
-				"Evade", "Dive", "Encourage", "Weaken" 
-			]
+			"Moves" : ["Hit", "Commit", "Pass"],
+			"MovesToLearn" : ["Commit More", "Weaken", "Diminish"]
 		},
 		{
 			"Name" : "Randall",
@@ -180,9 +140,7 @@
 			"Hunger" : 5,
 			"MaxHunger": 5,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Punch", "Lower"
-			],
+			"Moves" : [],
 			"MovesToLearn" : []
 		},
 		{
@@ -193,9 +151,7 @@
 			"Hunger" : 5,
 			"MaxHunger": 5,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Punch", "Lower"
-			],
+			"Moves" : [],
 			"MovesToLearn" : []
 		},
 		{
@@ -206,9 +162,7 @@
 			"Hunger" : 10,
 			"MaxHunger" : 10,
 			"Equipped" : "",
-			"Moves" : [
-				"Hit", "#Commit", "Poison"
-			],
+			"Moves" : [],
 			"MovesToLearn" : []
 		}
 	]

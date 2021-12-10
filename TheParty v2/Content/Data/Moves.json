@@ -2,470 +2,124 @@
     "Moves" :
     [
         {
-            "Name" : "Pass",
+            "Name" : "Pass", 
             "Description" : "Do nothing this turn.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : false,
             "Effects" : [],
-            "MoveConditions" : 
-            [
-                "Is(Target, Self)"
-            ] 
+            "Conditions" : [ "Is(Target, Self)" ] 
         },
         {
-            "Name" : "Hit",
-            "Description" : "Hit % by your stance.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" : 
-            [
-                "HitHPByStance()"
-            ], 
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Hit", 
+            "Description" : "Use commitment to hit %",
+            "Effects" : [ "HitHPByStance()" ],  
+            "Conditions" : [ "Is(Target, InDifferentParty)" ]
         },
         {
-            "Name" : "#Commit",
-            "Description" :  "Raise #commitment# by 1.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "HitStance(Caster, 1)"
-            ],
-            "MoveConditions" :
-            [
-                "HP(Caster, >, 0)",
-                "Is(Target, Self)"
-            ]
+            "Name" : "Commit", 
+            "Description" : "Raise commitment by 1",
+            "Effects" : ["HitStance(Target, +1)"],  
+            "Conditions" : ["Is(Target, Self)"]
         },
         {
-            "Name" : "Give",
-            "Description" : "Give one pt. of Stance.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "HitStance(Target, +1)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" :
-            [
-                "Stance(Caster, >, 1)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Commit More", 
+            "Description" : "Commitment + 2",
+            "Effects" : ["HitStance(Target, +2)"],  
+            "Conditions" : ["Is(Target, Self)"]
         },
         {
-            "Name" : "Take",
-            "Description" : "Take one pt. of Stance.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [
-                "HitStance(Target, -1)",
-                "HitStance(Caster, +1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Target, >, 1)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Poison", 
+            "Description" : "Poison the target.",
+            "Effects" : ["AddStatus(Target, Poison)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, Poison)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Calm",
-            "Description" : "Lower stance to 0",       
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [
-                "ResetStance(Target)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "Stance(Target, >, 1)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Antidote", 
+            "Description" : "Remove poison.",
+            "Effects" : ["RemoveStatus(Poison)"],  
+            "Conditions" : ["Status(Target, Has, Poison)", "Commitment(Caster, >, 2)"]
         },
         {
-            "Name" : "Suck",
-            "Description" :  "Steal 1%",     
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" : 
-            [
-                "HitHP(Target, -2)",
-                "HitHP(Caster, +2)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Strengthen", 
+            "Description" : "Raise Attack Power",
+            "Effects" : ["AddStatus(Target, AttackUp)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Heal",
-            "Description" :  "Heal 2%",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [
-                "HitHP(+4)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Weaken", 
+            "Description" : "Lower Attack Power",
+            "Effects" : ["AddStatus(Target, AttackDown)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Give Enough",
-            "Description" :  "Give enough % to heal",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "GiveEnoughHP()",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "Stance(Caster, >, 1)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Bolster", 
+            "Description" : "Raise Defense",
+            "Effects" : ["AddStatus(Target, DefenseUp)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, DefenseUp)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Fireball",
-            "Description" :  "Hit 3 % \n# must be at least 2.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" : 
-            [
-                "HitHP(Target, -6)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 2)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Diminish", 
+            "Description" : "Lower Defense",
+            "Effects" : ["AddStatus(Target, DefenseDown)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Encourage",
-            "Description" :  "Charge someone else up.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [ 
-                "HitStance(Target, 2)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Give", 
+            "Description" : "Give 1 Commitment",
+            "Effects" : ["Give(Commitment, 1)"],  
+            "Conditions" : ["Stance(Caster, >, 0)", "Commitment(Caster, >, 1)"]
         },
         {
-            "Name" : "Trade",
-            "Description" :  "Trade stance with target.",                    
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "TradeStance()"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Take", 
+            "Description" : "Take 1 Commitment",
+            "Effects" : ["Take(Commitment, 2)"],  
+            "Conditions" : ["Stance(Target, >, 0)", "Commitment(Target, >, 1)"]
         },
         {
-            "Name" : "Trade%",
-            "Description" :  "Trade %s with target.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [
-                "TradeHP()",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)"
-            ]
+            "Name" : "Doubt", 
+            "Description" : "Lose commitment over time.",
+            "Effects" : ["AddStatus(Target, Doubting)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Target, >, 3)"]
         },
         {
-            "Name" : "Haunt",
-            "Description" :  "Hit 2 %s,\n(Must be Dead.)",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "HitHP(-4)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, ==, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Freeze", 
+            "Description" : "Freeze target for a turn.",
+            "Effects" : ["AddStatus(Target, Frozen)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Target, >, 5)"]
         },
         {
-            "Name" : "Darkness",
-            "Description" :  "1/5 chance to kill",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "KillChance(Target, 20)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Thaw", 
+            "Description" : "Unfreeze a frozen ally.",
+            "Effects" : ["RemoveStatus(Frozen)"],  
+            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Target, >, 2)"]
         },
         {
-            "Name" : "Kamikaze",
-            "Description" :  "Kill target.\nBring you to 1%.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "Kill(Target)",
-                "SetStance(Caster, 1)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Donate", 
+            "Description" : "Give enough HP to heal.",
+            "Effects" : ["GiveEnoughHP()"],  
+            "Conditions" : []
         },
         {
-            "Name" : "Dive",
-            "Description" :  "KO you and target.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "AddStatus(Target, Stunned)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Kamikaze", 
+            "Description" : "Give enough HP to kill.",
+            "Effects" : ["Kamikaze"],  
+            "Conditions" : []
         },
         {
-            "Name" : "Sacrifice",
-            "Description" :  "Bring back to life,\nat the cost of yours.",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "Kill(Caster)",
-                "HitHP(Target, +10)"
-            ],
-            "MoveConditions" : 
-            [
-                "HP(Caster, >, 0)",
-                "HP(Target, ==, 0)"
-            ]
+            "Name" : "Devote", 
+            "Description" : "Gain commitment over time.",
+            "Effects" : ["AddStatus(Target, Devoted)"],  
+            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Target, >, 3)"]
         },
         {
-            "Name" : "Stun",
-            "Description" :  "KO an enemy\n",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "AddStatus(Target, Stunned)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Deconvert", 
+            "Description" : "Calm a devoted friend.",
+            "Effects" : ["RemoveStatus(Devoted)"],  
+            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Target, > 2)"]
         },
         {
-            "Name" : "Poison",
-            "Description" :  "Poison a target.",                    
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "AddStatus(Target, Poison)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InDifferentParty)"
-            ]
-        },
-        {
-            "Name" : "Restore",
-            "Description" :  "Heal 1/2 % each turn.",                    
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Charge",
-            "PositiveEffect" : true,
-            "Effects" : 
-            [
-                "AddStatus(Target, Restore)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "Is(Target, InSameParty)"
-            ]
-        },
-        {
-            "Name" : "Antidote",
-            "Description" :  "Heal poison.",                    
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "RemoveStatus(Poison)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Has, Poison)"
-            ]
-        },
-        {
-            "Name" : "Strengthen",
-            "Description" :  "Increase attack.",                   
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "AddStatus(Target, AttackUp)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Doesn'tHave, AttackUp)"
-            ]
-        },
-        {
-            "Name" : "Weaken",
-            "Description" :  "Weaken target's attack.\n",
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "AddStatus(Target, AttackDown)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Doesn'tHave, AttackDown)",
-                "Is(Target, InDifferentParty)"
-            ]
-        },
-        {
-            "Name" : "Bolster",
-            "Description" :  "Increase defense.",         
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : true,
-            "Effects" :
-            [
-                "AddStatus(Target, DefenseUp)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Doesn'tHave, DefenseUp)"
-            ]
-        },
-        {
-            "Name" : "Lower",
-            "Description" :  "Weaken defense.", 
-            "AnimationSheet" : "HitAnimations",
-            "AnimationName" : "Hit",
-            "PositiveEffect" : false,
-            "Effects" :
-            [
-                "AddStatus(Target, DefenseDown)",
-                "HitStance(Caster, -1)"
-            ],
-            "MoveConditions" : 
-            [
-                "Stance(Caster, >, 0)",
-                "HP(Caster, >, 0)",
-                "HP(Target, >, 0)",
-                "StatusEffect(Target, Doesn'tHave, DefenseDown)",
-                "Is(Target, InDifferentParty)"
-            ]
+            "Name" : "Harden", 
+            "Description" : "Make target invulnerable to change.",
+            "Effects" : ["AddStatus(Target, Invulnerable)"],  
+            "Conditions" : ["Status(Target, Doesn't'Have, Invulnerable)"]
         }
     ]
 }

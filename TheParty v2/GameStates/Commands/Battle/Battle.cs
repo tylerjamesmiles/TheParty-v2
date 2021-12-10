@@ -215,7 +215,7 @@ namespace TheParty_v2
                         default: throw new Exception("Sign " + Arguments[1] + " is not valid.");
                     }
 
-                case "Stance":
+                case "Commitment":
                     int StanceAmt = int.Parse(Arguments[2]);
                     switch (Arguments[1].Trim())
                     {
@@ -244,7 +244,7 @@ namespace TheParty_v2
                         default: throw new Exception("Condition " + Arguments[1] + " is not valid.");
                     }
 
-                case "StatusEffect":
+                case "Status":
                     switch (Arguments[1].Trim())
                     {
                         case "Has": return Target.HasEffect(Arguments[2].Trim());

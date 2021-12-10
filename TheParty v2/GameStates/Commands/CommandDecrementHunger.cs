@@ -153,14 +153,14 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
 
-            foreach (AnimatedSprite2D sprite in Sprites)
-                sprite.Draw(spriteBatch);
-
             foreach (HeartsIndicator health in Hearts)
                 health.Draw(spriteBatch);
 
             foreach (HeartsIndicator meat in Meats)
                 meat.Draw(spriteBatch);
+
+            foreach (AnimatedSprite2D sprite in Sprites)
+                sprite.Draw(spriteBatch);
 
         }
     }

@@ -21,6 +21,10 @@ namespace TheParty_v2
             int NumMoves = Moves.Count;
             int NumCollumns = NumMoves == 2 ? 1 : 2;
             List<string> MoveNames = Moves.ConvertAll(m => m.Name);
+
+            if (MoveNames.Count == 0)
+                throw new Exception("Trying to choose between no moves.");
+
             client.MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.BottomRight, NumCollumns, ChoiceValidity);
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
