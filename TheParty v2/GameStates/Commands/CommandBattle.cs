@@ -209,7 +209,7 @@ namespace TheParty_v2
             StanceIndicators.ForEach(s => s.SetTarget(AllMembers[StanceIndicators.IndexOf(s)].Stance));
 
             Sprites.ForEach(s => s.Update(deltaTime));
-            HPIndicators.ForEach(h => h.SetPos(Sprites[HPIndicators.IndexOf(h)].DrawPos.ToPoint() + new Point(0, 18)));
+            HPIndicators.ForEach(h => h.TopCenter = (Sprites[HPIndicators.IndexOf(h)].DrawPos.ToPoint() + new Point(0, 18)));
             HPIndicators.ForEach(h => h.Update(deltaTime));
             StanceIndicators.ForEach(s => s.DrawPos = Sprites[StanceIndicators.IndexOf(s)].DrawPos + new Vector2(-4, -26));
             StanceIndicators.ForEach(s => s.Update(deltaTime));

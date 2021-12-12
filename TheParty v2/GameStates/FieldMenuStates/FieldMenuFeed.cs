@@ -16,7 +16,6 @@ namespace TheParty_v2
             List<Vector2> Positions = client.MemberSprites.ConvertAll(s => s.DrawPos + new Vector2(10, 10));
             Choice = new GUIChoice(Positions.ToArray());
 
-            
             client.HungerIndicators.ForEach(hp => hp.SetShowMax(true));
             client.HungerIndicators.ForEach(hp => hp.SetMax(client.ActiveMembers[client.HungerIndicators.IndexOf(hp)].MaxHunger));
         }
@@ -31,7 +30,7 @@ namespace TheParty_v2
                 if (GameContent.Variables["FoodSupply"] > 0 && 
                     ToFeed.Hunger < ToFeed.MaxHunger)
                 {
-                    ToFeed.Hunger += 1;
+                    ToFeed.Hunger += 2;
                     GameContent.Variables["FoodSupply"] -= 1;
                     client.HungerIndicators[Choice.CurrentChoiceIdx].SetHP(ToFeed.Hunger);
                     Rectangle FoodBounds = new Rectangle(new Point(32, 4), new Point(32, 18));

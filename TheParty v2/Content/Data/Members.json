@@ -91,11 +91,11 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 10,
+			"HP" : 6,
 			"MaxHP" : 10,
 			"Hunger" : 6,
 			"MaxHunger" : 6,
-			"Equipped" : "",
+			"Equipped" : "Bandana",
 			"Moves" : ["Hit", "Commit", "Pass"],
 			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
 		},

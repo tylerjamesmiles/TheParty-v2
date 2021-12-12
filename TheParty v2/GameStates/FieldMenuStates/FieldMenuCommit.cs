@@ -28,8 +28,16 @@ namespace TheParty_v2
             {
                 Member Selected = client.ActiveMembers[Choice.CurrentChoiceIdx];
                 StanceIndicator Indicator = client.StanceIndicators[Choice.CurrentChoiceIdx];
-                if (Selected.Stance < 9)
+                HeartsIndicator Hunger = client.HungerIndicators[Choice.CurrentChoiceIdx];
+                if (Selected.Stance < 9 && Selected.Hunger > 0)
                 {
+                    Selected.Hunger -= 2;
+
+                    if (Selected.Hunger < 0)
+                        Selected.Hunger = 0;
+
+                    Hunger.SetHP(Selected.Hunger);
+
                     Selected.Stance += 1;
                     Indicator.SetTarget(Selected.Stance);
                 }

@@ -1,13 +1,13 @@
 ﻿[
 {	"Name" : "",			"PassiveEffects" : []	},
 {	"Name" : "Axe",			"PassiveEffects" : ["Attack + 1", "Defense - 1"]	},
-{	"Name" : "Apron",		"PassiveEffects" : ["Defense + 1", "Attack - 1"]	},
+{	"Name" : "Apron",		"PassiveEffects" : ["Defense + 1", "Attack - 1"]	},	// Cave
 {	"Name" : "Scythe",		"PassiveEffects" : ["Attack + 2", "Defense - 2"]	},
 {	"Name" : "Ballgown",	"PassiveEffects" : ["Defense + 2", "Attack - 2"]	},
 {	"Name" : "Staff",		"PassiveEffects" : ["Attack + 3", "Defense - 3"]	},
 {	"Name" : "Platemail",	"PassiveEffects" : ["Defense + 3", "Attack - 3"]	},
-{	"Name" : "Dagger",		"PassiveEffects" : ["Attack + 1"]					},
-{	"Name" : "Bandana",		"PassiveEffects" : ["Defense + 1"]					},
+{	"Name" : "Dagger",		"PassiveEffects" : ["Attack + 1"]					},	// Cave
+{	"Name" : "Bandana",		"PassiveEffects" : ["Defense + 1"]					},	// Capricorn
 {	"Name" : "Katana",		"PassiveEffects" : ["Attack + 2", "Defense - 1"]	},
 {	"Name" : "Cape",		"PassiveEffects" : ["Defense + 2", "Attack - 1"]	},
 {	"Name" : "Flail",		"PassiveEffects" : ["Attack + 3", "Defense - 2"]	},

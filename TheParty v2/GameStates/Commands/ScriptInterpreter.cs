@@ -116,6 +116,12 @@ namespace TheParty_v2
                             ResultList.Add(new CommandStopFacingPlayer(EntityFromName(entityName, EntityLayer, caller)));
                         break;
 
+                    case "decrementhunger":
+                        ResultList.Add(new CommandFreezePlayer());
+                        ResultList.Add(new CommandDecrementHunger());
+                        ResultList.Add(new CommandUnfreezePlayer());
+                        break;
+
                     case "battle":
                         ResultList.Add(new CommandFreeze(caller));
                         ResultList.Add(new CommandFreezePlayer());

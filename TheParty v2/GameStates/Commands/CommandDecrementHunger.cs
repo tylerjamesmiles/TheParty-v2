@@ -12,20 +12,24 @@ namespace TheParty_v2
         List<AnimatedSprite2D> Sprites;
         List<HeartsIndicator> Hearts;
         List<HeartsIndicator> Meats;
+        List<StanceIndicator> Stances;
+        
+        List<Vector2> WindupSpots;
+        List<LerpV> StanceLerps;
 
-        enum State { Wait, DecHunger, Wait2, Hit, Wait3, Kill, Wait4 }
+        enum State { Wait, Windup, Collide, DecHunger, Wait2, Hit, Wait3, Kill, Wait4, LowerCommitment, Wait5 }
         State CurrentState;
 
-        Timer WaitTimer1;
-        Timer WaitTimer2;
-        Timer WaitTimer3;
-        Timer WaitTimer4;
+        Timer WaitTimer;
 
         public CommandDecrementHunger()
         {
             Sprites = new List<AnimatedSprite2D>();
             Hearts = new List<HeartsIndicator>();
             Meats = new List<HeartsIndicator>();
+            Stances = new List<StanceIndicator>();
+            WindupSpots = new List<Vector2>();
+            StanceLerps = new List<LerpV>();
         }
 
         public override void Enter(TheParty client)
@@ -55,15 +59,24 @@ namespace TheParty_v2
                 Hearts.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
 
                 int Hunger = ActiveMembers[member].Hunger;
-                Meats.Add(new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, true));
+                HeartsIndicator HIndicator = new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, true);
+                Meats.Add(HIndicator);
+
+                int Stance = ActiveMembers[member].Stance;
+                StanceIndicator SIndicator = new StanceIndicator(Stance, Sprite.DrawPos + new Vector2(-4, -28));
+                SIndicator.HardSet(Stance);
+                Stances.Add(SIndicator);
+
+                Vector2 WindupSpot = HIndicator.TopCenter.ToVector2() + new Vector2(-32, 0);
+                WindupSpots.Add(WindupSpot);
+
+                LerpV StanceLerp = new LerpV(SIndicator.DrawPos, WindupSpot, 0.8f);
+                StanceLerps.Add(StanceLerp);
             }
 
             CurrentState = State.Wait;
 
-            WaitTimer1 = new Timer(1.0f);
-            WaitTimer2 = new Timer(1.5f);
-            WaitTimer3 = new Timer(1.0f);
-            WaitTimer4 = new Timer(1.0f);
+            WaitTimer = new Timer(0.8f);
 
             Entered = true;
         }
@@ -79,27 +92,67 @@ namespace TheParty_v2
             foreach (HeartsIndicator meat in Meats)
                 meat.Update(deltaTime);
 
+            foreach (StanceIndicator stance in Stances)
+                stance.Update(deltaTime);
+
             switch (CurrentState)
             {
                 case State.Wait:
-                    WaitTimer1.Update(deltaTime);
-                    if (WaitTimer1.TicThisFrame)
+                    WaitTimer.Update(deltaTime);
+                    if (WaitTimer.TicThisFrame && Stances.TrueForAll(s => s.Reached))
+                        CurrentState = State.Windup;
+                    break;
+
+                case State.Windup:
+                    StanceLerps.ForEach(sl => sl.Update(deltaTime));
+                    Stances.ForEach(s => s.DrawPos = StanceLerps[Stances.IndexOf(s)].CurrentPosition);
+                    if (StanceLerps.TrueForAll(sl => sl.Reached))
+                    {
+                        List<LerpV> NewLerps = new List<LerpV>();
+                        foreach (LerpV lerp in StanceLerps)
+                        {
+                            Vector2 Start = lerp.CurrentPosition;
+                            Vector2 End = Meats[StanceLerps.IndexOf(lerp)].TopCenter.ToVector2();
+                            NewLerps.Add(new LerpV(Start, End, 0.1f));
+                        }
+                        StanceLerps = NewLerps;
+                        CurrentState = State.Collide;
+                    }
+
+                    break;
+
+
+                case State.Collide:
+                    StanceLerps.ForEach(sl => sl.Update(deltaTime));
+                    Stances.ForEach(s => s.DrawPos = StanceLerps[Stances.IndexOf(s)].CurrentPosition);
+                    if (StanceLerps.TrueForAll(sl => sl.Reached))
+                    {
                         CurrentState = State.DecHunger;
+                    }
                     break;
 
                 case State.DecHunger:
+
                     for (int member = 0; member < ActiveMembers.Count; member++)
-                        if (ActiveMembers[member].Hunger > 0)
+                    {
+                        Member Member = ActiveMembers[member];
+                        if (Member.Hunger > 0)
                         {
-                            ActiveMembers[member].Hunger -= 1;
-                            Meats[member].SetHP(ActiveMembers[member].Hunger);
+                            Member.Hunger -= Member.Stance;
+                            if (Member.Hunger < 0)
+                                Member.Hunger = 0;
+
+                            Meats[member].SetHP(Member.Hunger);
                         }
+                    }
+
+                    WaitTimer.Reset();
                     CurrentState = State.Wait2;
                     break;
 
                 case State.Wait2:
-                    WaitTimer2.Update(deltaTime);
-                    if (WaitTimer2.TicThisFrame)
+                    WaitTimer.Update(deltaTime);
+                    if (WaitTimer.TicThisFrame)
                     {
                         CurrentState = State.Hit;
                     }
@@ -114,14 +167,15 @@ namespace TheParty_v2
                             Sprites[member].SetCurrentAnimation("NegativeHit");
                         }
                         Hearts[member].SetHP(ActiveMembers[member].HP);
-
                     }
+
+                    WaitTimer.Reset();
                     CurrentState = State.Wait3;
                     break;
 
                 case State.Wait3:
-                    WaitTimer3.Update(deltaTime);
-                    if (WaitTimer3.TicThisFrame)
+                    WaitTimer.Update(deltaTime);
+                    if (WaitTimer.TicThisFrame)
                         CurrentState = State.Kill;
                     break;
 
@@ -137,15 +191,38 @@ namespace TheParty_v2
                             Sprites[member].SetCurrentAnimation("Idle");
                         }
                     }
+                    WaitTimer.Reset();
+
+                    foreach (StanceIndicator si in Stances)
+                    {
+                        si.DrawPos = Sprites[Stances.IndexOf(si)].DrawPos + new Vector2(-4, -28);
+                    }
+
                     CurrentState = State.Wait4;
                     break;
 
                 case State.Wait4:
-                    WaitTimer4.Update(deltaTime);
-                    if (WaitTimer4.TicThisFrame)
-                        Done = true;
+                    WaitTimer.Update(deltaTime);
+                    if (WaitTimer.TicThisFrame)
+                        CurrentState = State.LowerCommitment;
                     break;
 
+                case State.LowerCommitment:
+                    for (int i = 0; i < ActiveMembers.Count; i++)
+                    {
+                        Member Member = ActiveMembers[i];
+                        Member.HitStance(-1);
+                        Stances[i].SetTarget(Member.Stance);
+                    }
+                    WaitTimer = new Timer(1.5f);
+                    CurrentState = State.Wait5;
+                    break;
+
+                case State.Wait5:
+                    WaitTimer.Update(deltaTime);
+                    if (WaitTimer.TicThisFrame && Stances.TrueForAll(s => s.Reached))
+                        Done = true;
+                    break;
             }
         }
 
@@ -153,14 +230,30 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
 
-            foreach (HeartsIndicator health in Hearts)
-                health.Draw(spriteBatch);
+            if (CurrentState != State.Wait &&
+                CurrentState != State.Windup &&
+                CurrentState != State.Collide)
+            {
+                foreach (HeartsIndicator health in Hearts)
+                    health.Draw(spriteBatch);
+            }
 
             foreach (HeartsIndicator meat in Meats)
                 meat.Draw(spriteBatch);
 
             foreach (AnimatedSprite2D sprite in Sprites)
                 sprite.Draw(spriteBatch);
+
+            if (CurrentState == State.Wait ||
+                CurrentState == State.Windup ||
+                CurrentState == State.Collide ||
+                CurrentState == State.Wait4 ||
+                CurrentState == State.LowerCommitment ||
+                CurrentState == State.Wait5)
+            {
+                foreach (StanceIndicator stance in Stances)
+                    stance.Draw(spriteBatch);
+            }
 
         }
     }

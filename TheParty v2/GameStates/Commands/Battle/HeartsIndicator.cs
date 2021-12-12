@@ -12,9 +12,8 @@ namespace TheParty_v2
         int CurrentDisplayHP;
         Timer UpdateTimer;
         public int MaxHP { get; set; }
-        int CenterX;
-        int Y;
-        int NumHearts;
+        public Point TopCenter;
+        int NumTotalHearts;
         int CurrentBouncing;
         bool BeMeat;
         bool ShowMax;
@@ -22,17 +21,15 @@ namespace TheParty_v2
 
         public HeartsIndicator(int startHP, int centerX, int y, bool beMeat = false, bool showMax = false, int maxHP = 0)
         {
-            CenterX = centerX;
-            Y = y;
+            TopCenter = new Point(centerX, y);
             BounceMoveTimer = new Timer(0.1f);
-            CurrentBouncing = new Random().Next(NumHearts * 10);
+            CurrentBouncing = new Random().Next(NumTotalHearts * 10);
             CurrentDisplayHP = 0;
             UpdateTimer = new Timer(0.1f);
             BeMeat = beMeat;
             ShowMax = showMax;
             MaxHP = maxHP;
             SetHP(startHP);
-
         }
 
         public void Update(float deltaTime)
@@ -40,7 +37,7 @@ namespace TheParty_v2
             BounceMoveTimer.Update(deltaTime);
             if (BounceMoveTimer.TicThisFrame)
                 CurrentBouncing++;
-            if (CurrentBouncing > NumHearts * 10)
+            if (CurrentBouncing > NumTotalHearts * 10)
                 CurrentBouncing = 0;
 
             UpdateTimer.Update(deltaTime);
@@ -62,49 +59,45 @@ namespace TheParty_v2
             CurrentHP = newHP;
 
             if (ShowMax)
-                NumHearts = (MaxHP + 1) / 2;
+                NumTotalHearts = (MaxHP + 1) / 2;
             else
-                NumHearts = (newHP + 1) / 2;
+                NumTotalHearts = (newHP + 1) / 2;
         }
 
         public void SetMax(int newMax)
         {
             MaxHP = newMax;
-            NumHearts = (MaxHP + 1) / 2;
-        }
-
-        public void SetPos(Point newPos)
-        {
-            CenterX = newPos.X;
-            Y = newPos.Y;
+            NumTotalHearts = (MaxHP + 1) / 2;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int HeartWidth = 4;
-            int NumDisplayHearts = (CurrentDisplayHP + 1) / 2;
-            int NumHeartsAcross = NumHearts > 5 ? 5 : NumHearts;
-            int TotalWidth = HeartWidth * NumHeartsAcross;
-            int Left = CenterX - TotalWidth / 2;
+            int HeartPixelWidth = 4;
+            int NumLivingHearts = (CurrentDisplayHP + 1) / 2;
+            int NumHeartsToDisplay = 
+                (ShowMax) ? 
+                    (MaxHP + 1) / 2 :
+                    NumLivingHearts;    // Num hearts of current HP
+            int NumHeartsAcross = NumHeartsToDisplay > 5 ? 5 : NumHeartsToDisplay;    // used for centering
+            int TotalWidth = HeartPixelWidth * NumHeartsAcross;
+            int Left = TopCenter.X - TotalWidth / 2;
 
             List<Point> DrawPoses = new List<Point>();
-            for (int i = 0; i < NumHearts; i++)
+            for (int i = 0; i < NumHeartsToDisplay; i++)
             {
-                int DrawX =
-                    Left + ((i % 5) * HeartWidth);
-                int DrawY = Y +
-                    ((i / 5) * 5) +
-                    ((CurrentBouncing == i) ? - 1 : 0);
+                int DrawX = Left + ((i % 5) * HeartPixelWidth);
+                int DrawY = TopCenter.Y + ((i / 5) * 5) +
+                    ((CurrentBouncing == i) ? - 1 : 0);     // hearts bounce occasionally
                 DrawPoses.Add(new Point(DrawX, DrawY));
             }
 
             int LastSourceX = (CurrentDisplayHP % 2 == 0) ? 0 : 5;
 
-            for (int i = 0; i < NumHearts; i++)
+            for (int i = 0; i < NumHeartsToDisplay; i++)
             {
                 Point MaxSourcePos = new Point(0, 5);
 
-                Point SourcePos = (i == NumDisplayHearts - 1) ?  // *****
+                Point SourcePos = (i == NumHeartsToDisplay - 1) ?  // *****
                     new Point(LastSourceX, 0) : new Point(0, 0);
 
                 string SpriteName = (BeMeat) ? "Meats" : "Hearts";
@@ -118,7 +111,7 @@ namespace TheParty_v2
                         Color.White);
                 }
 
-                if (i < NumDisplayHearts)
+                if (i < NumLivingHearts)
                 {
                     spriteBatch.Draw(
                         GameContent.Sprites[SpriteName],
