@@ -125,6 +125,9 @@ namespace TheParty_v2
 
             switch (Effect)
             {
+
+                // ~ ~ ~ STANCE ~ ~ ~
+
                 case "SetStance":
                     Target.Stance = 1;
                     break;
@@ -142,6 +145,8 @@ namespace TheParty_v2
                     from.Stance = to.Stance;
                     to.Stance = FromsStance;
                     break;
+
+                // ~ ~ ~ HP ~ ~ ~
 
                 case "HitHP":
                     to.HitHP(Amt);
@@ -163,6 +168,13 @@ namespace TheParty_v2
                     int HitAmt = from.StatAmt("Attack") + to.StatAmt("Defense");
                     to.HitHP(-HitAmt);
                     break;
+
+                case "StealHP":
+                    from.HitHP(Amt);
+                    to.HitHP(-Amt);
+                    break;
+
+                // ~ ~ ~ STATUS ~ ~ ~
 
                 case "Kill":
                     Target.HitHP(-Target.HP);

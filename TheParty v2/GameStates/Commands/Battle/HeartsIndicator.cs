@@ -6,6 +6,63 @@ using System.Text;
 
 namespace TheParty_v2
 {
+    class FallingParticle
+    {
+        Vector2 Position;
+        Vector2 Velocity;
+        Vector2 Acceleration;
+        Vector2 Steering;
+        float MaxSpeed;
+        float Mass;
+        float RotationSpeed;
+        float CurrentRotation;
+        float CurrentBrightness;
+        float BrightnessSpeed;
+
+        public bool Offscreen { get; private set; }
+
+        public FallingParticle(Vector2 startingPos, Vector2 startingDir, float startingSpeed)
+        {
+            Position = startingPos;;
+            MaxSpeed = startingSpeed;
+            Velocity = startingDir * MaxSpeed;
+            int RotationDir = new Random().Next(2) == 0 ? -1 : 1;
+            RotationSpeed = 5.0f * RotationDir;
+            CurrentRotation = 0f;
+            Mass = 1f;
+            CurrentBrightness = 1f;
+            BrightnessSpeed = 0.5f;
+        }
+
+        public void Update(float deltaTime)
+        {
+            float GravityAmt = 150f;
+            Vector2 SteeringForce = new Vector2(0, GravityAmt);
+            Acceleration = SteeringForce * Mass;
+            Velocity += Acceleration * deltaTime;
+            Position += Velocity * deltaTime;
+
+            CurrentRotation += RotationSpeed * deltaTime;
+
+            CurrentBrightness -= BrightnessSpeed * deltaTime;
+
+            Offscreen = Position.X < 0 || Position.X > 160 || Position.Y > 144;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(
+                GameContent.Sprites["Hearts"],
+                new Rectangle(Position.ToPoint(), new Point(5, 5)),
+                new Rectangle(new Point(5, 0), new Point(5, 5)),
+                new Color(CurrentBrightness, CurrentBrightness, CurrentBrightness, 1f),
+                CurrentRotation,
+                Vector2.Zero,
+                SpriteEffects.None,
+                0f);
+        }
+    }
+
     class HeartsIndicator
     {
         public int CurrentHP { get; set; }
@@ -19,6 +76,8 @@ namespace TheParty_v2
         bool ShowMax;
         Timer BounceMoveTimer;
 
+        List<FallingParticle> Particles;
+
         public HeartsIndicator(int startHP, int centerX, int y, bool beMeat = false, bool showMax = false, int maxHP = 0)
         {
             TopCenter = new Point(centerX, y);
@@ -30,6 +89,8 @@ namespace TheParty_v2
             ShowMax = showMax;
             MaxHP = maxHP;
             SetHP(startHP);
+
+            Particles = new List<FallingParticle>();
         }
 
         public void Update(float deltaTime)
@@ -45,7 +106,25 @@ namespace TheParty_v2
             {
                 bool MovingUp = CurrentDisplayHP < CurrentHP;
                 CurrentDisplayHP += (MovingUp) ? +1 : -1;
+
+                if (MovingUp == false)
+                {
+                    // spawn two broken heart halves
+                    Random Rand = new Random();
+                    float RandX = -0.5f + (float)Rand.NextDouble() * 1.0f;
+                    float RandY = (float)Rand.NextDouble() * -1.0f;
+                    Vector2 Dir = new Vector2(RandX, RandY);
+                    Dir.Normalize();
+
+                    Particles.Add(new FallingParticle(TopCenter.ToVector2(), Dir, 80f));
+
+                    Vector2 NewDir = Dir + new Vector2(0.1f, 0.1f);
+                    Particles.Add(new FallingParticle(TopCenter.ToVector2(), NewDir, 80f));
+                }
             }
+
+            Particles.ForEach(p => p.Update(deltaTime));
+            Particles.RemoveAll(p => p.Offscreen);
         }
 
         public void SetShowMax(bool setting)
@@ -73,10 +152,10 @@ namespace TheParty_v2
         public void Draw(SpriteBatch spriteBatch)
         {
             int HeartPixelWidth = 4;
-            int NumLivingHearts = (CurrentDisplayHP + 1) / 2;
+            int NumLivingHearts = CurrentDisplayHP;
             int NumHeartsToDisplay = 
                 (ShowMax) ? 
-                    (MaxHP + 1) / 2 :
+                    MaxHP :
                     NumLivingHearts;    // Num hearts of current HP
             int NumHeartsAcross = NumHeartsToDisplay > 5 ? 5 : NumHeartsToDisplay;    // used for centering
             int TotalWidth = HeartPixelWidth * NumHeartsAcross;
@@ -91,7 +170,7 @@ namespace TheParty_v2
                 DrawPoses.Add(new Point(DrawX, DrawY));
             }
 
-            int LastSourceX = (CurrentDisplayHP % 2 == 0) ? 0 : 5;
+            int LastSourceX = 0;
 
             for (int i = 0; i < NumHeartsToDisplay; i++)
             {
@@ -120,6 +199,8 @@ namespace TheParty_v2
                         Color.White);
                 }
             }
+
+            Particles.ForEach(p => p.Draw(spriteBatch));
         }
     }
 }

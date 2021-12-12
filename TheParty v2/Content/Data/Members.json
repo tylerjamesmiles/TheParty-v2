@@ -3,23 +3,23 @@
 		{
 			"Name" : "Alien",
 			"SpriteName" : "AlienFighter",
-			"HP" : 5,
+			"HP" : 8,
 			"MaxHP" : 10,	
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit"],
+			"Moves" : ["Hit", "Commit", "Freeze"],
 			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Bandit",
 			"SpriteName" : "BanditFighter",
-			"HP" : 5,
+			"HP" : 7,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit"],
+			"Moves" : ["Hit", "Commit"],
 			"MovesToLearn" : []
 		},
 		{
@@ -30,18 +30,18 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit"],
+			"Moves" : ["Hit", "Commit", "Discourage"],
 			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Chupasnakera",
 			"SpriteName" : "ChupasnakeraFighter",
-			"HP" : 5,
+			"HP" : 4,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit"],
+			"Moves" : ["Hit", "Commit", "Suck"],
 			"MovesToLearn" : []
 		},
 		{
@@ -58,10 +58,10 @@
 		{
 			"Name" : "DirtDawg",
 			"SpriteName" : "DirtDawgFighter",
-			"HP" : 10,
-			"MaxHP" : 10,
-			"Hunger" : 5,
-			"MaxHunger" : 6,
+			"HP" : 3,
+			"MaxHP" : 3,
+			"Hunger" : 3,
+			"MaxHunger" : 3,
 			"Equipped" : "",
 			"Moves" : ["Hit", "Commit", "Pass"],
 			"MovesToLearn" : ["Commit More", "Strengthen", "Kamikaze"]
@@ -91,10 +91,10 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 6,
-			"MaxHP" : 10,
-			"Hunger" : 6,
-			"MaxHunger" : 6,
+			"HP" : 3,
+			"MaxHP" : 3,
+			"Hunger" : 3,
+			"MaxHunger" : 3,
 			"Equipped" : "Bandana",
 			"Moves" : ["Hit", "Commit", "Pass"],
 			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]

@@ -152,11 +152,13 @@ namespace TheParty_v2
             BackgroundLerp2 = new LerpV(new Vector2(160, 144), new Vector2(0, 0), 10f);
 
             GameOver = false;
-
         }
 
         public override void Enter(TheParty client)
         {
+            foreach (Member member in client.Player.ActiveParty.Members)
+                member.GoneThisTurn = false;
+
             CurrentStore.Parties[0] = client.Player.ActiveParty;
 
             for (int party = 0; party < CurrentStore.NumParties; party++)

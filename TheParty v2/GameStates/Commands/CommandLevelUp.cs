@@ -154,14 +154,14 @@ namespace TheParty_v2
                         switch (LevelUpTypeChoice.CurrentChoice)
                         {
                             case 0:     // +1 max HP
-                                Selected.MaxHP += 2;
+                                Selected.MaxHP += 1;
                                 Hearts[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHP);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
                             case 1:     // +1 max Hunger
-                                Selected.MaxHunger += 2;
+                                Selected.MaxHunger += 1;
                                 Meats[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHunger);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;

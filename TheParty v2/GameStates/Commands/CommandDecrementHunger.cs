@@ -17,12 +17,14 @@ namespace TheParty_v2
         List<Vector2> WindupSpots;
         List<LerpV> StanceLerps;
 
+        bool LowerCommitment;
+
         enum State { Wait, Windup, Collide, DecHunger, Wait2, Hit, Wait3, Kill, Wait4, LowerCommitment, Wait5 }
         State CurrentState;
 
         Timer WaitTimer;
 
-        public CommandDecrementHunger()
+        public CommandDecrementHunger(bool lowerCommitment = false)
         {
             Sprites = new List<AnimatedSprite2D>();
             Hearts = new List<HeartsIndicator>();
@@ -30,6 +32,8 @@ namespace TheParty_v2
             Stances = new List<StanceIndicator>();
             WindupSpots = new List<Vector2>();
             StanceLerps = new List<LerpV>();
+
+            LowerCommitment = lowerCommitment;
         }
 
         public override void Enter(TheParty client)
@@ -204,7 +208,12 @@ namespace TheParty_v2
                 case State.Wait4:
                     WaitTimer.Update(deltaTime);
                     if (WaitTimer.TicThisFrame)
-                        CurrentState = State.LowerCommitment;
+                    {
+                        if (LowerCommitment)
+                            CurrentState = State.LowerCommitment;
+                        else
+                            Done = true;
+                    }
                     break;
 
                 case State.LowerCommitment:

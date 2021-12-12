@@ -30,7 +30,7 @@ namespace TheParty_v2
                 if (ToHeal.HP < ToHeal.MaxHP && ToHeal.Hunger > 0)
                 {
                     ToHeal.Hunger -= 1;
-                    ToHeal.HitHP(+2);
+                    ToHeal.HitHP(+1);
                     client.HungerIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.Hunger);
                     client.HPIndicators[Choice.CurrentChoiceIdx].SetHP(ToHeal.HP);
                 }

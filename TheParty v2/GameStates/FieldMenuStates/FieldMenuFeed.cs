@@ -30,7 +30,7 @@ namespace TheParty_v2
                 if (GameContent.Variables["FoodSupply"] > 0 && 
                     ToFeed.Hunger < ToFeed.MaxHunger)
                 {
-                    ToFeed.Hunger += 2;
+                    ToFeed.Hunger += 1;
                     GameContent.Variables["FoodSupply"] -= 1;
                     client.HungerIndicators[Choice.CurrentChoiceIdx].SetHP(ToFeed.Hunger);
                     Rectangle FoodBounds = new Rectangle(new Point(32, 4), new Point(32, 18));

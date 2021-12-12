@@ -62,14 +62,14 @@
             "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >, 3)"]
         },
         {
-            "Name" : "Give", 
-            "Description" : "Give 1 Commitment",
+            "Name" : "Encourage", 
+            "Description" : "Give 1 point of Commitment",
             "Effects" : ["Give(Commitment, 1)"],  
             "Conditions" : ["Stance(Caster, >, 0)", "Commitment(Caster, >, 1)"]
         },
         {
-            "Name" : "Take", 
-            "Description" : "Take 1 Commitment",
+            "Name" : "Discourage", 
+            "Description" : "Take 1 point of Commitment",
             "Effects" : ["Take(Commitment, 2)"],  
             "Conditions" : ["Stance(Target, >, 0)", "Commitment(Target, >, 1)"]
         },
@@ -120,6 +120,12 @@
             "Description" : "Make target invulnerable to change.",
             "Effects" : ["AddStatus(Target, Invulnerable)"],  
             "Conditions" : ["Status(Target, Doesn't'Have, Invulnerable)"]
+        },
+        {
+            "Name" : "Suck",
+            "Description" : "Steal 1 %",
+            "Effects" : ["StealHP(Target, 1)"],
+            "Conditions" : ["Is(Target, InDifferentParty)"]
         }
     ]
 }

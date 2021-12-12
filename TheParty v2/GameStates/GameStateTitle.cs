@@ -11,9 +11,13 @@ namespace TheParty_v2
     {
         GUIChoiceBox Choice;
 
+        List<FallingParticle> Particles;
+
         public override void Enter(TheParty client)
         {
             Choice = new GUIChoiceBox(new[] { "New", "Load", "Quit" }, GUIChoiceBox.Position.BottomRight);
+
+            Particles = new List<FallingParticle>();
         }
 
         public override void Update(TheParty client, float deltaTime)
@@ -47,6 +51,17 @@ namespace TheParty_v2
                         break;
                 }
             }
+
+            if (InputManager.JustReleased(Keys.P))
+            {
+
+
+            }
+
+
+            Particles.ForEach(p => p.Update(deltaTime));
+            Particles.RemoveAll(p => p.Offscreen);
+
         }
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
@@ -55,6 +70,8 @@ namespace TheParty_v2
                 GameContent.Sprites["Title"],
                 new Rectangle(new Point(0, 0), new Point(160, 144)),
                 Color.White);
+
+            Particles.ForEach(p => p.Draw(spriteBatch));
 
             Choice.Draw(spriteBatch, true);
         }

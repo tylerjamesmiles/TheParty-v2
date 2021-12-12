@@ -322,7 +322,7 @@ namespace TheParty_v2
                     case "daypass":
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
-                        ResultList.Add(new CommandDecrementHunger());
+                        ResultList.Add(new CommandDecrementHunger(true));
                         ResultList.Add(new CommandLeaveDead());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandIncrementVar("DaysRemaining", "-1"));
