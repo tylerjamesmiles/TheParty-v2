@@ -3,7 +3,7 @@
 		{
 			"Name" : "Alien",
 			"SpriteName" : "AlienFighter",
-			"HP" : 8,
+			"HP" : 5,
 			"MaxHP" : 10,	
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -14,18 +14,18 @@
 		{
 			"Name" : "Bandit",
 			"SpriteName" : "BanditFighter",
-			"HP" : 7,
+			"HP" : 5,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit"],
+			"Moves" : ["Hit", "Commit", "Steal Coin", "Steal Food"],
 			"MovesToLearn" : []
 		},
 		{
 			"Name" : "Cat",
 			"SpriteName" : "CatFighter",
-			"HP" : 10,
+			"HP" : 6,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -52,7 +52,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Poison", "Antidote"]
 		},
 		{
@@ -63,7 +63,7 @@
 			"Hunger" : 3,
 			"MaxHunger" : 3,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Strengthen", "Kamikaze"]
 		},
 		{
@@ -74,7 +74,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Heal", "Donate"]
 		},
 		{
@@ -85,7 +85,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Give", "Take"]
 		},
 		{
@@ -96,7 +96,7 @@
 			"Hunger" : 3,
 			"MaxHunger" : 3,
 			"Equipped" : "Bandana",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
 		},
 		{
@@ -107,7 +107,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Doubt", "Devote"]
 		},
 		{
@@ -118,7 +118,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Freeze", "Harden"]
 		},
 		{
@@ -129,7 +129,7 @@
 			"Hunger" : 5,
 			"MaxHunger" : 6,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Pass"],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Weaken", "Diminish"]
 		},
 		{

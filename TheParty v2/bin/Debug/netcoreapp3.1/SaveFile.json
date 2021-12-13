@@ -1,11 +1,11 @@
 {
-  "CurrentMap": "CapricornChurch",
+  "CurrentMap": "WorldMap",
   "Variables": {
     "TestVariable1": 0,
     "TestVariable2": 6,
     "DaysRemaining": 100,
-    "Money": 20,
-    "FoodSupply": 3,
+    "Money": 0,
+    "FoodSupply": 5,
     "Character1Feeling": 0
   },
   "Switches": {
@@ -15,31 +15,15 @@
     "StillShopping": false,
     "TalkedAboutFood": false,
     "ReadyToGo": false,
-    "IBetYouLost": true
+    "IBetYouLost": false,
+    "DidntFlee": false,
+    "EvangelizeSceneHappened": false,
+    "RandallDead": false,
+    "CastleChest1Opened": false,
+    "CaveChest1Opened": false,
+    "CaveChest2Opened": false
   },
-  "ErasedEntities": [
-    216,
-    18,
-    11,
-    14,
-    20,
-    12,
-    21,
-    19,
-    15,
-    13,
-    16,
-    17,
-    10,
-    29,
-    34,
-    35,
-    30,
-    33,
-    31,
-    32,
-    28
-  ],
+  "ErasedEntities": [],
   "Player": {
     "Steering": {
       "SteeringForce": "0 0",
@@ -47,12 +31,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "-1 0",
+      "Heading": "0.016914217 -0.9998569",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "216.74062 88",
+      "Position": "1663.379 1546.1631",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -66,49 +50,58 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 2,
+      "CurrentFacing": 0,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 305
+        "TicsSoFar": 9
       },
       "AnimateWhenStatic": false
+    },
+    "PathFollower": {
+      "MinPointDistance": 5.0,
+      "SteeringForce": "0 0",
+      "Done": true
     },
     "ActiveParty": {
       "Members": [
         {
           "Name": "Hocus",
-          "HP": 8,
-          "MaxHP": 8,
-          "Stance": 2,
-          "Charged": false,
-          "KOd": false,
+          "HP": 3,
+          "MaxHP": 3,
+          "Stance": 1,
           "Hunger": 3,
-          "MaxHunger": 6,
+          "MaxHunger": 3,
           "Moves": [
             "Hit",
-            "Charge",
+            "Commit",
             "Pass"
           ],
           "MovesToLearn": [
+            "Commit More",
             "Bolster",
-            "Heal",
-            "Restore",
-            "Darkness",
-            "Fireball"
+            "Thaw"
           ],
+          "EquippedName": "Bandana",
           "StatusEffects": [],
           "SpriteName": "HocusFighter",
           "GoneThisTurn": false,
-          "CanGo": true
+          "CanGo": true,
+          "Equipped": {
+            "Name": "Bandana",
+            "EveryTurnEffects": null,
+            "PassiveEffects": [
+              "Defense + 1"
+            ]
+          }
         }
       ],
       "NumMembers": 1,
       "NumAlertMembers": 1,
-      "IsKOd": false,
       "IsDead": false
     },
     "CampMembers": [],
-    "Frozen": true
+    "Inventory": [],
+    "Frozen": false
   }
 }

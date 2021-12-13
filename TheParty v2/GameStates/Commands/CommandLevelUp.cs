@@ -97,13 +97,11 @@ namespace TheParty_v2
 
         private void SetupTypeChoice()
         {
+            Member Member = ActiveMembers[MemberChoice.CurrentChoiceIdx];
             bool[] ChoiceValidity = new bool[3];
-            for (int i = 0; i < 3; i++)
-            {
-                ChoiceValidity[i] = true;
-                if (i == 2)
-                    ChoiceValidity[i] = ActiveMembers[MemberChoice.CurrentChoiceIdx].MovesToLearn.Count > 0;
-            }
+            ChoiceValidity[0] = Member.MaxHP < 10;
+            ChoiceValidity[1] = Member.MaxHunger < 10;
+            ChoiceValidity[2] = Member.MovesToLearn.Count > 0;
 
             LevelUpTypeChoice = new GUIChoiceBox(
                 new[] { "+1 Max%'s", "+1 Max\"'s", "New Move" },

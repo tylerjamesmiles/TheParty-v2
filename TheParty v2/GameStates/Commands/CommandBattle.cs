@@ -81,6 +81,8 @@ namespace TheParty_v2
                 List<Member> AllMembers = CurrentStore.AllMembers();
                 string Animation = 
                     AllMembers[s].HP <= 0 ? "Dead" :
+                    CurrentStore.CurrentTurnPartyIdx == 0 ?
+                        AllMembers[s].CanGo ? "Move" : "Idle" :
                     "Idle";
 
                 Sprites[s].SetCurrentAnimation(Animation);

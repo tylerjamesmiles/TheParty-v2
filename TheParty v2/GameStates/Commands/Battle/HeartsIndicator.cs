@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TheParty_v2
 {
-    class FallingParticle
+    class Particle
     {
         Vector2 Position;
         Vector2 Velocity;
@@ -16,13 +16,36 @@ namespace TheParty_v2
         float Mass;
         float RotationSpeed;
         float CurrentRotation;
-        float CurrentBrightness;
+        float Bright;
         float BrightnessSpeed;
+
+        Wobble FloatWobble;
+
+        string SpriteName;
+
+        public enum Type { Falling, Floating };
+        Type ParticleType;
 
         public bool Offscreen { get; private set; }
 
-        public FallingParticle(Vector2 startingPos, Vector2 startingDir, float startingSpeed)
+        public Particle(Vector2 startingPos, string sprite = "Hearts")
         {
+            ParticleType = Type.Floating;
+            Position = startingPos;
+            MaxSpeed = 10f;
+            Velocity = new Vector2(0, -1f) * MaxSpeed;
+            RotationSpeed = 0f;
+            CurrentRotation = 0f;
+            Mass = 1f;
+            Bright = 1f;
+            BrightnessSpeed = 0.5f;
+            FloatWobble = new Wobble(3f, 4f);
+            SpriteName = sprite;
+        }
+
+        public Particle(Vector2 startingPos, Vector2 startingDir, float startingSpeed, string sprite = "Hearts")
+        {
+            ParticleType = Type.Falling;
             Position = startingPos;;
             MaxSpeed = startingSpeed;
             Velocity = startingDir * MaxSpeed;
@@ -30,32 +53,64 @@ namespace TheParty_v2
             RotationSpeed = 5.0f * RotationDir;
             CurrentRotation = 0f;
             Mass = 1f;
-            CurrentBrightness = 1f;
+            Bright = 1f;
             BrightnessSpeed = 0.5f;
+            FloatWobble = new Wobble(0f, 0f);
+            SpriteName = sprite;
         }
 
         public void Update(float deltaTime)
         {
-            float GravityAmt = 150f;
-            Vector2 SteeringForce = new Vector2(0, GravityAmt);
+            Vector2 SteeringForce = new Vector2();
+            if (ParticleType == Type.Falling)
+            {
+                float GravityAmt = 150f;
+                SteeringForce = new Vector2(0, GravityAmt);
+            }
+            else if (ParticleType == Type.Floating)
+            {
+                float FloatAmt = 20f;
+                SteeringForce = new Vector2(0, -FloatAmt);
+            }
+
             Acceleration = SteeringForce * Mass;
             Velocity += Acceleration * deltaTime;
             Position += Velocity * deltaTime;
 
             CurrentRotation += RotationSpeed * deltaTime;
 
-            CurrentBrightness -= BrightnessSpeed * deltaTime;
+            Bright -= BrightnessSpeed * deltaTime;
 
-            Offscreen = Position.X < 0 || Position.X > 160 || Position.Y > 144;
+            Offscreen = 
+                Position.X < 0 || Position.X > 160 || 
+                Position.Y < 0 || Position.Y > 144 ||
+                Bright == 0f;
+
+            FloatWobble.Update(deltaTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Vector2 FloatOffset = new Vector2(FloatWobble.CurrentPosition, 0);
+            Color DrawColor = new Color();
+            Rectangle SourceRect = new Rectangle();
+
+            if (ParticleType == Type.Falling)
+            {
+                DrawColor = new Color(Bright, Bright, Bright, 1f);
+                SourceRect = new Rectangle(new Point(5, 0), new Point(5, 5));
+            }
+            else if (ParticleType == Type.Floating)
+            {
+                DrawColor = new Color(Bright, Bright, Bright, Bright);
+                SourceRect = new Rectangle(new Point(0, 0), new Point(5, 5));
+            }
+
             spriteBatch.Draw(
-                GameContent.Sprites["Hearts"],
-                new Rectangle(Position.ToPoint(), new Point(5, 5)),
-                new Rectangle(new Point(5, 0), new Point(5, 5)),
-                new Color(CurrentBrightness, CurrentBrightness, CurrentBrightness, 1f),
+                GameContent.Sprites[SpriteName],
+                new Rectangle(Position.ToPoint() + FloatOffset.ToPoint(), new Point(5, 5)),
+                SourceRect,
+                DrawColor,
                 CurrentRotation,
                 Vector2.Zero,
                 SpriteEffects.None,
@@ -76,7 +131,7 @@ namespace TheParty_v2
         bool ShowMax;
         Timer BounceMoveTimer;
 
-        List<FallingParticle> Particles;
+        List<Particle> Particles;
 
         public HeartsIndicator(int startHP, int centerX, int y, bool beMeat = false, bool showMax = false, int maxHP = 0)
         {
@@ -84,13 +139,13 @@ namespace TheParty_v2
             BounceMoveTimer = new Timer(0.1f);
             CurrentBouncing = new Random().Next(NumTotalHearts * 10);
             CurrentDisplayHP = 0;
-            UpdateTimer = new Timer(0.1f);
+            UpdateTimer = new Timer(0.3f);
             BeMeat = beMeat;
             ShowMax = showMax;
             MaxHP = maxHP;
             SetHP(startHP);
 
-            Particles = new List<FallingParticle>();
+            Particles = new List<Particle>();
         }
 
         public void Update(float deltaTime)
@@ -106,8 +161,14 @@ namespace TheParty_v2
             {
                 bool MovingUp = CurrentDisplayHP < CurrentHP;
                 CurrentDisplayHP += (MovingUp) ? +1 : -1;
+                string SpriteName = (BeMeat) ? "Meats" : "Hearts";
 
-                if (MovingUp == false)
+                if (MovingUp == true)
+                {
+                    // Spawn floating heart
+                    Particles.Add(new Particle(TopCenter.ToVector2(), SpriteName));
+                }
+                else if (MovingUp == false)
                 {
                     // spawn two broken heart halves
                     Random Rand = new Random();
@@ -116,14 +177,15 @@ namespace TheParty_v2
                     Vector2 Dir = new Vector2(RandX, RandY);
                     Dir.Normalize();
 
-                    Particles.Add(new FallingParticle(TopCenter.ToVector2(), Dir, 80f));
+                    Particles.Add(new Particle(TopCenter.ToVector2(), Dir, 80f, SpriteName));
 
                     Vector2 NewDir = Dir + new Vector2(0.1f, 0.1f);
-                    Particles.Add(new FallingParticle(TopCenter.ToVector2(), NewDir, 80f));
+                    Particles.Add(new Particle(TopCenter.ToVector2(), NewDir, 80f, SpriteName));
                 }
             }
 
             Particles.ForEach(p => p.Update(deltaTime));
+
             Particles.RemoveAll(p => p.Offscreen);
         }
 

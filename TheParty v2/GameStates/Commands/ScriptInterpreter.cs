@@ -144,7 +144,6 @@ namespace TheParty_v2
                                     new CommandLevelUp()
                                 }));
                             ResultList.Add(new CommandDecrementHunger());
-                            ResultList.Add(new CommandLeaveDead());
                         }
                         // If battle operates a switch, only do level-up rigamarole if successful battle
                         else if (Arguments.Length == 2)
@@ -161,7 +160,6 @@ namespace TheParty_v2
                                 {
                                     new CommandLevelUp(),
                                     new CommandDecrementHunger(),
-                                    new CommandLeaveDead()
                                 }));
                         }
 
@@ -323,7 +321,6 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandDecrementHunger(true));
-                        ResultList.Add(new CommandLeaveDead());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandIncrementVar("DaysRemaining", "-1"));
                         ResultList.Add(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "*DaysRemaining days until the world ends."));

@@ -12,7 +12,16 @@ namespace TheParty_v2
 
         public override void Enter(GameStateFieldMenu client)
         {
-            string[] ChoiceStrings = new[] { "Feed", "Heal", "Commit", "Equip", "Party", "Back", "Title" };
+            string[] ChoiceStrings = new[] { 
+                "Feed", 
+                "Heal", 
+                "Commit", 
+                "Equip", 
+                "Party", 
+                "Save", 
+                "Settings", 
+                "Back", 
+                "Title" };
             
             bool[] ChoiceValidity = new bool[ChoiceStrings.Length];
             for (int i = 0; i < ChoiceValidity.Length; i++)
@@ -32,6 +41,8 @@ namespace TheParty_v2
                 ChoiceStrings, 
                 GUIChoiceBox.Position.BottomRight, 
                 3, ChoiceValidity);
+
+            Choices.SetCurrentChoice(client.PreviousMainMenuChoice);
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)
@@ -47,9 +58,13 @@ namespace TheParty_v2
                     case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuCommit()); break;
                     case 3: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
                     case 4: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
-                    case 5: client.Done = true; break;
-                    case 6: client.Quit = true; break;
+                    case 5: client.Save = true; break;
+                    case 6: Enter(client); break;
+                    case 7: client.Done = true; break;
+                    case 8: client.Quit = true; break;
                 }
+
+                client.PreviousMainMenuChoice = Choices.CurrentChoice;
             }
 
             if (InputManager.JustReleased(Keys.Escape))

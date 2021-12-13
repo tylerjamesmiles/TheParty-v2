@@ -24,9 +24,12 @@ namespace TheParty_v2
 
         public StateMachine<GameStateFieldMenu> StateMachine;
         public bool Done;
+        public bool Save;
         public bool Quit;
 
         public bool ReloadSprites;
+
+        public int PreviousMainMenuChoice;
 
         public void LoadSprites(TheParty client)
         {
@@ -65,6 +68,8 @@ namespace TheParty_v2
                     ActiveMembers[i].Stance,
                     MemberDrawPos + new Vector2(+14, -10));
                 StanceIndicators.Add(Stance);
+
+                PreviousMainMenuChoice = 0;
             }
         }
 
@@ -110,6 +115,12 @@ namespace TheParty_v2
             StateMachine.Update(this, deltaTime);
             if (Done)
                 client.StateMachine.SetNewCurrentState(client, new GameStateField());
+
+            if (Save)
+            {
+                client.CommandQueue.EnqueueCommand(new CommandSave());
+                Done = true;
+            }
 
             if (Quit)
                 client.StateMachine.SetNewCurrentState(client, new GameStateTitle());

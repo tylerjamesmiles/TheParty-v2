@@ -11,13 +11,13 @@ namespace TheParty_v2
     {
         GUIChoiceBox Choice;
 
-        List<FallingParticle> Particles;
+        List<Particle> Particles;
 
         public override void Enter(TheParty client)
         {
             Choice = new GUIChoiceBox(new[] { "New", "Load", "Quit" }, GUIChoiceBox.Position.BottomRight);
 
-            Particles = new List<FallingParticle>();
+            Particles = new List<Particle>();
         }
 
         public override void Update(TheParty client, float deltaTime)

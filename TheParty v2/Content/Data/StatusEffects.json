@@ -1,5 +1,11 @@
 ﻿[
 {
+    "Name" : "Defending",
+    "EveryTurnEffects" : [],
+    "PassiveEffects" : ["Defense + 1"],
+    "NumTurnsRemaining" : 2
+},
+{
     "Name" : "Poison",
     "EveryTurnEffects" : ["HitHP(Target, -1)"],
     "PassiveEffects" : [],

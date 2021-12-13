@@ -26,6 +26,12 @@
             "Conditions" : ["Is(Target, Self)"]
         },
         {
+            "Name" : "Defend",
+            "Description" : "Raise defense for a turn.",
+            "Effects" : ["AddStatus(Target, Defending)"],
+            "Conditions" : ["Is(Target, Self)"]
+        },
+        {
             "Name" : "Poison", 
             "Description" : "Poison the target.",
             "Effects" : ["AddStatus(Target, Poison)"],  
@@ -125,6 +131,18 @@
             "Name" : "Suck",
             "Description" : "Steal 1 %",
             "Effects" : ["StealHP(Target, 1)"],
+            "Conditions" : ["Is(Target, InDifferentParty)"]
+        },
+        {
+            "Name" : "Steal Coin",
+            "Description" : "",
+            "Effects" : ["StealCoin()"],
+            "Conditions" : ["Is(Target, InDifferentParty)"]
+        },
+        {
+            "Name" : "Steal Food",
+            "Description" : "",
+            "Effects" : ["StealFood()"],
             "Conditions" : ["Is(Target, InDifferentParty)"]
         }
     ]

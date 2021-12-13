@@ -193,6 +193,16 @@ namespace TheParty_v2
                     Target.RemoveStatusEffect(Arguments[1].Trim());
                     break;
 
+                // ~ ~ ~ MISC ~ ~ ~ 
+
+                case "StealCoin":
+                    GameContent.Variables["Money"] -= 1;
+                    break;
+
+                case "StealFood":
+                    GameContent.Variables["FoodSupply"] -= 1;
+                    break;
+
                 default:
                     throw new Exception("Effect Keyword " + Effect + " not recognized.");
             }

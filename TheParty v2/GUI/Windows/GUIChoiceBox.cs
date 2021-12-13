@@ -18,7 +18,7 @@ namespace TheParty_v2
         public int NumChoices => Choice.NumChoices;
         public bool Done => Box.Done;
 
-        public void SetCurrentChoice(int choice) => Choice.CurrentChoiceIdx = choice;
+        public void SetCurrentChoice(int choice) => Choice.SetChoice(choice);
 
         public enum Position
         {
