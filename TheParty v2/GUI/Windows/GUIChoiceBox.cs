@@ -18,12 +18,15 @@ namespace TheParty_v2
         public int NumChoices => Choice.NumChoices;
         public bool Done => Box.Done;
 
+        public void SetCurrentChoice(int choice) => Choice.CurrentChoiceIdx = choice;
+
         public enum Position
         {
             Center,
             BottomLeft,
             BottomRight
         }
+
 
         public GUIChoiceBox(string[] choices, Position position, int numColumns = 1, bool[] choiceValidity = null)
         {

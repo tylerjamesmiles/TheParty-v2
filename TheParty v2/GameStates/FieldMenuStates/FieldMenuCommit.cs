@@ -31,7 +31,7 @@ namespace TheParty_v2
                 HeartsIndicator Hunger = client.HungerIndicators[Choice.CurrentChoiceIdx];
                 if (Selected.Stance < 9 && Selected.Hunger > 0)
                 {
-                    Selected.Hunger -= 2;
+                    Selected.Hunger -= 1;
 
                     if (Selected.Hunger < 0)
                         Selected.Hunger = 0;

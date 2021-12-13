@@ -18,7 +18,14 @@ namespace TheParty_v2
             for (int i = 0; i < ChoiceValidity.Length; i++)
                 ChoiceValidity[i] = true;
 
-            ChoiceValidity[0] = GameContent.Variables["FoodSupply"] > 0;
+            List<Member> Members = client.ActiveMembers;
+
+            ChoiceValidity[0] =
+                !Members.TrueForAll(m => m.Hunger == m.MaxHunger) &&
+                GameContent.Variables["FoodSupply"] > 0;
+            ChoiceValidity[1] =
+                !Members.TrueForAll(m => m.HP == m.MaxHP) &&
+                !Members.TrueForAll(m => m.Hunger == 0);
             ChoiceValidity[4] = client.BackupMembers.Count > 0;
 
             Choices = new GUIChoiceBox(
