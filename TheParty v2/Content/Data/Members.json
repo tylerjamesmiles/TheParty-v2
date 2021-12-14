@@ -91,7 +91,7 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 0,
+			"HP" : 3,
 			"MaxHP" : 3,
 			"Hunger" : 3,
 			"MaxHunger" : 3,

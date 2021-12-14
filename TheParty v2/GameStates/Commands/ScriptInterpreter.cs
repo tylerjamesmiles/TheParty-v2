@@ -127,6 +127,7 @@ namespace TheParty_v2
                         break;
 
                     case "battle":
+                        ResultList.Add(new CommandPlayMusic("MonsterBattle"));
                         ResultList.Add(new CommandFreeze(caller));
                         ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
@@ -168,6 +169,7 @@ namespace TheParty_v2
                         }
 
                         ResultList.Add(new CommandShowScreen());
+                        ResultList.Add(new CommandPlayMapMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnFreeze(caller));
                         ResultList.Add(new CommandUnfreezePlayer());

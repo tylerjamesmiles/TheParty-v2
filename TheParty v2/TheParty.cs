@@ -68,6 +68,7 @@ namespace TheParty_v2
 
             float DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            GameContent.Update(DeltaTime);
             StateMachine.Update(this, DeltaTime);
             CommandQueue.Update(this, DeltaTime);
 

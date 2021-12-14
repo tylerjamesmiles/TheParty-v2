@@ -73,8 +73,20 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/BoilingWastes.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/FarawayHeights.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/HumtaraHolm.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/MonsterBattle.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Weird.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/WorldMap.mp3</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

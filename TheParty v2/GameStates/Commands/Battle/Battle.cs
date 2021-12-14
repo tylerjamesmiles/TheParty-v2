@@ -24,8 +24,8 @@ namespace TheParty_v2
             for (int i = 0; i < NumRewards; i++)
                 Rewards[i] = rewards[i].GetString();
 
-
-            CurrentTurnPartyIdx = new Random().Next(2);
+            bool SupriseAttack = new Random().Next(4) == 0;
+            CurrentTurnPartyIdx = SupriseAttack ? 1 : 0;
         }
 
         public Battle(List<Party> parties, int currentTurn)

@@ -23,6 +23,7 @@ namespace TheParty_v2
             client.Player.Transform.Position = NewPlayerPos;
             client.Player.Movement.Stop();
             client.EventsCanHappenTimer.Reset();
+            GameContent.PlaySong(client.CurrentMap.values["Song"]);
             Done = true;
         }
 

@@ -199,9 +199,10 @@ namespace TheParty_v2
             StatusCounter = 0;
             StatusRotateTimer = new Timer(0.8f);
 
-            StateMachine.SetNewCurrentState(this, new ChooseMember());
-
-
+            if (CurrentStore.CurrentTurnPartyIdx == 1)
+                StateMachine.SetNewCurrentState(this, new PreBattleMessage("Suprise attack!"));
+            else
+                StateMachine.SetNewCurrentState(this, new ChooseMember());
 
             Entered = true;
         }

@@ -17,6 +17,8 @@ namespace TheParty_v2
     {
         public static Dictionary<string, Texture2D> Sprites;
         public static Dictionary<string, Song> Songs;
+        private static string SongCurrentlyPlaying = "";
+        private static LerpF SongVolumeLerp = new LerpF(1f, 1f, 0f);
         public static Dictionary<string, SoundEffect> SoundEffects;
         public static Dictionary<string, OgmoTileMap> Maps;
         public static Dictionary<string, AnimatedSprite2D> AnimationSheets;
@@ -74,10 +76,41 @@ namespace TheParty_v2
             return Result;
         }
 
+        public static void Update(float deltaTime)
+        {
+            SongVolumeLerp.Update(deltaTime);
+            MediaPlayer.Volume = SongVolumeLerp.CurrentPosition;
+        }
+
+        public static void FadeOutMusic()
+        {
+            SongVolumeLerp = new LerpF(1f, 0f, 3f);
+        }
+
+        public static void FadeInMusic()
+        {
+            SongVolumeLerp = new LerpF(0f, 1f, 3f);
+        }
+
+        public static void PlaySong(string name)
+        {
+            if (!Songs.ContainsKey(name))
+                throw new Exception("No song named " + name);
+
+            if (name == SongCurrentlyPlaying)
+                return;
+
+            MediaPlayer.Play(Songs[name]);
+            SongCurrentlyPlaying = name;
+        }
+
         public static void Load(ContentManager content)
         {
             Sprites = LoadedWith<Texture2D>(content, "Art");
+
             Songs = LoadedWith<Song>(content, "Music");
+            MediaPlayer.IsRepeating = true;
+
             SoundEffects = LoadedWith<SoundEffect>(content, "Sfx");
 
             Maps = FromJson<OgmoTileMap>("Maps");

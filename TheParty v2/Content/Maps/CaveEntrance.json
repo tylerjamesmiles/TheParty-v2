@@ -4,6 +4,7 @@
   "height": 288,
   "offsetX": 0,
   "offsetY": 0,
+  "values": {"Song": "WorldMap"},
   "layers": [
     {
       "name": "TileLayer1",
