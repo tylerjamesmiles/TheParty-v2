@@ -12,9 +12,18 @@ namespace TheParty_v2
         Queue<Vector2> PointsBackStore;
         Queue<Vector2> Points;
         public Vector2 SteeringForce { get; private set; }
-        public float MinPointDistance = 5f;
+        static float MinPointDistance = 5f;
         private bool Repeat;
         public bool Done { get; private set; }
+
+        public PathFollower2D()
+        {
+            PointsBackStore = new Queue<Vector2>();
+            Points = new Queue<Vector2>();
+            SteeringForce = new Vector2();
+            Repeat = false;
+            Done = false;
+        }
 
         public PathFollower2D(string pathScript, Vector2 startingPos, bool repeat)
         {

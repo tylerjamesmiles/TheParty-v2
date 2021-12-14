@@ -31,8 +31,10 @@ namespace TheParty_v2
             bool True = false;
             if (VarType == Type.Party)
             {
-                bool PartyAlive = client.Player.ActiveParty.Members.Exists(m => m.HP > 0);
-                bool PartyHealed = client.Player.ActiveParty.Members.TrueForAll(m => m.HP == m.MaxHP);
+                List<Member> Members = client.Player.ActiveParty.Members;
+                bool PartyAlive = Members.Exists(m => m.HP > 0);
+                bool PartyHealed = Members.TrueForAll(m => m.HP == m.MaxHP);
+                bool AnyoneDead = Members.Exists(m => m.HP == 0);
 
                 switch (RHValue.ToLower())
                 {
@@ -43,6 +45,7 @@ namespace TheParty_v2
                             case "!=": True = !PartyAlive; break;
                         }
                         break;
+
                     case "dead":
                         switch (Operator)
                         {
@@ -50,11 +53,20 @@ namespace TheParty_v2
                             case "!=": True = PartyAlive; break;
                         }
                         break;
+
                     case "healed":
                         switch (Operator)
                         {
                             case "==": True = PartyHealed; break;
                             case "!=": True = !PartyHealed; break;
+                        }
+                        break;
+
+                    case "anyonedead":
+                        switch (Operator)
+                        {
+                            case "==": True = AnyoneDead; break;
+                            case "!=": True = !AnyoneDead; break;
                         }
                         break;
                 }

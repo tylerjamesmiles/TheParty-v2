@@ -122,6 +122,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
+                    case "healdead":
+                        ResultList.Add(new CommandHealDead());
+                        break;
+
                     case "battle":
                         ResultList.Add(new CommandFreeze(caller));
                         ResultList.Add(new CommandFreezePlayer());
@@ -215,6 +219,10 @@ namespace TheParty_v2
 
                     case "hitpartyhp":
                         ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
+                        break;
+
+                    case "inn":
+                        ResultList.Add(new CommandInn());
                         break;
 
                     case "addpartymember":

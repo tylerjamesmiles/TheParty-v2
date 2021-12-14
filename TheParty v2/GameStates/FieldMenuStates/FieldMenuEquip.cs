@@ -33,7 +33,7 @@ namespace TheParty_v2
             
             ItemDescription = new GUIDialogueBox(
                 GUIDialogueBox.ReallySkinnyTop, 
-                new[] { ItemDescr(SelectedMember.Equipped) }, 
+                new[] { ItemDescr(SelectedMember.Equipped()) }, 
                 0.01f);
 
             CurrentState = State.ChooseMember;
@@ -59,7 +59,7 @@ namespace TheParty_v2
                 Vector2 BoxPos = MemberPos + new Vector2(-4, -18);
                 Vector2 BoxSize = new Vector2(44, 20);
                 EquippedItemBoxes.Add(new GUIBox(new Rectangle(BoxPos.ToPoint(), BoxSize.ToPoint())));
-                Equipment Equipped = ActiveParty[m].Equipped;
+                Equipment Equipped = ActiveParty[m].Equipped();
                 string Name = "";
                 if (Equipped != null)
                     Name = Equipped.Name;
@@ -102,7 +102,7 @@ namespace TheParty_v2
                 case State.ChooseMember:
                     MemberChoice.Update(deltaTime, true);
                     if (MemberChoice.ChoiceUpdatedThisFrame)
-                        ItemDescription.SetNewText(ItemDescr(SelectedMember.Equipped));
+                        ItemDescription.SetNewText(ItemDescr(SelectedMember.Equipped()));
 
                     if (MemberChoice.Done)
                     {

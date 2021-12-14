@@ -70,32 +70,32 @@
         {
             "Name" : "Encourage", 
             "Description" : "Give 1 point of Commitment",
-            "Effects" : ["Give(Commitment, 1)"],  
-            "Conditions" : ["Stance(Caster, >, 0)", "Commitment(Caster, >, 1)"]
+            "Effects" : ["GiveCommitment(Target, 1)"],  
+            "Conditions" : ["Commitment(Caster, >, 0)"]
         },
         {
             "Name" : "Discourage", 
             "Description" : "Take 1 point of Commitment",
-            "Effects" : ["Take(Commitment, 2)"],  
-            "Conditions" : ["Stance(Target, >, 0)", "Commitment(Target, >, 1)"]
+            "Effects" : ["StealCommitment(Target, 1)"],  
+            "Conditions" : ["Commitment(Target, >, 0)"]
         },
         {
             "Name" : "Doubt", 
-            "Description" : "Lose commitment over time.",
+            "Description" : "Target loses commitment over time.",
             "Effects" : ["AddStatus(Target, Doubting)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Target, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Caster, >, 3)"]
         },
         {
             "Name" : "Freeze", 
             "Description" : "Freeze target for a turn.",
             "Effects" : ["AddStatus(Target, Frozen)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Target, >, 5)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Caster, >, 5)"]
         },
         {
             "Name" : "Thaw", 
             "Description" : "Unfreeze a frozen ally.",
             "Effects" : ["RemoveStatus(Frozen)"],  
-            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Target, >, 2)"]
+            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >, 2)"]
         },
         {
             "Name" : "Donate", 
@@ -113,13 +113,13 @@
             "Name" : "Devote", 
             "Description" : "Gain commitment over time.",
             "Effects" : ["AddStatus(Target, Devoted)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Target, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Caster, >, 3)"]
         },
         {
             "Name" : "Deconvert", 
             "Description" : "Calm a devoted friend.",
             "Effects" : ["RemoveStatus(Devoted)"],  
-            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Target, > 2)"]
+            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Caster, > 2)"]
         },
         {
             "Name" : "Harden", 

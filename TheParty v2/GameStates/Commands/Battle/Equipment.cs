@@ -45,7 +45,8 @@ namespace TheParty_v2
                     switch (Operation)
                     {
                         case "+": return int.Parse(Amt);
-                        case "*": return int.Parse(Amt);
+                        case "*": return int.Parse(Amt);    // Still haven't implemented
+                        case "-": return -int.Parse(Amt);
                         default: throw new Exception("Invalid operation " + Operation);
                     }
                 }

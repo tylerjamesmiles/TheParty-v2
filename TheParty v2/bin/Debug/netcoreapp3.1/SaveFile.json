@@ -1,11 +1,11 @@
 {
-  "CurrentMap": "WorldMap",
+  "CurrentMap": "Capricorn",
   "Variables": {
     "TestVariable1": 0,
     "TestVariable2": 6,
     "DaysRemaining": 100,
     "Money": 0,
-    "FoodSupply": 5,
+    "FoodSupply": 4,
     "Character1Feeling": 0
   },
   "Switches": {
@@ -31,12 +31,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "0.016914217 -0.9998569",
+      "Heading": "-4.0163795E-10 -1",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "1663.379 1546.1631",
+      "Position": "346.74304 637.3402",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -54,12 +54,11 @@
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 9
+        "TicsSoFar": 90
       },
       "AnimateWhenStatic": false
     },
     "PathFollower": {
-      "MinPointDistance": 5.0,
       "SteeringForce": "0 0",
       "Done": true
     },
@@ -75,6 +74,7 @@
           "Moves": [
             "Hit",
             "Commit",
+            "Defend",
             "Pass"
           ],
           "MovesToLearn": [
@@ -86,14 +86,7 @@
           "StatusEffects": [],
           "SpriteName": "HocusFighter",
           "GoneThisTurn": false,
-          "CanGo": true,
-          "Equipped": {
-            "Name": "Bandana",
-            "EveryTurnEffects": null,
-            "PassiveEffects": [
-              "Defense + 1"
-            ]
-          }
+          "CanGo": true
         }
       ],
       "NumMembers": 1,

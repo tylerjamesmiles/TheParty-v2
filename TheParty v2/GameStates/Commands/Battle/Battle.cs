@@ -146,6 +146,16 @@ namespace TheParty_v2
                     to.Stance = FromsStance;
                     break;
 
+                case "GiveCommitment":
+                    from.HitStance(-Amt);
+                    to.HitStance(Amt);
+                    break;
+
+                case "StealCommitment":
+                    from.HitStance(Amt);
+                    to.HitStance(-Amt);
+                    break;
+
                 // ~ ~ ~ HP ~ ~ ~
 
                 case "HitHP":

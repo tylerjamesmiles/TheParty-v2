@@ -3,7 +3,7 @@
 		{
 			"Name" : "Alien",
 			"SpriteName" : "AlienFighter",
-			"HP" : 5,
+			"HP" : 4,
 			"MaxHP" : 10,	
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -14,7 +14,7 @@
 		{
 			"Name" : "Bandit",
 			"SpriteName" : "BanditFighter",
-			"HP" : 5,
+			"HP" : 4,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -25,7 +25,7 @@
 		{
 			"Name" : "Cat",
 			"SpriteName" : "CatFighter",
-			"HP" : 6,
+			"HP" : 5,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -36,7 +36,7 @@
 		{
 			"Name" : "Chupasnakera",
 			"SpriteName" : "ChupasnakeraFighter",
-			"HP" : 4,
+			"HP" : 3,
 			"MaxHP" : 10,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -91,7 +91,7 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 3,
+			"HP" : 0,
 			"MaxHP" : 3,
 			"Hunger" : 3,
 			"MaxHunger" : 3,

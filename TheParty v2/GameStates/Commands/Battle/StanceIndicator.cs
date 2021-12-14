@@ -47,7 +47,10 @@ namespace TheParty_v2
                     CurrentFrame += Direction ? +1 : -1;
 
                     if (CurrentFrame > 10 * 4)
+                        CurrentFrame = 10 * 4;
+                    if (CurrentFrame < 0)
                         CurrentFrame = 0;
+
                 }
             }
            

@@ -61,8 +61,8 @@ namespace TheParty_v2
         {
             var Result = Moves.ConvertAll(m => GameContent.Moves[m]);
             List<string> BonusMoves = new List<string>();
-            if (Equipped != null)
-                BonusMoves = Equipped.BonusMoves();
+            if (Equipped() != null)
+                BonusMoves = Equipped().BonusMoves();
             if (BonusMoves.Count > 0)
                 BonusMoves.ForEach(bm => Result.Add(GameContent.Moves[bm]));
             return Result;
@@ -104,7 +104,7 @@ namespace TheParty_v2
             !HasEffect("Stunned");
 
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
-        public Equipment Equipped =>
+        public Equipment Equipped() =>
             GameContent.Equipment.ContainsKey(EquippedName) ?
                 GameContent.Equipment[EquippedName] :
                 null;
@@ -116,8 +116,8 @@ namespace TheParty_v2
                 StatusStatBonus += status.StatBonus(stat, Stance);
 
             int EquippedBonus = 0;
-            if (Equipped != null)
-                EquippedBonus = Equipped.StatBonuses(stat);
+            if (Equipped() != null)
+                EquippedBonus = Equipped().StatBonuses(stat);
 
             int Bonus = EquippedBonus + StatusStatBonus;
 
@@ -127,12 +127,19 @@ namespace TheParty_v2
         public int StatAmt(string stat)
         {
             int Bonus = StatBonus(stat);
+            int Result = 0;
 
             if (stat == "Attack")
-                return Stance + Bonus;
-            if (stat == "Defense")
-                return Stance - Bonus;
-            throw new Exception("Not a valid stat " + stat);
+                Result = Stance + Bonus;
+            else if (stat == "Defense")
+                Result = Stance - Bonus;
+            else
+                throw new Exception("Not a valid stat " + stat);
+
+            if (Result > 9) Result = 9;
+            if (Result < 0) Result = 0;
+
+            return Result;
         }
 
         public List<MemberMove> AllValidMoves(int partyIdx, int memberIdx, Battle state)
