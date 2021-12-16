@@ -131,6 +131,8 @@ namespace TheParty_v2
 
             WaitTimer = new Timer(0.8f);
 
+            Food.SetNewText("\"" + GameContent.Variables["FoodSupply"].ToString());
+
             Entered = true;
         }
 
@@ -311,7 +313,7 @@ namespace TheParty_v2
                                     Food.SetNewText("\"" + GameContent.Variables["FoodSupply"].ToString());
 
                                     FeedMemberIdx++;
-                                    if (FeedMemberIdx <= Members.Count)
+                                    if (FeedMemberIdx >= Members.Count)
                                         FeedMemberIdx = 0;
                                 }
                                 ResetChoice(client);

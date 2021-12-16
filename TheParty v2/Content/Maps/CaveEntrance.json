@@ -46,63 +46,13 @@
       "entities": [
         {
           "name": "Entity",
-          "id": 0,
-          "_eid": "23557279",
-          "x": 192,
-          "y": 272,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 1,
+          "id": 5,
           "_eid": "23557279",
           "x": 208,
           "y": 272,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 2,
-          "_eid": "23557279",
-          "x": 224,
-          "y": 272,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 3,
-          "_eid": "23557279",
-          "x": 176,
-          "y": 272,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 4,
-          "_eid": "23557279",
-          "x": 160,
-          "y": 272,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
-        },
-        {
-          "name": "Entity",
-          "id": 5,
-          "_eid": "23557279",
-          "x": 144,
-          "y": 272,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(WorldMap, 68, 49)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 68, 49)"}
         },
         {
           "name": "Entity",
@@ -153,6 +103,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "DirtDawgJoiner", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Freeze(Player)\nFace(DirtDawg, Down)\nDialogue(DirtDawg: Are you here to rescue the King as well?)\nDialogue(DirtDawg: The monsters inside are so tough. I nearly lost hope.)\nDialogue(DirtDawg: Let us fight together to rescue his majesty!)\nMove(DirtDawg, Down 1)\nErase(DirtDawg)\nAddPartyMember(DirtDawg)\nUnfreeze(Player)\nErase(DirtDawgJoiner)"}
+        },
+        {
+          "name": "Entity",
+          "id": 12,
+          "_eid": "23557279",
+          "x": 224,
+          "y": 272,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 68, 49)"}
         }
       ]
     },

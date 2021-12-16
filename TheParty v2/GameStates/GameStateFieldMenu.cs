@@ -42,13 +42,21 @@ namespace TheParty_v2
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
+                Member Member = ActiveMembers[i];
+
                 Vector2 MemberDrawPos = new Vector2(16 + i * 48, 48);
                 Vector2 MemberDrawOffset = new Vector2();
-                string SpriteName = ActiveMembers[i].SpriteName;
+                string SpriteName = Member.SpriteName;
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                 Sprite.AddAnimation("Selected", 0, 1, 0.15f);
-                Sprite.SetCurrentAnimation("Idle");
+                Sprite.AddAnimation("Dead", 5, 1, 0f);
+
+                if (Member.HP == 0)
+                    Sprite.SetCurrentAnimation("Dead");
+                else
+                    Sprite.SetCurrentAnimation("Idle");
+
                 MemberSprites.Add(Sprite);
 
                 HeartsIndicator HP = new HeartsIndicator(
@@ -139,14 +147,17 @@ namespace TheParty_v2
             Money.Draw(spriteBatch, true);
             Days.Draw(spriteBatch, true);
 
-            foreach (AnimatedSprite2D sprite in MemberSprites)
-                sprite.Draw(spriteBatch);
-            foreach (HeartsIndicator hp in HPIndicators)
-                hp.Draw(spriteBatch);
-            foreach (HeartsIndicator hunger in HungerIndicators)
-                hunger.Draw(spriteBatch);
-            foreach (StanceIndicator stance in StanceIndicators)
-                stance.Draw(spriteBatch);
+            for (int i = 0; i < ActiveMembers.Count; i++)
+            {
+                MemberSprites[i].Draw(spriteBatch);
+                HPIndicators[i].Draw(spriteBatch);
+
+                if (ActiveMembers[i].HP > 0)
+                {
+                    HungerIndicators[i].Draw(spriteBatch);
+                    StanceIndicators[i].Draw(spriteBatch);
+                }
+            }
 
             StateMachine.Draw(this, spriteBatch);
         }

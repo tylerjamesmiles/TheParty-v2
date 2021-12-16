@@ -48,17 +48,36 @@ namespace TheParty_v2
             if (client.MoveChoice.Done)
             {
                 client.CurrentMove = client.FromMember.GetMoves()[client.MoveChoice.CurrentChoice];
-                client.StateMachine.SetNewCurrentState(client, new ChooseTarget());
+
+                if (client.CurrentMove.Conditions.Contains("Is(Target, Self)"))
+                {
+                    client.CurrentTargeting.ToPartyIdx = client.CurrentTargeting.FromPartyIdx;
+                    client.CurrentTargeting.ToMemberIdx = client.CurrentTargeting.FromMemberIdx;
+                    client.StateMachine.SetNewCurrentState(client, new DoMoveForward());
+                }
+                else
+                    client.StateMachine.SetNewCurrentState(client, new ChooseTarget());
             }
 
             if (InputManager.JustReleased(Keys.Escape))
+            {
+                int OldChoice = client.MemberChoice.CurrentChoiceIdx;
                 client.StateMachine.SetNewCurrentState(client, new ChooseMember());
+                client.MemberChoice.SetChoice(OldChoice);
+            }
         }
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
             client.MoveChoice.Draw(spriteBatch, true);
             Description.Draw(spriteBatch, true);
+
+            Point DeadHandPos = client.FromSprite.DrawPos.ToPoint() + new Point(-22, -0);
+            spriteBatch.Draw(
+                GameContent.Sprites["Cursor"],
+                new Rectangle(DeadHandPos, new Point(16, 16)),
+                new Rectangle(new Point(16, 0), new Point(16, 16)),
+                Color.White);
         }
     }
 }

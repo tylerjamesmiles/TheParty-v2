@@ -92,17 +92,7 @@
           "y": 928,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, End The Day, Continue Exploring)\n   Case End The Day\n      DayPass(WorldMap, 99, 98)\n   Case Continue Spending Time Here\n      Move(Player, Up 1)"}
-        },
-        {
-          "name": "Entity",
-          "id": 8,
-          "_eid": "23557279",
-          "x": 224,
-          "y": 928,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, End The Day, Continue Exploring)\n   Case End The Day\n      DayPass(WorldMap, 99, 98)\n   Case Continue Spending Time Here\n      Move(Player, Up 1)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 99, 98)"}
         },
         {
           "name": "Entity",
@@ -253,6 +243,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "AdultManBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(Party != AnyoneDead)\n   Dialogue(This is the hospital.)\n   Dialogue(Come by if anyone's ever seriously injured.)\nIf(Party == AnyoneDead)\n   Choice(Show Money, Admit KOd Members $15, No Thanks)\n      Case Admit KOd Members\n         If(Money < 15)\n            Dialogue(You don't have enough money.)\n         If(Money >= 15)\n            HealDead()\n            Incr(Money, -15)\n            FadeOut()\n            FadeIn()\n            Dialogue(Your KOd Members were brought back.)\n      Case No Thanks\n         Wait(0.1)"}
+        },
+        {
+          "name": "Entity",
+          "id": 30,
+          "_eid": "23557279",
+          "x": 224,
+          "y": 928,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 99, 98)"}
         }
       ]
     },

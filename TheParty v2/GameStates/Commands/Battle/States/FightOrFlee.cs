@@ -51,7 +51,10 @@ namespace TheParty_v2
                 switch (Choice.CurrentChoice)
                 {
                     case 0: client.StateMachine.SetNewCurrentState(client, new ChooseMember());  break;
-                    case 1: client.Done = true; break;
+                    case 1: 
+                        client.Done = true;
+                        GameContent.Switches["DidntFlee"] = false;
+                        break;
                 }
             }
         }

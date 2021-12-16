@@ -193,8 +193,8 @@ namespace TheParty_v2
                         break;
 
                     case "erase":
-                        string Name = (Arguments[0].ToLower() == "me") ? caller.values["Name"] : Arguments[0];
-                        ResultList.Add(new CommandEraseMe(Name));
+                        int Id = EntityFromName(Arguments[0], EntityLayer, caller).EntityId;
+                        ResultList.Add(new CommandErase(Id));
                         break;
 
                     case "collectanimation":
@@ -216,7 +216,7 @@ namespace TheParty_v2
                         ResultList.Add(new CommandWait(0.2f));
                         ResultList.Add(new CommandAddItem(Arguments[0]));
                         ResultList.Add(new CommandDialogue("The party found a " + Arguments[0] + "!"));
-                        ResultList.Add(new CommandEraseMe(caller.values["Name"]));
+                        ResultList.Add(new CommandErase(caller.EntityId));
                         break;
 
                     case "hitpartyhp":

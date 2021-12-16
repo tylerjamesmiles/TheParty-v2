@@ -1,11 +1,11 @@
 {
-  "CurrentMap": "CaveFloor3",
+  "CurrentMap": "WorldMap",
   "Variables": {
     "TestVariable1": 0,
     "TestVariable2": 6,
     "DaysRemaining": 100,
-    "Money": 40,
-    "FoodSupply": 0,
+    "Money": 21,
+    "FoodSupply": 4,
     "Character1Feeling": 0
   },
   "Switches": {
@@ -20,47 +20,12 @@
     "EvangelizeSceneHappened": false,
     "RandallDead": false,
     "CastleChest1Opened": false,
-    "CaveChest1Opened": true,
-    "CaveChest2Opened": true
+    "CaveChest1Opened": false,
+    "CaveChest2Opened": false
   },
   "ErasedEntities": [
-    81,
-    30,
-    31,
-    34,
-    39,
-    43,
-    42,
-    40,
-    44,
-    41,
-    45,
-    52,
-    46,
-    53,
-    50,
-    47,
-    51,
-    48,
-    49,
-    38,
-    74,
-    72,
-    71,
-    73,
-    70,
-    67,
-    68,
-    69,
-    60,
-    62,
-    63,
-    66,
-    65,
-    64,
-    61,
-    59,
-    57
+    80,
+    81
   ],
   "Player": {
     "Steering": {
@@ -69,12 +34,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "0 1",
+      "Heading": "-0.40614253 -0.91380984",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "215.90262 363.47452",
+      "Position": "1191.5361 1027.3795",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -88,11 +53,11 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 1,
+      "CurrentFacing": 0,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 663
+        "TicsSoFar": 188
       },
       "AnimateWhenStatic": false
     },
@@ -104,20 +69,20 @@
       "Members": [
         {
           "Name": "Hocus",
-          "HP": 5,
-          "MaxHP": 5,
+          "HP": 4,
+          "MaxHP": 4,
           "Stance": 1,
-          "Hunger": 15,
+          "Hunger": 3,
           "MaxHunger": 3,
           "Moves": [
             "Hit",
             "Commit",
             "Defend",
-            "Pass"
+            "Pass",
+            "Bolster"
           ],
           "MovesToLearn": [
             "Commit More",
-            "Bolster",
             "Thaw"
           ],
           "EquippedName": "Bandana",
@@ -125,41 +90,14 @@
           "SpriteName": "HocusFighter",
           "GoneThisTurn": true,
           "CanGo": false
-        },
-        {
-          "Name": "DirtDawg",
-          "HP": 3,
-          "MaxHP": 3,
-          "Stance": 1,
-          "Hunger": 0,
-          "MaxHunger": 4,
-          "Moves": [
-            "Hit",
-            "Commit",
-            "Defend",
-            "Pass",
-            "Strengthen"
-          ],
-          "MovesToLearn": [
-            "Commit More",
-            "Kamikaze"
-          ],
-          "EquippedName": "",
-          "StatusEffects": [],
-          "SpriteName": "DirtDawgFighter",
-          "GoneThisTurn": false,
-          "CanGo": true
         }
       ],
-      "NumMembers": 2,
-      "NumAlertMembers": 1,
+      "NumMembers": 1,
+      "NumAlertMembers": 0,
       "IsDead": false
     },
     "CampMembers": [],
-    "Inventory": [
-      "Apron",
-      "Dagger"
-    ],
+    "Inventory": [],
     "Frozen": false
   }
 }

@@ -29,7 +29,7 @@ namespace TheParty_v2
                 Member Selected = client.ActiveMembers[Choice.CurrentChoiceIdx];
                 StanceIndicator Indicator = client.StanceIndicators[Choice.CurrentChoiceIdx];
                 HeartsIndicator Hunger = client.HungerIndicators[Choice.CurrentChoiceIdx];
-                if (Selected.Stance < 9 && Selected.Hunger > 0)
+                if (Selected.HP > 0 && Selected.Stance < 9 && Selected.Hunger > 0)
                 {
                     Selected.Hunger -= 1;
 

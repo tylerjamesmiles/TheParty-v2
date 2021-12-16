@@ -27,7 +27,7 @@ namespace TheParty_v2
             if (Choice.Done)
             {
                 Member ToHeal = client.ActiveMembers[Choice.CurrentChoiceIdx];
-                if (ToHeal.HP < ToHeal.MaxHP && ToHeal.Hunger > 0)
+                if (ToHeal.HP > 0 && ToHeal.HP < ToHeal.MaxHP && ToHeal.Hunger > 0)
                 {
                     ToHeal.Hunger -= 1;
                     ToHeal.HitHP(+1);

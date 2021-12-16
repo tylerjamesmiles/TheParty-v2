@@ -3,69 +3,69 @@
     [
         {
             "Name" : "Pass", 
-            "Description" : "Do nothing this turn.",
-            "Effects" : [],
+            "Description" : "Do nothing this turn.\n+1%",
+            "Effects" : [ "HitHP(+1)"],
             "Conditions" : [ "Is(Target, Self)" ] 
         },
         {
             "Name" : "Hit", 
-            "Description" : "Use commitment to hit %",
+            "Description" : "Use Commit. to hit %\n[Req. 1 Commit.]",
             "Effects" : [ "HitHPByStance()" ],  
-            "Conditions" : [ "Is(Target, InDifferentParty)" ]
+            "Conditions" : [ "Is(Target, InDifferentParty)", "Commitment(Caster, >=, 1)" ]
         },
         {
             "Name" : "Commit", 
-            "Description" : "Raise commitment by 1",
-            "Effects" : ["HitStance(Target, +1)"],  
+            "Description" : "Raise Commit. by 1\n+2%s, +1(, +1), Go Again",
+            "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +2)", "AddStatus(Target, ShortAttackUp)", "AddStatus(Target, ShortDefenseUp)"],  
             "Conditions" : ["Is(Target, Self)"]
         },
         {
             "Name" : "Commit More", 
-            "Description" : "Commitment + 2",
-            "Effects" : ["HitStance(Target, +2)"],  
+            "Description" : "Raise commitment by 2\nHeal all %s, Go Again",
+            "Effects" : ["HitStance(Target, +2)","HitHP(Target, +100)"],  
             "Conditions" : ["Is(Target, Self)"]
         },
         {
             "Name" : "Defend",
-            "Description" : "Raise defense for a turn.",
+            "Description" : "Raise ) for a turn.\n[Req. 2 Commit.]",
             "Effects" : ["AddStatus(Target, Defending)"],
-            "Conditions" : ["Is(Target, Self)"]
+            "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
         },
         {
             "Name" : "Poison", 
-            "Description" : "Poison the target.",
+            "Description" : "Poison the target.\n[Req. 3 Commit.]",
             "Effects" : ["AddStatus(Target, Poison)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Poison)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Poison)", "Commitment(Caster, >=, 3)"]
         },
         {
             "Name" : "Antidote", 
-            "Description" : "Remove poison.",
+            "Description" : "Remove poison.\n[Req. 2 Commit.]",
             "Effects" : ["RemoveStatus(Poison)"],  
-            "Conditions" : ["Status(Target, Has, Poison)", "Commitment(Caster, >, 2)"]
+            "Conditions" : ["Status(Target, Has, Poison)", "Commitment(Caster, >=, 2)"]
         },
         {
             "Name" : "Strengthen", 
-            "Description" : "Raise Attack Power",
+            "Description" : "Raise Attack Power\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, AttackUp)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Weaken", 
-            "Description" : "Lower Attack Power",
+            "Description" : "Lower Attack Power\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, AttackDown)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Bolster", 
-            "Description" : "Raise Defense",
+            "Description" : "Raise Defense\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, DefenseUp)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, DefenseUp)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, DefenseUp)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Diminish", 
-            "Description" : "Lower Defense",
+            "Description" : "Lower Defense\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, DefenseDown)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Encourage", 
@@ -81,21 +81,21 @@
         },
         {
             "Name" : "Doubt", 
-            "Description" : "Target loses commitment over time.",
+            "Description" : "Drain commit. over time.\n[Req. 3 Commit.]",
             "Effects" : ["AddStatus(Target, Doubting)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Caster, >=, 3)"]
         },
         {
             "Name" : "Freeze", 
-            "Description" : "Freeze target for a turn.",
+            "Description" : "Freeze target for a turn.\n[Req. 3 Commit.]",
             "Effects" : ["AddStatus(Target, Frozen)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Caster, >, 5)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Caster, >=, 3)"]
         },
         {
             "Name" : "Thaw", 
-            "Description" : "Unfreeze a frozen ally.",
+            "Description" : "Unfreeze a frozen ally\n[Req. 2 Commit.].",
             "Effects" : ["RemoveStatus(Frozen)"],  
-            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >, 2)"]
+            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >=, 2)"]
         },
         {
             "Name" : "Donate", 
@@ -111,15 +111,15 @@
         },
         {
             "Name" : "Devote", 
-            "Description" : "Gain commitment over time.",
+            "Description" : "+1 commit. each turn.\n[Req. 3 Commit.]",
             "Effects" : ["AddStatus(Target, Devoted)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Caster, >, 3)"]
+            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Caster, >=, 3)"]
         },
         {
             "Name" : "Deconvert", 
-            "Description" : "Calm a devoted friend.",
+            "Description" : "Calm a devoted friend.\n[Req. 2 Commit.]",
             "Effects" : ["RemoveStatus(Devoted)"],  
-            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Caster, > 2)"]
+            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Caster, >= 2)"]
         },
         {
             "Name" : "Harden", 

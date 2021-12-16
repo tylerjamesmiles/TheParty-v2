@@ -24,6 +24,12 @@
     "NumTurnsRemaining" : 3
 },
 {
+    "Name" : "ShortAttackUp",
+    "EveryTurnEffects" : [],
+    "PassiveEffects" : ["Attack + 1"],
+    "NumTurnsRemaining" : 1
+},
+{
     "Name" : "AttackDown",
     "EveryTurnEffects" : [],
     "PassiveEffects" : ["Attack - 1"],
@@ -34,6 +40,12 @@
     "EveryTurnEffects" : [],
     "PassiveEffects" : ["Defense + 1"],
     "NumTurnsRemaining" : 3
+},
+{
+    "Name" : "ShortDefenseUp",
+    "EveryTurnEffects" : [],
+    "PassiveEffects" :[ "Defense + 2"],
+    "NumTurnsRemaining" : 2
 },
 {
     "Name" : "DefenseDown",

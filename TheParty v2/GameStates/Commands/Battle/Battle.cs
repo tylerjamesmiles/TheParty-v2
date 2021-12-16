@@ -225,6 +225,7 @@ namespace TheParty_v2
             string ParamsNoFirstParen = ParamsWithParen.Remove(0, 1);
             string ParamsNoLastParen = ParamsNoFirstParen.Remove(ParamsWithParen.Length - 2, 1);
             List<string> Arguments = new List<string>(ParamsNoLastParen.Split(','));
+            Arguments.ForEach(a => a = a.Trim());
 
             Member From = state.From(targeting);
             Member To = state.To(targeting);

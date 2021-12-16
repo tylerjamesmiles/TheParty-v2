@@ -27,7 +27,7 @@ namespace TheParty_v2
             if (Choice.Done)
             {
                 Member ToFeed = client.ActiveMembers[Choice.CurrentChoiceIdx];
-                if (GameContent.Variables["FoodSupply"] > 0 && 
+                if (ToFeed.HP > 0 && GameContent.Variables["FoodSupply"] > 0 && 
                     ToFeed.Hunger < ToFeed.MaxHunger)
                 {
                     ToFeed.Hunger += 1;
