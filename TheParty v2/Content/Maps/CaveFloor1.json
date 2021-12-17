@@ -49,7 +49,7 @@
           "name": "Entity",
           "id": 0,
           "_eid": "23557279",
-          "x": 304,
+          "x": 320,
           "y": 96,
           "originX": 0,
           "originY": 0,
@@ -63,7 +63,7 @@
           "y": 432,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(CaveEntrance, 10, 5)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(CaveEntrance, 10, 5)\nMove(Player, Down)"}
         },
         {
           "name": "Entity",
@@ -73,7 +73,7 @@
           "y": 272,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Monster1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(CaveBattle1)\nErase(Me)"}
+          "values": {"Name": "Monster1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Erase(Me)\nBattle(CaveBattle1)"}
         }
       ]
     },

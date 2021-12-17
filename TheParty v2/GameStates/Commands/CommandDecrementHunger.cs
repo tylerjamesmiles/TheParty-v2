@@ -33,9 +33,7 @@ namespace TheParty_v2
             Kill, 
             Wait4, 
             LowerCommitment, 
-            Wait5,
-            Choice,
-            Wait6
+            Wait5
         }
         State CurrentState;
 
@@ -54,35 +52,6 @@ namespace TheParty_v2
 
             Rectangle FoodBounds = new Rectangle(new Point(28, 4), new Point(36, 18));
             Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
-        }
-
-        private void ResetChoice(TheParty client)
-        {
-            int LastChoice = 0;
-            if (Choice != null)
-                LastChoice = Choice.CurrentChoice;
-
-            bool[] ChoiceValidity = new bool[3];
-
-            List<Member> Members = client.Player.ActiveParty.Members;
-            ChoiceValidity[0] = 
-                !Members.TrueForAll(m => m.Hunger == m.MaxHunger) && 
-                GameContent.Variables["FoodSupply"] > 0;
-            ChoiceValidity[1] = 
-                !Members.TrueForAll(m => m.HP == m.MaxHP) && 
-                !Members.TrueForAll(m => m.Hunger == 0);
-            ChoiceValidity[2] = true;
-
-            Choice = new GUIChoiceBox(
-                new[] { "FeedAll", "HealAll", "Done" },
-                GUIChoiceBox.Position.BottomLeft,
-                1, ChoiceValidity);
-            Choice.SetCurrentChoice(LastChoice);
-
-            Hearts.ForEach(h => h.SetMax(Members[Hearts.IndexOf(h)].MaxHP));
-            Meats.ForEach(m => m.SetMax(Members[Meats.IndexOf(m)].MaxHunger));
-            Hearts.ForEach(h => h.SetShowMax(true));
-            Meats.ForEach(m => m.SetShowMax(true));
         }
 
         public override void Enter(TheParty client)
@@ -105,7 +74,12 @@ namespace TheParty_v2
                 Sprite.AddAnimation("PositiveHit", 3, 4, 0.15f);
                 Sprite.AddAnimation("NegativeHit", 4, 1, 0.15f);
                 Sprite.AddAnimation("Dead", 5, 1, 0.15f);
-                Sprite.SetCurrentAnimation("Idle");
+
+                if (ActiveMembers[member].HP == 0)
+                    Sprite.SetCurrentAnimation("Dead");
+                else
+                    Sprite.SetCurrentAnimation("Idle");
+
                 Sprites.Add(Sprite);
 
                 int HP = ActiveMembers[member].HP;
@@ -178,7 +152,6 @@ namespace TheParty_v2
 
                     break;
 
-
                 case State.Collide:
                     StanceLerps.ForEach(sl => sl.Update(deltaTime));
                     Stances.ForEach(s => s.DrawPos = StanceLerps[Stances.IndexOf(s)].CurrentPosition);
@@ -193,7 +166,7 @@ namespace TheParty_v2
                     for (int member = 0; member < ActiveMembers.Count; member++)
                     {
                         Member Member = ActiveMembers[member];
-                        if (Member.Hunger > 0)
+                        if (Member.Hunger > 0 && Member.HP > 0)
                         {
                             Member.Hunger -= Member.Stance;
                             if (Member.Hunger < 0)
@@ -218,9 +191,9 @@ namespace TheParty_v2
                 case State.Hit:
                     for (int member = 0; member < ActiveMembers.Count; member++)
                     {
-                        if (ActiveMembers[member].Hunger == 0)
+                        if (ActiveMembers[member].Hunger == 0 && ActiveMembers[member].HP > 0)
                         {
-                            ActiveMembers[member].HitHP(-2);
+                            ActiveMembers[member].HitHP(-1);
                             Sprites[member].SetCurrentAnimation("NegativeHit");
                         }
                         Hearts[member].SetHP(ActiveMembers[member].HP);
@@ -266,8 +239,7 @@ namespace TheParty_v2
                             CurrentState = State.LowerCommitment;
                         else
                         {
-                            ResetChoice(client);
-                            CurrentState = State.Choice;
+                            Done = true;
                         }
                     }
                     break;
@@ -276,8 +248,11 @@ namespace TheParty_v2
                     for (int i = 0; i < ActiveMembers.Count; i++)
                     {
                         Member Member = ActiveMembers[i];
-                        Member.HitStance(-1);
-                        Stances[i].SetTarget(Member.Stance);
+                        if (Member.HP > 0)
+                        {
+                            Member.HitStance(-1);
+                            Stances[i].SetTarget(Member.Stance);
+                        }
                     }
                     WaitTimer = new Timer(1.5f);
                     CurrentState = State.Wait5;
@@ -287,70 +262,8 @@ namespace TheParty_v2
                     WaitTimer.Update(deltaTime);
                     if (WaitTimer.TicThisFrame && Stances.TrueForAll(s => s.Reached))
                     {
-                        ResetChoice(client);
-                        CurrentState = State.Choice;
-                    }
-                    break;
-
-                case State.Choice:
-                    Choice.Update(deltaTime, true);
-                    if (Choice.Done)
-                    {
-                        List<Member> Members = client.Player.ActiveParty.Members;
-
-                        switch (Choice.CurrentChoice)
-                        {
-                            case 0: // Feed All
-                                int FeedMemberIdx = 0;
-                                while (GameContent.Variables["FoodSupply"] > 0 &&
-                                    !Members.TrueForAll(m => m.Hunger == m.MaxHunger))
-                                {
-                                    Member Member = Members[FeedMemberIdx];
-                                    Member.Hunger += 1;
-                                    Meats[FeedMemberIdx].SetHP(Member.Hunger);
-
-                                    GameContent.Variables["FoodSupply"] -= 1;
-                                    Food.SetNewText("\"" + GameContent.Variables["FoodSupply"].ToString());
-
-                                    FeedMemberIdx++;
-                                    if (FeedMemberIdx >= Members.Count)
-                                        FeedMemberIdx = 0;
-                                }
-                                ResetChoice(client);
-
-                                break;
-
-                            case 1: // Heal All
-                                foreach (Member member in Members)
-                                {
-                                    int HPDeficit = member.MaxHP - member.HP;
-                                    int AmtToHeal = HPDeficit >= member.Hunger ?
-                                        member.Hunger : HPDeficit;
-                                    member.Hunger -= AmtToHeal;
-                                    member.HP += AmtToHeal;
-
-                                    Hearts[Members.IndexOf(member)].SetHP(member.HP);
-                                    Meats[Members.IndexOf(member)].SetHP(member.Hunger);
-                                }
-                                ResetChoice(client);
-
-                                break;
-
-                            case 2: // Done
-                                WaitTimer.Reset();
-                                CurrentState = State.Wait6;
-
-                                break;
-                        }
-                    }
-
-                    break;
-
-                case State.Wait6:
-                    WaitTimer.Update(deltaTime);
-                    if (WaitTimer.TicThisFrame)
                         Done = true;
-
+                    }
                     break;
             }
         }
@@ -359,43 +272,31 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
 
-            if (CurrentState != State.Wait &&
+            bool DrawHearts = (CurrentState != State.Wait &&
                 CurrentState != State.Windup &&
-                CurrentState != State.Collide)
-            {
-                foreach (HeartsIndicator health in Hearts)
-                    health.Draw(spriteBatch);
-            }
+                CurrentState != State.Collide);
 
-            foreach (HeartsIndicator meat in Meats)
-                meat.Draw(spriteBatch);
-
-            foreach (AnimatedSprite2D sprite in Sprites)
-                sprite.Draw(spriteBatch);
-
-            if (CurrentState == State.Wait ||
+            bool DrawStance = (CurrentState == State.Wait ||
                 CurrentState == State.Windup ||
                 CurrentState == State.Collide ||
                 CurrentState == State.Wait4 ||
                 CurrentState == State.LowerCommitment ||
-                CurrentState == State.Wait5 ||
-                CurrentState == State.Choice ||
-                CurrentState == State.Wait6)
-            {
-                foreach (StanceIndicator stance in Stances)
-                    stance.Draw(spriteBatch);
-            }
+                CurrentState == State.Wait5);
 
-            if (CurrentState == State.Choice)
-            {
-                Choice.Draw(spriteBatch, true);
-            }
+            if (!Entered)
+                return;
 
-            if (CurrentState == State.Choice)
+            for (int i = 0; i < ActiveMembers.Count; i++)
             {
-                Food.Draw(spriteBatch, true);
-            }
+                if (ActiveMembers[i].HP > 0)
+                {
+                    if (DrawHearts) Hearts[i].Draw(spriteBatch);
+                    if (DrawStance) Stances[i].Draw(spriteBatch);
+                    Meats[i].Draw(spriteBatch);
+                }
 
+                Sprites[i].Draw(spriteBatch);
+            }
         }
     }
 }

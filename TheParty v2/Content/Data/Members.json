@@ -3,7 +3,7 @@
 		{
 			"Name" : "Alien",
 			"SpriteName" : "AlienFighter",
-			"HP" : 4,
+			"HP" : 3,
 			"MaxHP" : 10,	
 			"Hunger" : 0,
 			"MaxHunger" : 0,
@@ -19,7 +19,7 @@
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Steal Coin", "Steal Food"],
+			"Moves" : ["Hit", "Steal Coin", "Steal Food"],
 			"MovesToLearn" : []
 		},
 		{
@@ -37,11 +37,11 @@
 			"Name" : "Chupasnakera",
 			"SpriteName" : "ChupasnakeraFighter",
 			"HP" : 3,
-			"MaxHP" : 10,
+			"MaxHP" : 5,
 			"Hunger" : 0,
 			"MaxHunger" : 0,
 			"Equipped" : "",
-			"Moves" : ["Hit", "Commit", "Suck"],
+			"Moves" : ["Hit", "Suck"],
 			"MovesToLearn" : []
 		},
 		{
@@ -91,11 +91,11 @@
 		{
 			"Name" : "Hocus",
 			"SpriteName" : "HocusFighter",
-			"HP" : 3,
+			"HP" : 0,
 			"MaxHP" : 3,
 			"Hunger" : 3,
 			"MaxHunger" : 3,
-			"Equipped" : "Bandana",
+			"Equipped" : "",
 			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
 		},

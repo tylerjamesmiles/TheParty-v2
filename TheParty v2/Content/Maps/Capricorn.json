@@ -82,7 +82,7 @@
           "y": 784,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Set(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Buy Food $1, Stay the Night $5, No Thanks)\n      Case BuyFood\n         If(Money < 1)\n            Dialogue(What do you take me for!?)\n            Set(StillShopping, false)\n         If(Money >= 1)\n            Incr(FoodSupply, 1)\n            Incr(Money, -1)\n      Case Stay The Night\n         If(Money < 5)\n            Dialogue(What do you take me for!?)\n         If(Money >= 5)\n            Incr(Money, -5)\n            HealParty()\n            FadeOut()\n            FadeIn()\n            Dialogue(The party's wounds were healed.)\n         Set(StillShopping, false)\n      Case NoThanks\n         Set(StillShopping, false)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Set(StillShopping, true)\nWhile(StillShopping == true)\n   Choice(Show Food Money, Buy Food $1, Stay the Night $5, No Thanks)\n      Case BuyFood\n         If(Money < 1)\n            Dialogue(What do you take me for!?)\n            Set(StillShopping, false)\n         If(Money >= 1)\n            Incr(FoodSupply, 1)\n            Incr(Money, -1)\n      Case Stay The Night\n         If(Money < 5)\n            Dialogue(What do you take me for!?)\n         If(Money >= 5)\n            Incr(Money, -5)\n            HealParty()\n            DayPass(WorldMap, 99, 98)\n         Set(StillShopping, false)\n      Case NoThanks\n         Set(StillShopping, false)"}
         },
         {
           "name": "Entity",
@@ -142,7 +142,7 @@
           "y": 672,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Equipment1", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Stick [Atk + 1] $15, No Thanks)\n   Case Stick [Atk + 1] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the stick.)\n         AddItem(Stick)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
+          "values": {"Name": "Equipment1", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Cape [+2) -1(] $15, No Thanks)\n   Case Cape [+2) -1(] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Cape.)\n         AddItem(Cape)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
         },
         {
           "name": "Entity",
@@ -172,7 +172,7 @@
           "y": 560,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Lid [Def + 1] $15, No Thanks)\n   Case Lid [Def + 1] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Lid.)\n         AddItem(Lid)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
+          "values": {"Name": "", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Katana [+2( -1)] $15, No Thanks)\n   Case Lid [+2( -1)] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Katana.)\n         AddItem(Katana)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
         },
         {
           "name": "Entity",

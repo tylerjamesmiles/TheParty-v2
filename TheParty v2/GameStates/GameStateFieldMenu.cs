@@ -121,8 +121,11 @@ namespace TheParty_v2
                 stance.Update(deltaTime);
 
             StateMachine.Update(this, deltaTime);
+
             if (Done)
+            {
                 client.StateMachine.SetNewCurrentState(client, new GameStateField());
+            }
 
             if (Save)
             {
@@ -150,14 +153,15 @@ namespace TheParty_v2
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
                 MemberSprites[i].Draw(spriteBatch);
-                HPIndicators[i].Draw(spriteBatch);
 
                 if (ActiveMembers[i].HP > 0)
                 {
+                    HPIndicators[i].Draw(spriteBatch);
                     HungerIndicators[i].Draw(spriteBatch);
                     StanceIndicators[i].Draw(spriteBatch);
                 }
             }
+
 
             StateMachine.Draw(this, spriteBatch);
         }

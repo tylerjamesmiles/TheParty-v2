@@ -16,8 +16,8 @@
         {
             "Name" : "Commit", 
             "Description" : "Raise Commit. by 1\n+2%s, +1(, +1), Go Again",
-            "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +2)", "AddStatus(Target, ShortAttackUp)", "AddStatus(Target, ShortDefenseUp)"],  
-            "Conditions" : ["Is(Target, Self)"]
+            "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +2)", "AddStatus(Target, JustCommitted)"],  
+            "Conditions" : ["Is(Target, Self)", "Status(Target, Doesn'tHave, JustCommitted)"]
         },
         {
             "Name" : "Commit More", 
@@ -77,7 +77,7 @@
             "Name" : "Discourage", 
             "Description" : "Take 1 point of Commitment",
             "Effects" : ["StealCommitment(Target, 1)"],  
-            "Conditions" : ["Commitment(Target, >, 0)"]
+            "Conditions" : ["Is(Target, InDifferentParty)", "Commitment(Target, >, 0)"]
         },
         {
             "Name" : "Doubt", 
@@ -137,13 +137,13 @@
             "Name" : "Steal Coin",
             "Description" : "",
             "Effects" : ["StealCoin()"],
-            "Conditions" : ["Is(Target, InDifferentParty)"]
+            "Conditions" : ["Is(Target, InDifferentParty)", "Money(Target, Above0)"]
         },
         {
             "Name" : "Steal Food",
             "Description" : "",
             "Effects" : ["StealFood()"],
-            "Conditions" : ["Is(Target, InDifferentParty)"]
+            "Conditions" : ["Is(Target, InDifferentParty)", "Food(Target, Above0)"]
         }
     ]
 }

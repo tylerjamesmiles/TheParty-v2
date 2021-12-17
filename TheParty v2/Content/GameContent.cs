@@ -84,21 +84,26 @@ namespace TheParty_v2
 
         public static void FadeOutMusic()
         {
-            SongVolumeLerp = new LerpF(1f, 0f, 3f);
+            SongVolumeLerp = new LerpF(1f, 0f, 0.6f);
         }
 
         public static void FadeInMusic()
         {
-            SongVolumeLerp = new LerpF(0f, 1f, 3f);
+            SongVolumeLerp = new LerpF(0f, 1f, 0.2f);
+        }
+
+        public static void BringMusicVolumeBackUp()
+        {
+            SongVolumeLerp = new LerpF(0f, 1f, 0f);
         }
 
         public static void PlaySong(string name)
         {
+            if (name == SongCurrentlyPlaying || name == "")
+                return;
+
             if (!Songs.ContainsKey(name))
                 throw new Exception("No song named " + name);
-
-            if (name == SongCurrentlyPlaying)
-                return;
 
             MediaPlayer.Play(Songs[name]);
             SongCurrentlyPlaying = name;

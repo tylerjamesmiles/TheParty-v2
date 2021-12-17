@@ -28,7 +28,7 @@ namespace TheParty_v2
                 switch (Choice.CurrentChoice)
                 {
                     case 0:
-                        client.Player = new Player(new Vector2(99, 101) * 16 + new Vector2(8, 8));
+                        client.Player = new Player(new Vector2());
 
                         client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 99, 101));
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));

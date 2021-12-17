@@ -131146,7 +131146,7 @@
           "y": 1264,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "WorldMonster1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(WorldMapBattle1)\nErase(Me)"}
+          "values": {"Name": "WorldMonster1", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Erase(Me)\nBattle(WorldMapBattle1)"}
         },
         {
           "name": "Entity",
@@ -131156,17 +131156,7 @@
           "y": 1376,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "WorldMonster3", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Battle(WorldMapBattle2)\nErase(Me)"}
-        },
-        {
-          "name": "Entity",
-          "id": 24,
-          "_eid": "23557279",
-          "x": 1440,
-          "y": 1520,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "", "SpriteName": "AdultWomanBase1", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "DecrementHunger()"}
+          "values": {"Name": "WorldMonster3", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": true, "Script": "Erase(Me)\nBattle(WorldMapBattle2)"}
         }
       ]
     },

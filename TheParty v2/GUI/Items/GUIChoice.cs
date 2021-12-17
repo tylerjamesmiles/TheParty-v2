@@ -135,6 +135,12 @@ namespace TheParty_v2
                 Done = true;
         }
 
+        public void OnlyUpdateLerp(float deltaTime)
+        {
+            MovementLerp.Update(deltaTime);
+            HandWobble.Update(deltaTime);
+        }
+
         public void Draw(SpriteBatch spriteBatch, bool isInFocus)
         {
             Vector2 DrawPos =

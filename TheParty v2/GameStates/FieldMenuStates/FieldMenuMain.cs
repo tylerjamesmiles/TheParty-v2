@@ -9,40 +9,34 @@ namespace TheParty_v2
     class FieldMenuMain : State<GameStateFieldMenu>
     {
         GUIChoiceBox Choices;
+        bool Quitting;
 
         public override void Enter(GameStateFieldMenu client)
         {
             string[] ChoiceStrings = new[] { 
-                "Feed", 
-                "Heal", 
-                "Commit", 
+                "Member", 
                 "Equip", 
                 "Party", 
                 "Save", 
-                "Settings", 
-                "Back", 
+                "Options",
                 "Title" };
             
             bool[] ChoiceValidity = new bool[ChoiceStrings.Length];
             for (int i = 0; i < ChoiceValidity.Length; i++)
                 ChoiceValidity[i] = true;
 
-            List<Member> Members = client.ActiveMembers;
+            ChoiceValidity[2] = client.BackupMembers.Count > 0;
 
-            ChoiceValidity[0] =
-                !Members.TrueForAll(m => m.Hunger == m.MaxHunger) &&
-                GameContent.Variables["FoodSupply"] > 0;
-            ChoiceValidity[1] =
-                !Members.TrueForAll(m => m.HP == m.MaxHP) &&
-                !Members.TrueForAll(m => m.Hunger == 0);
-            ChoiceValidity[4] = client.BackupMembers.Count > 0;
+            List<Member> Members = client.ActiveMembers;
 
             Choices = new GUIChoiceBox(
                 ChoiceStrings, 
                 GUIChoiceBox.Position.BottomRight, 
-                3, ChoiceValidity);
+                2, ChoiceValidity);
 
             Choices.SetCurrentChoice(client.PreviousMainMenuChoice);
+
+            Quitting = false;
         }
 
         public override void Update(GameStateFieldMenu client, float deltaTime)
@@ -53,21 +47,24 @@ namespace TheParty_v2
             {
                 switch(Choices.CurrentChoice)
                 {
-                    case 0: client.StateMachine.SetNewCurrentState(client, new FieldMenuFeed()); break;
-                    case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuHeal()); break;
-                    case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuCommit()); break;
-                    case 3: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
-                    case 4: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
-                    case 5: client.Save = true; break;
-                    case 6: Enter(client); break;
-                    case 7: client.Done = true; break;
-                    case 8: client.Quit = true; break;
+                    case 0: client.StateMachine.SetNewCurrentState(client, new FieldMenuMember()); break;
+                    case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
+                    case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
+                    case 3: client.Save = true; break;
+                    case 4: Enter(client); break;       // TODO: Settings
+                    case 5: client.Done = true; break;
                 }
 
                 client.PreviousMainMenuChoice = Choices.CurrentChoice;
             }
 
             if (InputManager.JustReleased(Keys.Escape))
+            {
+                Choices.StartShrink();
+                Quitting = true;
+            }
+
+            if (Choices.Done && Quitting)
                 client.Done = true;
         }
 

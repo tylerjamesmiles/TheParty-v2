@@ -36,6 +36,36 @@ namespace TheParty_v2
         }
     }
 
+    class CommandFreezeAll : Command<TheParty>
+    {
+        List<OgmoEntity> Entities;
+        public CommandFreezeAll(List<OgmoEntity> entities)
+        {
+            Entities = entities;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            Entities.ForEach(e => e.Frozen = true);
+            Done = true;
+        }
+    }
+
+    class CommandUnFreezeAll : Command<TheParty>
+    {
+        List<OgmoEntity> Entities;
+        public CommandUnFreezeAll(List<OgmoEntity> entities)
+        {
+            Entities = entities;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            Entities.ForEach(e => e.Frozen = false);
+            Done = true;
+        }
+    }
+
     class CommandFreezePlayer : Command<TheParty>
     {
         public override void Enter(TheParty client)

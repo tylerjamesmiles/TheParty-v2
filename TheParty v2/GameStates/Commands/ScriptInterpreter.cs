@@ -16,6 +16,7 @@ namespace TheParty_v2
         {
             OgmoTileMap CurrentMap = game.CurrentMap;
             OgmoLayer EntityLayer = CurrentMap.EntityLayer;
+            List<OgmoEntity> Entities = EntityLayer.entities;
 
             List<Command<TheParty>> ResultList = new List<Command<TheParty>>();
 
@@ -90,6 +91,8 @@ namespace TheParty_v2
                         foreach (string entityName in Arguments)
                             if (entityName.ToLower() == "player")
                                 ResultList.Add(new CommandFreezePlayer());
+                            else if (entityName.ToLower() == "all")
+                                ResultList.Add(new CommandFreezeAll(Entities));
                             else
                                 ResultList.Add(new CommandFreeze(EntityFromName(entityName, EntityLayer, caller)));
                         break;
@@ -98,6 +101,8 @@ namespace TheParty_v2
                         foreach (string entityName in Arguments)
                             if (entityName.ToLower() == "player")
                                 ResultList.Add(new CommandUnfreezePlayer());
+                            else if (entityName.ToLower() == "all")
+                                ResultList.Add(new CommandUnFreezeAll(Entities));
                             else
                                 ResultList.Add(new CommandUnFreeze(EntityFromName(entityName, EntityLayer, caller)));
                         break;
@@ -128,7 +133,7 @@ namespace TheParty_v2
 
                     case "battle":
                         ResultList.Add(new CommandPlayMusic("MonsterBattle"));
-                        ResultList.Add(new CommandFreeze(caller));
+                        ResultList.Add(new CommandFreezeAll(Entities));
                         ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBeFaded());
@@ -171,15 +176,25 @@ namespace TheParty_v2
                         ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandPlayMapMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
-                        ResultList.Add(new CommandUnFreeze(caller));
+                        ResultList.Add(new CommandUnFreezeAll(Entities));
                         ResultList.Add(new CommandUnfreezePlayer());
 
                         break;
 
                     case "teleport":
+                        string OldSong = game.CurrentMap.values["Song"];
+                        string NewSong = GameContent.Maps[Arguments[0]].values["Song"];
+
                         ResultList.Add(new CommandFreezePlayer());
+                        if (OldSong != NewSong)
+                            ResultList.Add(new CommandFadeOutMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
+                        ResultList.Add(new CommandBeFaded());
+                        ResultList.Add(new CommandWait(0.5f));
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
+                        if (OldSong != NewSong)
+                            ResultList.Add(new CommandBringMusicVolumeBackUp());
+                        ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnfreezePlayer());
                         break;

@@ -23,8 +23,6 @@ namespace TheParty_v2
         {
             InputDialogues = dialogues;
             Pos = pos;
-
-            GenerateBox();
         }
 
         private void GenerateBox()
@@ -49,7 +47,11 @@ namespace TheParty_v2
             Box = new GUIDialogueBox(Pos, CorrectedDialogues);
         }
 
-
+        public override void Enter(TheParty client)
+        {
+            GenerateBox();
+            Entered = true;
+        }
 
         public override void Update(TheParty client, float deltaTime)
         {
@@ -60,7 +62,8 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-             Box.Draw(spriteBatch, true);
+            if (Box != null)
+                Box.Draw(spriteBatch, true);
         }
     }
 }

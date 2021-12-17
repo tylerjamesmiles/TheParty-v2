@@ -18,6 +18,12 @@ namespace TheParty_v2
         public int NumChoices => Choice.NumChoices;
         public bool Done => Box.Done;
 
+        public void StartShrink()
+        {
+            Choice.Done = true;
+            Box.StartShrink();
+        }
+
         public void SetCurrentChoice(int choice) => Choice.SetChoice(choice);
 
         public enum Position

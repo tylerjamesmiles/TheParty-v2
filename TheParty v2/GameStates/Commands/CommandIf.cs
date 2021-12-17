@@ -99,6 +99,7 @@ namespace TheParty_v2
 
             if (True)
             {
+                Commands.ForEach(c => c.Done = false);
                 client.CommandQueue.PushCommands(Commands);
             }
 

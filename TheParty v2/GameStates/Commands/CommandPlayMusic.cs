@@ -46,4 +46,13 @@ namespace TheParty_v2
             Done = true;
         }
     }
+
+    class CommandBringMusicVolumeBackUp : Command<TheParty>
+    {
+        public override void Update(TheParty client, float deltaTime)
+        {
+            GameContent.BringMusicVolumeBackUp();
+            Done = true;
+        }
+    }
 }
