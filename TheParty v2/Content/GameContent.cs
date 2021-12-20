@@ -84,12 +84,12 @@ namespace TheParty_v2
 
         public static void FadeOutMusic()
         {
-            SongVolumeLerp = new LerpF(1f, 0f, 0.6f);
+            SongVolumeLerp = new LerpF(1f, 0f, 3f);
         }
 
         public static void FadeInMusic()
         {
-            SongVolumeLerp = new LerpF(0f, 1f, 0.2f);
+            SongVolumeLerp = new LerpF(0f, 1f, 2f);
         }
 
         public static void BringMusicVolumeBackUp()
@@ -254,7 +254,7 @@ namespace TheParty_v2
 
                     if (FoundPixel)
                     {
-                        Width = LocalX + 1;
+                        Width = LocalX;
                     }
                 }
 

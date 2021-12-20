@@ -1,12 +1,9 @@
 {
   "CurrentMap": "WorldMap",
   "Variables": {
-    "TestVariable1": 0,
-    "TestVariable2": 6,
-    "DaysRemaining": 100,
-    "Money": 21,
-    "FoodSupply": 4,
-    "Character1Feeling": 0
+    "DaysRemaining": 99,
+    "Money": 7,
+    "FoodSupply": 4
   },
   "Switches": {
     "TestSwitch1": false,
@@ -16,16 +13,25 @@
     "TalkedAboutFood": false,
     "ReadyToGo": false,
     "IBetYouLost": false,
-    "DidntFlee": true,
+    "DidntFlee": false,
     "EvangelizeSceneHappened": false,
     "RandallDead": false,
-    "CastleChest1Opened": false,
+    "CastleChest1Opened": true,
     "CaveChest1Opened": false,
     "CaveChest2Opened": false
   },
   "ErasedEntities": [
-    80,
-    81
+    30,
+    31,
+    29,
+    28,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    21
   ],
   "Player": {
     "Steering": {
@@ -34,12 +40,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "-0.40614253 -0.91380984",
+      "Heading": "-1.2836729E-07 -1",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "1191.5361 1027.3795",
+      "Position": "1516.1917 1546.1122",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -57,7 +63,7 @@
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 188
+        "TicsSoFar": 720
       },
       "AnimateWhenStatic": false
     },
@@ -69,31 +75,31 @@
       "Members": [
         {
           "Name": "Hocus",
-          "HP": 4,
-          "MaxHP": 4,
-          "Stance": 1,
+          "HP": 3,
+          "MaxHP": 3,
+          "Stance": 3,
           "Hunger": 3,
           "MaxHunger": 3,
           "Moves": [
             "Hit",
             "Commit",
             "Defend",
-            "Pass",
-            "Bolster"
+            "Pass"
           ],
           "MovesToLearn": [
             "Commit More",
+            "Bolster",
             "Thaw"
           ],
           "EquippedName": "Bandana",
           "StatusEffects": [],
           "SpriteName": "HocusFighter",
-          "GoneThisTurn": true,
-          "CanGo": false
+          "GoneThisTurn": false,
+          "CanGo": true
         }
       ],
       "NumMembers": 1,
-      "NumAlertMembers": 0,
+      "NumAlertMembers": 1,
       "IsDead": false
     },
     "CampMembers": [],

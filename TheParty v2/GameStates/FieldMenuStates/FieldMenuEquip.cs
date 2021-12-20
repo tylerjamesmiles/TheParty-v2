@@ -113,7 +113,11 @@ namespace TheParty_v2
                     }
 
                     if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        GameContent.SoundEffects["MenuBack"].Play();
                         client.StateMachine.SetNewCurrentState(client, new FieldMenuMain());
+
+                    }
 
                     break;
 
@@ -147,6 +151,8 @@ namespace TheParty_v2
 
                     if (InputManager.JustReleased(Keys.Escape))
                     {
+                        GameContent.SoundEffects["MenuBack"].Play();
+
                         GenerateMemberChoice(client);
                         GenerateEquippedItemNames(client);
                         CurrentState = State.ChooseMember;

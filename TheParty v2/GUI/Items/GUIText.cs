@@ -15,8 +15,9 @@ namespace TheParty_v2
         Vector2 Location;
         bool DrawLight;
         public bool Done => CurrentChar == Text.Length - 1;
+        bool MakeNoise;
 
-        public GUIText(string text, Vector2 location, int lineWidth, float popInRate, bool drawLight = false)
+        public GUIText(string text, Vector2 location, int lineWidth, float popInRate, bool drawLight = false, bool makeNoise = false)
         {
             Text = WrappedByLineWidth(text, lineWidth);
             CurrentDisplayText = "";
@@ -24,6 +25,7 @@ namespace TheParty_v2
             NewCharTimer = new Timer(popInRate);
             Location = location.ToPoint().ToVector2();  // had issues w shaky text
             DrawLight = drawLight;
+            MakeNoise = makeNoise;
         }
 
         public void FullyDisplay()
@@ -78,7 +80,12 @@ namespace TheParty_v2
             NewCharTimer.Update(deltaTime);
 
             if (NewCharTimer.TicThisFrame && CurrentChar < Text.Length - 1)
+            {
+                if (MakeNoise && Text[CurrentChar] != ' ')
+                    GameContent.SoundEffects["DialogueBoop"].Play();
+
                 CurrentChar += 1;
+            }
 
             if (CurrentChar == Text.Length - 1)
                 CurrentDisplayText = Text;

@@ -102,14 +102,14 @@ namespace TheParty_v2
         public int TargetSpriteIdx
             => MemberSpriteIdx(CurrentTargeting.ToPartyIdx, CurrentTargeting.ToMemberIdx);
 
-        public AnimatedSprite2D TargetSprite
+        public AnimatedSprite2D ToSprite
             => Sprites[TargetSpriteIdx];
 
         public AnimatedSprite2D FromSprite
             => Sprites[FromSpriteIdx];
 
         public Vector2 InFrontOfTarget
-            => TargetSprite.DrawPos + new Vector2(TargetSprite.Flip ? 16 : -16, 0);
+            => ToSprite.DrawPos + new Vector2(ToSprite.Flip ? 16 : -16, 0);
 
         public int PartyIdxOf(int memberIdx)
         {

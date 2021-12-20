@@ -287,14 +287,14 @@ namespace TheParty_v2
                     }
 
                 case "Money":
-                    switch (Arguments[1])
+                    switch (Arguments[1].Trim())
                     {
                         case "Above0": return GameContent.Variables["Money"] > 0;
                         default: throw new Exception("Keyword " + Arguments[1] + " is not valid.");
                     }
 
                 case "Food":
-                    switch (Arguments[1])
+                    switch (Arguments[1].Trim())
                     {
                         case "Above0": return GameContent.Variables["FoodSupply"] > 0;
                         default: throw new Exception("Keyword " + Arguments[1] + " is not valid.");

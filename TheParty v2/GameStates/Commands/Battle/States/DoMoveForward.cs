@@ -22,7 +22,18 @@ namespace TheParty_v2
             if (client.Movement.Reached)
             {
                 if (client.CurrentMove.Name == "Hit")
-                    client.StateMachine.SetNewCurrentState(client, new AnimateHit());
+                {
+                    bool HittingYou = client.CurrentTargeting.ToPartyIdx == 0;
+                    int HitAmt = client.FromMember.StatAmt("Attack") + client.ToMember.StatAmt("Defense");
+                    bool FatalHit = (client.ToMember.HP <= HitAmt);
+                    int MissChance = HittingYou && FatalHit ? 50 : 10;
+                    bool Miss = new Random().Next(100) < MissChance;
+
+                    if (Miss)
+                        client.StateMachine.SetNewCurrentState(client, new AnimateMiss());
+                    else
+                        client.StateMachine.SetNewCurrentState(client, new AnimateHit());
+                }
                 else
                     client.StateMachine.SetNewCurrentState(client, new DoDoMove());
 

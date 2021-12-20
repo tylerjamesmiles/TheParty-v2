@@ -288,6 +288,8 @@ namespace TheParty_v2
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
+                Sprites[i].Draw(spriteBatch);
+
                 if (ActiveMembers[i].HP > 0)
                 {
                     if (DrawHearts) Hearts[i].Draw(spriteBatch);
@@ -295,7 +297,7 @@ namespace TheParty_v2
                     Meats[i].Draw(spriteBatch);
                 }
 
-                Sprites[i].Draw(spriteBatch);
+
             }
         }
     }

@@ -149,6 +149,7 @@ namespace TheParty_v2
                     {
                         FromStanceLerp = new LerpV(FromStance.DrawPos, FromBonusPos, 0.1f);
                         ToStanceLerp = new LerpV(TargetStance.DrawPos, FromBonusPos, 0.1f);
+                        GameContent.SoundEffects["Whoosh"].Play();
                         AnimationState = State.Collide;
                     }
                     break;
@@ -163,6 +164,7 @@ namespace TheParty_v2
                     {
                         FromStance.DrawPos = FromStartPos;
                         TargetStance.DrawPos = TargetStartPos;
+                        GameContent.SoundEffects["NumbersCombine"].Play();
                         AnimationState = State.ShowResult;
                     }
                     break;
@@ -171,7 +173,7 @@ namespace TheParty_v2
                     ResultStance.Update(deltaTime);
                     if (ResultStance.Reached)
                     {
-                        ResultLerp = new LerpV(ResultStance.DrawPos, WindupSpot, 1f);
+                        ResultLerp = new LerpV(ResultStance.DrawPos, WindupSpot, 0.5f);
                         AnimationState = State.ResultWindup;
                     }
 
@@ -183,6 +185,7 @@ namespace TheParty_v2
                     if (ResultLerp.Reached)
                     {
                         ResultLerp = new LerpV(ResultStance.DrawPos, TargetHeartsPos, 0.1f);
+                        GameContent.SoundEffects["Whoosh"].Play();
                         AnimationState = State.ResultCollide;
                     }
 
@@ -193,6 +196,7 @@ namespace TheParty_v2
                     ResultStance.DrawPos = ResultLerp.CurrentPosition;
                     if (ResultLerp.Reached)
                     {
+                        GameContent.SoundEffects["Hit"].Play();
                         client.StateMachine.SetNewCurrentState(client, new DoDoMove());
                     }
 

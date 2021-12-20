@@ -24,6 +24,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Chest.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChupasnakeraFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Circle.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Clouds.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Coin.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CoinPreview.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CollectAnimations.png</File>
@@ -52,6 +53,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MeatField.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MeatPreview.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Meats.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Miss.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MonkBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/MonsterBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PiousBase.png</File>
@@ -79,8 +81,32 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/MonsterBattle.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Weird.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/WorldMap.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Chest.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Coin.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/DialogueBoop.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/DialogueSeveralBoops.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Hit.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/LoseHeart.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuBack.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuMove.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuSelect.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/NumbersCombine.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

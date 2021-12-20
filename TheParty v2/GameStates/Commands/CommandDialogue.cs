@@ -44,7 +44,7 @@ namespace TheParty_v2
                 CorrectedDialogues[i] = str;
             }
 
-            Box = new GUIDialogueBox(Pos, CorrectedDialogues);
+            Box = new GUIDialogueBox(Pos, CorrectedDialogues, 0.05f, true);
         }
 
         public override void Enter(TheParty client)

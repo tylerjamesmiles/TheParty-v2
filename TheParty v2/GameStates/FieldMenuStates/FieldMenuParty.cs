@@ -78,7 +78,10 @@ namespace TheParty_v2
                         Member2Choice.SetChoice(Member1Choice.CurrentChoiceIdx);
                     }
                     else if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        GameContent.SoundEffects["MenuBack"].Play();
                         client.StateMachine.SetNewCurrentState(client, new FieldMenuMain());
+                    }
 
                     break;
 
@@ -113,7 +116,11 @@ namespace TheParty_v2
                         Member1Choice.SetChoice(Choice2);
                     }
                     else if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        GameContent.SoundEffects["MenuBack"].Play();
                         CurrentState = State.PickFirstMember;
+
+                    }
 
                     break;
             }

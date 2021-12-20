@@ -27,17 +27,17 @@ namespace TheParty_v2
         public bool TextShown => Text.Done;
         public void SetNewText(string newText) => Text.ChangeToNewText(newText);
 
-        public GUIDialogueBox(Rectangle bounds, string[] dialogues, float popInRate = 0.1f)
+        public GUIDialogueBox(Rectangle bounds, string[] dialogues, float popInRate = 0.05f, bool sound = false)
         {
             Rectangle BoxBounds = bounds;
             Box = new GUIBox(BoxBounds);
             Dialogues = dialogues;
             CurrentDialgoue = 0;
             Done = false;
-            Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate);
+            Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate, false, sound);
         }
 
-        public GUIDialogueBox(Position pos, string[] dialogues, float popInRate = 0.1f)
+        public GUIDialogueBox(Position pos, string[] dialogues, float popInRate = 0.05f, bool sound = false)
         {
             Rectangle BoxBounds =
                 pos == Position.Top ? Top :
@@ -53,7 +53,7 @@ namespace TheParty_v2
             CurrentDialgoue = 0;
             Done = false;
 
-            Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate);
+            Text = new GUIText(Dialogues[0], (BoxBounds.Location + new Point(4, 4)).ToVector2(), BoxBounds.Size.X - 8, popInRate, false, sound);
         }
 
         public void Update(float deltaTime, bool isInFocus)
@@ -79,6 +79,7 @@ namespace TheParty_v2
                 }
                 else
                 {
+                    GameContent.SoundEffects["DialogueSeveralBoops"].Play();
                     Text.FullyDisplay();
                 }
             }

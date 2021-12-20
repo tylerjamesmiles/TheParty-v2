@@ -181,6 +181,8 @@ namespace TheParty_v2
 
                     Vector2 NewDir = Dir + new Vector2(0.1f, 0.1f);
                     Particles.Add(new Particle(TopCenter.ToVector2(), NewDir, 80f, SpriteName));
+
+                    GameContent.SoundEffects["LoseHeart"].Play();
                 }
             }
 

@@ -169,6 +169,7 @@ namespace TheParty_v2
                 {
                     string Script =
                         "Incr(Money, 1)\n" +
+                        "SoundEffect(Coin)\n" +
                         "CollectAnimation(Coin)\n" +
                         "Erase(Me)\n"
                         ;
@@ -181,6 +182,7 @@ namespace TheParty_v2
                 {
                     string Script =
                         "Incr(FoodSupply, 1)\n" +
+                        "SoundEffect(Coin)\n" +
                         "CollectAnimation(Meat)\n" +
                         "Erase(Me)\n"
                         ;

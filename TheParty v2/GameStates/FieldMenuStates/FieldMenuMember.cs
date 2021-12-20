@@ -73,7 +73,11 @@ namespace TheParty_v2
                         CurrentState = State.ChooseAction;
                     }
                     else if (InputManager.JustReleased(Keys.Escape))
+                    {
+                        GameContent.SoundEffects["MenuBack"].Play();
                         client.StateMachine.SetNewCurrentState(client, new FieldMenuMain());
+
+                    }
 
                     MemberChoice.Done = false;
                     break;
@@ -138,6 +142,8 @@ namespace TheParty_v2
 
                     if (InputManager.JustReleased(Keys.Escape))
                     {
+                        GameContent.SoundEffects["MenuBack"].Play();
+
                         CurrentState = State.ChooseMember;
                     }
 

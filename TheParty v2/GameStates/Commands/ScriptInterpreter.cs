@@ -142,6 +142,7 @@ namespace TheParty_v2
                         if (Arguments.Length == 1)
                         {
                             ResultList.Add(new CommandBattle(Arguments[0], "DidntFlee"));
+                            ResultList.Add(new CommandFadeOutMusic());
                             ResultList.Add(new CommandIf("Party", "==", "Dead",
                                 new List<Command<TheParty>>
                                 {
@@ -173,8 +174,9 @@ namespace TheParty_v2
                                 }));
                         }
 
-                        ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandPlayMapMusic());
+                        ResultList.Add(new CommandFadeInMusic());
+                        ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnFreezeAll(Entities));
                         ResultList.Add(new CommandUnfreezePlayer());
@@ -244,6 +246,10 @@ namespace TheParty_v2
 
                     case "addpartymember":
                         ResultList.Add(new CommandAddPartyMember(Arguments[0]));
+                        break;
+
+                    case "soundeffect":
+                        ResultList.Add(new CommandPlaySoundEffect(Arguments[0]));
                         break;
 
                     case "changesprite":
@@ -343,11 +349,14 @@ namespace TheParty_v2
                         break;
 
                     case "daypass":
+                        ResultList.Add(new CommandFadeOutMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
+                        ResultList.Add(new CommandBeFaded());
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
-                        ResultList.Add(new CommandDecrementHunger(true));
+                        ResultList.Add(new CommandDayPass());
+                        ResultList.Add(new CommandFadeInMusic());
+                        ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
-                        ResultList.Add(new CommandIncrementVar("DaysRemaining", "-1"));
                         ResultList.Add(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "*DaysRemaining days until the world ends."));
                         break;
                 }

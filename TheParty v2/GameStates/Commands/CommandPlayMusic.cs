@@ -55,4 +55,19 @@ namespace TheParty_v2
             Done = true;
         }
     }
+
+    class CommandPlaySoundEffect : Command<TheParty>
+    {
+        string SfxName;
+        public CommandPlaySoundEffect(string name)
+        {
+            SfxName = name;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            GameContent.SoundEffects[SfxName].Play();
+            Done = true;
+        }
+    }
 }

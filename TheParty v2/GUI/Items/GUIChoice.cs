@@ -126,13 +126,17 @@ namespace TheParty_v2
             {
                 MovementLerp = new LerpV(MovementLerp.CurrentPosition, NewChoicePos, HandTravelTime);
                 CurrentChoiceIdx = NewChoiceIdx;
+                GameContent.SoundEffects["MenuMove"].Play();
             }
 
             MovementLerp.Update(deltaTime);
             HandWobble.Update(deltaTime);
 
             if (isInFocus && InputManager.JustReleased(Keys.Space) && onLegalChoice)
+            {
+                GameContent.SoundEffects["MenuSelect"].Play();
                 Done = true;
+            }
         }
 
         public void OnlyUpdateLerp(float deltaTime)

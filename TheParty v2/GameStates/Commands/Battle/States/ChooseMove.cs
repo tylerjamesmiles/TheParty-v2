@@ -29,7 +29,7 @@ namespace TheParty_v2
 
             int CurrentChoice = client.MoveChoice.CurrentChoice;
             string DescrTxt = client.FromMember.GetMoves()[CurrentChoice].Description;
-            Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f);
+            Description = new GUIDialogueBox(GUIDialogueBox.Position.SkinnyTop, new string[] { DescrTxt }, 0.01f, false);
         }
 
         public override void Update(CommandBattle client, float deltaTime)

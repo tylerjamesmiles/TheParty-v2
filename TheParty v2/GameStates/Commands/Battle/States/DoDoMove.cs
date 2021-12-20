@@ -27,7 +27,7 @@ namespace TheParty_v2
             {
                 Sheet.SetCurrentAnimation(client.CurrentMove.Name);
                 Sheet.CurrentAnimation.NumTimesLooped = 0;
-                Sheet.DrawPos = client.TargetSprite.DrawPos;
+                Sheet.DrawPos = client.ToSprite.DrawPos;
             }
             else
                 Sheet = null;

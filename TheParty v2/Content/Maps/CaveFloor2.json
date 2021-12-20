@@ -84,21 +84,20 @@
           "originY": 0,
           "values": {"Name": "Monster3", "SpriteName": "MonsterBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "ChaseIfPlayerInRange", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Erase(Me)\nBattle(CaveBattle3)"}
         },
-        {"name": "Coin", "id": 5, "_eid": "99094923", "x": 224, "y": 368, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 6, "_eid": "99094923", "x": 208, "y": 368, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 7, "_eid": "99094923", "x": 192, "y": 368, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 13, "_eid": "99094923", "x": 224, "y": 384, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 14, "_eid": "99094923", "x": 224, "y": 384, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 16, "_eid": "99094923", "x": 208, "y": 384, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 17, "_eid": "99094923", "x": 192, "y": 384, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 18, "_eid": "99106260", "x": 208, "y": 400, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 19, "_eid": "99106260", "x": 224, "y": 400, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 20, "_eid": "99106260", "x": 240, "y": 400, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 5, "_eid": "99094923", "x": 352, "y": 240, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 6, "_eid": "99094923", "x": 320, "y": 240, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 7, "_eid": "99094923", "x": 288, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 13, "_eid": "99094923", "x": 320, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 14, "_eid": "99094923", "x": 320, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 16, "_eid": "99094923", "x": 304, "y": 256, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 17, "_eid": "99094923", "x": 288, "y": 240, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 18, "_eid": "99106260", "x": 192, "y": 368, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 19, "_eid": "99106260", "x": 208, "y": 384, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 20, "_eid": "99106260", "x": 224, "y": 400, "originX": 0, "originY": 0},
         {"name": "Food", "id": 23, "_eid": "99106260", "x": 240, "y": 416, "originX": 0, "originY": 0},
         {"name": "Food", "id": 24, "_eid": "99106260", "x": 208, "y": 416, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 25, "_eid": "99106260", "x": 224, "y": 416, "originX": 0, "originY": 0},
+        {"name": "Food", "id": 25, "_eid": "99106260", "x": 224, "y": 368, "originX": 0, "originY": 0},
         {"name": "Food", "id": 26, "_eid": "99106260", "x": 192, "y": 400, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 27, "_eid": "99106260", "x": 192, "y": 416, "originX": 0, "originY": 0},
         {
           "name": "Entity",
           "id": 28,
@@ -107,18 +106,12 @@
           "y": 240,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Chest", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(CaveChest1Opened == false)\n   Freeze(All)\n   Face(Me, Down)\n   Wait(0.5)\n   Face(Me, Left)\n   Wait(0.5)\n   Dialogue(The party found an Apron!)\n   AddItem(Apron)\n   Set(CaveChest1Opened, true)\n   Unfreeze(All)"}
+          "values": {"Name": "Chest", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(CaveChest1Opened == false)\n   SoundEffect(Chest)\n   Freeze(All)\n   Face(Me, Down)\n   Wait(0.5)\n   Face(Me, Left)\n   Wait(0.5)\n   Dialogue(The party found an Apron!)\n   AddItem(Apron)\n   Set(CaveChest1Opened, true)\n   Unfreeze(All)"}
         },
-        {
-          "name": "Entity",
-          "id": 29,
-          "_eid": "23557279",
-          "x": 320,
-          "y": 256,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "Chest2", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(CaveChest2Opened == false)\n   Freeze(All)\n   Face(Me, Down)\n   Wait(0.5)\n   Face(Me, Left)\n   Wait(0.5)\n   Dialogue(The party found a Dagger!)\n   AddItem(Dagger)\n   Set(CaveChest2Opened, true)\n   Unfreeze(All)"}
-        }
+        {"name": "Coin", "id": 30, "_eid": "99094923", "x": 336, "y": 256, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 31, "_eid": "99094923", "x": 352, "y": 272, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 32, "_eid": "99094923", "x": 336, "y": 288, "originX": 0, "originY": 0},
+        {"name": "Coin", "id": 33, "_eid": "99094923", "x": 304, "y": 288, "originX": 0, "originY": 0}
       ]
     },
     {

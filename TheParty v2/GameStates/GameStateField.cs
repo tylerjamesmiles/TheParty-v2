@@ -9,15 +9,18 @@ namespace TheParty_v2
 { 
     class GameStateField : State<TheParty>
     {
-        public GameStateField()
-        {
+        Overlay Overlay;
 
+        public override void Enter(TheParty client)
+        {
+            Overlay = new Overlay("Clouds");
         }
 
         public override void Update(TheParty client, float deltaTime)
         {
             client.CurrentMap.Update(client.Player, deltaTime);
             client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
+            Overlay.Update(deltaTime);
 
             if (client.CommandQueue.Empty)
             {
@@ -38,7 +41,12 @@ namespace TheParty_v2
                 }
 
                 if (InputManager.JustReleased(Keys.Escape))
+                {
+                    GameContent.SoundEffects["MenuSelect"].Play();
                     client.StateMachine.SetNewCurrentState(client, new GameStateFieldMenu());
+
+
+                }
             }
 
             client.Camera.Update(client.CurrentMap.Size, client.Player.Transform.Position);
@@ -47,6 +55,7 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             client.CurrentMap.Draw(client.Camera.Position, client.Player, spriteBatch);
+            //Overlay.Draw(spriteBatch, new Vector2(), client.Camera.Position);
         }
     }
 }

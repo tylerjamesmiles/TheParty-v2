@@ -52,7 +52,8 @@ namespace TheParty_v2
                     case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
                     case 3: client.Save = true; break;
                     case 4: Enter(client); break;       // TODO: Settings
-                    case 5: client.Done = true; break;
+                    case 5: client.StateMachine.SetNewCurrentState(client, new FieldMenuTitle()); break;
+                        break;
                 }
 
                 client.PreviousMainMenuChoice = Choices.CurrentChoice;
@@ -61,6 +62,7 @@ namespace TheParty_v2
             if (InputManager.JustReleased(Keys.Escape))
             {
                 Choices.StartShrink();
+                GameContent.SoundEffects["MenuBack"].Play();
                 Quitting = true;
             }
 
