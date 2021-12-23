@@ -27,7 +27,7 @@
         },
         {
             "Name" : "Defend",
-            "Description" : "Raise ) for a turn.\n[Req. 2 Commit.]",
+            "Description" : "Raise ) for 2 turns.\n[Req. 2 Commit.]",
             "Effects" : ["AddStatus(Target, Defending)"],
             "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
         },
@@ -47,13 +47,13 @@
             "Name" : "Strengthen", 
             "Description" : "Raise Attack Power\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, AttackUp)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >=, 1)"]
+            "Conditions" : ["Is(Target, InSameParty)", "Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Weaken", 
             "Description" : "Lower Attack Power\n[Req. 1 Commit.]",
             "Effects" : ["AddStatus(Target, AttackDown)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >=, 1)"]
+            "Conditions" : ["Is(Target, InDifferentParty)", "Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >=, 1)"]
         },
         {
             "Name" : "Bolster", 
@@ -71,7 +71,7 @@
             "Name" : "Encourage", 
             "Description" : "Give 1 point of Commitment",
             "Effects" : ["GiveCommitment(Target, 1)"],  
-            "Conditions" : ["Commitment(Caster, >, 0)"]
+            "Conditions" : ["Is(Target, InSameParty)", "Commitment(Caster, >, 0)"]
         },
         {
             "Name" : "Discourage", 
@@ -105,9 +105,9 @@
         },
         {
             "Name" : "Kamikaze", 
-            "Description" : "Give enough HP to kill.",
-            "Effects" : ["Kamikaze"],  
-            "Conditions" : []
+            "Description" : "Give almost all of your %s to hurt the enemmy.",
+            "Effects" : ["Kamikaze()"],  
+            "Conditions" : ["Is(Target, InDifferentParty)"]
         },
         {
             "Name" : "Devote", 

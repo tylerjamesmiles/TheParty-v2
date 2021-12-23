@@ -168,6 +168,12 @@ namespace TheParty_v2
                     to.HitHP(+GiveAmt);
                     break;
 
+                case "Kamikaze":
+                    int KamikazeAmt = to.HP > from.HP - 1 ? from.HP - 1 : to.HP;
+                    from.HitHP(-KamikazeAmt);
+                    to.HitHP(-KamikazeAmt);
+                    break;
+
                 case "TradeHP":
                     int FromsHP = from.HP;
                     from.HP = to.HP;

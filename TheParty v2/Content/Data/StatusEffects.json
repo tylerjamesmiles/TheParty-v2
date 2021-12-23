@@ -3,7 +3,7 @@
     "Name" : "Defending",
     "EveryTurnEffects" : [],
     "PassiveEffects" : ["Defense + 1"],
-    "NumTurnsRemaining" : 2
+    "NumTurnsRemaining" : 4
 },
 {
     "Name" : "Poison",

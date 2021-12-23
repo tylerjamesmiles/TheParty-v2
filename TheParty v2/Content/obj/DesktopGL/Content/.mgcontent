@@ -22,6 +22,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterClimbingBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterSmallBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Chest.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChestOpenBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChupasnakeraFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Circle.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Clouds.png</File>
@@ -34,6 +35,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDawgBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDawgFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDogBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Effects.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FadeIn.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FadeOut.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaBase.png</File>
@@ -62,6 +64,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PlusSign.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RandallBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RandallFighter.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RockBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SoldierBase.png</File>
@@ -76,9 +79,11 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/BoilingWastes.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Capricorn.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/FarawayHeights.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/HumtaraHolm.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/MonsterBattle.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/TitleScreen.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Weird.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/WorldMap.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Chest.wav</File>
@@ -94,6 +99,11 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

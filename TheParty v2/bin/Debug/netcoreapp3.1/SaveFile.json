@@ -1,9 +1,9 @@
 {
-  "CurrentMap": "WorldMap",
+  "CurrentMap": "Capricorn",
   "Variables": {
-    "DaysRemaining": 99,
-    "Money": 7,
-    "FoodSupply": 4
+    "DaysRemaining": 100,
+    "Money": 0,
+    "FoodSupply": 0
   },
   "Switches": {
     "TestSwitch1": false,
@@ -14,24 +14,15 @@
     "ReadyToGo": false,
     "IBetYouLost": false,
     "DidntFlee": false,
-    "EvangelizeSceneHappened": false,
+    "EvangelizeSceneHappened": true,
     "RandallDead": false,
-    "CastleChest1Opened": true,
+    "CastleChest1Opened": false,
     "CaveChest1Opened": false,
     "CaveChest2Opened": false
   },
   "ErasedEntities": [
-    30,
-    31,
-    29,
-    28,
-    22,
-    23,
-    24,
-    25,
-    26,
-    27,
-    21
+    5,
+    6
   ],
   "Player": {
     "Steering": {
@@ -40,12 +31,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "-1.2836729E-07 -1",
+      "Heading": "1 0",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "1516.1917 1546.1122",
+      "Position": "238.37871 848.5896",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -59,11 +50,11 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 0,
+      "CurrentFacing": 3,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 720
+        "TicsSoFar": 24
       },
       "AnimateWhenStatic": false
     },
@@ -77,7 +68,7 @@
           "Name": "Hocus",
           "HP": 3,
           "MaxHP": 3,
-          "Stance": 3,
+          "Stance": 1,
           "Hunger": 3,
           "MaxHunger": 3,
           "Moves": [

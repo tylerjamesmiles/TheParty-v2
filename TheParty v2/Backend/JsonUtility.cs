@@ -16,7 +16,10 @@ namespace TheParty_v2
             JsonTextReader jsonTextReader = new JsonTextReader(streamReader);
             JsonSerializer serializer = new JsonSerializer();
 
-            return serializer.Deserialize<T>(jsonTextReader);
+            T result = serializer.Deserialize<T>(jsonTextReader);
+            fs.Close();
+
+            return result;
         }
     }
 }

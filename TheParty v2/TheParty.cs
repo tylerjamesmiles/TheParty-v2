@@ -28,7 +28,13 @@ namespace TheParty_v2
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
             IsMouseVisible = true;
+            Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            Graphics.HardwareModeSwitch = true;
+            Graphics.IsFullScreen = false;
+            Graphics.ApplyChanges();
 
             EventsCanHappenTimer = new Timer(0.5f);
 
@@ -51,10 +57,10 @@ namespace TheParty_v2
 
             GraphicsGlobals.Setup(GraphicsDevice);
 
-            Target = new FixedResolutionTarget(160, 140, GraphicsDevice);
+            Target = new FixedResolutionTarget(160, 144, GraphicsDevice);
             Target.Enable();
 
-            GameContent.Load(Content);
+            GameContent.LoadContent(Content);
 
             StateMachine = new StateMachine<TheParty>();
             StateMachine.SetNewCurrentState(this, new GameStateTitle());

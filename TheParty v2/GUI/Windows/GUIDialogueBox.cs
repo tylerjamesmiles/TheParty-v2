@@ -62,6 +62,8 @@ namespace TheParty_v2
 
             if (Box.Grown)
                 Text.Update(deltaTime, true);
+            else
+                return;
 
             if (InputManager.JustReleased(Keys.Space))
             {

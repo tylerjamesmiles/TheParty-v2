@@ -57,12 +57,13 @@ namespace TheParty_v2
             int ToBonusXOffset = TargetFacingRight ? -10 : 10;
 
             int FromBonusAmt = client.FromMember.StatBonus("Attack");
-            FromBonusText = "(+" + FromBonusAmt;
+            string Operator = FromBonusAmt > 0 ? "+" : "";
+            FromBonusText = "(" + Operator + FromBonusAmt;
             FromBonusPos = FromStartPos + new Vector2(FromBonusXOffset, -20);
             FromBonusLerp = new LerpV(FromBonusPos, FromStartPos, 0.1f);
 
             int ToBonusAmt = client.ToMember.StatBonus("Defense");
-            ToBonusText = ")" + ToBonusAmt.ToString();
+            ToBonusText = ")" + ToBonusAmt;
             ToBonusPos = TargetStartPos + new Vector2(ToBonusXOffset, -20);
             ToBonusLerp = new LerpV(ToBonusPos, TargetStartPos, 0.1f);
 

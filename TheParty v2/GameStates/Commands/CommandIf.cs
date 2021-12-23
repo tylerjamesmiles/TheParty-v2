@@ -7,7 +7,7 @@ namespace TheParty_v2
     class CommandIf : Command<TheParty>
     {
         string VarName;
-        enum Type { Party, Switch, Variable, Undefined };
+        enum Type { Party, Commitment, Switch, Variable, Undefined };
         Type VarType;
         string Operator;
         string RHValue;
@@ -18,6 +18,7 @@ namespace TheParty_v2
             VarName = varName;
             VarType =
                 varName.ToLower() == "party" ? Type.Party :
+                varName.ToLower() == "commitment" ? Type.Commitment :
                 GameContent.Switches.ContainsKey(VarName) ? Type.Switch :
                 GameContent.Variables.ContainsKey(VarName) ? Type.Variable :
                 Type.Undefined;
@@ -71,6 +72,25 @@ namespace TheParty_v2
                         break;
                 }
 
+            }
+            else if (VarType == Type.Commitment)
+            {
+                List<Member> Members = client.Player.ActiveParty.Members;
+                int TotalCommitment = 0;
+                Members.ForEach(m => TotalCommitment += m.Stance);
+
+                int LH = TotalCommitment;
+                int RH = int.Parse(RHValue);
+
+                switch (Operator)
+                {
+                    case "==": True = LH == RH; break;
+                    case "!=": True = LH != RH; break;
+                    case "<": True = LH < RH; break;
+                    case ">": True = LH > RH; break;
+                    case "<=": True = LH <= RH; break;
+                    case ">=": True = LH >= RH; break;
+                }
             }
             else if (VarType == Type.Switch)
             {

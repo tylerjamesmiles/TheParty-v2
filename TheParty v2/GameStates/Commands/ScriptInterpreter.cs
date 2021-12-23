@@ -193,9 +193,9 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBeFaded());
                         ResultList.Add(new CommandWait(0.5f));
-                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         if (OldSong != NewSong)
-                            ResultList.Add(new CommandBringMusicVolumeBackUp());
+                            ResultList.Add(new CommandFadeInMusic());
+                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandUnfreezePlayer());
@@ -352,8 +352,8 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFadeOutMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBeFaded());
-                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandDayPass());
+                        ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandFadeInMusic());
                         ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));

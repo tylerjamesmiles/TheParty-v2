@@ -168,7 +168,7 @@ namespace TheParty_v2
                 for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
                     Vector2 MemberDrawOffset = new Vector2(-16, -16);
-                    int MemberDrawStartX = (party == 0) ? 110 : 48;
+                    int MemberDrawStartX = (party == 0) ? 110 : 58;
                     int MemberXOffset = (party == 0) ? 16 : -16;
                     int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
                     int MemberDrawStartY = 62;
@@ -287,29 +287,89 @@ namespace TheParty_v2
             spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect1, Color.White);
             spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect2, Color.White);
 
+            // Sort sprites by y position
             List<AnimatedSprite2D> Sorted = new List<AnimatedSprite2D>(Sprites);
             Sorted.Sort((s1, s2) => s1.DrawPos.Y > s2.DrawPos.Y ? 1 : -1);
 
             HPIndicators.ForEach(h => h.Draw(spriteBatch));
 
-            Sorted.ForEach(s => s.Draw(spriteBatch));
-
             if (Entered)
             {
                 List<Member> AllMembers = CurrentStore.AllMembers();
+
                 foreach (Member member in AllMembers)
                 {
                     int Idx = AllMembers.IndexOf(member);
+                    int PartyIdx = Idx >= CurrentStore.Parties[0].Members.Count ? 1 : 0;
+
                     if (member.HP > 0)
                     {
                         StatusIndicators[Idx].Draw(spriteBatch);
                         StanceIndicators[Idx].Draw(spriteBatch);
+
+                        // Draw various effects
+                        Vector2 EffectsStartPos = Sprites[Idx].DrawPos + new Vector2(16, 0);
+                        List<string> Effects = new List<string>();
+                        member.StatusEffects.ForEach(se => Effects.AddRange(se.PassiveEffects));
+                        Effects.AddRange(member.Equipped().PassiveEffects);
+
+                        // Naive solution. Clean up later.
+                        List<string> Tokens = new List<string>();
+                        foreach (string Effect in Effects)
+                        {
+                            string[] Keywords = Effect.Split(' ');
+                            if (Keywords[0] == "Attack")
+                            {
+                                if (Keywords[1] == "+")
+                                    for (int i = 0; i < int.Parse(Keywords[2]); i++)
+                                        Tokens.Add("AttackUp");
+                                if (Keywords[1] == "-")
+                                    for (int i = 0; i < int.Parse(Keywords[2]); i++)
+                                        Tokens.Add("AttackDown");
+                            }
+                            else if (Keywords[0] == "Defense")
+                            {
+                                if (Keywords[1] == "+")
+                                    for (int i = 0; i < int.Parse(Keywords[2]); i++)
+                                        Tokens.Add("DefenseUp");
+                                if (Keywords[1] == "-")
+                                    for (int i = 0; i < int.Parse(Keywords[2]); i++)
+                                        Tokens.Add("DefenseDown");
+                            }
+                        }
+
+                        for (int i = 0; i < Tokens.Count; i++)
+                        {
+                            string Token = Tokens[i];
+                            int SourceX =
+                                Token == "AttackUp" ? 0 * 8:
+                                Token == "DefenseUp" ? 1 * 8:
+                                Token == "AttackDown" ? 2 * 8:
+                                Token == "DefenseDown" ? 3 * 8:
+                                -1;
+                            int DrawX = 16 + i * 8;
+                            if (PartyIdx == 1)
+                                DrawX = -DrawX;
+
+                            Point DrawPos = Sprites[Idx].DrawPos.ToPoint() + 
+                                new Point(DrawX, 0);
+                            Point SourcePos = new Point(SourceX, 0);
+
+                            spriteBatch.Draw(
+                                GameContent.Sprites["Effects"],
+                                new Rectangle(DrawPos, new Point(8, 8)),
+                                new Rectangle(SourcePos, new Point(8, 8)),
+                                Color.White);
+                        }
                     }
                 }
+
+                Sorted.ForEach(s => s.Draw(spriteBatch));
+
             }
 
 
-            // Any Extra Shtuff
+            // Any Extra State-Related Stuff
             StateMachine.Draw(this, spriteBatch);
         }
 

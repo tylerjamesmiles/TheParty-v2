@@ -111,7 +111,17 @@
         {"name": "Coin", "id": 30, "_eid": "99094923", "x": 336, "y": 256, "originX": 0, "originY": 0},
         {"name": "Coin", "id": 31, "_eid": "99094923", "x": 352, "y": 272, "originX": 0, "originY": 0},
         {"name": "Coin", "id": 32, "_eid": "99094923", "x": 336, "y": 288, "originX": 0, "originY": 0},
-        {"name": "Coin", "id": 33, "_eid": "99094923", "x": 304, "y": 288, "originX": 0, "originY": 0}
+        {"name": "Coin", "id": 33, "_eid": "99094923", "x": 304, "y": 288, "originX": 0, "originY": 0},
+        {
+          "name": "Entity",
+          "id": 34,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 288,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "Rock", "SpriteName": "RockBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(Commitment <= 3)\n   Dialogue(If the party were more committed they might be able to move this rock.)\nIf(Commitment > 3)\n   Dialogue(The party summoned their commitment and pushed!)\n   SoundEffect(Whoosh)\n   Move(Rock, Up 2)\n   SoundEffect(Hit)\n   Erase(Rock)\n   Erase(Me)\n   "}
+        }
       ]
     },
     {

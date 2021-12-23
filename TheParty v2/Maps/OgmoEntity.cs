@@ -134,10 +134,15 @@ namespace TheParty_v2
         float MinInteractDist;
 
         public int EntityId;
-        static int NextEID = 0;
+        public static int NextEID = 0;
+
+        private bool Initialized;
 
         public void Initialize()
         {
+            if (Initialized)
+                return;
+
             Vector2 Pos = new Vector2(x + 8, y + 8);
             Transform = new Transform2D(Pos, 5f);
 
@@ -224,6 +229,8 @@ namespace TheParty_v2
                 MinInteractDist = 18f;
 
             ManualExists = true;
+
+            Initialized = true;
         }
 
         public void SetPath(string path)

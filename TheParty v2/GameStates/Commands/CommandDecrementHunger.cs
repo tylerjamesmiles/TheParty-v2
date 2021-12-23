@@ -228,6 +228,9 @@ namespace TheParty_v2
                         si.DrawPos = Sprites[Stances.IndexOf(si)].DrawPos + new Vector2(-4, -28);
                     }
 
+                    if (client.Player.ActiveParty.Members.TrueForAll(m => m.HP == 0))
+                        client.CommandQueue.PushCommand(new CommandGameOver());
+
                     CurrentState = State.Wait4;
                     break;
 

@@ -37,18 +37,6 @@
 /processorParam:TextureFormat=Color
 /build:Art/2x.png
 
-#begin Art/2x.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/2x.png
-
 #begin Art/AdultManBase1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -457,6 +445,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/Chest.png
 
+#begin Art/ChestOpenBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/ChestOpenBase.png
+
 #begin Art/ChupasnakeraFighter.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -504,6 +504,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/Circle.png
+
+#begin Art/Clouds.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/Clouds.png
 
 #begin Art/Clouds.png
 /importer:TextureImporter
@@ -733,6 +745,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/DirtDogBase.png
 
+#begin Art/Effects.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/Effects.png
+
 #begin Art/FadeIn.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1404,6 +1428,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/RandallFighter.png
+
+#begin Art/RockBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/RockBase.png
+
+#begin Art/RockBase.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/RockBase.png
 
 #begin Art/SkinnerBase.png
 /importer:TextureImporter
@@ -1723,6 +1771,12 @@
 /processorParam:Quality=Best
 /build:Music/BoilingWastes.mp3
 
+#begin Music/Capricorn.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/Capricorn.mp3
+
 #begin Music/FarawayHeights.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -1740,6 +1794,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/MonsterBattle.mp3
+
+#begin Music/TitleScreen.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/TitleScreen.mp3
 
 #begin Music/Weird.mp3
 /importer:Mp3Importer

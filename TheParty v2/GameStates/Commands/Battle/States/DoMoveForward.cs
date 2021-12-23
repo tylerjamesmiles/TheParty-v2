@@ -8,6 +8,8 @@ namespace TheParty_v2
 {
     class DoMoveForward : State<CommandBattle>
     {
+        static bool PlayerMissedLastTime;
+
         public override void Enter(CommandBattle client)
         {
             client.Movement = new LerpV(client.FromSprite.DrawPos, client.InFrontOfTarget, 0.4f);
@@ -23,11 +25,21 @@ namespace TheParty_v2
             {
                 if (client.CurrentMove.Name == "Hit")
                 {
-                    bool HittingYou = client.CurrentTargeting.ToPartyIdx == 0;
+                    bool EnemysTurn = client.CurrentTargeting.ToPartyIdx == 0;
                     int HitAmt = client.FromMember.StatAmt("Attack") + client.ToMember.StatAmt("Defense");
                     bool FatalHit = (client.ToMember.HP <= HitAmt);
-                    int MissChance = HittingYou && FatalHit ? 50 : 10;
-                    bool Miss = new Random().Next(100) < MissChance;
+                    int MissChance = EnemysTurn && FatalHit ? 50 : 8;
+
+                    bool Miss = 
+                        !EnemysTurn && PlayerMissedLastTime ? false :
+                        new Random().Next(100) < MissChance;
+
+                    // Static bool to prevent player from missing twice in a row
+                    if (PlayerMissedLastTime == true)
+                        PlayerMissedLastTime = false;   // reset
+
+                    if (Miss && !EnemysTurn)
+                        PlayerMissedLastTime = true;
 
                     if (Miss)
                         client.StateMachine.SetNewCurrentState(client, new AnimateMiss());

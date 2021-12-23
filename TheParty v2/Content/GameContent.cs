@@ -84,17 +84,17 @@ namespace TheParty_v2
 
         public static void FadeOutMusic()
         {
-            SongVolumeLerp = new LerpF(1f, 0f, 3f);
+            SongVolumeLerp = new LerpF(1f, 0f, 1.5f);
         }
 
         public static void FadeInMusic()
         {
-            SongVolumeLerp = new LerpF(0f, 1f, 2f);
+            SongVolumeLerp = new LerpF(0f, 1f, 1.5f);
         }
 
         public static void BringMusicVolumeBackUp()
         {
-            SongVolumeLerp = new LerpF(0f, 1f, 0f);
+            SongVolumeLerp = new LerpF(0f, 1f, 0.5f);
         }
 
         public static void PlaySong(string name)
@@ -109,7 +109,7 @@ namespace TheParty_v2
             SongCurrentlyPlaying = name;
         }
 
-        public static void Load(ContentManager content)
+        public static void LoadContent(ContentManager content)
         {
             Sprites = LoadedWith<Texture2D>(content, "Art");
 
@@ -118,6 +118,94 @@ namespace TheParty_v2
 
             SoundEffects = LoadedWith<SoundEffect>(content, "Sfx");
 
+            
+
+            // Font
+            Texture2D FontSprite = Sprites["Font"];
+            Point GlyphSize = new Point(6, 8);
+            int FontSpritePixelWidth = FontSprite.Bounds.Width;
+            int FontSpriteGlyphWidth = FontSpritePixelWidth / GlyphSize.X;
+
+            List<Rectangle> ListBounds = new List<Rectangle>();
+            List<Rectangle> ListCropping = new List<Rectangle>();
+            List<char> ListCharacters = new List<char>();
+            int LineSpacing = 10;
+            float Spacing = 1.0f;
+            List<Vector3> ListKerning = new List<Vector3>();
+
+            for (int ascii = 32; ascii < 127; ascii++)
+            {
+                int SourceID = ascii - 32;
+                Point SourceTile = new Point(
+                    SourceID % FontSpriteGlyphWidth, 
+                    SourceID / FontSpriteGlyphWidth);
+                Point SourcePos = new Point(
+                    SourceTile.X * GlyphSize.X, 
+                    SourceTile.Y * GlyphSize.Y);
+                Rectangle Bounds = new Rectangle(SourcePos, GlyphSize);
+
+                // Scan each collumn in the glyph for content, in order to set its width
+                int Width = 0;
+                Color[] Data = new Color[Bounds.Width * Bounds.Height];
+                FontSprite.GetData(0, Bounds, Data, 0, Bounds.Width * Bounds.Height);
+
+                for (int x = Bounds.Left; x < Bounds.Right; x++)
+                {
+                    bool FoundPixel = false;
+                    int LocalX = x - Bounds.Left;
+
+                    for (int y = Bounds.Top; y < Bounds.Bottom; y++)
+                    {
+                        int LocalY = y - Bounds.Top;
+                        int Idx = LocalY * GlyphSize.X + LocalX;
+
+                        if (Idx < Data.Length && Data[Idx] != new Color(0f, 0f, 0f, 0f))
+                            FoundPixel = true;
+                    }
+
+                    if (FoundPixel)
+                    {
+                        Width = LocalX;
+                    }
+                }
+
+                Rectangle Cropping = new Rectangle(new Point(0, 0), new Point(Width, GlyphSize.Y));
+
+                // Overwrite for Space
+                if (ascii == 32)
+                    Cropping = new Rectangle(new Point(0, 0), new Point(4, GlyphSize.Y));
+
+                ListBounds.Add(Bounds);
+                ListCropping.Add(Cropping);
+                ListCharacters.Add((char)ascii);
+                ListKerning.Add(new Vector3(0, Cropping.Width, 1));
+            }
+
+
+            Font = new SpriteFont(
+                FontSprite,
+                ListBounds,
+                ListCropping,
+                ListCharacters,
+                LineSpacing,
+                Spacing,
+                ListKerning,
+                null);
+
+            FontLight = new SpriteFont(
+                Sprites["FontLight"],
+                ListBounds,
+                ListCropping,
+                ListCharacters,
+                LineSpacing,
+                Spacing,
+                ListKerning,
+                null);
+        }
+
+        public static void LoadData()
+        {
+            OgmoEntity.NextEID = 0;
             Maps = FromJson<OgmoTileMap>("Maps");
             foreach (var map in Maps)
             {
@@ -208,88 +296,6 @@ namespace TheParty_v2
             }
 
             ErasedEntities = new List<int>();
-
-            // Font
-            Texture2D FontSprite = Sprites["Font"];
-            Point GlyphSize = new Point(6, 8);
-            int FontSpritePixelWidth = FontSprite.Bounds.Width;
-            int FontSpriteGlyphWidth = FontSpritePixelWidth / GlyphSize.X;
-
-            List<Rectangle> ListBounds = new List<Rectangle>();
-            List<Rectangle> ListCropping = new List<Rectangle>();
-            List<char> ListCharacters = new List<char>();
-            int LineSpacing = 10;
-            float Spacing = 1.0f;
-            List<Vector3> ListKerning = new List<Vector3>();
-
-            for (int ascii = 32; ascii < 127; ascii++)
-            {
-                int SourceID = ascii - 32;
-                Point SourceTile = new Point(
-                    SourceID % FontSpriteGlyphWidth, 
-                    SourceID / FontSpriteGlyphWidth);
-                Point SourcePos = new Point(
-                    SourceTile.X * GlyphSize.X, 
-                    SourceTile.Y * GlyphSize.Y);
-                Rectangle Bounds = new Rectangle(SourcePos, GlyphSize);
-
-                // Scan each collumn in the glyph for content, in order to set its width
-                int Width = 0;
-                Color[] Data = new Color[Bounds.Width * Bounds.Height];
-                FontSprite.GetData(0, Bounds, Data, 0, Bounds.Width * Bounds.Height);
-
-                for (int x = Bounds.Left; x < Bounds.Right; x++)
-                {
-                    bool FoundPixel = false;
-                    int LocalX = x - Bounds.Left;
-
-                    for (int y = Bounds.Top; y < Bounds.Bottom; y++)
-                    {
-                        int LocalY = y - Bounds.Top;
-                        int Idx = LocalY * GlyphSize.X + LocalX;
-
-                        if (Idx < Data.Length && Data[Idx] != new Color(0f, 0f, 0f, 0f))
-                            FoundPixel = true;
-                    }
-
-                    if (FoundPixel)
-                    {
-                        Width = LocalX;
-                    }
-                }
-
-                Rectangle Cropping = new Rectangle(new Point(0, 0), new Point(Width, GlyphSize.Y));
-
-                // Overwrite for Space
-                if (ascii == 32)
-                    Cropping = new Rectangle(new Point(0, 0), new Point(4, GlyphSize.Y));
-
-                ListBounds.Add(Bounds);
-                ListCropping.Add(Cropping);
-                ListCharacters.Add((char)ascii);
-                ListKerning.Add(new Vector3(0, Cropping.Width, 1));
-            }
-
-
-            Font = new SpriteFont(
-                FontSprite,
-                ListBounds,
-                ListCropping,
-                ListCharacters,
-                LineSpacing,
-                Spacing,
-                ListKerning,
-                null);
-
-            FontLight = new SpriteFont(
-                Sprites["FontLight"],
-                ListBounds,
-                ListCropping,
-                ListCharacters,
-                LineSpacing,
-                Spacing,
-                ListKerning,
-                null);
         }
     }
 

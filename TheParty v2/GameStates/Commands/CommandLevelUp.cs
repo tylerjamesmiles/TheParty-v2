@@ -98,13 +98,15 @@ namespace TheParty_v2
         private void SetupTypeChoice()
         {
             Member Member = ActiveMembers[MemberChoice.CurrentChoiceIdx];
-            bool[] ChoiceValidity = new bool[3];
-            ChoiceValidity[0] = Member.MaxHP < 10;
-            ChoiceValidity[1] = Member.MaxHunger < 10;
-            ChoiceValidity[2] = Member.MovesToLearn.Count > 0;
+            bool[] ChoiceValidity = new bool[5];
+            ChoiceValidity[0] = true;
+            ChoiceValidity[1] = true;
+            ChoiceValidity[2] = Member.MaxHP < 10;
+            ChoiceValidity[3] = Member.MaxHunger < 10;
+            ChoiceValidity[4] = Member.MovesToLearn.Count > 0;
 
             LevelUpTypeChoice = new GUIChoiceBox(
-                new[] { "+1 Max%'s", "+1 Max\"'s", "New Move" },
+                new[] { "Heal%'s", "Heal\"'s", "+1 Max%'s", "+1 Max\"'s", "New Move" },
                 GUIChoiceBox.Position.BottomLeft,
                 1, ChoiceValidity);
         }
@@ -151,21 +153,36 @@ namespace TheParty_v2
                     {
                         switch (LevelUpTypeChoice.CurrentChoice)
                         {
-                            case 0:     // +1 max HP
+                            case 0: // Heal HP
+                                Selected.HP = Selected.MaxHP;
+                                Hearts[MemberChoice.CurrentChoiceIdx].SetHP(Selected.HP);
+                                Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
+                                CurrentState = State.WaitAnotherMoment;
+
+                                break;
+
+                            case 1: // Heal Hunger
+                                Selected.Hunger = Selected.MaxHunger;
+                                Meats[MemberChoice.CurrentChoiceIdx].SetHP(Selected.Hunger);
+                                Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
+                                CurrentState = State.WaitAnotherMoment;
+                                break;
+
+                            case 2:     // +1 max HP
                                 Selected.MaxHP += 1;
                                 Hearts[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHP);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
-                            case 1:     // +1 max Hunger
+                            case 3:     // +1 max Hunger
                                 Selected.MaxHunger += 1;
                                 Meats[MemberChoice.CurrentChoiceIdx].SetMax(Selected.MaxHunger);
                                 Sprites[MemberChoice.CurrentChoiceIdx].SetCurrentAnimation("PositiveHit");
                                 CurrentState = State.WaitAnotherMoment;
                                 break;
 
-                            case 2:     // new move
+                            case 4:     // new move
                                 List<string> MoveNames = Selected.MovesToLearn;
                                 MoveChoice = new GUIChoiceBox(MoveNames.ToArray(), GUIChoiceBox.Position.BottomLeft);
 
@@ -241,7 +258,16 @@ namespace TheParty_v2
                 MemberChoice.Draw(spriteBatch, true);
 
             if (CurrentState == State.ChooseType)
+            {
                 LevelUpTypeChoice.Draw(spriteBatch, true);
+
+                Vector2 HandPos = Sprites[MemberChoice.CurrentChoiceIdx].DrawPos + new Vector2(-20, 0);
+                spriteBatch.Draw(
+                    GameContent.Sprites["Cursor"],
+                    new Rectangle(HandPos.ToPoint(), new Point(16, 16)),
+                    new Rectangle(new Point(16, 0), new Point(16, 16)),
+                    Color.White);
+            }
 
             if (CurrentState == State.ChooseMove)
             {

@@ -18,6 +18,9 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
+            if (client.CurrentMap == null)
+                return;
+
             client.CurrentMap.Update(client.Player, deltaTime);
             client.Player.Update(client.CurrentMap.CollisionBoxes, client.CurrentMap.EntityTransforms, deltaTime);
             Overlay.Update(deltaTime);
@@ -54,7 +57,8 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            client.CurrentMap.Draw(client.Camera.Position, client.Player, spriteBatch);
+            if (client.CurrentMap != null)
+                client.CurrentMap.Draw(client.Camera.Position, client.Player, spriteBatch);
             //Overlay.Draw(spriteBatch, new Vector2(), client.Camera.Position);
         }
     }

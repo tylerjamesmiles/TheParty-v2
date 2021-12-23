@@ -59,6 +59,7 @@ namespace TheParty_v2
                 save, new Vector2JsonConverter());
 
             client.CurrentMap = GameContent.Maps[State.CurrentMap];
+            GameContent.PlaySong(client.CurrentMap.values["Song"]);
             GameContent.Variables = State.Variables;
             GameContent.Switches = State.Switches;
             GameContent.ErasedEntities = State.ErasedEntities;

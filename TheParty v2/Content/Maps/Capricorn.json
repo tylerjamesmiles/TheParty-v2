@@ -4,7 +4,7 @@
   "height": 944,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"Song": ""},
+  "values": {"Song": "Capricorn"},
   "layers": [
     {
       "name": "TileLayer1",
@@ -98,8 +98,8 @@
           "name": "Entity",
           "id": 9,
           "_eid": "23557279",
-          "x": 480,
-          "y": 896,
+          "x": 240,
+          "y": 832,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "Townsperson", "SpriteName": "AdultWomanBase1", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": ""}
@@ -108,11 +108,11 @@
           "name": "Entity",
           "id": 10,
           "_eid": "23557279",
-          "x": 480,
-          "y": 912,
+          "x": 240,
+          "y": 864,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Hocus", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Freeze(Player)\nDialogue(Townsperson: Welcome to Capricorn!)\nChangeSprite(Me, HocusBase)\nMove(Hocus, Right 2)\nFace(Hocus, Up)\nDialogue(Hocus: Thank you stranger!)\nDialogue(Townsperson: What brings you here?)\nDialogue(Hocus: We're looking for people to join our party!)\nDialogue(Townsperson: Oh! Are you adventurers?)\nFace(Me, Left)\nWait(0.5)\nFace(Me, Up)\nWait(0.5)\nFace(Me, Left)\nWait(0.3)\nFace(Me, Up)\nWait(0.3)\nFace(Me, Left)\nWait(0.2)\nFace(Me, Up)\nWait(0.5)\nDialogue(Hocus: Are we just adventurers!?)\nFace(Me, Left)\nWait(0.1)\nDialogue(Hocus: You're looking at the Hero of Light!)\nDialogue(Hocus: The legendary warrior who will save us from the lord of darkness!)\nFace(Me, Up)\nWait(1.0)\nFace(Townsperson, Left)\nWait(0.3)\nFace(Townsperson, Right)\nWait(0.3)\nFace(Townsperson, Down)\nDialogue(Townsperson: Ahm.)\nWait(0.1)\nMove(Hocus, Up 1)\nFace(Hocus, Left)\nFace(Townsperson, Right)\nDialogue(Hocus: We're looking for people to join our party!)\nMove(Townsperson, Up 2)\nFace(Townsperson, Down)\nFace(Hocus, Up)\nDialogue(Townsperson: I'm sorry. I'm not looking to join any kind of cult.)\nMove(Hocus, Up 1)\nDialogue(Hocus: It's not a cult!)\nFace(Townsperson, Up)\nWait(0.5)\nFace(Townsperson, Down)\nDialogue(Townsperson: Sorry - I mean I'm not looking to join any kind of religion.)\nDialogue(Hocus: That's the best part! It's not a religion.)\nFace(Hocus, Down)\nDialogue(Hocus: It's a relationship.)\nFace(Hocus, Up)\nDialogue(Hocus: The Hero of Light is my whole reason for existing!)\nWait(1.0)\nDialogue(Townsperson: I just remembered I have an appointment with the King!)\nMove(Townsperson, Up 1)\nFace(Townsperson, Down)\nDialogue(Townsperson: Was nice talking!)\nMove(Townsperson, Up 3)\nDialogue(Hocus: We don't have much time! The world is ending in 100 days!)\nErase(Townsperson)\nWait(2.0)\nMove(Hocus, Down 2)\nFace(Hocus, Left)\nDialogue(Hocus: Don't be discouraged Hero. We'll find someone here to join us. I'm not worried!)\nDialogue(Hocus: I believe in you!)\nMove(Hocus, Left 2)\nErase(Me)\nUnFreeze(Player)\nSet(EvangelizeSceneHappened, true)"}
+          "values": {"Name": "Hocus", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Freeze(Player)\nDialogue(Townsperson: Welcome to Capricorn!)\nChangeSprite(Me, HocusBase)\nMove(Hocus, Right 2)\nFace(Hocus, Up)\nDialogue(Hocus: Thank you stranger!)\nDialogue(Townsperson: What brings you here?)\nDialogue(Hocus: We're looking for people to join our party!)\nDialogue(Townsperson: Oh! Are you adventurers?)\nFace(Me, Left)\nWait(0.5)\nFace(Me, Up)\nWait(0.5)\nFace(Me, Left)\nWait(0.3)\nFace(Me, Up)\nWait(0.3)\nFace(Me, Left)\nWait(0.2)\nFace(Me, Up)\nWait(0.5)\nDialogue(Hocus: Are we just adventurers!?)\nFace(Me, Left)\nWait(0.1)\nDialogue(Hocus: You're looking at the Hero of Light!)\nDialogue(Hocus: The legendary warrior who will save us from the lord of darkness!)\nFace(Me, Up)\nWait(1.0)\nFace(Townsperson, Left)\nWait(0.3)\nFace(Townsperson, Right)\nWait(0.3)\nFace(Townsperson, Down)\nDialogue(Townsperson: Ahm.)\nWait(0.1)\nMove(Hocus, Up 1)\nFace(Hocus, Left)\nFace(Townsperson, Right)\nDialogue(Hocus: We're looking for people to join our party!)\nMove(Townsperson, Up 2)\nFace(Townsperson, Down)\nFace(Hocus, Up)\nDialogue(Townsperson: I'm sorry. I'm not looking to join any kind of cult.)\nMove(Hocus, Up 1)\nDialogue(Hocus: It's not a cult!)\nFace(Townsperson, Up)\nWait(0.5)\nFace(Townsperson, Down)\nDialogue(Townsperson: Sorry - I mean I'm not looking to join any kind of religion.)\nDialogue(Hocus: That's the best part! It's not a religion.)\nFace(Hocus, Down)\nDialogue(Hocus: It's a relationship.)\nFace(Hocus, Up)\nDialogue(Hocus: The Hero of Light is my whole reason for existing!)\nWait(1.0)\nDialogue(Townsperson: I just remembered I have an appointment with the King!)\nMove(Townsperson, Up 1)\nFace(Townsperson, Down)\nDialogue(Townsperson: Was nice talking!)\nMove(Townsperson, Up 3)\nDialogue(Hocus: We don't have much time! The world is ending in 100 days!)\nErase(Townsperson)\nWait(2.0)\nMove(Hocus, Down 2)\nFace(Hocus, Left)\nDialogue(Hocus: Don't be discouraged Hero. We'll find someone here to join us. I'm not worried!)\nDialogue(Hocus: Remember to use [SPACE] to talk to people.)\nDialogue(Hocus: I believe in you!)\nMove(Hocus, Left 2)\nErase(Me)\nUnFreeze(Player)\nSet(EvangelizeSceneHappened, true)"}
         },
         {
           "name": "Entity",
@@ -142,7 +142,7 @@
           "y": 672,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Equipment1", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Cape [+2) -1(] $15, No Thanks)\n   Case Cape [+2) -1(] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Cape.)\n         AddItem(Cape)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
+          "values": {"Name": "Equipment1", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Cape [+2) -1(] $15, No Thanks)\n   Case Cape [+2) -1(] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Cape.)\n         AddItem(Cape)\n   Case No Thanks\n      Wait(0.1)"}
         },
         {
           "name": "Entity",
@@ -172,7 +172,7 @@
           "y": 560,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Katana [+2( -1)] $15, No Thanks)\n   Case Lid [+2( -1)] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Katana.)\n         AddItem(Katana)\n         Erase(Me)\n   Case No Thanks\n      Wait(0.1)"}
+          "values": {"Name": "", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Choice(Show Money, Katana [+2( -1)] $15, No Thanks)\n   Case Lid [+2( -1)] $15\n      If(Money < 15)\n         Dialogue(You don't have enough money.)\n      If(Money >= 15)\n         Dialogue(You purchased the Katana.)\n         AddItem(Katana)\n   Case No Thanks\n      Wait(0.1)"}
         },
         {
           "name": "Entity",
@@ -182,27 +182,17 @@
           "y": 752,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "AdultManBase1", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceLeft", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(Good thing you got to town when you did.)\nDialogue(Been a lot more monsters than normal.)\nDialogue(I wouldn't go traveling just the two of you.)"}
+          "values": {"Name": "", "SpriteName": "AdultManBase1", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceLeft", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(After a long day nothing's better than sitting back...)\nDialogue(...opening my pause menu with [ESC]...)\nDialogue(...navigating to the [Member] option...)\nDialogue(...and [Feed]ing myself a nice juicy piece of food!)\nDialogue(Some talk of healing potions. Medicines. Herbs. All nonsense.)\nDialogue(Nothing's better than [Heal]ing yourself with some good old food in your belly!)"}
         },
         {
           "name": "Entity",
           "id": 21,
           "_eid": "23557279",
-          "x": 240,
-          "y": 240,
+          "x": 208,
+          "y": 432,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(The King is missing! What do we do!?)\nDialogue(Our strongest knight Randall stole him!)\nDialogue(He took him to the caves to the north.)\nDialogue(All of our strongest soldiers have gone. None have returned.)\nDialogue(Who will save us!?!?)"}
-        },
-        {
-          "name": "Entity",
-          "id": 25,
-          "_eid": "23557279",
-          "x": 224,
-          "y": 144,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "King", "SpriteName": "", "ExistsIf": "RandallDead == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg: Your majesty! Your eyes - they're glowing. Are you okay?)\nDialogue(King: Don't speak to me!)\nDialogue(DirtDawg: But your majesty! It's me! Dirt Dawg! Your most trusted servant!)\nDialogue(King: Guards! Kill these intruders!)\nBattle(KingBoss)\nErase(King)\nDialogue(Hocus: We're surrounded by guards!)\nDialogue(DirtDawg: Run!)\nTeleport(WorldMap, 99, 99)"}
         },
         {
           "name": "Entity",
@@ -212,7 +202,7 @@
           "y": 704,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "AdultWomanBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(I'm an npc!)\nDialogue(I give helpful info!)\nDialogue(I don't know what info to share right now though.)\nDialogue(I don't really know the game well enough yet.)\nDialogue(So for now there's just me!)\nDialogue(Hope you have a great day!)"}
+          "values": {"Name": "", "SpriteName": "AdultWomanBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(I've been writing a book the last few months.)\nDialogue(Every day I work on it I feel more [Committed] to finishing.)\nDialogue(I'm sure that if I took a few [Days] off I'd feel less dedicated.)\nDialogue(Maybe that'd help me focus on my well being a little more.)\nDialogue(...but I think life's more fun going all in on something you care about!)"}
         },
         {
           "name": "Entity",
@@ -242,7 +232,7 @@
           "y": 624,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "AdultManBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FacePlayer", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(Party != AnyoneDead)\n   Dialogue(This is the hospital.)\n   Dialogue(Come by if anyone's ever seriously injured.)\nIf(Party == AnyoneDead)\n   Choice(Show Money, Admit KOd Members $15, No Thanks)\n      Case Admit KOd Members\n         If(Money < 15)\n            Dialogue(You don't have enough money.)\n         If(Money >= 15)\n            HealDead()\n            Incr(Money, -15)\n            FadeOut()\n            FadeIn()\n            Dialogue(Your KOd Members were brought back.)\n      Case No Thanks\n         Wait(0.1)"}
+          "values": {"Name": "", "SpriteName": "AdultManBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": ""}
         },
         {
           "name": "Entity",
@@ -264,7 +254,77 @@
         {"name": "Food", "id": 38, "_eid": "99106260", "x": 32, "y": 176, "originX": 0, "originY": 0},
         {"name": "Food", "id": 39, "_eid": "99106260", "x": 64, "y": 192, "originX": 0, "originY": 0},
         {"name": "Food", "id": 40, "_eid": "99106260", "x": 32, "y": 208, "originX": 0, "originY": 0},
-        {"name": "Food", "id": 41, "_eid": "99106260", "x": 64, "y": 224, "originX": 0, "originY": 0}
+        {"name": "Food", "id": 41, "_eid": "99106260", "x": 64, "y": 224, "originX": 0, "originY": 0},
+        {
+          "name": "Entity",
+          "id": 42,
+          "_eid": "23557279",
+          "x": 128,
+          "y": 752,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "AdultWomanBase2", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceRight", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(I don't think it's healthy to fast.)\nDialogue(Doing strenuous activity with no food in your belly - that's bad for your body.)"}
+        },
+        {
+          "name": "Entity",
+          "id": 43,
+          "_eid": "23557279",
+          "x": 80,
+          "y": 656,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(Party != AnyoneDead)\n   Dialogue(This is the hospital.)\n   Dialogue(If you're out and about and someone is seriously hurt - don't take your chances.)\n   Dialogue(Come by if anyone ever loses all of their [Hearts]. We'll patch them up for $15.)\nIf(Party == AnyoneDead)\n   Choice(Show Money, Admit KOd Members $15, No Thanks)\n      Case Admit KOd Members\n         If(Money < 15)\n            Dialogue(You don't have enough money.)\n         If(Money >= 15)\n            HealDead()\n            Incr(Money, -15)\n            FadeOut()\n            FadeIn()\n            Dialogue(Your KOd Members were brought back.)\n      Case No Thanks\n         Wait(0.1)"}
+        },
+        {
+          "name": "Entity",
+          "id": 44,
+          "_eid": "23557279",
+          "x": 240,
+          "y": 208,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg is the most loyal soldier in the army.)\nDialogue(He chased after Randall when that traitor kidnapped the King.)\nDialogue(Everybody knows how fierce of a fighter Randall is.)\nDialogue(Going up against him is suicide - even for DirtDawg.)"}
+        },
+        {
+          "name": "Entity",
+          "id": 45,
+          "_eid": "23557279",
+          "x": 128,
+          "y": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(In bootcamp they taught us to have total [Commitment] to the King.)\nDialogue(But DirtDawg is the only one of us who went to fight Randall.)\nDialogue(I think his [Commitment] makes him stronger than the rest of us.)"}
+        },
+        {
+          "name": "Entity",
+          "id": 46,
+          "_eid": "23557279",
+          "x": 80,
+          "y": 128,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceRight", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(DirtDawg is going to die when he fights Randall.)\nDialogue(The more [Committed] you are to something the more vulnerable you are.)\nDialogue(I think he's going to get hurt.)"}
+        },
+        {
+          "name": "Entity",
+          "id": 47,
+          "_eid": "23557279",
+          "x": 352,
+          "y": 336,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceRight", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(I've been in a lot of [Battles]. Against Monsters. Against People. All sorts of stuff.)\nDialogue(Sometimes I'd get in a tough spot.)\nDialogue(But when I thought about the people I was protecting it renewed my [Commitment] and filled me with strength.)\nDialogue(And once I raised my Commitment nothing could bring it down! Not even myself!)"}
+        },
+        {
+          "name": "Entity",
+          "id": 48,
+          "_eid": "23557279",
+          "x": 352,
+          "y": 112,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "SoldierBase", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceRight", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "Dialogue(A little armor goes really far in [Battle].)\nDialogue(Just got to remember to put it on by using the [ESC] menu!)"}
+        }
       ]
     },
     {
@@ -290,7 +350,7 @@
       "gridCellHeight": 16,
       "gridCellsX": 32,
       "gridCellsY": 59,
-      "grid": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "0", "0", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "1", "1", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "1", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "0", "1", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "1", "1", "1", "0", "1", "1", "1", "1", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "1", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "0", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"],
+      "grid": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "0", "1", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "0", "0", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "1", "1", "0", "1", "1", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "1", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "1", "1", "1", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "1", "0", "0", "0", "1", "0", "0", "0", "1", "1", "1", "1", "0", "1", "1", "1", "1", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "1", "1", "1", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "1", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "1", "0", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "0", "1", "1", "1", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "1", "1", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "0", "0", "0", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "0", "1", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "0", "0", "0", "0", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"],
       "arrayMode": 0
     }
   ]

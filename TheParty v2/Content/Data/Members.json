@@ -95,7 +95,7 @@
 			"MaxHP" : 3,
 			"Hunger" : 3,
 			"MaxHunger" : 3,
-			"Equipped" : "",
+			"Equipped" : "Bandana",
 			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
 			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
 		},
@@ -140,7 +140,7 @@
 			"Hunger" : 5,
 			"MaxHunger": 5,
 			"Equipped" : "",
-			"Moves" : [],
+			"Moves" : ["Hit", "Commit", "Defend", "Pass", "Strengthen"],
 			"MovesToLearn" : []
 		},
 		{

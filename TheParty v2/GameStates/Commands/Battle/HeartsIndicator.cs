@@ -153,7 +153,8 @@ namespace TheParty_v2
             BounceMoveTimer.Update(deltaTime);
             if (BounceMoveTimer.TicThisFrame)
                 CurrentBouncing++;
-            if (CurrentBouncing > NumTotalHearts * 10)
+            if (CurrentBouncing > NumTotalHearts * 10 ||
+                (NumTotalHearts <= 1 && CurrentBouncing > 2))
                 CurrentBouncing = 0;
 
             UpdateTimer.Update(deltaTime);

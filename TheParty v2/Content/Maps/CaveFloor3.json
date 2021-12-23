@@ -48,8 +48,8 @@
           "name": "Entity",
           "id": 0,
           "_eid": "23557279",
-          "x": 320,
-          "y": 64,
+          "x": 336,
+          "y": 80,
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(CaveFloor2, 30, 28)"}
@@ -108,7 +108,7 @@
           "y": 384,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Dialogue(Randall: Are you looking for the King?)\nDialogue(Randall: Well, I have some unfortunate news.)\nDialogue(Randall: Your King is in another castle.)\nBattle(RandallBattle)\nErase(Randall)\nErase(Me)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Dialogue(Randall: Are you looking for the King?)\nDialogue(Randall: Well I have some unfortunate news.)\nFace(Randall, Down)\nDialogue(Randall: Your King is in another castle.)\nErase(Randall)\nBattle(RandallBattle)\nFadeOut()\nDialogue(That's the end of the demo.)\nDialogue(Thanks so much for playing!)\nGameOver()"}
         },
         {
           "name": "Entity",
@@ -118,7 +118,7 @@
           "y": 176,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "Chest3", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(CaveChest3Opened == true)\n   Dialogue(The chest sleeps soundly.)\nIf(CaveChest3Opened == false)\n   Face(Me, Down)\n   Wait(0.5)\n   Face(Me, Left)\n   Wait(0.5)\n   Dialogue(The chest was a mimic!)\n   Dialogue(It's napping.)\n   Dialogue(It looks quite cute.)\n   Dialogue(You decide to leave it be.)\n   Set(CaveChest3Opened, true)"}
+          "values": {"Name": "Chest3", "SpriteName": "Chest", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": "If(CaveChest2Opened == false)\n   SoundEffect(Chest)\n   Freeze(All)\n   Face(Me, Down)\n   Wait(0.5)\n   Face(Me, Left)\n   Wait(0.5)\n   Dialogue(The party found an Axe!)\n   AddItem(Axe)\n   Set(CaveChest2Opened, true)\n   Unfreeze(All)"}
         }
       ]
     },

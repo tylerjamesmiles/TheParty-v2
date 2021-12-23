@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,12 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
+            GameContent.PlaySong("TitleScreen");
+            GameContent.FadeInMusic();
+
+            GameContent.LoadData(); // sets everything to blank slate values
+                                    // on Load, more specific data will be drawn
+
             Choice = new GUIChoiceBox(new[] { "New", "Load", "Quit" }, GUIChoiceBox.Position.BottomRight);
 
             Particles = new List<Particle>();
@@ -30,7 +37,13 @@ namespace TheParty_v2
                     case 0:
                         client.Player = new Player(new Vector2());
 
+                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
+                        client.CommandQueue.EnqueueCommand(new CommandBeFaded());
+                        client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
+                        client.CommandQueue.EnqueueCommand(new CommandWait(2f));
                         client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 99, 101));
+                        client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
+                        client.CommandQueue.EnqueueCommand(new CommandShowScreen());
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
                         client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());
                         client.CommandQueue.EnqueueCommand(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "100 days until the world ends."));
@@ -39,7 +52,18 @@ namespace TheParty_v2
                         break;
 
                     case 1:
+                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
+                        client.CommandQueue.EnqueueCommand(new CommandBeFaded());
+                        client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
+                        client.CommandQueue.EnqueueCommand(new CommandWait(2f));
                         client.CommandQueue.EnqueueCommand(new CommandLoad());
+                        client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
+                        client.CommandQueue.EnqueueCommand(new CommandShowScreen());
+                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
+                        client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());
+                        client.CommandQueue.EnqueueCommand(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "100 days until the world ends."));
+                        client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
+
                         client.StateMachine.SetNewCurrentState(client, new GameStateField());
                         break;
 
