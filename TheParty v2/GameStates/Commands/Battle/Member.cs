@@ -101,7 +101,8 @@ namespace TheParty_v2
         public bool CanGo => 
             HP > 0 && 
             !GoneThisTurn &&
-            !HasEffect("Stunned");
+            !HasEffect("Stunned") &&
+            !HasEffect("Frozen");
 
         public bool HasEffect(string name) => StatusEffects.Exists(s => s.Name == name);
         public Equipment Equipped() =>

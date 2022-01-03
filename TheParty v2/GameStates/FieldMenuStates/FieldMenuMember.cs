@@ -42,7 +42,7 @@ namespace TheParty_v2
         {
             Selected = client.ActiveMembers[MemberChoice.CurrentChoiceIdx];
 
-            string[] Actions = new[] { "Heal", "Feed", "Commit" };
+            string[] Actions = new[] { "Heal%", "Feed\"", "Commit" };
             bool[] ChoiceValidity = new bool[3];
             ChoiceValidity[0] = Selected.HP < Selected.MaxHP && Selected.Hunger > 0;
             ChoiceValidity[1] = Selected.Hunger < Selected.MaxHunger && GameContent.Variables["FoodSupply"] > 0;

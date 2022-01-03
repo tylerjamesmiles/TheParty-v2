@@ -1,0 +1,32 @@
+﻿[
+{	"Name" : "",			"PassiveEffects" : []	},
+{	"Name" : "Axe",			"PassiveEffects" : ["Attack + 1", "Defense - 1"]	},	// Axe
+{	"Name" : "Apron",		"PassiveEffects" : ["Defense + 1", "Attack - 1"]	},	// Cave
+{	"Name" : "Scythe",		"PassiveEffects" : ["Attack + 2", "Defense - 2"]	},
+{	"Name" : "Ballgown",	"PassiveEffects" : ["Defense + 2", "Attack - 2"]	},
+{	"Name" : "Staff",		"PassiveEffects" : ["Attack + 3", "Defense - 3"]	},
+{	"Name" : "Platemail",	"PassiveEffects" : ["Defense + 3", "Attack - 3"]	},
+{	"Name" : "Dagger",		"PassiveEffects" : ["Attack + 1"]					},	// Cave
+{	"Name" : "Bandana",		"PassiveEffects" : ["Defense + 1"]					},	// Capricorn
+{	"Name" : "Katana",		"PassiveEffects" : ["Attack + 2", "Defense - 1"]	},	// Capricorn Shop
+{	"Name" : "Cape",		"PassiveEffects" : ["Defense + 2", "Attack - 1"]	},	// Capricorn Shop
+{	"Name" : "Flail",		"PassiveEffects" : ["Attack + 3", "Defense - 2"]	},
+{	"Name" : "Boots",		"PassiveEffects" : ["Defense + 3", "Attack - 2"]	},
+{	"Name" : "Sabre",		"PassiveEffects" : ["Attack + 1", "Defense + 1"]	},
+{	"Name" : "Sword",		"PassiveEffects" : ["Attack + 2"]					},
+{	"Name" : "Cloak",		"PassiveEffects" : ["Defense + 2"]					},
+{	"Name" : "Rapier",		"PassiveEffects" : ["Attack + 3", "Defense - 1"]	},
+{	"Name" : "Coat",		"PassiveEffects" : ["Defense + 3", "Attack - 1"]	},
+{	"Name" : "Bone",		"PassiveEffects" : ["Attack + 3"]					},
+{	"Name" : "Robe",		"PassiveEffects" : ["Defense + 3"]					},
+{	"Name" : "Mace",		"PassiveEffects" : ["Attack + 3", "Defense + 1"]	},
+{	"Name" : "Scarf",		"PassiveEffects" : ["Defense + 3", "Attack + 1"]	},
+{	"Name" : "Spear",		"PassiveEffects" : ["Attack + 3", "Defense + 2"]	},
+{	"Name" : "Veil",		"PassiveEffects" : ["Defense + 3", "Attack + 2"]	},
+{	"Name" : "Blade",		"PassiveEffects" : ["Attack + 3", "Defense + 3"]	},
+{	"Name" : "Scimitar",	"PassiveEffects" : ["Attack * 2"]					},
+{	"Name" : "Chainmail",	"PassiveEffects" : ["Defense * 2"]					},
+{	"Name" : "Halberd",		"PassiveEffects" : ["Attack * 2", "Defense * 2"]	}
+
+]
+

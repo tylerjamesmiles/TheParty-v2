@@ -99,14 +99,14 @@ namespace TheParty_v2
         {
             Member Member = ActiveMembers[MemberChoice.CurrentChoiceIdx];
             bool[] ChoiceValidity = new bool[5];
-            ChoiceValidity[0] = true;
-            ChoiceValidity[1] = true;
+            ChoiceValidity[0] = Member.HP < Member.MaxHP;
+            ChoiceValidity[1] = Member.Hunger < Member.MaxHunger;
             ChoiceValidity[2] = Member.MaxHP < 10;
             ChoiceValidity[3] = Member.MaxHunger < 10;
             ChoiceValidity[4] = Member.MovesToLearn.Count > 0;
 
             LevelUpTypeChoice = new GUIChoiceBox(
-                new[] { "Heal%'s", "Heal\"'s", "+1 Max%'s", "+1 Max\"'s", "New Move" },
+                new[] { "Heal all %'s", "Heal all \"'s", "+1 Max%'s", "+1 Max\"'s", "New Move" },
                 GUIChoiceBox.Position.BottomLeft,
                 1, ChoiceValidity);
         }

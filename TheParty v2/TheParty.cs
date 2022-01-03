@@ -29,6 +29,9 @@ namespace TheParty_v2
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            Window.Title = "The Party 1/1/22 Demo";
+            Window.AllowUserResizing = true;
+
             IsMouseVisible = true;
             Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;

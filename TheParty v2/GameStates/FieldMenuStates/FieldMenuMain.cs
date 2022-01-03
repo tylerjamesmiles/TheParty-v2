@@ -26,6 +26,7 @@ namespace TheParty_v2
                 ChoiceValidity[i] = true;
 
             ChoiceValidity[2] = client.BackupMembers.Count > 0;
+            ChoiceValidity[4] = false;
 
             List<Member> Members = client.ActiveMembers;
 
@@ -53,7 +54,7 @@ namespace TheParty_v2
                     case 3: client.Save = true; break;
                     case 4: Enter(client); break;       // TODO: Settings
                     case 5: client.StateMachine.SetNewCurrentState(client, new FieldMenuTitle()); break;
-                        break;
+                    break;
                 }
 
                 client.PreviousMainMenuChoice = Choices.CurrentChoice;

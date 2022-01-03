@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-using System.Text.Json.Serialization;
 using MonoGame.Extended.Serialization;
 using Newtonsoft.Json;
 

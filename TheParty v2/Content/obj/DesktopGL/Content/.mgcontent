@@ -36,6 +36,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDawgFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDogBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Effects.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ESC.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FadeIn.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FadeOut.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaBase.png</File>
@@ -77,6 +78,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TheFlurryFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WASD.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/BoilingWastes.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Capricorn.mp3</File>
@@ -99,6 +101,8 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

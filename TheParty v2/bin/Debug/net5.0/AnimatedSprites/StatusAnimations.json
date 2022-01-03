@@ -1,0 +1,42 @@
+﻿{
+	"StatusAnimations" : 
+	{
+		"SpriteName" : "StatusAnimations",
+		"FrameSizeX" : 16,
+		"FrameSizeY": 16,
+		"OffsetX" : -2,
+		"OffsetY" : -4,
+		"Animations" : [
+			{
+				"Name" : "None",
+				"FrameRow" : 0,
+				"NumFrames" : 4,
+				"FrameRate" : 0.3
+			},
+			{
+				"Name" : "Poison",
+				"FrameRow" : 1,
+				"NumFrames" : 4,
+				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Stunned",
+				"FrameRow" : 2,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Evade",
+				"FrameRow": 3,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
+			},
+			{
+				"Name" : "Defense Up",
+				"FrameRow": 4,
+				"NumFrames" : 1,
+				"FrameRate" : 0.2
+			}
+		]
+	}
+}

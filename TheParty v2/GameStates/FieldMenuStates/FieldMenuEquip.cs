@@ -56,13 +56,16 @@ namespace TheParty_v2
             for (int m = 0; m < ActiveParty.Count; m++)
             {
                 Vector2 MemberPos = client.MemberSprites[m].DrawPos;
-                Vector2 BoxPos = MemberPos + new Vector2(-4, -18);
-                Vector2 BoxSize = new Vector2(44, 20);
-                EquippedItemBoxes.Add(new GUIBox(new Rectangle(BoxPos.ToPoint(), BoxSize.ToPoint())));
+
                 Equipment Equipped = ActiveParty[m].Equipped();
                 string Name = "";
                 if (Equipped != null)
                     Name = Equipped.Name;
+
+                Vector2 BoxPos = MemberPos + new Vector2(-4, -18);
+                Vector2 BoxSize = new Vector2(GameContent.Font.MeasureString(Name).X + 10, 20);
+                EquippedItemBoxes.Add(new GUIBox(new Rectangle(BoxPos.ToPoint(), BoxSize.ToPoint())));
+
                 EquippedItemNames.Add(new GUIText(Name, BoxPos + new Vector2(5, 5), 40, 0.01f));
             }
         }
@@ -169,6 +172,11 @@ namespace TheParty_v2
         {
             EquippedItemBoxes.ForEach(b => b.Draw(spriteBatch, true));
             EquippedItemNames.ForEach(n => n.Draw(spriteBatch, true));
+
+            // Draw current choice on top
+            int Choice = MemberChoice.CurrentChoiceIdx;
+            EquippedItemBoxes[Choice].Draw(spriteBatch, true);
+            EquippedItemNames[Choice].Draw(spriteBatch, true);
 
             MemberChoice.Draw(spriteBatch, true);
 

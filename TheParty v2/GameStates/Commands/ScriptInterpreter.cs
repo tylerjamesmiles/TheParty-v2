@@ -58,6 +58,14 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         break;
 
+                    case "befaded":
+                        ResultList.Add(new CommandBeFaded());
+                        break;
+
+                    case "showscreen":
+                        ResultList.Add(new CommandShowScreen());
+                        break;
+
                     case "dialogue":
                         ResultList.Add(new CommandDialogue(Arguments));
                         break;
@@ -259,14 +267,6 @@ namespace TheParty_v2
                             ResultList.Add(new CommandChangeEntitySprite(EntityFromName(Arguments[0], EntityLayer, caller), Arguments[1]));
                         break;
 
-                    case "befaded":
-                        ResultList.Add(new CommandBeFaded());
-                        break;
-
-                    case "showscreen":
-                        ResultList.Add(new CommandShowScreen());
-                        break;
-
                     case "if":
                         string SubScript = "";
                         for (
@@ -358,6 +358,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
                         ResultList.Add(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "*DaysRemaining days until the world ends."));
+                        break;
+
+                    case "esc":
+                        ResultList.Add(new CommandESC());
                         break;
                 }
 

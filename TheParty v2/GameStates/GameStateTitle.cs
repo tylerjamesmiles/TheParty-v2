@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace TheParty_v2
@@ -22,7 +23,18 @@ namespace TheParty_v2
             GameContent.LoadData(); // sets everything to blank slate values
                                     // on Load, more specific data will be drawn
 
-            Choice = new GUIChoiceBox(new[] { "New", "Load", "Quit" }, GUIChoiceBox.Position.BottomRight);
+            bool[] ChoiceValidity = new bool[3];
+            ChoiceValidity[0] = true;
+            ChoiceValidity[1] = File.Exists("SaveFile.json");
+            ChoiceValidity[2] = true;
+
+            Choice = new GUIChoiceBox(
+                new[] { "New", "Load", "Quit" }, 
+                GUIChoiceBox.Position.BottomRight,
+                1,
+                ChoiceValidity);
+
+
 
             Particles = new List<Particle>();
         }
@@ -41,13 +53,12 @@ namespace TheParty_v2
                         client.CommandQueue.EnqueueCommand(new CommandBeFaded());
                         client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
                         client.CommandQueue.EnqueueCommand(new CommandWait(2f));
-                        client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 99, 101));
+                        client.CommandQueue.EnqueueCommand(new CommandTeleport("Intro", 12, 6));
                         client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
                         client.CommandQueue.EnqueueCommand(new CommandShowScreen());
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
-                        client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());
-                        client.CommandQueue.EnqueueCommand(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "100 days until the world ends."));
                         client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
+                        client.CommandQueue.EnqueueCommand(new CommandWASD());
                         client.StateMachine.SetNewCurrentState(client, new GameStateField());
                         break;
 
@@ -60,8 +71,6 @@ namespace TheParty_v2
                         client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
                         client.CommandQueue.EnqueueCommand(new CommandShowScreen());
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
-                        client.CommandQueue.EnqueueCommand(new CommandFreezePlayer());
-                        client.CommandQueue.EnqueueCommand(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "100 days until the world ends."));
                         client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
 
                         client.StateMachine.SetNewCurrentState(client, new GameStateField());
