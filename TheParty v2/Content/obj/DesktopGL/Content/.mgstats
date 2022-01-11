@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/WorldMap.xnb","TextureProcessor","Texture2DContent",12957,1048661,0.1517096
+"C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/WorldMap.xnb","TextureProcessor","Texture2DContent",12957,1048661,0.3038437
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/BoilingWastes.mp3","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Music/BoilingWastes.xnb","SongProcessor","SongContent",1631991,131,3.2016153
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Capricorn.mp3","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Music/Capricorn.xnb","SongProcessor","SongContent",1867720,127,2.6070228
 "C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/FarawayHeights.mp3","C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Music/FarawayHeights.xnb","SongProcessor","SongContent",2880853,132,3.5747564

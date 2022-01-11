@@ -1,9 +1,9 @@
 {
-  "CurrentMap": "Intro",
+  "CurrentMap": "Capricorn",
   "Variables": {
-    "DaysRemaining": 100,
-    "Money": 0,
-    "FoodSupply": 2
+    "DaysRemaining": 99,
+    "Money": 11,
+    "FoodSupply": 9
   },
   "Switches": {
     "TestSwitch1": false,
@@ -14,7 +14,7 @@
     "ReadyToGo": false,
     "IBetYouLost": false,
     "DidntFlee": true,
-    "EvangelizeSceneHappened": false,
+    "EvangelizeSceneHappened": true,
     "RandallDead": false,
     "CastleChest1Opened": false,
     "CaveChest1Opened": false,
@@ -23,9 +23,27 @@
   "ErasedEntities": [
     122,
     121,
-    124,
     123,
-    125
+    124,
+    125,
+    139,
+    138,
+    137,
+    140,
+    134,
+    135,
+    142,
+    141,
+    136,
+    130,
+    132,
+    129,
+    127,
+    128,
+    131,
+    126,
+    5,
+    6
   ],
   "Player": {
     "Steering": {
@@ -34,12 +52,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "0.001556578 -0.9999988",
+      "Heading": "-0.9999997 -0.00070437737",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "436.50186 398.31906",
+      "Position": "109.39827 843.04266",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -53,11 +71,11 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 0,
+      "CurrentFacing": 2,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 47
+        "TicsSoFar": 206
       },
       "AnimateWhenStatic": false
     },
@@ -71,18 +89,18 @@
           "Name": "Hocus",
           "HP": 3,
           "MaxHP": 3,
-          "Stance": 2,
-          "Hunger": 3,
-          "MaxHunger": 3,
+          "Stance": 1,
+          "Hunger": 1,
+          "MaxHunger": 1,
           "Moves": [
             "Hit",
             "Commit",
             "Defend",
-            "Pass",
-            "Bolster"
+            "Pass"
           ],
           "MovesToLearn": [
             "Commit More",
+            "Bolster",
             "Thaw"
           ],
           "EquippedName": "",

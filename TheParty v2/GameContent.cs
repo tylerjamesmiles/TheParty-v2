@@ -217,16 +217,7 @@ namespace TheParty_v2
                 AnimationSheets.Add(item.Key, new AnimatedSprite2D(item.Key, item.Value));
 
             Members = new Dictionary<string, Member>();
-            
-            string MembersString = File.ReadAllText("Data/Members.json");
-            JsonDocument MembersDoc = JsonDocument.Parse(MembersString);
-            JsonElement MembersArray = MembersDoc.RootElement.GetProperty("Members");
-            int NumMembers = MembersArray.GetArrayLength();
-            for (int i = 0; i < NumMembers; i++)
-            {
-                string Name = MembersArray[i].GetProperty("Name").GetString();
-                Members.Add(Name, new Member(MembersArray[i]));
-            }
+            JsonUtility.GetDeserialized<List<Member>>("Data/Members.json").ForEach(m => Members.Add(m.Name, m));
 
             Parties = new Dictionary<string, Party>();
             string PartiesString = File.ReadAllText("Data/Parties.json");
@@ -251,27 +242,14 @@ namespace TheParty_v2
             }
 
             Moves = new Dictionary<string, Move>();
-            string MovesString = File.ReadAllText("Data/Moves.json");
-            JsonDocument MovesDoc = JsonDocument.Parse(MovesString);
-            JsonElement MovesArray = MovesDoc.RootElement.GetProperty("Moves");
-            int NumMoves = MovesArray.GetArrayLength();
-            for (int i = 0; i < NumMoves; i++)
-            {
-                string Name = MovesArray[i].GetProperty("Name").GetString();
-                Moves.Add(Name, new Move(MovesArray[i]));
-            }
+            JsonUtility.GetDeserialized<List<Move>>("Data/Moves.json").ForEach(m => Moves.Add(m.Name, m));
 
             Equipment = new Dictionary<string, Equipment>();
-            string EquipmentString = File.ReadAllText("Data/Equipment.json");
-            var EquipmentList = JsonConvert.DeserializeObject<List<Equipment>>(EquipmentString);
-            foreach (var item in EquipmentList)
-                Equipment.Add(item.Name, item);
+            JsonUtility.GetDeserialized<List<Equipment>>("Data/Equipment.json").ForEach(e => Equipment.Add(e.Name, e));
 
             StatusEffects = new Dictionary<string, StatusEffect>();
-            string StatusString = File.ReadAllText("Data/StatusEffects.json");
-            var StatusList = JsonConvert.DeserializeObject<List<StatusEffect>>(StatusString);
-            foreach (var item in StatusList)
-                StatusEffects.Add(item.Name, item);
+            JsonUtility.GetDeserialized<List<StatusEffect>>("Data/StatusEffects.json").ForEach(s => StatusEffects.Add(s.Name, s));
+
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();

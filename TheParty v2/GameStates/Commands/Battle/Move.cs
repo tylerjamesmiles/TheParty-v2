@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace TheParty_v2
 {
@@ -25,6 +26,15 @@ namespace TheParty_v2
             Conditions = new List<string>();
             for (int i = 0; i < move.GetProperty("Conditions").GetArrayLength(); i++)
                 Conditions.Add(move.GetProperty("Conditions")[i].GetString());
+        }
+
+        [JsonConstructor]
+        public Move(string name, string description, List<string> effects, List<string> conditions)
+        {
+            Name = name;
+            Description = description;
+            Effects = effects;
+            Conditions = conditions;
         }
 
         public static string InvalidMoveName = "Invalid";

@@ -67,7 +67,9 @@ namespace TheParty_v2
                         break;
 
                     case "dialogue":
+                        ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandDialogue(Arguments));
+                        ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
                     case "save":
@@ -357,7 +359,9 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFadeInMusic());
                         ResultList.Add(new CommandShowScreen());
                         ResultList.Add(new CommandFade(CommandFade.Direction.In));
+                        ResultList.Add(new CommandFreezePlayer());
                         ResultList.Add(new CommandDialogue(GUIDialogueBox.Position.SkinnyTop, "*DaysRemaining days until the world ends."));
+                        ResultList.Add(new CommandUnfreezePlayer());
                         break;
 
                     case "esc":

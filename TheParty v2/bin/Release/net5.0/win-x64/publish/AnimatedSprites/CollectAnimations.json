@@ -1,0 +1,24 @@
+﻿{
+	"CollectAnimations" : 
+	{
+		"SpriteName" : "CollectAnimations",
+		"FrameSizeX" : 16,
+		"FrameSizeY": 32,
+		"OffsetX" : -8,
+		"OffsetY" : -32,
+		"Animations" : [
+			{
+				"Name" : "Coin",
+				"FrameRow" : 0,
+				"NumFrames" : 3,
+				"FrameRate" : 0.05
+			},
+			{
+				"Name" : "Meat",
+				"FrameRow" : 1,
+				"NumFrames" : 3,
+				"FrameRate" : 0.05
+			}
+		]
+	}
+}

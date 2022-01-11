@@ -1,0 +1,169 @@
+﻿{
+	"Members" : [
+		{
+			"Name" : "Alien",
+			"SpriteName" : "AlienFighter",
+			"HP" : 3,
+			"MaxHP" : 10,	
+			"Hunger" : 0,
+			"MaxHunger" : 0,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Freeze"],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Bandit",
+			"SpriteName" : "BanditFighter",
+			"HP" : 6,
+			"MaxHP" : 10,
+			"Hunger" : 0,
+			"MaxHunger" : 0,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Steal Coin", "Steal Food"],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Cat",
+			"SpriteName" : "CatFighter",
+			"HP" : 7,
+			"MaxHP" : 10,
+			"Hunger" : 0,
+			"MaxHunger" : 0,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Discourage"],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Chupasnakera",
+			"SpriteName" : "ChupasnakeraFighter",
+			"HP" : 3,
+			"MaxHP" : 5,
+			"Hunger" : 0,
+			"MaxHunger" : 0,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Suck"],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Crystal",
+			"SpriteName" : "CrystalFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Poison", "Antidote"]
+		},
+		{
+			"Name" : "DirtDawg",
+			"SpriteName" : "DirtDawgFighter",
+			"HP" : 3,
+			"MaxHP" : 3,
+			"Hunger" : 3,
+			"MaxHunger" : 3,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Strengthen", "Kamikaze"]
+		},
+		{
+			"Name" : "Faeema",
+			"SpriteName" : "FaeemaFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Heal", "Donate"]
+		},
+		{
+			"Name" : "Norman",
+			"SpriteName" : "GrinningNormanFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Give", "Take"]
+		},
+		{
+			"Name" : "Hocus",
+			"SpriteName" : "HocusFighter",
+			"HP" : 3,
+			"MaxHP" : 3,
+			"Hunger" : 3,
+			"MaxHunger" : 3,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
+		},
+		{
+			"Name" : "Pious",
+			"SpriteName" : "PiousFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Doubt", "Devote"]
+		},
+		{
+			"Name" : "Skinner",
+			"SpriteName" : "SkinnerFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Freeze", "Harden"]
+		},
+		{
+			"Name" : "Flurry",
+			"SpriteName" : "TheFlurryFighter",
+			"HP" : 5,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger" : 6,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass"],
+			"MovesToLearn" : ["Commit More", "Weaken", "Diminish"]
+		},
+		{
+			"Name" : "Randall",
+			"SpriteName": "RandallFighter",
+			"HP" : 10,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger": 5,
+			"Equipped" : "",
+			"Moves" : ["Hit", "Commit", "Defend", "Pass", "Strengthen"],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "Soldier",
+			"SpriteName": "SoldierFighter",
+			"HP" : 10,
+			"MaxHP" : 10,
+			"Hunger" : 5,
+			"MaxHunger": 5,
+			"Equipped" : "",
+			"Moves" : [],
+			"MovesToLearn" : []
+		},
+		{
+			"Name" : "King",
+			"SpriteName": "KingFighter",
+			"HP" : 20,
+			"MaxHP":20,
+			"Hunger" : 10,
+			"MaxHunger" : 10,
+			"Equipped" : "",
+			"Moves" : [],
+			"MovesToLearn" : []
+		}
+	]
+}

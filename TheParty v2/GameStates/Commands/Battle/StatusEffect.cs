@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 
 namespace TheParty_v2
 {
@@ -15,22 +16,13 @@ namespace TheParty_v2
 
         public StatusEffect() { }
 
-        // TODO: Change this constructor to something simpler
-        public StatusEffect(JsonElement status)
+        [JsonConstructor]
+        public StatusEffect(string name, List<string> everyTurnEffects, List<string> passiveEffects, int numTurnsRemaining)
         {
-            Name = status.GetProperty("Name").GetString();
-
-            var EveryTurnEffects = status.GetProperty("EveryTurnEffects");
-            int NumEffects = EveryTurnEffects.GetArrayLength();
-            for (int i = 0; i < NumEffects; i++)
-                this.EveryTurnEffects.Add(EveryTurnEffects[i].GetString());
-
-            var PassiveEffects = status.GetProperty("PassiveEffects");
-            int NumPEffects = PassiveEffects.GetArrayLength();
-            for (int i = 0; i < NumPEffects; i++)
-                this.PassiveEffects.Add(PassiveEffects[i].GetString());
-            
-            NumTurnsRemaining = status.GetProperty("NumTurnsRemaining").GetInt32();
+            Name = name;
+            EveryTurnEffects = everyTurnEffects;
+            PassiveEffects = passiveEffects;
+            NumTurnsRemaining = numTurnsRemaining;
         }
 
         public StatusEffect DeepCopy()

@@ -23,7 +23,7 @@ namespace TheParty_v2
 
         private static readonly int StanceLimit = 10;
 
-
+        public Member() { }
         public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, List<StatusEffect> effects, string spriteName)
         {
             Name = name;
@@ -40,22 +40,38 @@ namespace TheParty_v2
         }
 
         [JsonConstructor]
-        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, string spriteName)
+        public Member(string name, string spriteName, int hp, int maxHP, int hunger, int maxHunger, string equipped, List<string> moves, List<string> movesToLearn)
         {
             Name = name;
+            SpriteName = spriteName;
             HP = hp;
             MaxHP = maxHP;
-            Stance = stance;
             Hunger = hunger;
             MaxHunger = maxHunger;
+            EquippedName = equipped;
             Moves = moves;
             MovesToLearn = movesToLearn;
-            EquippedName = equipped;
+            Stance = 1;
             StatusEffects = new List<StatusEffect>();
-            SpriteName = spriteName;
         }
 
-        public Member DeepCopy() => new Member(Name, HP, MaxHP, Stance, Hunger, MaxHunger, Moves, MovesToLearn, EquippedName, StatusEffects, SpriteName);
+        public Member DeepCopy()
+        {
+            return new Member()
+            {
+                Name = Name,
+                SpriteName = SpriteName,
+                HP = HP,
+                MaxHP = MaxHP,
+                Hunger = Hunger,
+                MaxHunger = MaxHunger,
+                EquippedName = EquippedName,
+                Moves = Moves,
+                MovesToLearn = MovesToLearn,
+                Stance = Stance,
+                StatusEffects = StatusEffects // do i need to make a copy of these as well?
+            };
+        }
 
         public List<Move> GetMoves()
         {

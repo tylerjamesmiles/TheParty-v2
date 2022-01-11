@@ -1,0 +1,30 @@
+﻿{
+	"HitAnimations" : 
+	{
+		"SpriteName" : "HitAnimations",
+		"FrameSizeX" : 16,
+		"FrameSizeY": 16,
+		"OffsetX" : -8,
+		"OffsetY" : -4,
+		"Animations" : [
+			{
+				"Name" : "Hit",
+				"FrameRow" : 0,
+				"NumFrames" : 4,
+				"FrameRate" : 0.15
+			},
+			{
+				"Name" : "Charge",
+				"FrameRow" : 1,
+				"NumFrames" : 4,
+				"FrameRate" : 0.15
+			},
+			{
+				"Name" : "Coin",
+				"FrameRow" : 2,
+				"NumFrames" : 3,
+				"FrameRate" : 0.1
+			}
+		]
+	}
+}

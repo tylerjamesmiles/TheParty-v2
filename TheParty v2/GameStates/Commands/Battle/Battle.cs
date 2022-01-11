@@ -33,6 +33,7 @@ namespace TheParty_v2
             Parties = parties;
             CurrentTurnPartyIdx = currentTurn;
         }
+
         public Battle DeepCopy() => new Battle(Parties.ConvertAll(p => p.DeepCopy()), CurrentTurnPartyIdx);
 
 
