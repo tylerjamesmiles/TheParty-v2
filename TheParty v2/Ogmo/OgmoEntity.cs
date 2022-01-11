@@ -144,7 +144,7 @@ namespace TheParty_v2
                 return;
 
             Vector2 Pos = new Vector2(x + 8, y + 8);
-            Transform = new Transform2D(Pos, 5f);
+            Transform = new Transform2D(Pos, 7f);
 
             EntityId = NextEID;
             NextEID++;

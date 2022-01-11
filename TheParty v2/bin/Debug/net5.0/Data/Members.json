@@ -84,8 +84,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Give", "Take"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Give", "Take"]
 	},
 	{
 		"Name" : "Hocus",
@@ -107,7 +107,7 @@
 		"MaxHunger" : 6,
 		"Equipped" : "",
 		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Doubt", "Devote"]
+		"MovesToLearn" : ["Commit More", "Doubt", "Devote", "Preach"]
 	},
 	{
 		"Name" : "Skinner",

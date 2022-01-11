@@ -11,23 +11,24 @@ namespace TheParty_v2
 
     public class FixedResolutionTarget
     {
-        protected int _targetWidth;
-        protected int _targetHeight;
-        protected GraphicsDevice _graphics;
-        protected RenderTarget2D _renderTarget;
-        protected Rectangle _targetRect;
-        protected bool _pixelPerfect = false;
+        protected int _targetWidth;             // Width of the target
+        protected int _targetHeight;            // Height of the target
+        protected GraphicsDevice _graphics;     // Local pointer to Graphics
+        protected RenderTarget2D _renderTarget; // Local pointer
+        protected Rectangle _targetRect;        // Rectangle created for target
+        protected bool _pixelPerfect = false;   // Is the target pixel-perfect?
 
         public Rectangle TargetRect { get => _targetRect; }
 
         public FixedResolutionTarget(int width, int height, GraphicsDevice graphics, bool pixelPerfect = false)
         {
-            _graphics = graphics;
-            _pixelPerfect = pixelPerfect;
+            _graphics = graphics;           // cache pointer to Graphics
+            _pixelPerfect = pixelPerfect;   // set isPixelPerfect pointer
 
             SetSize(width, height);
         }
 
+        // Destructor!
         ~FixedResolutionTarget()
         {
             _renderTarget?.Dispose();
@@ -38,13 +39,15 @@ namespace TheParty_v2
             _targetWidth = width;
             _targetHeight = height;
 
-            _renderTarget?.Dispose();
-
+            _renderTarget?.Dispose();       // frees resources in renderTarget - look at later
             _renderTarget = new RenderTarget2D(_graphics, _targetWidth, _targetHeight);
-            _graphics.SetRenderTarget(_renderTarget);
-            _graphics.Clear(Color.Transparent);
+
+            // why set to the render target, only to set it to null later?
+            _graphics.SetRenderTarget(_renderTarget);   // assign rendertarget to _graphics
+            _graphics.Clear(Color.Transparent);         // clear _graphics - i wonder why?
             _graphics.SetRenderTarget(null);
 
+            // 
             var windowWidth = _graphics.PresentationParameters.BackBufferWidth;
             var windowHeight = _graphics.PresentationParameters.BackBufferHeight;
 
@@ -62,13 +65,17 @@ namespace TheParty_v2
             }
             else
             {
-                var windowAspectRatio = windowWidth / windowHeight;
-                var pixelPerfectScale = 1;
+                // Ratio of window width to window height
+                float windowAspectRatio = (float)windowWidth / (float)windowHeight;
+                float targetAspectRatio = (float)_targetWidth / (float)_targetHeight;
 
-                if ((float)_targetWidth / (float)_targetHeight > windowAspectRatio)
-                    pixelPerfectScale = windowWidth / _targetWidth;
+                // Used to scale as big as we're able to
+                float pixelPerfectScale = 1;
+
+                if (targetAspectRatio > windowAspectRatio)
+                    pixelPerfectScale = (float)windowWidth / (float)_targetWidth;
                 else
-                    pixelPerfectScale = windowHeight / _targetHeight;
+                    pixelPerfectScale = (float)windowHeight / (float)_targetHeight;
 
                 if (pixelPerfectScale == 0)
                     pixelPerfectScale = 1;
@@ -77,7 +84,7 @@ namespace TheParty_v2
                 _targetRect.Height = (int)((float)_targetHeight * (float)pixelPerfectScale);
             }
 
-            var offset = new Vector2(0);
+            var offset = new Vector2();
 
             if (_targetRect.Width < windowWidth)
                 offset.X = windowWidth / 2 - _targetRect.Width / 2;

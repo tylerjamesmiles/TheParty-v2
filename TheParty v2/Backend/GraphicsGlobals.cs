@@ -22,10 +22,8 @@ namespace TheParty_v2
         public static void Setup(GraphicsDevice graphics)
         {
             GraphicsDevice = graphics;
-            TargetResolutionWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
-            TargetResolutionHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
-
-         
+            //TargetResolutionWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
+            //TargetResolutionHeight = GraphicsDevice.PresentationParameters.BackBufferHeight;
         }
     }
 }

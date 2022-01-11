@@ -292,6 +292,8 @@ namespace TheParty_v2
             Sorted.Sort((s1, s2) => s1.DrawPos.Y > s2.DrawPos.Y ? 1 : -1);
 
             HPIndicators.ForEach(h => h.Draw(spriteBatch));
+            StatusIndicators.ForEach(si => si.Draw(spriteBatch));
+            StanceIndicators.ForEach(si => si.Draw(spriteBatch));
 
             if (Entered)
             {
@@ -304,9 +306,6 @@ namespace TheParty_v2
 
                     if (member.HP > 0)
                     {
-                        StatusIndicators[Idx].Draw(spriteBatch);
-                        StanceIndicators[Idx].Draw(spriteBatch);
-
                         // Draw various effects
                         Vector2 EffectsStartPos = Sprites[Idx].DrawPos + new Vector2(16, 0);
                         List<string> Effects = new List<string>();

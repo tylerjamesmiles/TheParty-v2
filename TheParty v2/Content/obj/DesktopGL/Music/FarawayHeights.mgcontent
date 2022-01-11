@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/FarawayHeights.mp3</SourceFile>
+  <SourceTime>2021-12-14T13:02:59.7246489-06:00</SourceTime>
+  <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Music/FarawayHeights.xnb</DestFile>
+  <DestTime>2022-01-11T13:57:31.9676279-06:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2020-08-10T11:17:54-05:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Music/FarawayHeights.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

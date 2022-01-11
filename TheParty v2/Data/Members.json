@@ -44,6 +44,17 @@
 		"MovesToLearn" : []
 	},
 	{
+		"Name" : "Slime",
+		"SpriteName" : "SlimeFighter",
+		"HP" : 8,
+		"MaxHP" : 8,
+		"Hunger" : 0,
+		"MaxHunger" : 0,
+		"Equipped" : "",
+		"Moves" : ["Hit", "Weaken"],
+		"MovesToLearn" : []
+	}
+	{
 		"Name" : "Crystal",
 		"SpriteName" : "CrystalFighter",
 		"HP" : 5,
@@ -84,8 +95,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Give", "Take"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Give", "Take"]
 	},
 	{
 		"Name" : "Hocus",
@@ -107,7 +118,7 @@
 		"MaxHunger" : 6,
 		"Equipped" : "",
 		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Doubt", "Devote"]
+		"MovesToLearn" : ["Commit More", "Doubt", "Devote", "Preach"]
 	},
 	{
 		"Name" : "Skinner",

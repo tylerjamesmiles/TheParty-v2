@@ -30,6 +30,18 @@
         "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
     },
     {
+        "Name" : "Preach",
+        "Description" : "Raise someone's commitment",
+        "Effects" : ["HitStance(Target, +1)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Radicalize",
+        "Description" : "Raise someone's commitment +5",
+        "Effects" : ["HitStance(Target, +5)"],
+        "Conditions" : [""]
+    },
+    {
         "Name" : "Poison", 
         "Description" : "Poison the target.\n[Req. 3 Commit.]",
         "Effects" : ["AddStatus(Target, Poison)"],  

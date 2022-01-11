@@ -8,7 +8,7 @@ namespace TheParty_v2
 {
     class TheParty : Game
     {
-        private GraphicsDeviceManager Graphics;
+        private GraphicsDeviceManager GraphicsManager;
         private SpriteBatch SpriteBatch;
 
         private FixedResolutionTarget Target;
@@ -26,18 +26,13 @@ namespace TheParty_v2
 
         public TheParty()
         {
-            Graphics = new GraphicsDeviceManager(this);
+            GraphicsManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
             Window.Title = "The Party 1/1/22 Demo";
             Window.AllowUserResizing = true;
 
-            IsMouseVisible = true;
-            Graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            Graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            Graphics.HardwareModeSwitch = true;
-            Graphics.IsFullScreen = false;
-            Graphics.ApplyChanges();
+
 
             EventsCanHappenTimer = new Timer(0.5f);
 
@@ -51,6 +46,12 @@ namespace TheParty_v2
             DrawPrimitives2D.Initialize(GraphicsDevice);
             Camera = new Camera2D();
 
+            IsMouseVisible = true;
+            GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            GraphicsManager.IsFullScreen = true;
+            GraphicsManager.ApplyChanges();
+
             base.Initialize();
         }
 
@@ -60,7 +61,7 @@ namespace TheParty_v2
 
             GraphicsGlobals.Setup(GraphicsDevice);
 
-            Target = new FixedResolutionTarget(160, 144, GraphicsDevice);
+            Target = new FixedResolutionTarget(160, 144, GraphicsDevice, true);
             Target.Enable();
 
             GameContent.LoadContent(Content);
