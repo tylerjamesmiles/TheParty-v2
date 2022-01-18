@@ -61,7 +61,7 @@ namespace TheParty_v2
 
             GraphicsGlobals.Setup(GraphicsDevice);
 
-            Target = new FixedResolutionTarget(160, 144, GraphicsDevice, true);
+            Target = new FixedResolutionTarget(240, 160, GraphicsDevice, true);
             Target.Enable();
 
             GameContent.LoadContent(Content);

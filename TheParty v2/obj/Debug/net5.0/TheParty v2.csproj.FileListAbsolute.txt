@@ -149,3 +149,5 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\AnimatedSprites\HitA
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\AnimatedSprites\StatusAnimations.json
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\AdultManBase3.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\KidBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\KidBoyBase1.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SlimeFighter.xnb

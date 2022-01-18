@@ -1,9 +1,9 @@
 {
-  "CurrentMap": "Capricorn",
+  "CurrentMap": "WorldMap",
   "Variables": {
     "DaysRemaining": 99,
-    "Money": 11,
-    "FoodSupply": 9
+    "Money": 7,
+    "FoodSupply": 0
   },
   "Switches": {
     "TestSwitch1": false,
@@ -14,7 +14,7 @@
     "ReadyToGo": false,
     "IBetYouLost": false,
     "DidntFlee": true,
-    "EvangelizeSceneHappened": true,
+    "EvangelizeSceneHappened": false,
     "RandallDead": false,
     "CastleChest1Opened": false,
     "CaveChest1Opened": false,
@@ -22,28 +22,17 @@
   },
   "ErasedEntities": [
     122,
-    121,
-    123,
     124,
+    123,
+    121,
     125,
-    139,
-    138,
-    137,
-    140,
-    134,
-    135,
-    142,
-    141,
-    136,
-    130,
     132,
     129,
+    130,
     127,
     128,
-    131,
     126,
-    5,
-    6
+    131
   ],
   "Player": {
     "Steering": {
@@ -52,12 +41,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "-0.9999997 -0.00070437737",
+      "Heading": "0.009484862 -0.999955",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "109.39827 843.04266",
+      "Position": "2025.0682 1648.4113",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -71,11 +60,11 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 2,
+      "CurrentFacing": 0,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 206
+        "TicsSoFar": 169
       },
       "AnimateWhenStatic": false
     },
@@ -87,11 +76,11 @@
       "Members": [
         {
           "Name": "Hocus",
-          "HP": 3,
-          "MaxHP": 3,
-          "Stance": 1,
-          "Hunger": 1,
-          "MaxHunger": 1,
+          "HP": 4,
+          "MaxHP": 4,
+          "Stance": 0,
+          "Hunger": 3,
+          "MaxHunger": 3,
           "Moves": [
             "Hit",
             "Commit",
@@ -104,19 +93,7 @@
             "Thaw"
           ],
           "EquippedName": "",
-          "StatusEffects": [
-            {
-              "Name": "JustCommitted",
-              "EveryTurnEffects": [],
-              "PassiveEffects": [
-                "Attack + 1",
-                "Defense + 1"
-              ],
-              "NumTurnsRemaining": 2,
-              "Gone": false,
-              "HasEveryTurnEffect": false
-            }
-          ],
+          "StatusEffects": [],
           "SpriteName": "HocusFighter",
           "GoneThisTurn": true,
           "CanGo": false

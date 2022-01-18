@@ -53,7 +53,7 @@
 		"Equipped" : "",
 		"Moves" : ["Hit", "Weaken"],
 		"MovesToLearn" : []
-	}
+	},
 	{
 		"Name" : "Crystal",
 		"SpriteName" : "CrystalFighter",
