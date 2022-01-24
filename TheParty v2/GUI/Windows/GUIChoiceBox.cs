@@ -97,10 +97,10 @@ namespace TheParty_v2
                 }
 
             Point BoxLoc = TextTL.ToPoint() + new Point(-4, -4);
-            if (BoxLoc.X > 120)
-                BoxLoc.X = 120;
-            if (BoxLoc.Y > 126)
-                BoxLoc.Y = 126;
+            if (BoxLoc.X > GraphicsGlobals.ScreenSize.X / 2)
+                BoxLoc.X = GraphicsGlobals.ScreenSize.X / 2;
+            if (BoxLoc.Y > GraphicsGlobals.ScreenSize.Y / 2)
+                BoxLoc.Y = GraphicsGlobals.ScreenSize.Y / 2;
             Point BoxSize = TextSize.ToPoint() + new Point(8, 8);
             if (BoxSize.X < 40)
                 BoxSize.X = 40;
