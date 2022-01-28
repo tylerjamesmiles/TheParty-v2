@@ -43,7 +43,7 @@ namespace TheParty_v2
             if (CollisionLayer.grid == null)
                 return Result;
 
-            Point TileSize = new Point(16, 16);
+            Point TileSize = new Point(8, 8);
             int MapTileWidth = CollisionLayer.gridCellsX;
             for (int i = 0; i < CollisionLayer.grid.Length; i++)
             {

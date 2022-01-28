@@ -49,17 +49,19 @@ namespace TheParty_v2
                     case 0:
                         client.Player = new Player(new Vector2());
 
-                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
-                        client.CommandQueue.EnqueueCommand(new CommandBeFaded());
-                        client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
-                        client.CommandQueue.EnqueueCommand(new CommandWait(2f));
-                        client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 110, 90));
-                        client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
-                        client.CommandQueue.EnqueueCommand(new CommandShowScreen());
-                        client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
-                        client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
-                        client.CommandQueue.EnqueueCommand(new CommandWASD());
-                        client.StateMachine.SetNewCurrentState(client, new GameStateField());
+                        //client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
+                        //client.CommandQueue.EnqueueCommand(new CommandBeFaded());
+                        //client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
+                        //client.CommandQueue.EnqueueCommand(new CommandWait(2f));
+                        //client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 98, 59));
+                        //client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
+                        //client.CommandQueue.EnqueueCommand(new CommandShowScreen());
+                        //client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
+                        //client.CommandQueue.EnqueueCommand(new CommandUnfreezePlayer());
+                        //client.CommandQueue.EnqueueCommand(new CommandWASD());
+                        //client.StateMachine.SetNewCurrentState(client, new GameStateField());
+
+                        client.CommandQueue.EnqueueCommand(new CommandBattle("WorldMapBattle1", "TestSwitch1"));
                         break;
 
                     case 1:
@@ -98,7 +100,7 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(
                 GameContent.Sprites["Title"],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
 
             Particles.ForEach(p => p.Draw(spriteBatch));

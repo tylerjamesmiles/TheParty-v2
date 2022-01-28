@@ -17,9 +17,8 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(
-                GameContent.Sprites["FadeIn"],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                GameContent.Sprites["Black"],
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
         }
     }
@@ -36,8 +35,7 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(
                 GameContent.Sprites["FadeIn"],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
         }
     }

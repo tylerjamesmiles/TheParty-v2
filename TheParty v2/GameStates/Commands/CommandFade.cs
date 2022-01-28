@@ -44,10 +44,11 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             string SpriteName = Dir == Direction.In ? "FadeIn" : "FadeOut";
+            Point Size = GraphicsGlobals.ScreenSize;
             spriteBatch.Draw(
                 GameContent.Sprites[SpriteName],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
-                new Rectangle(new Point(CurrentFrame * 160, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), Size),
+                new Rectangle(new Point(CurrentFrame * Size.X, 0), Size),
                 Color.White);
         }
     }

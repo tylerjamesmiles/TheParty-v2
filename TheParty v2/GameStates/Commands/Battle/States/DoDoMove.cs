@@ -38,6 +38,7 @@ namespace TheParty_v2
             if (!MoveDone)
             {
                 client.CurrentStore.DoMove(client.CurrentMove, client.CurrentTargeting);
+                client.UpdateIndicators();
 
                 if (client.CurrentMove.Name != "Commit" && client.CurrentMove.Name != "Commit More")
                     client.FromMember.GoneThisTurn = true;

@@ -1,8 +1,8 @@
 {
   "CurrentMap": "WorldMap",
   "Variables": {
-    "DaysRemaining": 99,
-    "Money": 7,
+    "DaysRemaining": 100,
+    "Money": 0,
     "FoodSupply": 0
   },
   "Switches": {
@@ -13,27 +13,14 @@
     "TalkedAboutFood": false,
     "ReadyToGo": false,
     "IBetYouLost": false,
-    "DidntFlee": true,
+    "DidntFlee": false,
     "EvangelizeSceneHappened": false,
     "RandallDead": false,
     "CastleChest1Opened": false,
     "CaveChest1Opened": false,
     "CaveChest2Opened": false
   },
-  "ErasedEntities": [
-    122,
-    124,
-    123,
-    121,
-    125,
-    132,
-    129,
-    130,
-    127,
-    128,
-    126,
-    131
-  ],
+  "ErasedEntities": [],
   "Player": {
     "Steering": {
       "SteeringForce": "0 0",
@@ -41,12 +28,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "0.009484862 -0.999955",
+      "Heading": "4.0271575E-12 1",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "2025.0682 1648.4113",
+      "Position": "1185.0422 680.6673",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -60,11 +47,11 @@
         "Y": 32
       },
       "CurrentFrame": 0,
-      "CurrentFacing": 0,
+      "CurrentFacing": 1,
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 169
+        "TicsSoFar": 317
       },
       "AnimateWhenStatic": false
     },
@@ -76,11 +63,11 @@
       "Members": [
         {
           "Name": "Hocus",
-          "HP": 4,
-          "MaxHP": 4,
-          "Stance": 0,
-          "Hunger": 3,
-          "MaxHunger": 3,
+          "HP": 7,
+          "MaxHP": 7,
+          "Stance": 4,
+          "Hunger": 5,
+          "MaxHunger": 5,
           "Moves": [
             "Hit",
             "Commit",
@@ -95,12 +82,60 @@
           "EquippedName": "",
           "StatusEffects": [],
           "SpriteName": "HocusFighter",
-          "GoneThisTurn": true,
-          "CanGo": false
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "DirtDawg",
+          "HP": 3,
+          "MaxHP": 3,
+          "Stance": 1,
+          "Hunger": 3,
+          "MaxHunger": 3,
+          "Moves": [
+            "Hit",
+            "Commit",
+            "Defend",
+            "Pass"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Strengthen",
+            "Kamikaze"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "DirtDawgFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "Faeema",
+          "HP": 5,
+          "MaxHP": 10,
+          "Stance": 1,
+          "Hunger": 5,
+          "MaxHunger": 6,
+          "Moves": [
+            "Hit",
+            "Commit",
+            "Defend",
+            "Pass"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Heal",
+            "Donate"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "FaeemaFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
         }
       ],
-      "NumMembers": 1,
-      "NumAlertMembers": 0,
+      "NumMembers": 3,
+      "NumAlertMembers": 3,
       "IsDead": false
     },
     "CampMembers": [],

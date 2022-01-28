@@ -124,28 +124,61 @@ namespace TheParty_v2
         int CurrentDisplayHP;
         Timer UpdateTimer;
         public int MaxHP { get; set; }
-        public Point TopCenter;
+        public Point Origin;
         int NumTotalHearts;
         int CurrentBouncing;
-        bool BeMeat;
+
+        public enum Type { Hearts, Meat, Commitment };
+        Type IconType;
+        
         bool ShowMax;
+        bool Center;
         Timer BounceMoveTimer;
 
         List<Particle> Particles;
 
-        public HeartsIndicator(int startHP, int centerX, int y, bool beMeat = false, bool showMax = false, int maxHP = 0)
+        public HeartsIndicator(int startHP, int x, int y, Type type = Type.Hearts, bool showMax = false, int maxHP = 0, bool center = true)
         {
-            TopCenter = new Point(centerX, y);
+            Origin = new Point(x, y);
             BounceMoveTimer = new Timer(0.1f);
             CurrentBouncing = new Random().Next(NumTotalHearts * 10);
             CurrentDisplayHP = 0;
             UpdateTimer = new Timer(0.3f);
-            BeMeat = beMeat;
+            IconType = type;
             ShowMax = showMax;
             MaxHP = maxHP;
+            Center = center;
             SetHP(startHP);
 
             Particles = new List<Particle>();
+        }
+
+        public string SpriteName()
+        {
+            return
+                IconType == Type.Meat ? "Meats" :
+                IconType == Type.Hearts ? "Hearts" :
+                IconType == Type.Commitment ? "Commitment" :
+                "Hearts";
+        }
+
+        public void RemoveHeart()
+        {
+            // spawn two broken heart halves
+            Random Rand = new Random();
+            float RandX = -0.5f + (float)Rand.NextDouble() * 1.0f;
+            float RandY = (float)Rand.NextDouble() * -1.0f;
+            Vector2 Dir = new Vector2(RandX, RandY);
+            Dir.Normalize();
+
+            Particles.Add(new Particle(Origin.ToVector2(), Dir, 80f, SpriteName()));
+
+            Vector2 NewDir = Dir + new Vector2(0.1f, 0.1f);
+            Particles.Add(new Particle(Origin.ToVector2(), NewDir, 80f, SpriteName()));
+
+            CurrentDisplayHP -= 1;
+
+            GameContent.SoundEffects["LoseHeart"].Play();
         }
 
         public void Update(float deltaTime)
@@ -161,29 +194,16 @@ namespace TheParty_v2
             if (UpdateTimer.TicThisFrame && CurrentDisplayHP != CurrentHP)
             {
                 bool MovingUp = CurrentDisplayHP < CurrentHP;
-                CurrentDisplayHP += (MovingUp) ? +1 : -1;
-                string SpriteName = (BeMeat) ? "Meats" : "Hearts";
 
                 if (MovingUp == true)
                 {
                     // Spawn floating heart
-                    Particles.Add(new Particle(TopCenter.ToVector2(), SpriteName));
+                    Particles.Add(new Particle(Origin.ToVector2(), SpriteName()));
+                    CurrentDisplayHP += 1;
                 }
-                else if (MovingUp == false)
+                else
                 {
-                    // spawn two broken heart halves
-                    Random Rand = new Random();
-                    float RandX = -0.5f + (float)Rand.NextDouble() * 1.0f;
-                    float RandY = (float)Rand.NextDouble() * -1.0f;
-                    Vector2 Dir = new Vector2(RandX, RandY);
-                    Dir.Normalize();
-
-                    Particles.Add(new Particle(TopCenter.ToVector2(), Dir, 80f, SpriteName));
-
-                    Vector2 NewDir = Dir + new Vector2(0.1f, 0.1f);
-                    Particles.Add(new Particle(TopCenter.ToVector2(), NewDir, 80f, SpriteName));
-
-                    GameContent.SoundEffects["LoseHeart"].Play();
+                    RemoveHeart();
                 }
             }
 
@@ -222,15 +242,19 @@ namespace TheParty_v2
                 (ShowMax) ? 
                     MaxHP :
                     NumLivingHearts;    // Num hearts of current HP
-            int NumHeartsAcross = NumHeartsToDisplay > 5 ? 5 : NumHeartsToDisplay;    // used for centering
+            int MaxHeartsAcross = 20;
+            int NumHeartsAcross = 
+                NumHeartsToDisplay > MaxHeartsAcross ? MaxHeartsAcross : 
+                NumHeartsToDisplay;    // used for centering
             int TotalWidth = HeartPixelWidth * NumHeartsAcross;
-            int Left = TopCenter.X - TotalWidth / 2;
+
+            int Left = (Center) ? Origin.X - TotalWidth / 2 : Origin.X;
 
             List<Point> DrawPoses = new List<Point>();
             for (int i = 0; i < NumHeartsToDisplay; i++)
             {
-                int DrawX = Left + ((i % 5) * HeartPixelWidth);
-                int DrawY = TopCenter.Y + ((i / 5) * 5) +
+                int DrawX = Left + ((i % MaxHeartsAcross) * HeartPixelWidth);
+                int DrawY = Origin.Y + ((i / MaxHeartsAcross) * MaxHeartsAcross) +
                     ((CurrentBouncing == i) ? - 1 : 0);     // hearts bounce occasionally
                 DrawPoses.Add(new Point(DrawX, DrawY));
             }
@@ -244,7 +268,11 @@ namespace TheParty_v2
                 Point SourcePos = (i == NumHeartsToDisplay - 1) ?  // *****
                     new Point(LastSourceX, 0) : new Point(0, 0);
 
-                string SpriteName = (BeMeat) ? "Meats" : "Hearts";
+                string SpriteName =
+                    IconType == Type.Meat ? "Meats" :
+                    IconType == Type.Hearts ? "Hearts" :
+                    IconType == Type.Commitment ? "Commitment" :
+                    "Hearts";
 
                 if (ShowMax)
                 {

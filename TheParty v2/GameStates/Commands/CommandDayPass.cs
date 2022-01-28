@@ -65,7 +65,7 @@ namespace TheParty_v2
                     HP,
                     (int)Sprite.DrawPos.X,
                     (int)Sprite.DrawPos.Y + 18,
-                    false, true,
+                    HeartsIndicator.Type.Hearts, true,
                     ActiveMembers[member].MaxHP));
 
                 int Hunger = ActiveMembers[member].Hunger;
@@ -73,12 +73,12 @@ namespace TheParty_v2
                     Hunger,
                     (int)Sprite.DrawPos.X,
                     (int)Sprite.DrawPos.Y + 28,
-                    true, true,
+                    HeartsIndicator.Type.Meat, true,
                     ActiveMembers[member].MaxHunger));
 
                 int Stance = ActiveMembers[member].Stance;
                 StanceIndicator SIndicator = new StanceIndicator(Stance, Sprite.DrawPos + new Vector2(-4, -28));
-                SIndicator.HardSet(Stance);
+                SIndicator.SetCommitment(Stance);
                 Stances.Add(SIndicator);
             }
 
@@ -126,7 +126,7 @@ namespace TheParty_v2
                         if (ActiveMembers[i].HP > 0 && ActiveMembers[i].Stance > 0)
                         {
                             ActiveMembers[i].Stance -= 1;
-                            Stances[i].SetTarget(ActiveMembers[i].Stance);
+                            Stances[i].SetCommitment(ActiveMembers[i].Stance);
                         }
                     }
                     WaitTimer = new Timer(2f);

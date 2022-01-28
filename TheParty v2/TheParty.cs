@@ -49,7 +49,7 @@ namespace TheParty_v2
             IsMouseVisible = true;
             GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            GraphicsManager.IsFullScreen = true;
+            GraphicsManager.IsFullScreen = false;
             GraphicsManager.ApplyChanges();
 
             base.Initialize();
@@ -61,7 +61,8 @@ namespace TheParty_v2
 
             GraphicsGlobals.Setup(GraphicsDevice);
 
-            Target = new FixedResolutionTarget(240, 160, GraphicsDevice, true);
+            Point Size = GraphicsGlobals.ScreenSize;
+            Target = new FixedResolutionTarget(Size.X, Size.Y, GraphicsDevice, true);
             Target.Enable();
 
             GameContent.LoadContent(Content);
@@ -109,8 +110,8 @@ namespace TheParty_v2
             if (BeFaded)
                 SpriteBatch.Draw(
                     GameContent.Sprites["FadeIn"],
-                    new Rectangle(new Point(0, 0), new Point(160, 144)),
-                    new Rectangle(new Point(0, 0), new Point(160, 144)),
+                    new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
+                    new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                     Color.White);
 
             CommandQueue.Draw(this, SpriteBatch);

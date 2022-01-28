@@ -151,3 +151,4 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\AdultMan
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\KidBase.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\KidBoyBase1.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SlimeFighter.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\Commitment.xnb
