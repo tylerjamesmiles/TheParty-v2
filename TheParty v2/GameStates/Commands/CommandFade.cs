@@ -46,8 +46,8 @@ namespace TheParty_v2
             string SpriteName = Dir == Direction.In ? "FadeIn" : "FadeOut";
             spriteBatch.Draw(
                 GameContent.Sprites[SpriteName],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
-                new Rectangle(new Point(CurrentFrame * 160, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
+                new Rectangle(new Point(CurrentFrame * GraphicsGlobals.ScreenSize.X, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
         }
     }

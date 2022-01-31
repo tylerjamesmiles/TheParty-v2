@@ -71,6 +71,7 @@ namespace TheParty_v2
                 if (CollumnSize.Y > TextSize.Y)
                     TextSize.Y = CollumnSize.Y;
             }
+
             if (TextSize.X < 40)
                 TextSize.X = 40;
             if (TextSize.Y < 16)
@@ -97,15 +98,17 @@ namespace TheParty_v2
                 }
 
             Point BoxLoc = TextTL.ToPoint() + new Point(-4, -4);
-            if (BoxLoc.X > GraphicsGlobals.ScreenSize.X / 2)
-                BoxLoc.X = GraphicsGlobals.ScreenSize.X / 2;
-            if (BoxLoc.Y > GraphicsGlobals.ScreenSize.Y / 2)
-                BoxLoc.Y = GraphicsGlobals.ScreenSize.Y / 2;
+            if (BoxLoc.X > GraphicsGlobals.ScreenSize.X - TextSize.X - 8)
+                BoxLoc.X = GraphicsGlobals.ScreenSize.X - (int)TextSize.X - 8;
+            if (BoxLoc.Y > GraphicsGlobals.ScreenSize.X - TextSize.Y - 8)
+                BoxLoc.Y = GraphicsGlobals.ScreenSize.X - (int)TextSize.Y - 8;
+
             Point BoxSize = TextSize.ToPoint() + new Point(8, 8);
             if (BoxSize.X < 40)
                 BoxSize.X = 40;
             if (BoxSize.Y < 16)
                 BoxSize.Y = 16;
+
             Rectangle BoxBounds = new Rectangle(BoxLoc, BoxSize);
             Box = new GUIBox(BoxBounds);
 

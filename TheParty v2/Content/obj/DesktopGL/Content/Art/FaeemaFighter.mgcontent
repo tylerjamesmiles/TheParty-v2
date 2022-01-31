@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaFighter.png</SourceFile>
-  <SourceTime>2021-11-28T10:46:54.120844-06:00</SourceTime>
+  <SourceTime>2022-01-31T10:02:19.3878299-06:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Content/Art/FaeemaFighter.xnb</DestFile>
-  <DestTime>2022-01-03T14:11:45.248813-06:00</DestTime>
+  <DestTime>2022-01-31T10:02:20.4307622-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

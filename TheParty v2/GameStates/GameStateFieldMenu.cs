@@ -145,7 +145,7 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
+            spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize), Color.White);
             Food.Draw(spriteBatch, true);
             Money.Draw(spriteBatch, true);
             Days.Draw(spriteBatch, true);

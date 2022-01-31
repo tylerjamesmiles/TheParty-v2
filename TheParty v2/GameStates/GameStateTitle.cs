@@ -98,7 +98,7 @@ namespace TheParty_v2
         {
             spriteBatch.Draw(
                 GameContent.Sprites["Title"],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
 
             Particles.ForEach(p => p.Draw(spriteBatch));

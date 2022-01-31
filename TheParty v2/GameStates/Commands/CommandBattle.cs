@@ -278,10 +278,10 @@ namespace TheParty_v2
             Rectangle BackgroundRect = new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize);
             spriteBatch.Draw(GameContent.Sprites["Black"], BackgroundRect, Color.White);
             Rectangle BackRect1 = new Rectangle(
-                BackgroundLerp1.CurrentPosition.ToPoint() - new Point(160, 144), 
+                BackgroundLerp1.CurrentPosition.ToPoint() - GraphicsGlobals.ScreenSize, 
                 new Point(320, 288));
             Rectangle BackRect2 = new Rectangle(
-                BackgroundLerp2.CurrentPosition.ToPoint() - new Point(160, 144),
+                BackgroundLerp2.CurrentPosition.ToPoint() - GraphicsGlobals.ScreenSize,
                 new Point(320, 288));
 
             spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect1, Color.White);

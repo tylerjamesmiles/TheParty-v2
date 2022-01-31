@@ -32,8 +32,8 @@ namespace TheParty_v2
             // to accomodate fades
             spriteBatch.Draw(
                 GameContent.Sprites["FadeIn"],
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
-                new Rectangle(new Point(0, 0), new Point(160, 144)),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
+                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
         }
     }

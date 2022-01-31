@@ -210,7 +210,7 @@ namespace TheParty_v2
             spriteBatch.Draw(
                 GameContent.Sprites["Black"], 
                 new Rectangle(new Point(0, 0), 
-                new Point(160, 144)), 
+                GraphicsGlobals.ScreenSize), 
                 Color.White);
 
             if (AnimationState == State.Show ||

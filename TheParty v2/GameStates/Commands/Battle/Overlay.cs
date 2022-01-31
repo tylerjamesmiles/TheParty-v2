@@ -27,15 +27,29 @@ namespace TheParty_v2
         public void Draw(SpriteBatch spriteBatch, Vector2 mapSize, Vector2 cameraPos)
         {
             Texture2D Sprite = GameContent.Sprites[SpriteName];
-            Point Size = new Point(160, 144);
+            Point Size = GraphicsGlobals.ScreenSize;
 
-            for (int x = 0; x < mapSize.X; x++)
-                for (int y = 0; y < mapSize.Y; y++)
-                {
-                    //Point DrawPos
-                }
+            Point TL = new Point((int)-cameraPos.X % Size.X + (int)HorizontalOffset, (int)-cameraPos.Y % Size.Y);
+            TL -= Size;
+            Point TM = TL + new Point(Size.X, 0);
+            Point TR = TL + new Point(Size.X * 2, 0);
+            Point ML = TL + new Point(0, Size.Y);
+            Point MM = TL + new Point(Size.X, Size.Y);
+            Point MR = TL + new Point(Size.X * 2, Size.Y);
+            Point BL = TL + new Point(0, Size.Y * 2);
+            Point BM = TL + new Point(Size.X, Size.Y * 2);
+            Point BR = TL + new Point(Size.X * 2, Size.Y * 2);
 
-            spriteBatch.Draw(Sprite, new Rectangle(new Point((int)HorizontalOffset, 0), Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(TL, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(TM, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(TR, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(ML, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(MM, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(MR, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(BL, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(BM, Size), Color.White);
+            spriteBatch.Draw(Sprite, new Rectangle(BR, Size), Color.White);
+
         }
     }
 }
