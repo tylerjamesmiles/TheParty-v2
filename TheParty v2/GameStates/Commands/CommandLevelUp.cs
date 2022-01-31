@@ -67,7 +67,7 @@ namespace TheParty_v2
                     HP, 
                     (int)Sprite.DrawPos.X, 
                     (int)Sprite.DrawPos.Y + 18, 
-                    HeartsIndicator.Type.Hearts, true, 
+                    false, true, 
                     ActiveMembers[member].MaxHP));
 
                 int Hunger = ActiveMembers[member].Hunger;
@@ -75,7 +75,7 @@ namespace TheParty_v2
                     Hunger, 
                     (int)Sprite.DrawPos.X, 
                     (int)Sprite.DrawPos.Y + 28, 
-                    HeartsIndicator.Type.Meat, true,
+                    true, true,
                     ActiveMembers[member].MaxHunger));
             }
 

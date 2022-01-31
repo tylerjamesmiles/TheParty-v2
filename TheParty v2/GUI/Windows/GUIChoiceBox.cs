@@ -30,15 +30,13 @@ namespace TheParty_v2
         {
             Center,
             BottomLeft,
-            BottomRight,
-            TopRight
+            BottomRight
         }
 
 
         public GUIChoiceBox(string[] choices, Position position, int numColumns = 1, bool[] choiceValidity = null)
         {
             Vector2 ScreenSize = GraphicsGlobals.ScreenSize.ToVector2();
-            Point ScreenSizeP = ScreenSize.ToPoint();
             Vector2 ScreenCenter = ScreenSize / 2;
 
             ChoiceValidity = choiceValidity;
@@ -81,8 +79,7 @@ namespace TheParty_v2
             Vector2 TextTL =
                 position == Position.Center ? ScreenCenter - TextSize / 2 :
                 position == Position.BottomLeft ? new Vector2(8, ScreenSize.Y - TextSize.Y - 8) :
-                position == Position.BottomRight ? new Vector2(ScreenSize.X - TextSize.X - 8, ScreenSize.Y - TextSize.Y - 16) :
-                position == Position.TopRight ? new Vector2(ScreenSize.X - TextSize.X - 8, 8) :
+                position == Position.BottomRight ? new Vector2(ScreenSize.X - TextSize.X - 8, ScreenSize.Y - TextSize.Y - 8) :
                 Vector2.Zero;
 
             Texts = new List<GUIText>();
@@ -100,11 +97,10 @@ namespace TheParty_v2
                 }
 
             Point BoxLoc = TextTL.ToPoint() + new Point(-4, -4);
-            if (BoxLoc.X > ScreenSizeP.X - TextSize.X)
-                BoxLoc.X = ScreenSizeP.X - (int)TextSize.X;
-            if (BoxLoc.Y > ScreenSizeP.Y - TextSize.Y)
-                BoxLoc.Y = ScreenSizeP.Y - (int)TextSize.Y;
-
+            if (BoxLoc.X > GraphicsGlobals.ScreenSize.X / 2)
+                BoxLoc.X = GraphicsGlobals.ScreenSize.X / 2;
+            if (BoxLoc.Y > GraphicsGlobals.ScreenSize.Y / 2)
+                BoxLoc.Y = GraphicsGlobals.ScreenSize.Y / 2;
             Point BoxSize = TextSize.ToPoint() + new Point(8, 8);
             if (BoxSize.X < 40)
                 BoxSize.X = 40;

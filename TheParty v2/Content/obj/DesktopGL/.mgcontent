@@ -30,7 +30,6 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Coin.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CoinPreview.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CollectAnimations.png</File>
-    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Commitment.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CrystalBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CrystalFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png</File>
@@ -106,7 +105,6 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

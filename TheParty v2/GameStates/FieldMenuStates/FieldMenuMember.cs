@@ -57,7 +57,7 @@ namespace TheParty_v2
         public override void Update(GameStateFieldMenu client, float deltaTime)
         {
             Member Selected = client.ActiveMembers[MemberChoice.CurrentChoiceIdx];
-            HeartsIndicator Stance = client.StanceIndicators[MemberChoice.CurrentChoiceIdx];
+            StanceIndicator Stance = client.StanceIndicators[MemberChoice.CurrentChoiceIdx];
             HeartsIndicator Hearts = client.HPIndicators[MemberChoice.CurrentChoiceIdx];
             HeartsIndicator Meats = client.HungerIndicators[MemberChoice.CurrentChoiceIdx];
 
@@ -129,7 +129,7 @@ namespace TheParty_v2
 
                                 case 2:     // commit
                                     Selected.Stance += 1;
-                                    Stance.SetHP(Selected.Stance);
+                                    Stance.SetTarget(Selected.Stance);
                                     break;
                             }
 

@@ -12,13 +12,6 @@ namespace TheParty_v2
         {
             client.FromSprite.SetCurrentAnimation("Move");
             client.Movement = new LerpV(client.FromSprite.DrawPos, client.ReturnToPos, 0.4f);
-
-            client.StanceIndicators[client.FromSpriteIdx].SetAllTarget(client.ReturnToPos + new Vector2(0, -20));
-            client.StanceIndicators[client.TargetSpriteIdx].SetAllTarget(client.ToSprite.DrawPos + new Vector2(0, -20));
-
-            client.StanceIndicators[client.FromSpriteIdx].ToggleFastMode(false);
-            client.StanceIndicators[client.TargetSpriteIdx].ToggleFastMode(false);
-
         }
 
         public override void Update(CommandBattle client, float deltaTime)

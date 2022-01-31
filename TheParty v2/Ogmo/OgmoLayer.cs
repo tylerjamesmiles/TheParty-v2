@@ -23,9 +23,6 @@ namespace TheParty_v2
         public int exportMode;
         public int arrayMode;
 
-        Timer AnimationTimer;
-        Dictionary<int, List<int>> AnimatedTiles;
-
         public enum LayerType { Tile, Entity, Collision, Undefined };
         public LayerType Type;
 
@@ -42,23 +39,12 @@ namespace TheParty_v2
             if (Type == LayerType.Entity)
                 entities.ForEach(e => e.Initialize());
 
-            AnimatedTiles = new Dictionary<int, List<int>>();
-            AnimatedTiles.Add(0, new List<int> { 0, 205, 206, 207 });
-            AnimatedTiles.Add(16, new List<int> { 16, 221, 222, 223 });
-            AnimatedTiles.Add(32, new List<int> { 32, 237, 238, 239 });
-
-            AnimatedTiles.Add(34, new List<int> { 34, 253, 254, 255 });
-
-            AnimationTimer = new Timer(0.4f);
-
         }
 
         public void Update(List<Rectangle> collisionRects, List<Transform2D> entityTransforms, Player player, float deltaTime)
         {
             if (Type == LayerType.Entity)
                 entities.ForEach(e => e.Update(collisionRects, entityTransforms, player , deltaTime));
-
-            AnimationTimer.Update(deltaTime);
         }
 
         public void Draw(Vector2 cameraPos, Player player, SpriteBatch spriteBatch)
@@ -77,15 +63,7 @@ namespace TheParty_v2
                 {
                     if (data[i] == -1) continue;
 
-                    int Idx = data[i];
-
-                    if (AnimatedTiles.ContainsKey(Idx))
-                    {
-                        var Animation = AnimatedTiles[Idx];
-                        Idx = Animation[AnimationTimer.TicsSoFar % Animation.Count];
-                    }
-
-                    Rectangle SourceRect = GetRect(Idx, TileSetTileWidth);
+                    Rectangle SourceRect = GetRect(data[i], TileSetTileWidth);
                     Rectangle DrawRect = GetRect(i, MapTileWidth);
                     DrawRect.Location -= cameraPos.ToPoint();
 

@@ -137,13 +137,6 @@ namespace TheParty_v2
             throw new Exception("Party index of member " + memberIdx + " not found.");
         }
 
-        public void UpdateIndicators()
-        {
-            List<Member> AllMembers = CurrentStore.AllMembers();
-            HPIndicators.ForEach(h => h.SetHP(AllMembers[HPIndicators.IndexOf(h)].HP));
-            StanceIndicators.ForEach(s => s.SetCommitment(AllMembers[StanceIndicators.IndexOf(s)].Stance));
-        }
-
         private void Instantiate()
         {
             StateMachine = new StateMachine<CommandBattle>();
@@ -174,10 +167,9 @@ namespace TheParty_v2
             {
                 for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
-                    Point ScreenSize = GraphicsGlobals.ScreenSize;
                     Vector2 MemberDrawOffset = new Vector2(-16, -16);
-                    int MemberDrawStartX = (party == 0) ? ScreenSize.X - 80 : 80;
-                    int MemberXOffset = (party == 0) ? 24 : -24;
+                    int MemberDrawStartX = (party == 0) ? 110 : 58;
+                    int MemberXOffset = (party == 0) ? 16 : -16;
                     int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
                     int MemberDrawStartY = 62;
                     int MemberDrawY = MemberDrawStartY + member * 16;
@@ -198,7 +190,7 @@ namespace TheParty_v2
                     HPIndicators.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
 
                     int Stance = CurrentStore.Parties[party].Members[member].Stance;
-                    StanceIndicators.Add(new StanceIndicator(Stance, Sprite.DrawPos + new Vector2(0, -22)));
+                    StanceIndicators.Add(new StanceIndicator(0, Sprite.DrawPos + new Vector2(-4, -26)));
 
                     StatusIndicators.Add(GameContent.AnimationSheets["StatusAnimations"].DeepCopy());
                 }
@@ -217,12 +209,16 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-
-
+            List<Member> AllMembers = CurrentStore.AllMembers();
+            HPIndicators.ForEach(h => h.SetHP(AllMembers[HPIndicators.IndexOf(h)].HP));
+            StanceIndicators.ForEach(s => s.SetTarget(AllMembers[StanceIndicators.IndexOf(s)].Stance));
 
             Sprites.ForEach(s => s.Update(deltaTime));
+            HPIndicators.ForEach(h => h.TopCenter = (Sprites[HPIndicators.IndexOf(h)].DrawPos.ToPoint() + new Point(0, 18)));
             HPIndicators.ForEach(h => h.Update(deltaTime));
+            StanceIndicators.ForEach(s => s.DrawPos = Sprites[StanceIndicators.IndexOf(s)].DrawPos + new Vector2(-4, -26));
             StanceIndicators.ForEach(s => s.Update(deltaTime));
+            StatusIndicators.ForEach(s => s.DrawPos = Sprites[StatusIndicators.IndexOf(s)].DrawPos + new Vector2(-4, -26));
             StatusIndicators.ForEach(s => s.Update(deltaTime));
 
             // Rotate through status effects every second or so
@@ -296,6 +292,8 @@ namespace TheParty_v2
             Sorted.Sort((s1, s2) => s1.DrawPos.Y > s2.DrawPos.Y ? 1 : -1);
 
             HPIndicators.ForEach(h => h.Draw(spriteBatch));
+            StatusIndicators.ForEach(si => si.Draw(spriteBatch));
+            StanceIndicators.ForEach(si => si.Draw(spriteBatch));
 
             if (Entered)
             {
@@ -369,8 +367,6 @@ namespace TheParty_v2
 
             }
 
-            StatusIndicators.ForEach(si => si.Draw(spriteBatch));
-            StanceIndicators.ForEach(si => si.Draw(spriteBatch));
 
             // Any Extra State-Related Stuff
             StateMachine.Draw(this, spriteBatch);

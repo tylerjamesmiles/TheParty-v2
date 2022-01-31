@@ -17,12 +17,10 @@ namespace TheParty_v2
 
         public List<Member> ActiveMembers;
         public List<Member> BackupMembers;
-        public List<GUIBox> MemberBoxes;
         public List<AnimatedSprite2D> MemberSprites;
         public List<HeartsIndicator> HPIndicators;
         public List<HeartsIndicator> HungerIndicators;
-        public List<HeartsIndicator> StanceIndicators;
-        public List<GUIText> NameText;
+        public List<StanceIndicator> StanceIndicators;
 
         public StateMachine<GameStateFieldMenu> StateMachine;
         public bool Done;
@@ -40,15 +38,13 @@ namespace TheParty_v2
             MemberSprites = new List<AnimatedSprite2D>();
             HPIndicators = new List<HeartsIndicator>();
             HungerIndicators = new List<HeartsIndicator>();
-            StanceIndicators = new List<HeartsIndicator>();
-            MemberBoxes = new List<GUIBox>();
-            NameText = new List<GUIText>();
+            StanceIndicators = new List<StanceIndicator>();
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
                 Member Member = ActiveMembers[i];
 
-                Vector2 MemberDrawPos = new Vector2(8, 5 + i * 33);
+                Vector2 MemberDrawPos = new Vector2(16 + i * 48, 48);
                 Vector2 MemberDrawOffset = new Vector2();
                 string SpriteName = Member.SpriteName;
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
@@ -63,37 +59,23 @@ namespace TheParty_v2
 
                 MemberSprites.Add(Sprite);
 
-                Point BoxPos = new Point(8, 4 + i * 33);
-                Point BoxSize = new Point(160, 35);
-                GUIBox Box = new GUIBox(new Rectangle(BoxPos, BoxSize));
-                MemberBoxes.Add(Box);
-
-                GUIText NText = new GUIText(ActiveMembers[i].Name, new Vector2(BoxPos.X + 32, BoxPos.Y + 4), 160, 0.05f);
-                NameText.Add(NText);
-
-                HeartsIndicator St = new HeartsIndicator(
-                    ActiveMembers[i].Stance,
-                    BoxPos.X + 32, 
-                    BoxPos.Y + 13,
-                    HeartsIndicator.Type.Commitment,
-                    true, 5, false);
-                StanceIndicators.Add(St);
-
                 HeartsIndicator HP = new HeartsIndicator(
                     ActiveMembers[i].HP, 
-                    BoxPos.X + 32, 
-                    BoxPos.Y + 19,
-                    HeartsIndicator.Type.Hearts, false, 0, false);
+                    (int)MemberDrawPos.X + 16, 
+                    (int)MemberDrawPos.Y + 32 + 4);
                 HPIndicators.Add(HP);
 
                 HeartsIndicator Meats = new HeartsIndicator(
                     ActiveMembers[i].Hunger, 
-                    BoxPos.X + 32, 
-                    BoxPos.Y + 25, 
-                    HeartsIndicator.Type.Meat, false, 0, false);
+                    (int)MemberDrawPos.X + 16, 
+                    (int)MemberDrawPos.Y + 32 + 15, 
+                    true);
                 HungerIndicators.Add(Meats);
 
-
+                StanceIndicator Stance = new StanceIndicator(
+                    ActiveMembers[i].Stance,
+                    MemberDrawPos + new Vector2(+14, -10));
+                StanceIndicators.Add(Stance);
 
                 PreviousMainMenuChoice = 0;
             }
@@ -129,16 +111,13 @@ namespace TheParty_v2
             Money.Update(deltaTime, true);
             Days.Update(deltaTime, true);
 
-            MemberBoxes.ForEach(b => b.Update(deltaTime, true));
-            NameText.ForEach(n => n.Update(deltaTime, true));
-
             foreach (AnimatedSprite2D sprite in MemberSprites)
                 sprite.Update(deltaTime);
             foreach (HeartsIndicator hp in HPIndicators)
                 hp.Update(deltaTime);
             foreach (HeartsIndicator hunger in HungerIndicators)
                 hunger.Update(deltaTime);
-            foreach (HeartsIndicator stance in StanceIndicators)
+            foreach (StanceIndicator stance in StanceIndicators)
                 stance.Update(deltaTime);
 
             StateMachine.Update(this, deltaTime);
@@ -166,24 +145,17 @@ namespace TheParty_v2
 
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(
-                GameContent.Sprites["Black"], 
-                new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize), 
-                Color.White);
-
-            //Food.Draw(spriteBatch, true);
-            //Money.Draw(spriteBatch, true);
-            //Days.Draw(spriteBatch, true);
+            spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), new Point(160, 144)), Color.White);
+            Food.Draw(spriteBatch, true);
+            Money.Draw(spriteBatch, true);
+            Days.Draw(spriteBatch, true);
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
-                MemberBoxes[i].Draw(spriteBatch, true);
                 MemberSprites[i].Draw(spriteBatch);
 
                 if (ActiveMembers[i].HP > 0)
                 {
-                    NameText[i].Draw(spriteBatch, true);
-
                     HPIndicators[i].Draw(spriteBatch);
                     HungerIndicators[i].Draw(spriteBatch);
                     StanceIndicators[i].Draw(spriteBatch);

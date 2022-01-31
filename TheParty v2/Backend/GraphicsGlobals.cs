@@ -10,7 +10,7 @@ namespace TheParty_v2
 
     public class GraphicsGlobals
     {
-        public static readonly Point ScreenSize = new Point(240, 135);
+        public static readonly Point ScreenSize = new Point(240, 160);
         public static readonly Point TileSize = new Point(16, 16);
 
         public static RenderTarget2D DefaultRenderTarget = null;

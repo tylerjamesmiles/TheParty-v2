@@ -4,9 +4,7 @@
 			"Name" : "PlayerParty",
 			"Members" :
 			[
-				"Hocus",
-				"DirtDawg",
-				"Faeema"
+				"Hocus"
 			]
 		},
 		{
@@ -27,9 +25,7 @@
 			"Name" : "WorldMapParty1",
 			"Members" :
 			[
-				"Chupasnakera",
-				"Alien",
-				"Randall"
+				"Chupasnakera"
 			]
 		},
 		{

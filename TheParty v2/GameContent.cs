@@ -107,7 +107,7 @@ namespace TheParty_v2
             if (!Songs.ContainsKey(name))
                 throw new Exception("No song named " + name);
 
-            //MediaPlayer.Play(Songs[name]);
+            MediaPlayer.Play(Songs[name]);
             SongCurrentlyPlaying = name;
         }
 

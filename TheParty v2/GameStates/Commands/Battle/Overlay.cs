@@ -22,32 +22,20 @@ namespace TheParty_v2
         public void Update(float deltaTime)
         {
             HorizontalOffset += HorizontalSpeed * deltaTime;
-            if (HorizontalOffset > GraphicsGlobals.ScreenSize.X)
-                HorizontalOffset -= GraphicsGlobals.ScreenSize.X;
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 mapSize, Vector2 cameraPos)
         {
             Texture2D Sprite = GameContent.Sprites[SpriteName];
-            Point Size = GraphicsGlobals.ScreenSize;
-            Point CameraPos = cameraPos.ToPoint();
+            Point Size = new Point(160, 144);
 
-            Point BRPos = new Point(-CameraPos.X % Size.X, -CameraPos.Y % Size.Y);
-            BRPos -= Size;
-            BRPos.X += (int)HorizontalOffset;
+            for (int x = 0; x < mapSize.X; x++)
+                for (int y = 0; y < mapSize.Y; y++)
+                {
+                    //Point DrawPos
+                }
 
-            List<Point> DrawPoses = new List<Point>();
-            DrawPoses.Add(BRPos);
-            DrawPoses.Add(BRPos + new Point(Size.X,     0));
-            DrawPoses.Add(BRPos + new Point(Size.X * 2, 0));
-            DrawPoses.Add(BRPos + new Point(0,           Size.Y));
-            DrawPoses.Add(BRPos + new Point(Size.X,     Size.Y));
-            DrawPoses.Add(BRPos + new Point(Size.X * 2, Size.Y));
-            DrawPoses.Add(BRPos + new Point(0,           Size.Y * 2));
-            DrawPoses.Add(BRPos + new Point(Size.X,     Size.Y * 2));
-            DrawPoses.Add(BRPos + new Point(Size.X * 2, Size.Y * 2));
-
-            DrawPoses.ForEach(dp => spriteBatch.Draw(Sprite, new Rectangle(dp, Size), Color.White)); 
+            spriteBatch.Draw(Sprite, new Rectangle(new Point((int)HorizontalOffset, 0), Size), Color.White);
         }
     }
 }
