@@ -30,7 +30,8 @@ namespace TheParty_v2
         {
             Center,
             BottomLeft,
-            BottomRight
+            BottomRight,
+            TopRight
         }
 
 
@@ -81,6 +82,7 @@ namespace TheParty_v2
                 position == Position.Center ? ScreenCenter - TextSize / 2 :
                 position == Position.BottomLeft ? new Vector2(8, ScreenSize.Y - TextSize.Y - 8) :
                 position == Position.BottomRight ? new Vector2(ScreenSize.X - TextSize.X - 8, ScreenSize.Y - TextSize.Y - 8) :
+                position == Position.TopRight ? new Vector2(ScreenSize.X - TextSize.X - 8, 8) :
                 Vector2.Zero;
 
             Texts = new List<GUIText>();

@@ -52,7 +52,7 @@ namespace TheParty_v2
                 MemberPositions.Add(DrawPos + new Vector2(12, 12));
 
                 HPIndicators.Add(new HeartsIndicator(Member.HP, (int)DrawPos.X + 16, (int)DrawPos.Y + 32));
-                HungerIndicators.Add(new HeartsIndicator(Member.Hunger, (int)DrawPos.X + 16, (int)DrawPos.Y + 38, true));
+                HungerIndicators.Add(new HeartsIndicator(Member.Hunger, (int)DrawPos.X + 16, (int)DrawPos.Y + 38, HeartsIndicator.Type.Meats));
             }
             
             Member1Choice = new GUIChoice(MemberPositions.ToArray());

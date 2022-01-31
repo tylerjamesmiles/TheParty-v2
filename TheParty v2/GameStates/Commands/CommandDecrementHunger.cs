@@ -86,7 +86,7 @@ namespace TheParty_v2
                 Hearts.Add(new HeartsIndicator(HP, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 18));
 
                 int Hunger = ActiveMembers[member].Hunger;
-                HeartsIndicator HIndicator = new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, true);
+                HeartsIndicator HIndicator = new HeartsIndicator(Hunger, (int)Sprite.DrawPos.X, (int)Sprite.DrawPos.Y + 26, HeartsIndicator.Type.Meats);
                 Meats.Add(HIndicator);
 
                 int Stance = ActiveMembers[member].Stance;
@@ -94,7 +94,7 @@ namespace TheParty_v2
                 SIndicator.HardSet(Stance);
                 Stances.Add(SIndicator);
 
-                Vector2 WindupSpot = HIndicator.TopCenter.ToVector2() + new Vector2(-32, 0);
+                Vector2 WindupSpot = HIndicator.Origin.ToVector2() + new Vector2(-32, 0);
                 WindupSpots.Add(WindupSpot);
 
                 LerpV StanceLerp = new LerpV(SIndicator.DrawPos, WindupSpot, 0.8f);
@@ -143,7 +143,7 @@ namespace TheParty_v2
                         foreach (LerpV lerp in StanceLerps)
                         {
                             Vector2 Start = lerp.CurrentPosition;
-                            Vector2 End = Meats[StanceLerps.IndexOf(lerp)].TopCenter.ToVector2();
+                            Vector2 End = Meats[StanceLerps.IndexOf(lerp)].Origin.ToVector2();
                             NewLerps.Add(new LerpV(Start, End, 0.1f));
                         }
                         StanceLerps = NewLerps;

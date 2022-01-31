@@ -65,7 +65,7 @@ namespace TheParty_v2
                     HP,
                     (int)Sprite.DrawPos.X,
                     (int)Sprite.DrawPos.Y + 18,
-                    false, true,
+                    HeartsIndicator.Type.Hearts, true,
                     ActiveMembers[member].MaxHP));
 
                 int Hunger = ActiveMembers[member].Hunger;
@@ -73,7 +73,7 @@ namespace TheParty_v2
                     Hunger,
                     (int)Sprite.DrawPos.X,
                     (int)Sprite.DrawPos.Y + 28,
-                    true, true,
+                    HeartsIndicator.Type.Meats, true,
                     ActiveMembers[member].MaxHunger));
 
                 int Stance = ActiveMembers[member].Stance;

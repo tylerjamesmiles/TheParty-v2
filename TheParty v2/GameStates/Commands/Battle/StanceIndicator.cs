@@ -16,6 +16,7 @@ namespace TheParty_v2
         bool Moving;
         bool Direction; // true = up, false = down
         public bool Reached { get; private set; }
+
     
         public StanceIndicator(int startStance, Vector2 drawPos)
         {

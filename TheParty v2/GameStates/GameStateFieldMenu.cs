@@ -11,16 +11,16 @@ namespace TheParty_v2
     {
         public Player Player;
 
-        public GUIDialogueBox Food;
-        public GUIDialogueBox Money;
-        public GUIDialogueBox Days;
+        public GUIDialogueBox FoodMoneyDays;
 
         public List<Member> ActiveMembers;
         public List<Member> BackupMembers;
+        public List<GUIBox> MemberBoxes;
         public List<AnimatedSprite2D> MemberSprites;
+        public List<GUIText> MemberNames;
         public List<HeartsIndicator> HPIndicators;
         public List<HeartsIndicator> HungerIndicators;
-        public List<StanceIndicator> StanceIndicators;
+        public List<HeartsIndicator> StanceIndicators;
 
         public StateMachine<GameStateFieldMenu> StateMachine;
         public bool Done;
@@ -35,16 +35,26 @@ namespace TheParty_v2
         {
             ActiveMembers = client.Player.ActiveParty.Members;
             BackupMembers = client.Player.CampMembers;
+            MemberBoxes = new List<GUIBox>();
             MemberSprites = new List<AnimatedSprite2D>();
+            MemberNames = new List<GUIText>();
             HPIndicators = new List<HeartsIndicator>();
             HungerIndicators = new List<HeartsIndicator>();
-            StanceIndicators = new List<StanceIndicator>();
+            StanceIndicators = new List<HeartsIndicator>();
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
                 Member Member = ActiveMembers[i];
 
-                Vector2 MemberDrawPos = new Vector2(16 + i * 48, 48);
+                Point BoxTL = new Point(8, 8 + i * 35);
+                Point BoxSize = new Point(160, 36);
+                MemberBoxes.Add(new GUIBox(new Rectangle(BoxTL, BoxSize)));
+
+                string Name = Member.Name;
+                GUIText MemberName = new GUIText(Name, (BoxTL + new Point(40, 4)).ToVector2(), 160, 0.05f);
+                MemberNames.Add(MemberName);
+
+                Vector2 MemberDrawPos = BoxTL.ToVector2() + new Vector2(0, 2);
                 Vector2 MemberDrawOffset = new Vector2();
                 string SpriteName = Member.SpriteName;
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
@@ -61,20 +71,23 @@ namespace TheParty_v2
 
                 HeartsIndicator HP = new HeartsIndicator(
                     ActiveMembers[i].HP, 
-                    (int)MemberDrawPos.X + 16, 
-                    (int)MemberDrawPos.Y + 32 + 4);
+                    BoxTL.X + 40, 
+                    BoxTL.Y + BoxSize.Y - 5 - 11,
+                    HeartsIndicator.Type.Hearts, true, ActiveMembers[i].MaxHP, false);
                 HPIndicators.Add(HP);
 
                 HeartsIndicator Meats = new HeartsIndicator(
                     ActiveMembers[i].Hunger, 
-                    (int)MemberDrawPos.X + 16, 
-                    (int)MemberDrawPos.Y + 32 + 15, 
-                    true);
+                    BoxTL.X + 40, 
+                    BoxTL.Y + BoxSize.Y - 5 - 5, 
+                    HeartsIndicator.Type.Meats, true, ActiveMembers[i].MaxHunger, false);
                 HungerIndicators.Add(Meats);
 
-                StanceIndicator Stance = new StanceIndicator(
+                HeartsIndicator Stance = new HeartsIndicator(
                     ActiveMembers[i].Stance,
-                    MemberDrawPos + new Vector2(+14, -10));
+                   BoxTL.X + 40,
+                   BoxTL.Y + BoxSize.Y - 5 - 17,
+                   HeartsIndicator.Type.Commitment, true, 5, false);
                 StanceIndicators.Add(Stance);
 
                 PreviousMainMenuChoice = 0;
@@ -83,14 +96,16 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
-            Rectangle FoodBounds = new Rectangle(new Point(28, 4), new Point(36, 18));
-            Food = new GUIDialogueBox(FoodBounds, new[] { "\"" + GameContent.Variables["FoodSupply"].ToString() });
+            Rectangle BottomBoxBounds = new Rectangle(
+                new Point(GraphicsGlobals.ScreenSize.X - 58, GraphicsGlobals.ScreenSize.Y - 48),
+                new Point(54, 38));
 
-            Rectangle MoneyBounds = new Rectangle(new Point(64, 4), new Point(36, 18));
-            Money = new GUIDialogueBox(MoneyBounds, new[] { "$" + GameContent.Variables["Money"].ToString() });
-
-            Rectangle DaysBounds = new Rectangle(new Point(100, 4), new Point(36, 18));
-            Days = new GUIDialogueBox(DaysBounds, new[] { "&" + GameContent.Variables["DaysRemaining"].ToString() });
+            FoodMoneyDays = new GUIDialogueBox(BottomBoxBounds, 
+                new[] { 
+                    "\"" + GameContent.Variables["FoodSupply"].ToString() + "\n" +
+                    "$" + GameContent.Variables["Money"].ToString() + "\n" +
+                    "&" + GameContent.Variables["DaysRemaining"].ToString()
+                });
 
             LoadSprites(client);
 
@@ -107,18 +122,14 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            Food.Update(deltaTime, true);
-            Money.Update(deltaTime, true);
-            Days.Update(deltaTime, true);
+            FoodMoneyDays.Update(deltaTime, true);
+            MemberBoxes.ForEach(mb => mb.Update(deltaTime, true));
+            MemberSprites.ForEach(s => s.Update(deltaTime));
+            MemberNames.ForEach(mn => mn.Update(deltaTime, true));
+            HPIndicators.ForEach(hp => hp.Update(deltaTime));
+            HungerIndicators.ForEach(hi => hi.Update(deltaTime));
+            StanceIndicators.ForEach(si => si.Update(deltaTime));
 
-            foreach (AnimatedSprite2D sprite in MemberSprites)
-                sprite.Update(deltaTime);
-            foreach (HeartsIndicator hp in HPIndicators)
-                hp.Update(deltaTime);
-            foreach (HeartsIndicator hunger in HungerIndicators)
-                hunger.Update(deltaTime);
-            foreach (StanceIndicator stance in StanceIndicators)
-                stance.Update(deltaTime);
 
             StateMachine.Update(this, deltaTime);
 
@@ -146,13 +157,13 @@ namespace TheParty_v2
         public override void Draw(TheParty client, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(GameContent.Sprites["Black"], new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize), Color.White);
-            Food.Draw(spriteBatch, true);
-            Money.Draw(spriteBatch, true);
-            Days.Draw(spriteBatch, true);
+            FoodMoneyDays.Draw(spriteBatch, true);
 
             for (int i = 0; i < ActiveMembers.Count; i++)
             {
+                MemberBoxes[i].Draw(spriteBatch, true);
                 MemberSprites[i].Draw(spriteBatch);
+                MemberNames[i].Draw(spriteBatch, true);
 
                 if (ActiveMembers[i].HP > 0)
                 {
@@ -162,12 +173,7 @@ namespace TheParty_v2
                 }
             }
 
-
             StateMachine.Draw(this, spriteBatch);
-        }
-
-        public override void Exit(TheParty client)
-        {
         }
     }
 }

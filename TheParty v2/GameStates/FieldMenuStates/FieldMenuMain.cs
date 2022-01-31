@@ -32,8 +32,8 @@ namespace TheParty_v2
 
             Choices = new GUIChoiceBox(
                 ChoiceStrings, 
-                GUIChoiceBox.Position.BottomRight, 
-                2, ChoiceValidity);
+                GUIChoiceBox.Position.TopRight, 
+                1, ChoiceValidity);
 
             Choices.SetCurrentChoice(client.PreviousMainMenuChoice);
 
