@@ -85,6 +85,9 @@
     <None Update="Maps\CaveFloor3.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Maps\FairyForest1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Maps\Intro.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

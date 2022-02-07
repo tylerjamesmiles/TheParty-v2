@@ -57,7 +57,8 @@ namespace TheParty_v2
         private static Dictionary<string, T> FromJson<T>(string folderName)
         {
             Dictionary<string, T> Result = new Dictionary<string, T>();
-            foreach (string filePath in Directory.GetFiles(Directory.GetCurrentDirectory() + "/" + folderName))
+            string[] FilePaths = Directory.GetFiles(Directory.GetCurrentDirectory() + "/" + folderName);
+            foreach (string filePath in FilePaths)
             {
                 string Name = Path.GetFileNameWithoutExtension(filePath);
                 T Item = JsonUtility.GetDeserialized<T>(filePath);
@@ -107,7 +108,7 @@ namespace TheParty_v2
             if (!Songs.ContainsKey(name))
                 throw new Exception("No song named " + name);
 
-            MediaPlayer.Play(Songs[name]);
+            //MediaPlayer.Play(Songs[name]);
             SongCurrentlyPlaying = name;
         }
 

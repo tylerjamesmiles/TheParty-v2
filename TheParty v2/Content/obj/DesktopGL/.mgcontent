@@ -43,6 +43,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FadeOut.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaFighter.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FairyForest.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FilledCircle.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FontLight.png</File>
@@ -106,6 +107,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
