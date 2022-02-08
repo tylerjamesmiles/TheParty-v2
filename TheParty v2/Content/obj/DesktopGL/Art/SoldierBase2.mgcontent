@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GrinningNormanBase.png</SourceFile>
-  <SourceTime>2021-11-28T11:05:34.0192052-06:00</SourceTime>
-  <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/GrinningNormanBase.xnb</DestFile>
-  <DestTime>2022-01-11T13:57:23.9005812-06:00</DestTime>
+  <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SoldierBase2.png</SourceFile>
+  <SourceTime>2021-12-03T12:43:13.1454156-06:00</SourceTime>
+  <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Art/SoldierBase2.xnb</DestFile>
+  <DestTime>2022-02-08T10:15:21.3320165-06:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

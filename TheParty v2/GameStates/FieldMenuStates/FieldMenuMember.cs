@@ -50,7 +50,7 @@ namespace TheParty_v2
 
             int CurrentChoice =
                 ActionChoice != null ? ActionChoice.CurrentChoice : 0;
-            ActionChoice = new GUIChoiceBox(Actions, GUIChoiceBox.Position.BottomRight, 1, ChoiceValidity);
+            ActionChoice = new GUIChoiceBox(Actions, GUIChoiceBox.Position.TopRight, 1, ChoiceValidity);
             ActionChoice.SetCurrentChoice(CurrentChoice);
         }
 
@@ -165,8 +165,8 @@ namespace TheParty_v2
 
         public override void Exit(GameStateFieldMenu client)
         {
-            client.HPIndicators.ForEach(hp => hp.SetShowMax(false));
-            client.HungerIndicators.ForEach(h => h.SetShowMax(false));
+            //client.HPIndicators.ForEach(hp => hp.SetShowMax(false));
+            //client.HungerIndicators.ForEach(h => h.SetShowMax(false));
         }
 
     }

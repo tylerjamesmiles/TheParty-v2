@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Hit.wav</SourceFile>
   <SourceTime>2016-04-06T15:30:20-05:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Sfx/Hit.xnb</DestFile>
-  <DestTime>2022-01-11T13:57:50.5366312-06:00</DestTime>
+  <DestTime>2022-02-08T10:15:04.1167797-06:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

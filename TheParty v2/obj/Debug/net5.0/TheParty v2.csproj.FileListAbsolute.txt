@@ -154,3 +154,9 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SlimeFig
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\Commitment.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\FairyForest1.json
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\FairyForest.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\AdultManBase4.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\AdultWomanBase3.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\PriestBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase1.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase2.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase3.xnb

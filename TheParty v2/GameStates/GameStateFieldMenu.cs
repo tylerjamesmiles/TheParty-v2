@@ -46,12 +46,16 @@ namespace TheParty_v2
             {
                 Member Member = ActiveMembers[i];
 
-                Point BoxTL = new Point(8, 8 + i * 35);
-                Point BoxSize = new Point(160, 36);
+                int BoxWidth = 90;
+                int BoxHeight = 36;
+                int BoxL = 4 + (i / 3) * (BoxWidth- 1);
+                int BoxR = 8 + (i % 3) * (BoxHeight - 1);
+                Point BoxTL = new Point(BoxL, BoxR);
+                Point BoxSize = new Point(BoxWidth - 4, BoxHeight);
                 MemberBoxes.Add(new GUIBox(new Rectangle(BoxTL, BoxSize)));
 
                 string Name = Member.Name;
-                GUIText MemberName = new GUIText(Name, (BoxTL + new Point(40, 4)).ToVector2(), 160, 0.05f);
+                GUIText MemberName = new GUIText(Name, (BoxTL + new Point(32, 4)).ToVector2(), 160, 0.05f);
                 MemberNames.Add(MemberName);
 
                 Vector2 MemberDrawPos = BoxTL.ToVector2() + new Vector2(0, 2);
@@ -71,21 +75,21 @@ namespace TheParty_v2
 
                 HeartsIndicator HP = new HeartsIndicator(
                     ActiveMembers[i].HP, 
-                    BoxTL.X + 40, 
+                    BoxTL.X + 32, 
                     BoxTL.Y + BoxSize.Y - 5 - 11,
                     HeartsIndicator.Type.Hearts, true, ActiveMembers[i].MaxHP, false);
                 HPIndicators.Add(HP);
 
                 HeartsIndicator Meats = new HeartsIndicator(
                     ActiveMembers[i].Hunger, 
-                    BoxTL.X + 40, 
+                    BoxTL.X + 32, 
                     BoxTL.Y + BoxSize.Y - 5 - 5, 
                     HeartsIndicator.Type.Meats, true, ActiveMembers[i].MaxHunger, false);
                 HungerIndicators.Add(Meats);
 
                 HeartsIndicator Stance = new HeartsIndicator(
                     ActiveMembers[i].Stance,
-                   BoxTL.X + 40,
+                   BoxTL.X + 32,
                    BoxTL.Y + BoxSize.Y - 5 - 17,
                    HeartsIndicator.Type.Commitment, true, 5, false);
                 StanceIndicators.Add(Stance);

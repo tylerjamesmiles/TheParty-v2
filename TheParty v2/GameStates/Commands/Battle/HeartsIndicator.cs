@@ -238,8 +238,12 @@ namespace TheParty_v2
             List<Point> DrawPoses = new List<Point>();
             for (int i = 0; i < NumHeartsToDisplay; i++)
             {
-                int DrawX = Left + ((i % 5) * HeartPixelWidth);
-                int DrawY = Origin.Y + ((i / 5) * 5);
+                int DrawX =
+                    (Centered) ? Left + ((i % 5) * HeartPixelWidth) :
+                    Left + i * HeartPixelWidth;
+                int DrawY =
+                    (Centered) ? Origin.Y + ((i / 5) * 5) :
+                    Origin.Y;
                 if (i < NumLivingHearts)
                 {
                     if (IconType == Type.Commitment && CurrentBouncing == i)

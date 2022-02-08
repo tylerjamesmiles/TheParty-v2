@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Chest.wav</SourceFile>
   <SourceTime>2016-04-06T17:48:30-05:00</SourceTime>
   <DestFile>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/bin/DesktopGL/Sfx/Chest.xnb</DestFile>
-  <DestTime>2022-01-11T13:57:45.4811917-06:00</DestTime>
+  <DestTime>2022-02-08T10:14:58.9574585-06:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

@@ -163,9 +163,6 @@ namespace TheParty_v2
 
                     break;
             }
-
-
-
         }
 
         public override void Draw(GameStateFieldMenu client, SpriteBatch spriteBatch)

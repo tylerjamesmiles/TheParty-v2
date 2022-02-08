@@ -1,11 +1,22 @@
 ﻿[
 	{
+		"Name" : "Hero",
+		"SpriteName" : "TestFighter",
+		"HP" : 5,
+		"MaxHP" : 5,	
+		"Hunger" : 5,
+		"MaxHunger" : 5,
+		"Equipped" : "",
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : []
+	},
+	{
 		"Name" : "Alien",
 		"SpriteName" : "AlienFighter",
-		"HP" : 3,
-		"MaxHP" : 10,	
-		"Hunger" : 0,
-		"MaxHunger" : 0,
+		"HP" : 5,
+		"MaxHP" : 5,	
+		"Hunger" : 5,
+		"MaxHunger" : 5,
 		"Equipped" : "",
 		"Moves" : ["Hit", "Commit", "Freeze"],
 		"MovesToLearn" : []
@@ -84,8 +95,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Heal", "Donate"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Heal", "Donate"]
 	},
 	{
 		"Name" : "Norman",
@@ -106,8 +117,8 @@
 		"Hunger" : 3,
 		"MaxHunger" : 3,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Bolster", "Thaw"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Bolster", "Thaw"]
 	},
 	{
 		"Name" : "Pious",
@@ -117,8 +128,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Doubt", "Devote", "Preach"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Doubt", "Devote", "Preach"]
 	},
 	{
 		"Name" : "Skinner",
@@ -128,8 +139,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Freeze", "Harden"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Freeze", "Harden"]
 	},
 	{
 		"Name" : "Flurry",
@@ -139,8 +150,8 @@
 		"Hunger" : 5,
 		"MaxHunger" : 6,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass"],
-		"MovesToLearn" : ["Commit More", "Weaken", "Diminish"]
+		"Moves" : ["Hit", "Commit"],
+		"MovesToLearn" : ["Commit More", "Defend", "Pass", "Weaken", "Diminish"]
 	},
 	{
 		"Name" : "Randall",
@@ -150,7 +161,7 @@
 		"Hunger" : 5,
 		"MaxHunger": 5,
 		"Equipped" : "",
-		"Moves" : ["Hit", "Commit", "Defend", "Pass", "Strengthen"],
+		"Moves" : ["Hit", "Commit", "Defend", "Strengthen"],
 		"MovesToLearn" : []
 	},
 	{
@@ -161,7 +172,7 @@
 		"Hunger" : 5,
 		"MaxHunger": 5,
 		"Equipped" : "",
-		"Moves" : [],
+		"Moves" : ["Hit", "Commit"],
 		"MovesToLearn" : []
 	},
 	{

@@ -1,8 +1,8 @@
 {
-  "CurrentMap": "WorldMap",
+  "CurrentMap": "FairyForest1",
   "Variables": {
-    "DaysRemaining": 99,
-    "Money": 7,
+    "DaysRemaining": 100,
+    "Money": 0,
     "FoodSupply": 0
   },
   "Switches": {
@@ -13,27 +13,14 @@
     "TalkedAboutFood": false,
     "ReadyToGo": false,
     "IBetYouLost": false,
-    "DidntFlee": true,
+    "DidntFlee": false,
     "EvangelizeSceneHappened": false,
     "RandallDead": false,
     "CastleChest1Opened": false,
     "CaveChest1Opened": false,
     "CaveChest2Opened": false
   },
-  "ErasedEntities": [
-    122,
-    124,
-    123,
-    121,
-    125,
-    132,
-    129,
-    130,
-    127,
-    128,
-    126,
-    131
-  ],
+  "ErasedEntities": [],
   "Player": {
     "Steering": {
       "SteeringForce": "0 0",
@@ -41,12 +28,12 @@
     },
     "Movement": {
       "Velocity": "0 0",
-      "Heading": "0.009484862 -0.999955",
+      "Heading": "0 -1",
       "Mass": 1.0,
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "2025.0682 1648.4113",
+      "Position": "392 657.05707",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -64,7 +51,7 @@
       "FrameTimer": {
         "TicRate": 0.15,
         "TicThisFrame": false,
-        "TicsSoFar": 169
+        "TicsSoFar": 2
       },
       "AnimateWhenStatic": false
     },
@@ -75,12 +62,126 @@
     "ActiveParty": {
       "Members": [
         {
+          "Name": "Hero",
+          "HP": 5,
+          "MaxHP": 5,
+          "Stance": 1,
+          "Hunger": 5,
+          "MaxHunger": 5,
+          "Moves": [
+            "Hit",
+            "Commit"
+          ],
+          "MovesToLearn": [],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "TestFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
           "Name": "Hocus",
-          "HP": 4,
-          "MaxHP": 4,
-          "Stance": 0,
+          "HP": 3,
+          "MaxHP": 3,
+          "Stance": 2,
           "Hunger": 3,
           "MaxHunger": 3,
+          "Moves": [
+            "Hit",
+            "Commit"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Defend",
+            "Pass",
+            "Bolster",
+            "Thaw"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "HocusFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "Faeema",
+          "HP": 8,
+          "MaxHP": 10,
+          "Stance": 1,
+          "Hunger": 2,
+          "MaxHunger": 6,
+          "Moves": [
+            "Hit",
+            "Commit"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Defend",
+            "Pass",
+            "Heal",
+            "Donate"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "FaeemaFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "Flurry",
+          "HP": 5,
+          "MaxHP": 10,
+          "Stance": 1,
+          "Hunger": 5,
+          "MaxHunger": 6,
+          "Moves": [
+            "Hit",
+            "Commit"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Defend",
+            "Pass",
+            "Weaken",
+            "Diminish"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "TheFlurryFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "Skinner",
+          "HP": 8,
+          "MaxHP": 10,
+          "Stance": 2,
+          "Hunger": 2,
+          "MaxHunger": 6,
+          "Moves": [
+            "Hit",
+            "Commit"
+          ],
+          "MovesToLearn": [
+            "Commit More",
+            "Defend",
+            "Pass",
+            "Freeze",
+            "Harden"
+          ],
+          "EquippedName": "",
+          "StatusEffects": [],
+          "SpriteName": "SkinnerFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
+        },
+        {
+          "Name": "Crystal",
+          "HP": 5,
+          "MaxHP": 10,
+          "Stance": 1,
+          "Hunger": 5,
+          "MaxHunger": 6,
           "Moves": [
             "Hit",
             "Commit",
@@ -89,18 +190,18 @@
           ],
           "MovesToLearn": [
             "Commit More",
-            "Bolster",
-            "Thaw"
+            "Poison",
+            "Antidote"
           ],
           "EquippedName": "",
           "StatusEffects": [],
-          "SpriteName": "HocusFighter",
-          "GoneThisTurn": true,
-          "CanGo": false
+          "SpriteName": "CrystalFighter",
+          "GoneThisTurn": false,
+          "CanGo": true
         }
       ],
-      "NumMembers": 1,
-      "NumAlertMembers": 0,
+      "NumMembers": 6,
+      "NumAlertMembers": 6,
       "IsDead": false
     },
     "CampMembers": [],

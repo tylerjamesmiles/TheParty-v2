@@ -109,6 +109,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/AdultManBase3.png
 
+#begin Art/AdultManBase4.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/AdultManBase4.png
+
 #begin Art/AdultWomanBase1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -156,6 +168,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/AdultWomanBase2.png
+
+#begin Art/AdultWomanBase3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/AdultWomanBase3.png
 
 #begin Art/AlienFighter.png
 /importer:TextureImporter
@@ -661,30 +685,6 @@
 /processorParam:TextureFormat=Color
 /build:Art/Commitment.png
 
-#begin Art/CrystalBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/CrystalBase.png
-
-#begin Art/CrystalBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/CrystalBase.png
-
 #begin Art/CrystalFighter.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -732,30 +732,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/Cursor.png
-
-#begin Art/DirtDawgBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/DirtDawgBase.png
-
-#begin Art/DirtDawgBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/DirtDawgBase.png
 
 #begin Art/DirtDawgFighter.png
 /importer:TextureImporter
@@ -961,6 +937,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/FairyForest.png
 
+#begin Art/FairyForest.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/FairyForest.png
+
 #begin Art/FilledCircle.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1056,30 +1044,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/GameOver.png
-
-#begin Art/GrinningNormanBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/GrinningNormanBase.png
-
-#begin Art/GrinningNormanBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/GrinningNormanBase.png
 
 #begin Art/GrinningNormanFighter.png
 /importer:TextureImporter
@@ -1441,30 +1405,6 @@
 /processorParam:TextureFormat=Color
 /build:Art/MonsterBase.png
 
-#begin Art/PiousBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/PiousBase.png
-
-#begin Art/PiousBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/PiousBase.png
-
 #begin Art/PiousFighter.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1537,7 +1477,7 @@
 /processorParam:TextureFormat=Color
 /build:Art/PlusSign.png
 
-#begin Art/RandallBase.png
+#begin Art/PriestBase.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1547,19 +1487,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Art/RandallBase.png
-
-#begin Art/RandallBase.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Art/RandallBase.png
+/build:Art/PriestBase.png
 
 #begin Art/RandallFighter.png
 /importer:TextureImporter
@@ -1681,7 +1609,7 @@
 /processorParam:TextureFormat=Color
 /build:Art/SlimeFighter.png
 
-#begin Art/SoldierBase.png
+#begin Art/SoldierBase1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1691,9 +1619,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Art/SoldierBase.png
+/build:Art/SoldierBase1.png
 
-#begin Art/SoldierBase.png
+#begin Art/SoldierBase2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -1703,7 +1631,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Art/SoldierBase.png
+/build:Art/SoldierBase2.png
+
+#begin Art/SoldierBase3.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/SoldierBase3.png
 
 #begin Art/SoldierFighter.png
 /importer:TextureImporter

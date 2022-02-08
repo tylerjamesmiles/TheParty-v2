@@ -4,9 +4,12 @@
 			"Name" : "PlayerParty",
 			"Members" :
 			[
+				"Hero",
 				"Hocus",
-				"DirtDawg",
-				"Chupasnakera"
+				"Faeema",
+				"Flurry",
+				"Skinner",
+				"Crystal"
 			]
 		},
 		{
