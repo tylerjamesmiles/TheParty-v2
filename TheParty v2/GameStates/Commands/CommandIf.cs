@@ -16,19 +16,26 @@ namespace TheParty_v2
         public CommandIf(string varName, string op, string rhValue, List<Command<TheParty>> commands)
         {
             VarName = varName;
-            VarType =
-                varName.ToLower() == "party" ? Type.Party :
-                varName.ToLower() == "commitment" ? Type.Commitment :
-                GameContent.Switches.ContainsKey(VarName) ? Type.Switch :
-                GameContent.Variables.ContainsKey(VarName) ? Type.Variable :
-                Type.Undefined;
+            VarType = GetVarType(varName);
             Operator = op;
             RHValue = rhValue;
             Commands = commands;
         }
 
-        public override void Update(TheParty client, float deltaTime)
+        private static Type GetVarType(string varName)
         {
+            return
+                varName.ToLower() == "party" ? Type.Party :
+                varName.ToLower() == "commitment" ? Type.Commitment :
+                GameContent.Switches.ContainsKey(varName) ? Type.Switch :
+                GameContent.Variables.ContainsKey(varName) ? Type.Variable :
+                Type.Undefined;
+        }
+
+        public static bool ConditionTrue(string varName, string op, string rhValue, TheParty client)
+        {
+            Type VarType = GetVarType(varName);
+
             bool True = false;
             if (VarType == Type.Party)
             {
@@ -37,10 +44,10 @@ namespace TheParty_v2
                 bool PartyHealed = Members.TrueForAll(m => m.HP == m.MaxHP);
                 bool AnyoneDead = Members.Exists(m => m.HP == 0);
 
-                switch (RHValue.ToLower())
+                switch (rhValue.ToLower())
                 {
                     case "alive":
-                        switch (Operator)
+                        switch (op)
                         {
                             case "==": True = PartyAlive; break;
                             case "!=": True = !PartyAlive; break;
@@ -48,7 +55,7 @@ namespace TheParty_v2
                         break;
 
                     case "dead":
-                        switch (Operator)
+                        switch (op)
                         {
                             case "==": True = !PartyAlive; break;
                             case "!=": True = PartyAlive; break;
@@ -56,7 +63,7 @@ namespace TheParty_v2
                         break;
 
                     case "healed":
-                        switch (Operator)
+                        switch (op)
                         {
                             case "==": True = PartyHealed; break;
                             case "!=": True = !PartyHealed; break;
@@ -64,7 +71,7 @@ namespace TheParty_v2
                         break;
 
                     case "anyonedead":
-                        switch (Operator)
+                        switch (op)
                         {
                             case "==": True = AnyoneDead; break;
                             case "!=": True = !AnyoneDead; break;
@@ -80,9 +87,9 @@ namespace TheParty_v2
                 Members.ForEach(m => TotalCommitment += m.Stance);
 
                 int LH = TotalCommitment;
-                int RH = int.Parse(RHValue);
+                int RH = int.Parse(rhValue);
 
-                switch (Operator)
+                switch (op)
                 {
                     case "==": True = LH == RH; break;
                     case "!=": True = LH != RH; break;
@@ -94,9 +101,9 @@ namespace TheParty_v2
             }
             else if (VarType == Type.Switch)
             {
-                bool LH = GameContent.Switches[VarName];
-                bool RH = bool.Parse(RHValue);
-                switch (Operator)
+                bool LH = GameContent.Switches[varName];
+                bool RH = bool.Parse(rhValue);
+                switch (op)
                 {
                     case "==": True = LH == RH; break;
                     case "!=": True = LH != RH; break;
@@ -104,9 +111,9 @@ namespace TheParty_v2
             }
             else if (VarType == Type.Variable)
             {
-                int LH = GameContent.Variables[VarName];
-                int RH = int.Parse(RHValue);
-                switch (Operator)
+                int LH = GameContent.Variables[varName];
+                int RH = int.Parse(rhValue);
+                switch (op)
                 {
                     case "==": True = LH == RH; break;
                     case "!=": True = LH != RH; break;
@@ -117,7 +124,12 @@ namespace TheParty_v2
                 }
             }
 
-            if (True)
+            return True;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            if (ConditionTrue(VarName, Operator, RHValue, client))
             {
                 Commands.ForEach(c => c.Done = false);
                 client.CommandQueue.PushCommands(Commands);

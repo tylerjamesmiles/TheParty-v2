@@ -31,15 +31,24 @@ namespace TheParty_v2
                     continue;
 
                 // skip any lines which begin with "/t"
-                if (Line.Substring(0, 3) == "   ")
+                if (Line.Substring(0, 3) == "   " || Line[0] == '\t')
                     continue;
 
                 int PosOfParentheses = Line.IndexOf('(');
                 string CommandName = Line.Remove(PosOfParentheses);
 
+                if (CommandName == "HitCommitment")
+                    ;
+
                 string ArgumentsInP = Line.Remove(0, CommandName.Length);
                 string ArgumentsNoP1 = ArgumentsInP.Remove(0, 1);
-                string ArgumentsNoP2 = ArgumentsNoP1.Remove(ArgumentsNoP1.Length - 1, 1);
+                string ArgumentsNoP2 = "";
+                char LastChar = ArgumentsNoP1[ArgumentsNoP1.Length - 1];
+                if (LastChar == ')')
+                    ArgumentsNoP2 = ArgumentsNoP1.Remove(ArgumentsNoP1.Length - 1, 1);
+                else if (LastChar == '\r')
+                    ArgumentsNoP2 = ArgumentsNoP1.Remove(ArgumentsNoP1.Length - 2, 2);
+
                 string[] Arguments = ArgumentsNoP2.Split(',');
                 for (int i = 0; i < Arguments.Length; i++)
                     Arguments[i] = Arguments[i].Trim();
@@ -246,6 +255,10 @@ namespace TheParty_v2
                         ResultList.Add(new CommandErase(caller.EntityId));
                         break;
 
+                    case "hitcommitment":
+                        ResultList.Add(new CommandHitCommitment(Arguments[0], int.Parse(Arguments[1])));
+                        break;
+
                     case "hitpartyhp":
                         ResultList.Add(new CommandHitPartyHP(int.Parse(Arguments[0])));
                         break;
@@ -315,14 +328,21 @@ namespace TheParty_v2
                         {
                             // if line begins with "   Case", gather commands below it
                             if (Lines[subLine].Length > 0 &&
-                                Lines[subLine].Substring(0, 7) == "   Case")
+                                (Lines[subLine].Substring(0, 7) == "   Case" ||
+                                Lines[subLine].Substring(0, 5) == "\tCase"))
                             {
                                 string SubSubScript = "";
                                 for (int subsub = subLine + 1; subsub < Lines.Length; subsub++)
                                 {
-                                    if (Lines[subsub].Length > 0 && 
-                                        Lines[subsub].Substring(0, 6) == "      ")
-                                        SubSubScript += Lines[subsub].Remove(0, 6) + '\n';
+                                    if (Lines[subsub].Length > 0)
+                                    {
+                                        if (Lines[subsub].Substring(0, 6) == "      ")
+                                            SubSubScript += Lines[subsub].Remove(0, 6) + '\n';
+                                        else if (Lines[subsub].Substring(0, 2) == "\t\t")
+                                            SubSubScript += Lines[subsub].Remove(0, 2) + '\n';
+                                        else
+                                            break;
+                                    }
                                     else
                                         break;
                                 }
@@ -354,7 +374,9 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFadeOutMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBeFaded());
-                        ResultList.Add(new CommandDayPass());
+                        //ResultList.Add(new CommandDayPass());
+                        ResultList.Add(new CommandWait(1f));
+                        ResultList.Add(new CommandNighttimeTalk());
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));
                         ResultList.Add(new CommandFadeInMusic());
                         ResultList.Add(new CommandShowScreen());
@@ -367,6 +389,9 @@ namespace TheParty_v2
                     case "esc":
                         ResultList.Add(new CommandESC());
                         break;
+
+
+
                 }
 
             }

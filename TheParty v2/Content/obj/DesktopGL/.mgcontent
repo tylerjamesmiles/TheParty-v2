@@ -11,7 +11,6 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultManBase4.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultWomanBase1.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultWomanBase2.png</File>
-    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AdultWomanBase3.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AlienFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/AttackIcon.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/BanditFighter.png</File>
@@ -21,9 +20,9 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Box.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Capricorn.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CatFighter.png</File>
-    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterClimbingBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CharacterSmallBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChessPiece.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Chest.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChestOpenBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/ChupasnakeraFighter.png</File>
@@ -33,6 +32,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CoinPreview.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CollectAnimations.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Commitment.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CrystalBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/CrystalFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Cursor.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/DirtDawgFighter.png</File>
@@ -45,11 +45,13 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FaeemaFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FairyForest.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FilledCircle.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Flab.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FontLight.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GameOver.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GrinningNormanFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HeroBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HitAnimations.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HocusBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HocusFighter.png</File>
@@ -69,6 +71,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/PriestBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RandallFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RockBase.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/RussianDoll.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerBase.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SkinnerFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SlimeFighter.png</File>
@@ -78,6 +81,7 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/SoldierFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Stances.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/StatusAnimations.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TentacleMonster.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestBackground.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TestFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TheFlurryBase.png</File>
@@ -107,6 +111,10 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

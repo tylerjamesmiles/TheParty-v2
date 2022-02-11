@@ -30,6 +30,7 @@ namespace TheParty_v2
         public static Dictionary<string, StatusEffect> StatusEffects;
         public static Dictionary<string, bool> Switches;
         public static Dictionary<string, int> Variables;
+        public static List<TalkData> Talks;
         public static List<int> ErasedEntities;
         public static SpriteFont Font;
         public static SpriteFont FontLight;
@@ -251,6 +252,8 @@ namespace TheParty_v2
             StatusEffects = new Dictionary<string, StatusEffect>();
             JsonUtility.GetDeserialized<List<StatusEffect>>("Data/StatusEffects.json").ForEach(s => StatusEffects.Add(s.Name, s));
 
+            Talks = JsonUtility.GetDeserialized<List<TalkData>>("Data/NighttimeTalks.json");
+         
 
             // Switches and Variables
             Switches = new Dictionary<string, bool>();

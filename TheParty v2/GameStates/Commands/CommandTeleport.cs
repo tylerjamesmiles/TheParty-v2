@@ -22,6 +22,7 @@ namespace TheParty_v2
             client.CurrentMap = GameContent.Maps[NewMap];
             client.Player.Transform.Position = NewPlayerPos;
             client.Player.Movement.Stop();
+            client.Player.InitializeFieldMembers();
             client.EventsCanHappenTimer.Reset();
             GameContent.PlaySong(client.CurrentMap.values["Song"]);
             Done = true;

@@ -160,3 +160,10 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\PriestBa
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase1.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase2.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\SoldierBase3.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\FairyForest2.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\Flab.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\TentacleMonster.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Data\NighttimeTalks.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\ChessPiece.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\HeroBase.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\RussianDoll.xnb

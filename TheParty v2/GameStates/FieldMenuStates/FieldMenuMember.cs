@@ -42,11 +42,12 @@ namespace TheParty_v2
         {
             Selected = client.ActiveMembers[MemberChoice.CurrentChoiceIdx];
 
-            string[] Actions = new[] { "Heal%", "Feed\"", "Commit" };
+            string[] Actions = new[] { "#Commit ", "%Heal", "\"Feed"};
             bool[] ChoiceValidity = new bool[3];
-            ChoiceValidity[0] = Selected.HP < Selected.MaxHP && Selected.Hunger > 0;
-            ChoiceValidity[1] = Selected.Hunger < Selected.MaxHunger && GameContent.Variables["FoodSupply"] > 0;
-            ChoiceValidity[2] = Selected.Stance < 9;
+            ChoiceValidity[0] = Selected.Stance < 5 && Selected.Hunger > Selected.Stance;
+            ChoiceValidity[1] = Selected.HP < Selected.MaxHP && Selected.Hunger > 0;
+            ChoiceValidity[2] = Selected.Hunger < Selected.MaxHunger && GameContent.Variables["FoodSupply"] > 0;
+
 
             int CurrentChoice =
                 ActionChoice != null ? ActionChoice.CurrentChoice : 0;
@@ -109,7 +110,15 @@ namespace TheParty_v2
                         {
                             switch (ActionChoice.CurrentChoice)
                             {
-                                case 0:     // heal
+                                case 0:     // commit
+                                    Selected.Stance += 1;
+                                    int NewStance = Selected.Stance;
+                                    Selected.Hunger -= Selected.Stance;
+                                    Stance.SetHP(Selected.Stance);
+                                    Meats.SetHP(Selected.Hunger);
+                                    break;
+
+                                case 1:     // heal
                                     Selected.HP += 1;
                                     Hearts.SetHP(Selected.HP);
 
@@ -118,7 +127,7 @@ namespace TheParty_v2
 
                                     break;
 
-                                case 1:     // feed
+                                case 2:     // feed
                                     Selected.Hunger += 1;
                                     Meats.SetHP(Selected.Hunger);
 
@@ -129,11 +138,6 @@ namespace TheParty_v2
                                         "&" + GameContent.Variables["DaysRemaining"].ToString()
                                         );
 
-                                    break;
-
-                                case 2:     // commit
-                                    Selected.Stance += 1;
-                                    Stance.SetHP(Selected.Stance);
                                     break;
                             }
 

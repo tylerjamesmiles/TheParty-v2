@@ -69,15 +69,17 @@ namespace TheParty_v2
 
         public override void Draw(CommandBattle client, SpriteBatch spriteBatch)
         {
-            client.MoveChoice.Draw(spriteBatch, true);
-            Description.Draw(spriteBatch, true);
-
-            Point DeadHandPos = client.FromSprite.DrawPos.ToPoint() + new Point(-22, -0);
+            Point DeadHandPos = client.FromSprite.DrawPos.ToPoint() + new Point(-24, -8);
             spriteBatch.Draw(
                 GameContent.Sprites["Cursor"],
                 new Rectangle(DeadHandPos, new Point(16, 16)),
                 new Rectangle(new Point(16, 0), new Point(16, 16)),
                 Color.White);
+
+            client.MoveChoice.Draw(spriteBatch, true);
+            Description.Draw(spriteBatch, true);
+
+
         }
     }
 }

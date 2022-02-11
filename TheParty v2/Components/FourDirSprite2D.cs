@@ -46,7 +46,7 @@ namespace TheParty_v2
 
             if (Moving)
             {
-                CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X)) ?
+                CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X) + 0.5f) ?
                     velocity.Y < 0 ? 0 : 1 :
                     velocity.X < 0 ? 2 : 3;
             }

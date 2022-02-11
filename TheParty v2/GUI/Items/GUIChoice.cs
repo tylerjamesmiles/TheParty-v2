@@ -65,7 +65,7 @@ namespace TheParty_v2
 
             Func<Vector2, Vector2, int, float> ScoreVec2 = (vec1, vec2, dir) =>
                 AmtVec2CloseTo(vec1, vec2) +
-                AmtVec2InDirection(vec1, vec2, dir) * 1.1f;
+                AmtVec2InDirection(vec1, vec2, dir) * 2f;
 
             for (int posIdx = 0; posIdx < positions.Length; posIdx++)
             {

@@ -39,7 +39,7 @@ namespace TheParty_v2
             for (int i = 0; i < client.BackupMembers.Count; i++)
             {
                 Member Member = client.BackupMembers[i];
-                string SpriteName = Member.SpriteName;
+                string SpriteName = Member.BattleSpriteName;
                 Point FrameSize = new Point(32, 32);
                 Vector2 DrawPos = new Vector2(i * 32, 96);
                 Vector2 Offset = new Vector2();

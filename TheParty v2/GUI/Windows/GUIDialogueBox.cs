@@ -15,7 +15,7 @@ namespace TheParty_v2
         public static readonly Rectangle SkinnyTop = new Rectangle(new Point(0, 0), new Point(GraphicsGlobals.ScreenSize.X, Height / 2 + 4));
         public static readonly Rectangle ReallySkinnyTop = new Rectangle(new Point(0, 0), new Point(GraphicsGlobals.ScreenSize.X, 17));
         public static readonly Rectangle Middle = new Rectangle(new Point(0, Height), new Point(GraphicsGlobals.ScreenSize.X, Height));
-        public static readonly Rectangle Bottom = new Rectangle(new Point(0, Height * 2), new Point(GraphicsGlobals.ScreenSize.X, Height));
+        public static readonly Rectangle Bottom = new Rectangle(new Point(0, Height * 2), new Point(GraphicsGlobals.ScreenSize.X, Height - 8));
         public enum Position { Top, SkinnyTop, ReallySkinnyTop, Middle, Bottom };
 
         GUIBox Box;

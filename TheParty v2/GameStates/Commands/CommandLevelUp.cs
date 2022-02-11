@@ -38,19 +38,29 @@ namespace TheParty_v2
         {
             int party = 0;
             ActiveMembers = client.Player.ActiveParty.Members;
+            int NumMembers = client.Player.ActiveParty.NumMembers;
 
             for (int member = 0; member < ActiveMembers.Count; member++)
             {
                 Vector2 MemberDrawOffset = new Vector2(-16, -16);
-                int MemberDrawStartX = (party == 0) ? 110 : 48;
-                int MemberXOffset = (party == 0) ? 16 : -16;
-                int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
-                int MemberDrawStartY = 62;
-                int MemberDrawY = MemberDrawStartY + member * 16;
+                int ScreenCenter = GraphicsGlobals.ScreenSize.X / 2;
+                int MemberDrawStartX =
+                    (party == 0) ?
+                        NumMembers > 2 ?
+                            ScreenCenter + 24 :
+                            ScreenCenter + 24 + 45 :
+                        NumMembers > 2 ?
+                            ScreenCenter - 24 :
+                            ScreenCenter - 24 - 45;
+
+                int MemberXOffset = (party == 0) ? 18 : -18;
+                int MemberDrawX = MemberDrawStartX + member * MemberXOffset - (member > 2 ? MemberXOffset / 2 : 0);
+                int MemberDrawStartY = 54;
+                int MemberDrawY = MemberDrawStartY + (member % 3) * 18;
                 Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
 
                 Member mem = ActiveMembers[member];
-                AnimatedSprite2D Sprite = new AnimatedSprite2D(mem.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                AnimatedSprite2D Sprite = new AnimatedSprite2D(mem.BattleSpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                 Sprite.AddAnimation("PositiveHit", 3, 1, 0.15f);
                 Sprite.AddAnimation("Dead", 5, 1, 0.15f);

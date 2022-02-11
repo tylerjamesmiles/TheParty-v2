@@ -52,7 +52,7 @@ namespace TheParty_v2
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
                         client.CommandQueue.EnqueueCommand(new CommandBeFaded());
                         client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
-                        client.CommandQueue.EnqueueCommand(new CommandWait(2f));
+                        //client.CommandQueue.EnqueueCommand(new CommandWait(2f));
                         client.CommandQueue.EnqueueCommand(new CommandTeleport("FairyForest1", 24, 42));
                         client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
                         client.CommandQueue.EnqueueCommand(new CommandShowScreen());

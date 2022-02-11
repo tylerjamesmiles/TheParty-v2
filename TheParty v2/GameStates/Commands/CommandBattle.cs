@@ -165,18 +165,30 @@ namespace TheParty_v2
 
             for (int party = 0; party < CurrentStore.NumParties; party++)
             {
+                Party Party = CurrentStore.Parties[party];
+                int NumMembers = Party.NumMembers;
+
                 for (int member = 0; member < CurrentStore.Parties[party].NumMembers; member++)
                 {
                     Vector2 MemberDrawOffset = new Vector2(-16, -16);
-                    int MemberDrawStartX = (party == 0) ? 110 : 58;
-                    int MemberXOffset = (party == 0) ? 16 : -16;
-                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset;
-                    int MemberDrawStartY = 62;
-                    int MemberDrawY = MemberDrawStartY + member * 16;
+                    int ScreenCenter = GraphicsGlobals.ScreenSize.X / 2;
+                    int MemberDrawStartX =
+                        (party == 0) ?
+                            NumMembers > 2 ?
+                                ScreenCenter + 24 :
+                                ScreenCenter + 24 + 45 :
+                            NumMembers > 2 ?
+                                ScreenCenter - 24 :
+                                ScreenCenter - 24 - 45;
+
+                    int MemberXOffset = (party == 0) ? 18 : -18;
+                    int MemberDrawX = MemberDrawStartX + member * MemberXOffset - (member > 2 ? MemberXOffset / 2 : 0);
+                    int MemberDrawStartY = 54;
+                    int MemberDrawY = MemberDrawStartY + (member % 3) * 18;
                     Vector2 MemberDrawPos = new Vector2(MemberDrawX, MemberDrawY);
 
                     Member ThisMember = CurrentStore.Parties[party].Members[member];
-                    AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
+                    AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.BattleSpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
                     Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                     Sprite.AddAnimation("Move", 1, 4, 0.15f);
                     Sprite.AddAnimation("KOd", 2, 2, 0.15f);
@@ -293,7 +305,7 @@ namespace TheParty_v2
 
             HPIndicators.ForEach(h => h.Draw(spriteBatch));
             StatusIndicators.ForEach(si => si.Draw(spriteBatch));
-            StanceIndicators.ForEach(si => si.Draw(spriteBatch));
+
 
             if (Entered)
             {
@@ -364,6 +376,12 @@ namespace TheParty_v2
                 }
 
                 Sorted.ForEach(s => s.Draw(spriteBatch));
+
+                for (int mem = 0; mem < AllMembers.Count; mem++)
+                {
+                    if (AllMembers[mem].HP > 0)
+                        StanceIndicators[mem].Draw(spriteBatch);
+                }
 
             }
 

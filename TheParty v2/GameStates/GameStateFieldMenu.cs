@@ -60,7 +60,7 @@ namespace TheParty_v2
 
                 Vector2 MemberDrawPos = BoxTL.ToVector2() + new Vector2(0, 2);
                 Vector2 MemberDrawOffset = new Vector2();
-                string SpriteName = Member.SpriteName;
+                string SpriteName = Member.BattleSpriteName;
                 AnimatedSprite2D Sprite = new AnimatedSprite2D(SpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset);
                 Sprite.AddAnimation("Idle", 0, 4, 0.15f);
                 Sprite.AddAnimation("Selected", 0, 1, 0.15f);

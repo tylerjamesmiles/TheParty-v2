@@ -18,7 +18,7 @@ namespace TheParty_v2
                 return;
 
             List<Vector2> MemberPositions = 
-                client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos + new Vector2(-3, 0));
+                client.PartySprites(CurrentTurn).ConvertAll(s => s.DrawPos + new Vector2(-6, -8));
             List<Vector2> LegalMemberPositions = new List<Vector2>();
             List<Member> MembersInThisParty = client.CurrentStore.MembersOfParty(CurrentTurn);
             MemberIdxs = new List<int>();

@@ -18,13 +18,14 @@ namespace TheParty_v2
         public List<string> MovesToLearn { get; private set; }
         public string EquippedName { get; set; }
         public List<StatusEffect> StatusEffects { get; set; }
-        public string SpriteName { get; private set; }
+        public string BattleSpriteName { get; private set; }
+        public string FieldSpriteName { get; private set; }
         public bool GoneThisTurn { get; set; }
 
         private static readonly int StanceLimit = 10;
 
         public Member() { }
-        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, List<StatusEffect> effects, string spriteName)
+        public Member(string name, int hp, int maxHP, int stance, int hunger, int maxHunger, List<string> moves, List<string> movesToLearn, string equipped, List<StatusEffect> effects, string battleSpriteName, string fieldSpriteName)
         {
             Name = name;
             HP = hp;
@@ -36,14 +37,16 @@ namespace TheParty_v2
             MovesToLearn = movesToLearn;
             EquippedName = equipped;
             StatusEffects = new List<StatusEffect>(effects);
-            SpriteName = spriteName;
+            BattleSpriteName = battleSpriteName;
+            FieldSpriteName = fieldSpriteName;
         }
 
         [JsonConstructor]
-        public Member(string name, string spriteName, int hp, int maxHP, int hunger, int maxHunger, string equipped, List<string> moves, List<string> movesToLearn)
+        public Member(string name, string battleSpriteName, string fieldSpriteName, int hp, int maxHP, int hunger, int maxHunger, string equipped, List<string> moves, List<string> movesToLearn)
         {
             Name = name;
-            SpriteName = spriteName;
+            BattleSpriteName = battleSpriteName;
+            FieldSpriteName = fieldSpriteName;
             HP = hp;
             MaxHP = maxHP;
             Hunger = hunger;
@@ -60,7 +63,8 @@ namespace TheParty_v2
             return new Member()
             {
                 Name = Name,
-                SpriteName = SpriteName,
+                BattleSpriteName = BattleSpriteName,
+                FieldSpriteName = FieldSpriteName,
                 HP = HP,
                 MaxHP = MaxHP,
                 Hunger = Hunger,
@@ -109,7 +113,8 @@ namespace TheParty_v2
 
             StatusEffects = new List<StatusEffect>();
 
-            SpriteName = Mem.GetProperty("SpriteName").GetString();
+            BattleSpriteName = Mem.GetProperty("BattleSpriteName").GetString();
+            FieldSpriteName = Mem.GetProperty("FieldSpriteName").GetString();
         }
 
         // ~ ~ ~ ~ GETTERS ~ ~ ~ ~

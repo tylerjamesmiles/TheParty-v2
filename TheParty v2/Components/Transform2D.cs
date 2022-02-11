@@ -10,7 +10,6 @@ namespace TheParty_v2
         public Vector2 Position { get; set; }
         public float BoundingRadius { get; set; }
 
-        
         public Transform2D(Vector2 pos, float br)
         {
             Position = pos;

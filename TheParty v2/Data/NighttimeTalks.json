@@ -1,0 +1,26 @@
+﻿[
+	{
+		"Member" : "Hocus",
+		"Priority" : 10,
+		"Conditions" : 
+		[
+			"TestSwitch1 == false"
+		],
+		"OnlyHappensOnce" : true,
+		"Script" : 
+
+"Dialogue(Hello friend! How are you? Today I'd like you to make a choice.)
+Dialogue(Would you like to give me a big ol smooch?)
+Choice(Yes I'd like to give you a smooch., No smooches please.)
+	Case Yes
+		Dialogue(Sounds great!)
+		Dialgoue(*kiss*)
+		Dialogue(Your commitment went up by 1.)
+		HitCommitment(Hero, +1)
+	Case No
+		Dialogue(That's okay. It's important to conserve your energy.)
+		Dialogue(Your energy went up by 1.)
+Dialogue(Well have a great day!)"
+
+	}
+]

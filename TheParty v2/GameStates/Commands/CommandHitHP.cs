@@ -4,6 +4,25 @@ using System.Text;
 
 namespace TheParty_v2
 {
+    class CommandHitCommitment : Command<TheParty>
+    {
+        string MemberName;
+        int Amt;
+
+        public CommandHitCommitment(string member, int amt)
+        {
+            MemberName = member;
+            Amt = amt;
+        }
+
+        public override void Update(TheParty client, float deltaTime)
+        {
+            Member M = client.Player.ActiveParty.Members.Find(m => m.Name == MemberName);
+            M.HitStance(Amt);
+            Done = true;
+        }
+    }
+
     class CommandHitPartyHP : Command<TheParty>
     {
         int Amt;

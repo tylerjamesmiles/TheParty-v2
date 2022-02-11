@@ -154,6 +154,24 @@
         "Description" : "",
         "Effects" : ["StealFood()"],
         "Conditions" : ["Is(Target, InDifferentParty)", "Food(Target, Above0)"]
+    },
+    {
+        "Name" : "Arm",
+        "Description" : "+1(, -1)",
+        "Effects" : ["AddStatus(Target, AttackUp)", "AddStatus(Target, DefenseDown)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Protect",
+        "Description" : "+1), -1(",
+        "Effects" : ["AddStatus(Target, DefenseUp)", "AddStatus(Target, AttackDown)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Fireball",
+        "Description" : "Hit 3%s",
+        "Effects" : ["HitHP(Target, -3)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
     }
 ]
             
