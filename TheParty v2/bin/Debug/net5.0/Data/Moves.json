@@ -13,14 +13,14 @@
     },
     {
         "Name" : "Commit", 
-        "Description" : "Raise Commitment\n+2%s, +1(, +1), Go Again",
-        "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +2)", "AddStatus(Target, JustCommitted)"],  
+        "Description" : "Raise Commitment.\nHeal all %s, Go Again",
+        "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +100)", "AddStatus(Target, JustCommitted)"],  
         "Conditions" : ["Is(Target, Self)", "Status(Target, Doesn'tHave, JustCommitted)"]
     },
     {
         "Name" : "Commit More", 
         "Description" : "Raise commitment by 2\nHeal all %s, Go Again",
-        "Effects" : ["HitStance(Target, +2)","HitHP(Target, +100)"],  
+        "Effects" : ["HitStance(Target, +2)","HitHP(Target, +100)", "AddStatus(Target, JustCommitted)"],  
         "Conditions" : ["Is(Target, Self)"]
     },
     {
@@ -37,8 +37,8 @@
     },
     {
         "Name" : "Radicalize",
-        "Description" : "Raise someone's commitment +5",
-        "Effects" : ["HitStance(Target, +5)"],
+        "Description" : "Raise target's commitment +2",
+        "Effects" : ["HitStance(Target, +2)"],
         "Conditions" : [""]
     },
     {
@@ -108,6 +108,12 @@
         "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >=, 2)"]
     },
     {
+        "Name" : "Care",
+        "Description" : "Give 2 %s.",
+        "Effects" : ["GiveHP(Target, 1)"],
+        "Conditions" : ["HP(Target, >, 2)"]
+    },
+    {
         "Name" : "Donate", 
         "Description" : "Give enough HP to heal.",
         "Effects" : ["GiveEnoughHP()"],  
@@ -144,6 +150,24 @@
         "Conditions" : ["Is(Target, InDifferentParty)"]
     },
     {
+        "Name" : "Suck More",
+        "Description" : "Steal 2 %s",
+        "Effects" : ["StealHP(Target, 2)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Suck Most",
+        "Description" : "Steal 3 %s",
+        "Effects" : ["StealHP(Target, 3)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Steal",
+        "Description" : "Steal from the enemy.",
+        "Effects" : ["Steal()"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
         "Name" : "Steal Coin",
         "Description" : "",
         "Effects" : ["StealCoin()"],
@@ -171,6 +195,30 @@
         "Name" : "Fireball",
         "Description" : "Hit 3%s",
         "Effects" : ["HitHP(Target, -3)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Distance",
+        "Description" : "Give 1 pt of Commitment for full %",
+        "Effects" : ["HitHP(Taret, +100)", "HitStance(Target, -1)"],
+        "Conditions" : ["Is(Target, Self)"]
+    },
+    {
+        "Name" : "Terrify",
+        "Description" : "Lower someone's commitment to 0",
+        "Effects" : ["HitStance(Target, -100)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Darkness",
+        "Description" : "20% chance of killing an enemy.",
+        "Effects" : ["Kill(Target, 20)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Void",
+        "Description" : "Lose 2%s. 50% chance of killing target.",
+        "Effects" : ["HitHP(Caster, -2)", "Kill(Target, 50)"],
         "Conditions" : ["Is(Target, InDifferentParty)"]
     }
 ]

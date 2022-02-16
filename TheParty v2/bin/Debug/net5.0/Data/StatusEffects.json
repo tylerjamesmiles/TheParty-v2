@@ -20,7 +20,7 @@
 {
     "Name" : "JustCommitted",
     "EveryTurnEffects" : [],
-    "PassiveEffects" : ["Attack + 1", "Defense + 1"],
+    "PassiveEffects" : [],
     "NumTurnsRemaining" : 2
 },
 {

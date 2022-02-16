@@ -49,7 +49,7 @@ namespace TheParty_v2
             IsMouseVisible = true;
             GraphicsManager.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             GraphicsManager.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            GraphicsManager.IsFullScreen = true;
+            GraphicsManager.IsFullScreen = false;
             GraphicsManager.ApplyChanges();
 
             base.Initialize();

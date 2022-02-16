@@ -220,6 +220,25 @@ namespace TheParty_v2
                     GameContent.Variables["FoodSupply"] -= 1;
                     break;
 
+                case "Steal":
+                    int Type = new Random().Next(3);
+                    switch (Type)
+                    {
+                        case 0:
+                            GameContent.Variables["Money"] += 1;
+                            break;
+
+                        case 1:
+                            GameContent.Variables["FoodSupply"] += 1;
+                            break;
+
+                        case 2:
+                            // Failure
+                            break;
+                    }
+
+                    break;
+                    
                 default:
                     throw new Exception("Effect Keyword " + Effect + " not recognized.");
             }

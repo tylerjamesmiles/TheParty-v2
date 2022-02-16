@@ -178,8 +178,8 @@ namespace TheParty_v2
                                 ScreenCenter + 24 :
                                 ScreenCenter + 24 + 45 :
                             NumMembers > 2 ?
-                                ScreenCenter - 24 :
-                                ScreenCenter - 24 - 45;
+                                ScreenCenter - 32 :
+                                ScreenCenter - 32 - 45;
 
                     int MemberXOffset = (party == 0) ? 18 : -18;
                     int MemberDrawX = MemberDrawStartX + member * MemberXOffset - (member > 2 ? MemberXOffset / 2 : 0);
@@ -189,7 +189,7 @@ namespace TheParty_v2
 
                     Member ThisMember = CurrentStore.Parties[party].Members[member];
                     AnimatedSprite2D Sprite = new AnimatedSprite2D(ThisMember.BattleSpriteName, new Point(32, 32), MemberDrawPos, MemberDrawOffset, party > 0);
-                    Sprite.AddAnimation("Idle", 0, 4, 0.15f);
+                    Sprite.AddAnimation("Idle", 0, 4, 0.3f);
                     Sprite.AddAnimation("Move", 1, 4, 0.15f);
                     Sprite.AddAnimation("KOd", 2, 2, 0.15f);
                     Sprite.AddAnimation("PositiveHit", 3, 2, 0.15f);
