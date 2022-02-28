@@ -167,3 +167,16 @@ C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Data\NighttimeTalks.
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\ChessPiece.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\HeroBase.xnb
 C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\RussianDoll.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\GaslightingTiles.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave1.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave2.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\GaslightingOil.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\GaslightSpider.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Content\Art\GaslightCellmate.xnb
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave3.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave4.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave5.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave6.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave7.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\GaslightCave8.json
+C:\Users\tyler\Dev\TheParty v2\TheParty v2\bin\Debug\net5.0\Maps\FairyForest3.json

@@ -80,15 +80,17 @@ namespace TheParty_v2
                     else return e1.Transform.Position.Y.CompareTo(e2.Transform.Position.Y);
                 });
 
-                bool PlayerDrawn = false;
+                bool PlayerDrawn = player == null;
 
-                player.Draw(cameraPos, spriteBatch);
+                if (player != null)
+                    player.Draw(cameraPos, spriteBatch);
 
                 for (int i = 0; i < entities.Count; i++)
                 {
                     entities[i].Draw(cameraPos, spriteBatch);
 
-                    if (player.Transform.Position.Y >= entities[i].Transform.Position.Y)
+                    if (player != null &&
+                        player.Transform.Position.Y >= entities[i].Transform.Position.Y)
                     {
                         player.Draw(cameraPos, spriteBatch);
                         PlayerDrawn = true;

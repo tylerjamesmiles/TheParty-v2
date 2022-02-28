@@ -31,8 +31,7 @@ namespace TheParty_v2
 
         public void Update(Vector2 velocity, float deltaTime)
         {
-            bool Moving = velocity.LengthSquared() > 0.05f;
-
+            bool Moving = velocity.LengthSquared() > 0.0001f;
 
             if (Moving || AnimateWhenStatic)
             {
@@ -57,7 +56,7 @@ namespace TheParty_v2
             if (SpriteName == "")
                 return;
 
-            Point DrawPos = (mapPos - cameraPos).ToPoint() + DrawOffset;
+            Point DrawPos = (mapPos - cameraPos).ToPoint() ;
             Point DrawSize = SpriteSize;
             Rectangle DrawRect = new Rectangle(DrawPos, DrawSize);
 

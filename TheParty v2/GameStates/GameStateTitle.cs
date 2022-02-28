@@ -20,8 +20,7 @@ namespace TheParty_v2
             GameContent.PlaySong("TitleScreen");
             GameContent.FadeInMusic();
 
-            GameContent.LoadData(); // sets everything to blank slate values
-                                    // on Load, more specific data will be drawn
+
 
             bool[] ChoiceValidity = new bool[3];
             ChoiceValidity[0] = true;

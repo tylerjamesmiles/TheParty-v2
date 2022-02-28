@@ -83,6 +83,16 @@
           "originX": 0,
           "originY": 0,
           "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FairyForest2, 47, 28)\nMove(Player, Left 2)"}
+        },
+        {
+          "name": "Entity",
+          "id": 4,
+          "_eid": "23557279",
+          "x": 208,
+          "y": 0,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Teleport(FairyForest3, 29, 19)"}
         }
       ]
     },

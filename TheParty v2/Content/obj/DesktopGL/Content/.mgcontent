@@ -49,6 +49,10 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Font.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FontLight.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GameOver.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightCellmate.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightingOil.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightingTiles.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightSpider.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GrinningNormanFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/HeroBase.png</File>
@@ -111,6 +115,10 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -69,11 +69,14 @@ namespace TheParty_v2
             Target.Enable();
 
             GameContent.LoadContent(Content);
+            GameContent.LoadData(); // sets everything to blank slate values
+                                    // on Load, more specific data will be drawn
 
             StateMachine = new StateMachine<TheParty>();
             StateMachine.SetNewCurrentState(this, new GameStateTitle());
 
             CommandQueue = new CommandQueue<TheParty>();
+            //CommandQueue.EnqueueCommand(new CommandGaslight());
         }
 
         protected override void Update(GameTime gameTime)
