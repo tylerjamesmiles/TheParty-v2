@@ -9,7 +9,7 @@ namespace TheParty_v2
     class CommandBattle : Command<TheParty>
     {
         public Battle CurrentStore;
-        string BackgroundName;
+        public string BackgroundName;
         public List<AnimatedSprite2D> Sprites;
         public List<HeartsIndicator> HPIndicators;
         public List<StanceIndicator> StanceIndicators;
@@ -163,6 +163,10 @@ namespace TheParty_v2
 
             CurrentStore.Parties[0] = client.Player.ActiveParty;
 
+            // completely heal enemy
+            foreach (Member member in CurrentStore.Parties[1].Members)
+                member.HP = member.MaxHP;
+
             for (int party = 0; party < CurrentStore.NumParties; party++)
             {
                 Party Party = CurrentStore.Parties[party];
@@ -215,6 +219,8 @@ namespace TheParty_v2
                 StateMachine.SetNewCurrentState(this, new PreBattleMessage("Suprise attack!"));
             else
                 StateMachine.SetNewCurrentState(this, new ChooseMember());
+
+            BackgroundName = client.CurrentMap.values["BattleBackground"];
 
             Entered = true;
         }
@@ -288,22 +294,13 @@ namespace TheParty_v2
         {
             // Background
             Rectangle BackgroundRect = new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize);
-            spriteBatch.Draw(GameContent.Sprites["Black"], BackgroundRect, Color.White);
-            Rectangle BackRect1 = new Rectangle(
-                BackgroundLerp1.CurrentPosition.ToPoint() - GraphicsGlobals.ScreenSize, 
-                new Point(320, 288));
-            Rectangle BackRect2 = new Rectangle(
-                BackgroundLerp2.CurrentPosition.ToPoint() - GraphicsGlobals.ScreenSize,
-                new Point(320, 288));
-
-            spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect1, Color.White);
-            spriteBatch.Draw(GameContent.Sprites["BattleBackground"], BackRect2, Color.White);
+            spriteBatch.Draw(GameContent.Sprites[BackgroundName], BackgroundRect, Color.White);
 
             // Sort sprites by y position
             List<AnimatedSprite2D> Sorted = new List<AnimatedSprite2D>(Sprites);
             Sorted.Sort((s1, s2) => s1.DrawPos.Y > s2.DrawPos.Y ? 1 : -1);
 
-            HPIndicators.ForEach(h => h.Draw(spriteBatch));
+            HPIndicators.ForEach(h => h.Draw(spriteBatch, Vector2.Zero));
             StatusIndicators.ForEach(si => si.Draw(spriteBatch));
 
 

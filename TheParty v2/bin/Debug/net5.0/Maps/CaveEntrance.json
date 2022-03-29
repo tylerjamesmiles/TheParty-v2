@@ -4,7 +4,7 @@
   "height": 288,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"Song": "WorldMap"},
+  "values": {"Song": "WorldMap", "EasyBattles": false, "HardBattles": false, "NumBattles": 0, "BattleBackground": "WorldMapBattleBackground"},
   "layers": [
     {
       "name": "TileLayer1",
@@ -52,7 +52,7 @@
           "y": 272,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 68, 49)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 65, 12)"}
         },
         {
           "name": "Entity",
@@ -66,33 +66,63 @@
         },
         {
           "name": "Entity",
-          "id": 10,
+          "id": 13,
           "_eid": "23557279",
           "x": 160,
-          "y": 112,
+          "y": 96,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "DirtDawg", "SpriteName": "DirtDawgBase", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": ""}
+          "values": {"Name": "Guard", "SpriteName": "AdultManBase4", "ExistsIf": "", "Solid": true, "PassiveBehavior": "FaceDown", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": "If(DirtDawgJoined == false)\n   Dialogue(Guard: No Capricornians allowed!)\nIf(DirtDawgJoined == true)\n   Dialogue(Guard: No Capricornians allowed!)\n   Dialogue(Guard: No Capricornian soldiers will hurt our families again!)\n   Dialogue(DirtDawg: We are spies who were sent to retrieve information about Capricorn.)\n   Dialogue(DirtDawg: This is why I wear the garment of their soldiers.)\n   Dialogue(Guard: I'm glad to hear this. My heart was racing.)\n   Dialogue(Guard: You may enter.)\n   Dialogue(Guard: I'm going to get a drink of water before resuming my post.)\n   Move(Guard, Up 1)\n   Erase(Guard)"}
         },
         {
           "name": "Entity",
-          "id": 11,
-          "_eid": "23557279",
-          "x": 160,
-          "y": 128,
-          "originX": 0,
-          "originY": 0,
-          "values": {"Name": "DirtDawgJoiner", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Freeze(Player)\nFace(DirtDawg, Down)\nDialogue(DirtDawg: Are you here to rescue the King as well?)\nDialogue(DirtDawg: The monsters inside are so tough. I nearly lost hope.)\nDialogue(DirtDawg: Let us fight together to rescue his majesty!)\nMove(DirtDawg, Down 2)\nErase(DirtDawg)\nAddPartyMember(DirtDawg)\nUnfreeze(Player)\nErase(DirtDawgJoiner)"}
-        },
-        {
-          "name": "Entity",
-          "id": 12,
+          "id": 14,
           "_eid": "23557279",
           "x": 224,
           "y": 272,
           "originX": 0,
           "originY": 0,
-          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 68, 49)"}
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Choice(Show Food Money Days, Continue Exploring, End The Day)\n   Case Continue Exploring\n      Move(Player, Up 1)\n   Case End The Day\n      DayPass(WorldMap, 65, 12)"}
+        },
+        {
+          "name": "Entity",
+          "id": 15,
+          "_eid": "23557279",
+          "x": 160,
+          "y": 176,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "King", "SpriteName": "", "ExistsIf": "AttackOn == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": true, "TriggerOnTouch": false, "Script": ""}
+        },
+        {
+          "name": "Entity",
+          "id": 16,
+          "_eid": "23557279",
+          "x": 144,
+          "y": 176,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "Soldier1", "SpriteName": "SoldierBase", "ExistsIf": "AttackOn == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": ""}
+        },
+        {
+          "name": "Entity",
+          "id": 17,
+          "_eid": "23557279",
+          "x": 176,
+          "y": 176,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "Soldier2", "SpriteName": "SoldierBase", "ExistsIf": "AttackOn == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": false, "Script": ""}
+        },
+        {
+          "name": "Entity",
+          "id": 21,
+          "_eid": "23557279",
+          "x": 160,
+          "y": 144,
+          "originX": 0,
+          "originY": 0,
+          "values": {"Name": "", "SpriteName": "", "ExistsIf": "AttackOn == true", "Solid": false, "PassiveBehavior": "FaceUp", "Path": "", "RepeatPath": false, "AnimateWhenStatic": false, "TriggerOnTouch": true, "Script": "Dialogue(King: DirtDawg...how could you attack your own men?\nDialogue(DirtDawg: How could you attack these people?)\nDialogue(King: Who are you to question my authority!?)\nDialogue(DirtDawg: These people did nothing wrong!)\nDialogue(King: A soldier does what they're told!)\nDialogue(DirtDawg: Then I don't want to be a soldier.)\nDialogue(King: Then you'll join the rest of these wicked people. Soldiers! Attack!)\nBattle(KingBoss)\nErase(Soldier1)\nErase(Soldier2)\nErase(King)\nSet(KingKilled, true)\nDialogue(DirtDawg: Thank you for standing by me Hero.)\nDialogue(DirtDawg: You say you want to save the world.)\nDialogue(DirtDawg: If it's alright I'd like to join you on your adventure.)\nDialogue(DirtDawg: I might be quiet..)\nDialogue(DirtDawg: But you won't find a more loyal soldier!)\nDialogue([DirtDawg joined the party!])\nErase(Me)"}
         }
       ]
     },

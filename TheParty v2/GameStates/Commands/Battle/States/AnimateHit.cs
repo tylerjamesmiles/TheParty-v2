@@ -248,7 +248,7 @@ namespace TheParty_v2
                 AnimationState == State.ResultCollide)
             {
                 ResultStance.Draw(spriteBatch);
-                TargetHearts.Draw(spriteBatch);
+                TargetHearts.Draw(spriteBatch, Vector2.Zero);
             }
 
         }

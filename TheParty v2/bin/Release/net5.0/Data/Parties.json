@@ -4,7 +4,12 @@
 			"Name" : "PlayerParty",
 			"Members" :
 			[
-				"Hocus"
+				"Hero",
+				"Hocus",
+				"Faeema",
+				"DirtDawg",
+				"Skinner",
+				"Flurry"
 			]
 		},
 		{
@@ -18,7 +23,12 @@
 			"Name" : "TutorialParty",
 			"Members" :
 			[
-				"Chupasnakera"
+				"Chupasnakera",
+				"Chupasnakera",
+				"Chupasnakera",
+				"Alien",
+				"Alien"
+
 			]
 		},
 		{

@@ -19,12 +19,17 @@ namespace TheParty_v2
 
         public override void Update(TheParty client, float deltaTime)
         {
-            client.CurrentMap = GameContent.Maps[NewMap];
+            OgmoTileMap Map = GameContent.Maps[NewMap];
+            Map.SpawnRandomEncounters();
+            client.CurrentMap = Map;
             client.Player.Transform.Position = NewPlayerPos;
             client.Player.Movement.Stop();
             client.Player.InitializeFieldMembers();
             client.EventsCanHappenTimer.Reset();
             GameContent.PlaySong(client.CurrentMap.values["Song"]);
+
+            
+
             Done = true;
         }
 

@@ -4,7 +4,7 @@
   "height": 704,
   "offsetX": 0,
   "offsetY": 0,
-  "values": {"Song": ""},
+  "values": {"Song": "", "EasyBattles": false, "HardBattles": false, "NumBattles": 0, "BattleBackground": "WorldMapBattleBackground"},
   "layers": [
     {
       "name": "TileLayer1",

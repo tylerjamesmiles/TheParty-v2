@@ -27,7 +27,7 @@
         "Name" : "Defend",
         "Description" : "Raise ) for 2 turns.\n[Req. 2 Commit.]",
         "Effects" : ["AddStatus(Target, Defending)"],
-        "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
+        "Conditions" : ["Is(Target, InSameParty)", "Commitment(Target, >=, 2)"]
     },
     {
         "Name" : "Preach",

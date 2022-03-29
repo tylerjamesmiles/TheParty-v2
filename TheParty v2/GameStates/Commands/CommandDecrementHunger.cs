@@ -305,9 +305,9 @@ namespace TheParty_v2
 
                 if (ActiveMembers[i].HP > 0)
                 {
-                    if (DrawHearts) Hearts[i].Draw(spriteBatch);
+                    if (DrawHearts) Hearts[i].Draw(spriteBatch, Vector2.Zero);
                     if (DrawStance) Stances[i].Draw(spriteBatch);
-                    Meats[i].Draw(spriteBatch);
+                    Meats[i].Draw(spriteBatch, Vector2.Zero);
                 }
 
 

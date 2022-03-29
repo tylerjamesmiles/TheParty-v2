@@ -24,6 +24,8 @@ namespace TheParty_v2
         public static Dictionary<string, AnimatedSprite2D> AnimationSheets;
         public static Dictionary<string, Member> Members;
         public static Dictionary<string, Party> Parties;
+        public static List<Tuple<int, Party>> EasyParties;
+        public static List<Tuple<int, Party>> HardParties;
         public static Dictionary<string, Battle> Battles;
         public static Dictionary<string, Move> Moves;
         public static Dictionary<string, Equipment> Equipment;
@@ -109,7 +111,7 @@ namespace TheParty_v2
             if (!Songs.ContainsKey(name))
                 throw new Exception("No song named " + name);
 
-            //MediaPlayer.Play(Songs[name]);
+            MediaPlayer.Play(Songs[name]);
             SongCurrentlyPlaying = name;
         }
 
@@ -232,6 +234,27 @@ namespace TheParty_v2
                 Parties.Add(Name, new Party(PartiesArray[i]));
             }
 
+            // Sort random encounters
+            EasyParties = new List<Tuple<int, Party>>();
+            HardParties = new List<Tuple<int, Party>>();
+            foreach (var party in Parties)
+            {
+                string[] Keywords = party.Key.Split(' ');
+
+                if (Keywords[0] != "Day")
+                    continue;
+                
+                int DayNo = int.Parse(Keywords[1]);
+                string Type = Keywords[2];
+
+                if (Type == "Easy")
+                    EasyParties.Add(new Tuple<int, Party>(DayNo, party.Value));
+                else if (Type == "Hard")
+                    HardParties.Add(new Tuple<int, Party>(DayNo, party.Value));
+                else
+                    throw new Exception("Invalid party difficulty keyword.");
+            }
+
             Battles = new Dictionary<string, Battle>();
             string BattlesString = File.ReadAllText("Data/Battles.json");
             JsonDocument BattlesDoc = JsonDocument.Parse(BattlesString);
@@ -241,6 +264,66 @@ namespace TheParty_v2
             {
                 string Name = BattlesArray[i].GetProperty("Name").GetString();
                 Battles.Add(Name, new Battle(BattlesArray[i]));
+            }
+
+            // Add Random encounters to list of battles
+            int EasyRewardMax = 10;
+            int HardRewardMax = 20;
+
+            int EasyNum = 0;
+            foreach (var party in EasyParties)
+            {
+                List<Party> BattleParties = new List<Party>();
+                BattleParties.Add(Parties["PlayerParty"]);
+                BattleParties.Add(party.Item2);
+
+                int Day = party.Item1;
+                List<string> Rewards = new List<string>();
+                if (new Random().Next(2) == 0)
+                {
+                    int AmtMoney = Day + new Random().Next(EasyRewardMax);
+                    Rewards.Add(AmtMoney.ToString() + " $");
+                }
+                if (new Random().Next(2) == 0)
+                {
+                    int AmtFood = Day + new Random().Next(EasyRewardMax);
+                    Rewards.Add(AmtFood.ToString() + " Food");
+                }
+
+                Battle Battle = new Battle(BattleParties, 0);
+                Battle.Rewards = Rewards.ToArray();
+                string Name = "Day " + Day.ToString() + " Easy " + EasyNum.ToString();
+                Battles.Add(Name, Battle);
+
+                EasyNum++;
+            }
+
+            int HardNum = 0;
+            foreach (var party in HardParties)
+            {
+                List<Party> BattleParties = new List<Party>();
+                BattleParties.Add(Parties["PlayerParty"]);
+                BattleParties.Add(party.Item2);
+
+                int Day = party.Item1;
+                List<string> Rewards = new List<string>();
+                if (new Random().Next(2) == 0)
+                {
+                    int AmtMoney = Day + new Random().Next(HardRewardMax);
+                    Rewards.Add(AmtMoney.ToString() + " $");
+                }
+                if (new Random().Next(2) == 0)
+                {
+                    int AmtFood = Day + new Random().Next(HardRewardMax);
+                    Rewards.Add(AmtFood.ToString() + " Food");
+                }
+
+                Battle Battle = new Battle(BattleParties, 0);
+                Battle.Rewards = Rewards.ToArray();
+                string Name = "Day " + Day.ToString() + " Hard " + HardNum.ToString();
+                Battles.Add(Name, Battle);
+
+                HardNum++;
             }
 
             Moves = new Dictionary<string, Move>();

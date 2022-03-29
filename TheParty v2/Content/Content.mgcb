@@ -1105,6 +1105,66 @@
 /processorParam:TextureFormat=Color
 /build:Art/GaslightCellmate.png
 
+#begin Art/GaslightCellmate.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightCellmate.png
+
+#begin Art/GaslightFire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightFire.png
+
+#begin Art/GaslightFire.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightFire.png
+
+#begin Art/GaslightHeart.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightHeart.png
+
+#begin Art/GaslightHeart.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightHeart.png
+
 #begin Art/GaslightingOil.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1152,6 +1212,54 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/GaslightingTiles.png
+
+#begin Art/GaslightOil.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightOil.png
+
+#begin Art/GaslightOil.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightOil.png
+
+#begin Art/GaslightRefill.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightRefill.png
+
+#begin Art/GaslightRefill.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/GaslightRefill.png
 
 #begin Art/GaslightSpider.png
 /importer:TextureImporter
@@ -2113,6 +2221,18 @@
 /processorParam:TextureFormat=Color
 /build:Art/Title.png
 
+#begin Art/Title-export.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/Title-export.png
+
 #begin Art/WASD.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -2160,6 +2280,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Art/WorldMap.png
+
+#begin Art/WorldMapBattleBackground.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Art/WorldMapBattleBackground.png
 
 #begin Music/BoilingWastes.mp3
 /importer:Mp3Importer
@@ -2172,6 +2304,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/Capricorn.mp3
+
+#begin Music/DungeonTango.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/DungeonTango.ogg
 
 #begin Music/FarawayHeights.mp3
 /importer:Mp3Importer
@@ -2203,11 +2341,11 @@
 /processorParam:Quality=Best
 /build:Music/Weird.mp3
 
-#begin Music/WorldMap.mp3
-/importer:Mp3Importer
+#begin Music/WorldMap.ogg
+/importer:OggImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Music/WorldMap.mp3
+/build:Music/WorldMap.ogg
 
 #begin Sfx/Chest.wav
 /importer:WavImporter
@@ -2232,6 +2370,18 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sfx/DialogueSeveralBoops.wav
+
+#begin Sfx/Fire.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sfx/Fire.wav
+
+#begin Sfx/FireSpread.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sfx/FireSpread.wav
 
 #begin Sfx/Hit.wav
 /importer:WavImporter
@@ -2268,6 +2418,24 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sfx/NumbersCombine.wav
+
+#begin Sfx/SpiderNotice.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sfx/SpiderNotice.wav
+
+#begin Sfx/SpiderScream.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sfx/SpiderScream.wav
+
+#begin Sfx/Stairs.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sfx/Stairs.wav
 
 #begin Sfx/Whoosh.wav
 /importer:WavImporter

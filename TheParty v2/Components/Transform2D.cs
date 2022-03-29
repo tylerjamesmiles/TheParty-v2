@@ -20,16 +20,29 @@ namespace TheParty_v2
         {
             Vector2 PotentialPos = Position + velocity;
 
-            foreach (Rectangle rect in collisionRects)
-            {
-                CollisionInfo Collision = Collisions2D.CircleRectangleIntersection(Position, BoundingRadius, rect);
 
-                if (Collision.Exists)
-                    PotentialPos += Collision.Resolution;
-            }
 
             if (Solid)
             {
+                // only check nearby rects
+                List<Rectangle> NearbyRects = new List<Rectangle>();
+                foreach (Rectangle rect in collisionRects)
+                {
+                    Vector2 RectPos = rect.Location.ToVector2();
+                    float DistSq = (Position - RectPos).LengthSquared();
+                    float MaxDist = 64f;
+                    if (DistSq < MaxDist * MaxDist)
+                        NearbyRects.Add(rect);
+                }
+
+                foreach (Rectangle rect in NearbyRects)
+                {
+                    CollisionInfo Collision = Collisions2D.CircleRectangleIntersection(Position, BoundingRadius, rect);
+
+                    if (Collision.Exists)
+                        PotentialPos += Collision.Resolution;
+                }
+
                 foreach (Transform2D entityTransform in entityTransforms)
                 {
                     if (entityTransform.Position == Position)

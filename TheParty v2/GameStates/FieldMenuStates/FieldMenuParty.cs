@@ -131,8 +131,8 @@ namespace TheParty_v2
         public override void Draw(GameStateFieldMenu client, SpriteBatch spriteBatch)
         {
             Sprites.ForEach(s => s.Draw(spriteBatch));
-            HPIndicators.ForEach(i => i.Draw(spriteBatch));
-            HungerIndicators.ForEach(i => i.Draw(spriteBatch));
+            HPIndicators.ForEach(i => i.Draw(spriteBatch, Vector2.Zero));
+            HungerIndicators.ForEach(i => i.Draw(spriteBatch, Vector2.Zero));
 
             Member1Choice.Draw(spriteBatch, true);
 

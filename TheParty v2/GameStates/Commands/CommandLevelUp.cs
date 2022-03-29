@@ -257,8 +257,8 @@ namespace TheParty_v2
             {
                 if (Living[i])
                 {
-                    Hearts[i].Draw(spriteBatch);
-                    Meats[i].Draw(spriteBatch);
+                    Hearts[i].Draw(spriteBatch, Vector2.Zero);
+                    Meats[i].Draw(spriteBatch, Vector2.Zero);
                 }
             }
 

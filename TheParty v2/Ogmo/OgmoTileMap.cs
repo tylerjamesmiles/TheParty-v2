@@ -36,6 +36,76 @@ namespace TheParty_v2
             layers.ForEach(l => l.Initialize());
         }
 
+        public void SpawnRandomEncounters()
+        {
+            // Spawn random encounters
+
+            // find appropriate battle
+            bool Easy = bool.Parse(values["EasyBattles"]);
+            bool Hard = bool.Parse(values["HardBattles"]);
+            bool CoinFlip = new Random().Next(2) == 0;
+            bool IsEasy =
+                Easy && !Hard ? true :
+                !Easy && Hard ? false :
+                Easy && Hard ? CoinFlip :
+                false;
+
+            List<string> AvailableBattles = new List<string>();
+            foreach (var battle in GameContent.Battles)
+            {
+                string[] Keywords = battle.Key.Split(' ');
+                if (Keywords[0] != "Day")
+                    continue;
+
+                int DayNo = int.Parse(Keywords[1]);
+                int DaysPassed = 100 - GameContent.Variables["DaysRemaining"];
+                if (DayNo < DaysPassed)
+                    continue;
+
+                string Type = Keywords[2];
+                if (Type == "Easy" && !IsEasy)
+                    continue;
+                if (Type == "Hard" && IsEasy)
+                    continue;
+
+                AvailableBattles.Add(battle.Key);
+            }
+
+            if (AvailableBattles.Count == 0)
+                return;
+
+            for (int i = 0; i < int.Parse(values["NumBattles"]); i++)
+            {
+                // find open position
+                int RandX = new Random().Next(width);
+                int RandY = new Random().Next(height);
+                int TimesTried = 0;
+                while (CollisionBoxes.Exists(cb => cb.Contains(RandX, RandY)) && TimesTried < 1000)
+                {
+                    RandX = new Random().Next(width);
+                    RandY = new Random().Next(height);
+                    TimesTried++;
+                }
+
+                if (TimesTried == 1000)
+                    continue;
+
+                Point RandPoint = new Point(RandX, RandY);
+
+                // find available battle
+                int RandBattleIdx = new Random().Next(AvailableBattles.Count);
+                string RandBattle = AvailableBattles[RandBattleIdx];
+                
+                // create entity 
+                OgmoEntity E = new OgmoEntity();
+                E.name = "Monster " + RandBattle;
+                E.Initialize();
+                E.Transform.Position = RandPoint.ToVector2();
+
+                Entities.Add(E);
+            }
+        }
+
         public List<Rectangle> GenerateCollisionBoxes()
         {
             List<Rectangle> Result = new List<Rectangle>();

@@ -5,7 +5,7 @@
 			"Parties" :
 			[
 				"PlayerParty",
-				"WorldMapParty1"
+				"TutorialParty"
 			],
 			"Rewards" :
 			[

@@ -50,8 +50,12 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/FontLight.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GameOver.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightCellmate.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightFire.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightHeart.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightingOil.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightingTiles.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightOil.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightRefill.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GaslightSpider.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/GrinningNormanFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Hearts.png</File>
@@ -92,29 +96,49 @@
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/TheFlurryFighter.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Tileset.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/Title-export.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WASD.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMap.png</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Art/WorldMapBattleBackground.png</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/BoilingWastes.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Capricorn.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/DungeonTango.ogg</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/FarawayHeights.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/HumtaraHolm.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/MonsterBattle.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/TitleScreen.mp3</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/Weird.mp3</File>
-    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/WorldMap.mp3</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Music/WorldMap.ogg</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Chest.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Coin.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/DialogueBoop.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/DialogueSeveralBoops.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Fire.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/FireSpread.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Hit.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/LoseHeart.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuBack.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuMove.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/MenuSelect.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/NumbersCombine.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/SpiderNotice.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/SpiderScream.wav</File>
+    <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Stairs.wav</File>
     <File>C:/Users/tyler/Dev/TheParty v2/TheParty v2/Content/Sfx/Whoosh.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

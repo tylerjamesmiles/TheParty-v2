@@ -21,6 +21,8 @@ namespace TheParty_v2
                 client.Player.ActiveParty.Members.Add(GameContent.Members[Name].DeepCopy());
             else
                 client.Player.CampMembers.Add(GameContent.Members[Name].DeepCopy());
+
+            client.Player.InitializeFieldMembers();
             Done = true;
         }
     }

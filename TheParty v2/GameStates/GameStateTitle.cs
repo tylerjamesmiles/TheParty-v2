@@ -17,8 +17,8 @@ namespace TheParty_v2
 
         public override void Enter(TheParty client)
         {
-            GameContent.PlaySong("TitleScreen");
-            GameContent.FadeInMusic();
+            //GameContent.PlaySong("TitleScreen");
+            //GameContent.FadeInMusic();
 
 
 
@@ -51,8 +51,8 @@ namespace TheParty_v2
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.Out));
                         client.CommandQueue.EnqueueCommand(new CommandBeFaded());
                         client.CommandQueue.EnqueueCommand(new CommandFadeOutMusic());
-                        //client.CommandQueue.EnqueueCommand(new CommandWait(2f));
-                        client.CommandQueue.EnqueueCommand(new CommandTeleport("FairyForest1", 24, 42));
+                        client.CommandQueue.EnqueueCommand(new CommandWait(2f));
+                        client.CommandQueue.EnqueueCommand(new CommandTeleport("WorldMap", 97, 62));
                         client.CommandQueue.EnqueueCommand(new CommandBringMusicVolumeBackUp());
                         client.CommandQueue.EnqueueCommand(new CommandShowScreen());
                         client.CommandQueue.EnqueueCommand(new CommandFade(CommandFade.Direction.In));
@@ -100,7 +100,7 @@ namespace TheParty_v2
                 new Rectangle(new Point(0, 0), GraphicsGlobals.ScreenSize),
                 Color.White);
 
-            Particles.ForEach(p => p.Draw(spriteBatch));
+            Particles.ForEach(p => p.Draw(spriteBatch, Vector2.Zero));
 
             Choice.Draw(spriteBatch, true);
         }

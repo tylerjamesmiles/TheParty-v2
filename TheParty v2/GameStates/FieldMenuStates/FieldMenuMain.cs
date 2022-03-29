@@ -15,8 +15,6 @@ namespace TheParty_v2
         {
             string[] ChoiceStrings = new[] { 
                 "Member", 
-                "Equip", 
-                "Party", 
                 "Save", 
                 "Options",
                 "Title" };
@@ -25,10 +23,8 @@ namespace TheParty_v2
             for (int i = 0; i < ChoiceValidity.Length; i++)
                 ChoiceValidity[i] = true;
 
-            ChoiceValidity[2] = client.BackupMembers.Count > 0;
-            ChoiceValidity[4] = false;
-
-            List<Member> Members = client.ActiveMembers;
+            //ChoiceValidity[2] = client.BackupMembers.Count > 0;
+            ChoiceValidity[2] = false;
 
             Choices = new GUIChoiceBox(
                 ChoiceStrings, 
@@ -49,11 +45,11 @@ namespace TheParty_v2
                 switch(Choices.CurrentChoice)
                 {
                     case 0: client.StateMachine.SetNewCurrentState(client, new FieldMenuMember()); break;
-                    case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
-                    case 2: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
-                    case 3: client.Save = true; break;
-                    case 4: Enter(client); break;       // TODO: Settings
-                    case 5: client.StateMachine.SetNewCurrentState(client, new FieldMenuTitle()); break;
+                    //case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuEquip(client.Player)); break;
+                    //case 1: client.StateMachine.SetNewCurrentState(client, new FieldMenuParty()); break;
+                    case 1: client.Save = true; break;
+                    case 2: Enter(client); break;       // TODO: Settings
+                    case 3: client.StateMachine.SetNewCurrentState(client, new FieldMenuTitle()); break;
                     break;
                 }
 

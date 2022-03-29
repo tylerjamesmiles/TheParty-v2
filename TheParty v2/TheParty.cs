@@ -32,8 +32,6 @@ namespace TheParty_v2
             Window.Title = "The Party 1/1/22 Demo";
             Window.AllowUserResizing = true;
 
-
-
             EventsCanHappenTimer = new Timer(0.5f);
 
             BeFaded = false;
@@ -76,7 +74,7 @@ namespace TheParty_v2
             StateMachine.SetNewCurrentState(this, new GameStateTitle());
 
             CommandQueue = new CommandQueue<TheParty>();
-            //CommandQueue.EnqueueCommand(new CommandGaslight());
+
         }
 
         protected override void Update(GameTime gameTime)

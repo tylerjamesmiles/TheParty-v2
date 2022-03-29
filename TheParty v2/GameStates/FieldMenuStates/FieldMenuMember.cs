@@ -42,11 +42,11 @@ namespace TheParty_v2
         {
             Selected = client.ActiveMembers[MemberChoice.CurrentChoiceIdx];
 
-            string[] Actions = new[] { "#Commit ", "%Heal", "\"Feed"};
+            string[] Actions = new[] { "%Heal", "\"Feed"};
             bool[] ChoiceValidity = new bool[3];
-            ChoiceValidity[0] = Selected.Stance < 5 && Selected.Hunger > Selected.Stance;
-            ChoiceValidity[1] = Selected.HP < Selected.MaxHP && Selected.Hunger > 0;
-            ChoiceValidity[2] = Selected.Hunger < Selected.MaxHunger && GameContent.Variables["FoodSupply"] > 0;
+            //ChoiceValidity[0] = Selected.Stance < 5 && Selected.Hunger > Selected.Stance;
+            ChoiceValidity[0] = Selected.HP < Selected.MaxHP && Selected.Hunger > 0;
+            ChoiceValidity[1] = Selected.Hunger < Selected.MaxHunger && GameContent.Variables["FoodSupply"] > 0;
 
 
             int CurrentChoice =
@@ -110,15 +110,15 @@ namespace TheParty_v2
                         {
                             switch (ActionChoice.CurrentChoice)
                             {
-                                case 0:     // commit
-                                    Selected.Stance += 1;
-                                    int NewStance = Selected.Stance;
-                                    Selected.Hunger -= Selected.Stance;
-                                    Stance.SetHP(Selected.Stance);
-                                    Meats.SetHP(Selected.Hunger);
-                                    break;
+                                //case 0:     // commit
+                                //    Selected.Stance += 1;
+                                //    int NewStance = Selected.Stance;
+                                //    Selected.Hunger -= Selected.Stance;
+                                //    Stance.SetHP(Selected.Stance);
+                                //    Meats.SetHP(Selected.Hunger);
+                                //    break;
 
-                                case 1:     // heal
+                                case 0:     // heal
                                     Selected.HP += 1;
                                     Hearts.SetHP(Selected.HP);
 
@@ -127,7 +127,7 @@ namespace TheParty_v2
 
                                     break;
 
-                                case 2:     // feed
+                                case 1:     // feed
                                     Selected.Hunger += 1;
                                     Meats.SetHP(Selected.Hunger);
 

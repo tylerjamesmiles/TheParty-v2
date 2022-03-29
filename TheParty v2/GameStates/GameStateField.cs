@@ -59,7 +59,7 @@ namespace TheParty_v2
         {
             if (client.CurrentMap != null)
                 client.CurrentMap.Draw(client.Camera.Position, client.Player, spriteBatch);
-            //Overlay.Draw(spriteBatch, new Vector2(), client.Camera.Position);
+            Overlay.Draw(spriteBatch, new Vector2(), client.Camera.Position);
         }
     }
 }

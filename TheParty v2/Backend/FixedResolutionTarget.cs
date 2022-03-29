@@ -18,6 +18,9 @@ namespace TheParty_v2
         protected Rectangle _targetRect;        // Rectangle created for target
         protected bool _pixelPerfect = false;   // Is the target pixel-perfect?
 
+        public static float PixelPerfectScale { get; private set; }
+        public static Vector2 Offset { get; private set; }
+
         public Rectangle TargetRect { get => _targetRect; }
 
         public FixedResolutionTarget(int width, int height, GraphicsDevice graphics, bool pixelPerfect = false)
@@ -80,6 +83,8 @@ namespace TheParty_v2
                 if (pixelPerfectScale == 0)
                     pixelPerfectScale = 1;
 
+                PixelPerfectScale = pixelPerfectScale;
+
                 _targetRect.Width = (int)((float)_targetWidth * (float)pixelPerfectScale);
                 _targetRect.Height = (int)((float)_targetHeight * (float)pixelPerfectScale);
             }
@@ -90,6 +95,8 @@ namespace TheParty_v2
                 offset.X = windowWidth / 2 - _targetRect.Width / 2;
             if (_targetRect.Height < windowHeight)
                 offset.Y = windowHeight / 2 - _targetRect.Height / 2;
+
+            Offset = offset;
 
             _targetRect.Location = offset.ToPoint();
         }

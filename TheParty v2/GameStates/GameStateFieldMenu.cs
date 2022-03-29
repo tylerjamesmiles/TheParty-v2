@@ -171,9 +171,9 @@ namespace TheParty_v2
 
                 if (ActiveMembers[i].HP > 0)
                 {
-                    HPIndicators[i].Draw(spriteBatch);
-                    HungerIndicators[i].Draw(spriteBatch);
-                    StanceIndicators[i].Draw(spriteBatch);
+                    HPIndicators[i].Draw(spriteBatch, Vector2.Zero);
+                    HungerIndicators[i].Draw(spriteBatch, Vector2.Zero);
+                    StanceIndicators[i].Draw(spriteBatch, Vector2.Zero);
                 }
             }
 

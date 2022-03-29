@@ -4,12 +4,7 @@
 			"Name" : "PlayerParty",
 			"Members" :
 			[
-				"Hero",
-				"Hocus",
-				"Faeema",
-				"DirtDawg",
-				"Skinner",
-				"Flurry"
+				"Hero"
 			]
 		},
 		{
@@ -20,80 +15,20 @@
 			]
 		},
 		{
-			"Name" : "TutorialParty",
+			"Name" : "Soldiers1",
 			"Members" :
 			[
-				"Chupasnakera",
-				"Chupasnakera",
-				"Chupasnakera",
-				"Alien",
-				"Alien"
-
+				"Soldier",
+				"Soldier"
 			]
 		},
 		{
-			"Name" : "WorldMapParty1",
+			"Name" : "Soldiers2",
 			"Members" :
 			[
-				"Chupasnakera"
-			]
-		},
-		{
-			"Name" : "WorldMapParty2",
-			"Members" :
-			[
-				"Chupasnakera",
-				"Chupasnakera"
-			]
-		},
-		{
-			"Name" : "CaveParty1",
-			"Members" :
-			[
-				"Alien",
-				"Alien"
-			]
-		},
-		{
-			"Name" : "CaveParty2",
-			"Members" :
-			[
-				"Bandit",
-				"Bandit"
-			]
-		},
-		{
-			"Name" : "CaveParty3",
-			"Members" :
-			[
-				"Cat"
-			]
-		},
-		{
-			"Name" : "CaveParty4",
-			"Members" :
-			[
-				"Alien",
-				"Alien",
-				"Bandit"
-			]
-		},
-		{
-			"Name" : "CaveParty5",
-			"Members" :
-			[
-				"Alien",
-				"Bandit",
-				"Cat"
-			]
-		},
-		{
-			"Name" : "RandallBoss",
-			"Members" :
-			[
-				"Bandit",
-				"Randall",
-				"Bandit"
+				"Soldier",
+				"Soldier",
+				"Soldier"
 			]
 		},
 		{
@@ -101,8 +36,40 @@
 			"Members" :
 			[
 				"Soldier",
+				"Soldier",
+				"Soldier",
+				"Soldier",
 				"King",
 				"Soldier"
+			]
+		},
+		{
+			"Name" : "Day 0 Easy 1",
+			"Members" :
+			[
+				"Chupasnakera"
+			]
+		},
+		{
+			"Name" : "Day 0 Easy 2",
+			"Members" :
+			[
+				"Chupasnakera",
+				"Chupasnakera"
+			]
+		},
+		{
+			"Name" : "Day 0 Hard 1",
+			"Members" :
+			[
+
+			]
+		},
+		{
+			"Name" : "Day 0 Hard 2",
+			"Members" :
+			[
+
 			]
 		}
 	]

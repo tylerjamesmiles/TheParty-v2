@@ -32,7 +32,7 @@ namespace TheParty_v2
 
             
             ItemDescription = new GUIDialogueBox(
-                GUIDialogueBox.ReallySkinnyTop, 
+                GUIDialogueBox.Position.ReallySkinnyTop, 
                 new[] { ItemDescr(SelectedMember.Equipped()) }, 
                 0.01f);
 
@@ -41,8 +41,8 @@ namespace TheParty_v2
 
         private string ItemDescr(Equipment item)
         {
-            if (item == null)
-                return "";
+            if (item == null || item.PassiveEffects.Count == 0)
+                return "[Nothing Equipped.]";
             string Description = "";
             item.PassiveEffects.ForEach(pe => Description += pe + ' ');
             return Description;
@@ -75,7 +75,7 @@ namespace TheParty_v2
             int LastChosen = -1;
             if (MemberChoice != null)
                 LastChosen = MemberChoice.CurrentChoiceIdx;
-            List<Vector2> MemberSpots = client.MemberSprites.ConvertAll(s => s.DrawPos + new Vector2(8, -16));
+            List<Vector2> MemberSpots = client.MemberSprites.ConvertAll(s => s.DrawPos + new Vector2(+12, +8));
             MemberChoice = new GUIChoice(MemberSpots.ToArray());
             if (LastChosen != -1)
                 MemberChoice.SetChoice(LastChosen);

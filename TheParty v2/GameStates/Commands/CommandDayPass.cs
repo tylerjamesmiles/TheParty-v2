@@ -125,32 +125,33 @@ namespace TheParty_v2
                     WaitTimer.Update(deltaTime);
                     if (WaitTimer.TicThisFrame)
                     {
-                        WaitTimer.Reset();
-                        CurrentState = State.LowerCommitment;
-                    }
-                    break;
-
-                case State.LowerCommitment:
-                    for (int i = 0; i < ActiveMembers.Count; i++)
-                    {
-                        if (ActiveMembers[i].HP > 0 && ActiveMembers[i].Stance > 0)
-                        {
-                            ActiveMembers[i].Stance -= 1;
-                            Stances[i].SetTarget(ActiveMembers[i].Stance);
-                        }
-                    }
-                    WaitTimer = new Timer(2f);
-                    CurrentState = State.Wait3;
-                    break;
-
-                case State.Wait3:
-                    WaitTimer.Update(deltaTime);
-                    if (WaitTimer.TicThisFrame)
-                    {
-                        WaitTimer.Reset();
+                        //WaitTimer.Reset();
+                        //CurrentState = State.LowerCommitment;
                         Done = true;
                     }
                     break;
+
+                //case State.LowerCommitment:
+                //    for (int i = 0; i < ActiveMembers.Count; i++)
+                //    {
+                //        if (ActiveMembers[i].HP > 0 && ActiveMembers[i].Stance > 0)
+                //        {
+                //            ActiveMembers[i].Stance -= 1;
+                //            Stances[i].SetTarget(ActiveMembers[i].Stance);
+                //        }
+                //    }
+                //    WaitTimer = new Timer(2f);
+                //    CurrentState = State.Wait3;
+                //    break;
+
+                //case State.Wait3:
+                //    WaitTimer.Update(deltaTime);
+                //    if (WaitTimer.TicThisFrame)
+                //    {
+                //        WaitTimer.Reset();
+                //        Done = true;
+                //    }
+                //    break;
             }
         }
 
@@ -170,8 +171,8 @@ namespace TheParty_v2
             {
                 if (ActiveMembers[i].HP > 0)
                 {
-                    Hearts[i].Draw(spriteBatch);
-                    Meats[i].Draw(spriteBatch);
+                    Hearts[i].Draw(spriteBatch, Vector2.Zero);
+                    Meats[i].Draw(spriteBatch, Vector2.Zero);
                     Stances[i].Draw(spriteBatch);
                 }
 

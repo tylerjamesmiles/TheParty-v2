@@ -16,7 +16,8 @@ namespace TheParty_v2
         public int CurrentFacing { get; set; }
         public Timer FrameTimer { get; private set; }
 
-        public bool AnimateWhenStatic { get; private set; }
+        public bool AnimateWhenStatic { get; set; }
+        public bool LockFacing { get; set; }
 
         public FourDirSprite2D(string spriteName, Point drawOffset, bool animateWhenStatic = false)
         {
@@ -27,6 +28,7 @@ namespace TheParty_v2
             CurrentFacing = 0;
             FrameTimer = new Timer(0.15f);
             AnimateWhenStatic = animateWhenStatic;
+            LockFacing = false;
         }
 
         public void Update(Vector2 velocity, float deltaTime)
@@ -43,9 +45,9 @@ namespace TheParty_v2
             else
                 CurrentFrame = 0;
 
-            if (Moving)
+            if (Moving && !LockFacing)
             {
-                CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X) + 0.5f) ?
+                CurrentFacing = (MathF.Abs(velocity.Y) > MathF.Abs(velocity.X)) ?
                     velocity.Y < 0 ? 0 : 1 :
                     velocity.X < 0 ? 2 : 3;
             }
@@ -56,7 +58,7 @@ namespace TheParty_v2
             if (SpriteName == "")
                 return;
 
-            Point DrawPos = (mapPos - cameraPos).ToPoint() ;
+            Point DrawPos = (mapPos - cameraPos).ToPoint() + DrawOffset;
             Point DrawSize = SpriteSize;
             Rectangle DrawRect = new Rectangle(DrawPos, DrawSize);
 
@@ -77,6 +79,8 @@ namespace TheParty_v2
             Texture2D Sprite = GameContent.Sprites[SpriteName];
 
             spriteBatch.Draw(Sprite, DrawRect, SourceRect, Color.White, 0f, Vector2.Zero, Flip, 0f);
+
+
         }
     }
 }

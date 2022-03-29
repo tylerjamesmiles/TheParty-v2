@@ -1,151 +1,225 @@
-﻿{
-    "Moves" :
-    [
-        {
-            "Name" : "Pass", 
-            "Description" : "Do nothing this turn.\n+1%",
-            "Effects" : [ "HitHP(Target, +1)"],
-            "Conditions" : [ "Is(Target, Self)" ] 
-        },
-        {
-            "Name" : "Hit", 
-            "Description" : "Use Commitment to hit %",
-            "Effects" : [ "HitHPByStance()" ],  
-            "Conditions" : [ "Is(Target, InDifferentParty)", "Commitment(Caster, >=, 1)" ]
-        },
-        {
-            "Name" : "Commit", 
-            "Description" : "Raise Commitment\n+2%s, +1(, +1), Go Again",
-            "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +2)", "AddStatus(Target, JustCommitted)"],  
-            "Conditions" : ["Is(Target, Self)", "Status(Target, Doesn'tHave, JustCommitted)"]
-        },
-        {
-            "Name" : "Commit More", 
-            "Description" : "Raise commitment by 2\nHeal all %s, Go Again",
-            "Effects" : ["HitStance(Target, +2)","HitHP(Target, +100)"],  
-            "Conditions" : ["Is(Target, Self)"]
-        },
-        {
-            "Name" : "Defend",
-            "Description" : "Raise ) for 2 turns.\n[Req. 2 Commit.]",
-            "Effects" : ["AddStatus(Target, Defending)"],
-            "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
-        },
-        {
-            "Name" : "Poison", 
-            "Description" : "Poison the target.\n[Req. 3 Commit.]",
-            "Effects" : ["AddStatus(Target, Poison)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Poison)", "Commitment(Caster, >=, 3)"]
-        },
-        {
-            "Name" : "Antidote", 
-            "Description" : "Remove poison.\n[Req. 2 Commit.]",
-            "Effects" : ["RemoveStatus(Poison)"],  
-            "Conditions" : ["Status(Target, Has, Poison)", "Commitment(Caster, >=, 2)"]
-        },
-        {
-            "Name" : "Strengthen", 
-            "Description" : "Raise Attack Power\n[Req. 1 Commit.]",
-            "Effects" : ["AddStatus(Target, AttackUp)"],  
-            "Conditions" : ["Is(Target, InSameParty)", "Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >=, 1)"]
-        },
-        {
-            "Name" : "Weaken", 
-            "Description" : "Lower Attack Power\n[Req. 1 Commit.]",
-            "Effects" : ["AddStatus(Target, AttackDown)"],  
-            "Conditions" : ["Is(Target, InDifferentParty)", "Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >=, 1)"]
-        },
-        {
-            "Name" : "Bolster", 
-            "Description" : "Raise Defense\n[Req. 1 Commit.]",
-            "Effects" : ["AddStatus(Target, DefenseUp)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, DefenseUp)", "Commitment(Caster, >=, 1)"]
-        },
-        {
-            "Name" : "Diminish", 
-            "Description" : "Lower Defense\n[Req. 1 Commit.]",
-            "Effects" : ["AddStatus(Target, DefenseDown)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >=, 1)"]
-        },
-        {
-            "Name" : "Encourage", 
-            "Description" : "Give 1 point of Commitment",
-            "Effects" : ["GiveCommitment(Target, 1)"],  
-            "Conditions" : ["Is(Target, InSameParty)", "Commitment(Caster, >, 0)"]
-        },
-        {
-            "Name" : "Discourage", 
-            "Description" : "Take 1 point of Commitment",
-            "Effects" : ["StealCommitment(Target, 1)"],  
-            "Conditions" : ["Is(Target, InDifferentParty)", "Commitment(Target, >, 0)"]
-        },
-        {
-            "Name" : "Doubt", 
-            "Description" : "Drain commit. over time.\n[Req. 3 Commit.]",
-            "Effects" : ["AddStatus(Target, Doubting)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Caster, >=, 3)"]
-        },
-        {
-            "Name" : "Freeze", 
-            "Description" : "Freeze target for a turn.\n[Req. 3 Commit.]",
-            "Effects" : ["AddStatus(Target, Frozen)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Caster, >=, 3)"]
-        },
-        {
-            "Name" : "Thaw", 
-            "Description" : "Unfreeze a frozen ally\n[Req. 2 Commit.].",
-            "Effects" : ["RemoveStatus(Frozen)"],  
-            "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >=, 2)"]
-        },
-        {
-            "Name" : "Donate", 
-            "Description" : "Give enough HP to heal.",
-            "Effects" : ["GiveEnoughHP()"],  
-            "Conditions" : []
-        },
-        {
-            "Name" : "Kamikaze", 
-            "Description" : "Give almost all of your %s to hurt the enemmy.",
-            "Effects" : ["Kamikaze()"],  
-            "Conditions" : ["Is(Target, InDifferentParty)"]
-        },
-        {
-            "Name" : "Devote", 
-            "Description" : "+1 commit. each turn.\n[Req. 3 Commit.]",
-            "Effects" : ["AddStatus(Target, Devoted)"],  
-            "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Caster, >=, 3)"]
-        },
-        {
-            "Name" : "Deconvert", 
-            "Description" : "Calm a devoted friend.\n[Req. 2 Commit.]",
-            "Effects" : ["RemoveStatus(Devoted)"],  
-            "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Caster, >= 2)"]
-        },
-        {
-            "Name" : "Harden", 
-            "Description" : "Make target invulnerable to change.",
-            "Effects" : ["AddStatus(Target, Invulnerable)"],  
-            "Conditions" : ["Status(Target, Doesn't'Have, Invulnerable)"]
-        },
-        {
-            "Name" : "Suck",
-            "Description" : "Steal 1 %",
-            "Effects" : ["StealHP(Target, 1)"],
-            "Conditions" : ["Is(Target, InDifferentParty)"]
-        },
-        {
-            "Name" : "Steal Coin",
-            "Description" : "",
-            "Effects" : ["StealCoin()"],
-            "Conditions" : ["Is(Target, InDifferentParty)", "Money(Target, Above0)"]
-        },
-        {
-            "Name" : "Steal Food",
-            "Description" : "",
-            "Effects" : ["StealFood()"],
-            "Conditions" : ["Is(Target, InDifferentParty)", "Food(Target, Above0)"]
-        }
-    ]
-}
-
+﻿[
+    {
+        "Name" : "Pass", 
+        "Description" : "Do nothing this turn.\n+1%",
+        "Effects" : [ "HitHP(Target, +1)"],
+        "Conditions" : [ "Is(Target, Self)" ] 
+    },
+    {
+        "Name" : "Hit", 
+        "Description" : "Use Commitment to hit %",
+        "Effects" : [ "HitHPByStance()" ],  
+        "Conditions" : [ "Is(Target, InDifferentParty)", "Commitment(Caster, >=, 1)" ]
+    },
+    {
+        "Name" : "Commit", 
+        "Description" : "Raise Commitment.\nHeal all %s, Go Again",
+        "Effects" : ["HitStance(Target, +1)", "HitHP(Target, +100)", "AddStatus(Target, JustCommitted)"],  
+        "Conditions" : ["Is(Target, Self)", "Status(Target, Doesn'tHave, JustCommitted)"]
+    },
+    {
+        "Name" : "Commit More", 
+        "Description" : "Raise commitment by 2\nHeal all %s, Go Again",
+        "Effects" : ["HitStance(Target, +2)","HitHP(Target, +100)", "AddStatus(Target, JustCommitted)"],  
+        "Conditions" : ["Is(Target, Self)"]
+    },
+    {
+        "Name" : "Defend",
+        "Description" : "Raise ) for 2 turns.\n[Req. 2 Commit.]",
+        "Effects" : ["AddStatus(Target, Defending)"],
+        "Conditions" : ["Is(Target, Self)", "Commitment(Target, >=, 2)"]
+    },
+    {
+        "Name" : "Preach",
+        "Description" : "Raise someone's commitment",
+        "Effects" : ["HitStance(Target, +1)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Radicalize",
+        "Description" : "Raise target's commitment +2",
+        "Effects" : ["HitStance(Target, +2)"],
+        "Conditions" : [""]
+    },
+    {
+        "Name" : "Poison", 
+        "Description" : "Poison the target.\n[Req. 3 Commit.]",
+        "Effects" : ["AddStatus(Target, Poison)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, Poison)", "Commitment(Caster, >=, 3)"]
+    },
+    {
+        "Name" : "Antidote", 
+        "Description" : "Remove poison.\n[Req. 2 Commit.]",
+        "Effects" : ["RemoveStatus(Poison)"],  
+        "Conditions" : ["Status(Target, Has, Poison)", "Commitment(Caster, >=, 2)"]
+    },
+    {
+        "Name" : "Strengthen", 
+        "Description" : "Raise Attack Power\n[Req. 1 Commit.]",
+        "Effects" : ["AddStatus(Target, AttackUp)"],  
+        "Conditions" : ["Is(Target, InSameParty)", "Status(Target, Doesn'tHave, AttackUp)", "Commitment(Caster, >=, 1)"]
+    },
+    {
+        "Name" : "Weaken", 
+        "Description" : "Lower Attack Power\n[Req. 1 Commit.]",
+        "Effects" : ["AddStatus(Target, AttackDown)"],  
+        "Conditions" : ["Is(Target, InDifferentParty)", "Status(Target, Doesn'tHave, AttackDown)", "Commitment(Caster, >=, 1)"]
+    },
+    {
+        "Name" : "Bolster", 
+        "Description" : "Raise Defense\n[Req. 1 Commit.]",
+        "Effects" : ["AddStatus(Target, DefenseUp)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, DefenseUp)", "Commitment(Caster, >=, 1)"]
+    },
+    {
+        "Name" : "Diminish", 
+        "Description" : "Lower Defense\n[Req. 1 Commit.]",
+        "Effects" : ["AddStatus(Target, DefenseDown)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, DefenseDown)", "Commitment(Caster, >=, 1)"]
+    },
+    {
+        "Name" : "Encourage", 
+        "Description" : "Give 1 point of Commitment",
+        "Effects" : ["GiveCommitment(Target, 1)"],  
+        "Conditions" : ["Is(Target, InSameParty)", "Commitment(Caster, >, 0)"]
+    },
+    {
+        "Name" : "Discourage", 
+        "Description" : "Take 1 point of Commitment",
+        "Effects" : ["StealCommitment(Target, 1)"],  
+        "Conditions" : ["Is(Target, InDifferentParty)", "Commitment(Target, >, 0)"]
+    },
+    {
+        "Name" : "Doubt", 
+        "Description" : "Drain commit. over time.\n[Req. 3 Commit.]",
+        "Effects" : ["AddStatus(Target, Doubting)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, Doubting)", "Commitment(Caster, >=, 3)"]
+    },
+    {
+        "Name" : "Freeze", 
+        "Description" : "Freeze target for a turn.\n[Req. 3 Commit.]",
+        "Effects" : ["AddStatus(Target, Frozen)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, Frozen)", "Commitment(Caster, >=, 3)"]
+    },
+    {
+        "Name" : "Thaw", 
+        "Description" : "Unfreeze a frozen ally\n[Req. 2 Commit.].",
+        "Effects" : ["RemoveStatus(Frozen)"],  
+        "Conditions" : ["Status(Target, Has, Frozen)", "Commitment(Caster, >=, 2)"]
+    },
+    {
+        "Name" : "Care",
+        "Description" : "Give 2 %s.",
+        "Effects" : ["GiveHP(Target, 1)"],
+        "Conditions" : ["HP(Target, >, 2)"]
+    },
+    {
+        "Name" : "Donate", 
+        "Description" : "Give enough HP to heal.",
+        "Effects" : ["GiveEnoughHP()"],  
+        "Conditions" : []
+    },
+    {
+        "Name" : "Kamikaze", 
+        "Description" : "Give almost all of your %s to hurt the enemmy.",
+        "Effects" : ["Kamikaze()"],  
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Devote", 
+        "Description" : "+1 commit. each turn.\n[Req. 3 Commit.]",
+        "Effects" : ["AddStatus(Target, Devoted)"],  
+        "Conditions" : ["Status(Target, Doesn'tHave, Devoted)", "Commitment(Caster, >=, 3)"]
+    },
+    {
+        "Name" : "Deconvert", 
+        "Description" : "Calm a devoted friend.\n[Req. 2 Commit.]",
+        "Effects" : ["RemoveStatus(Devoted)"],  
+        "Conditions" : ["Status(Target, Has, Devoted)", "Commitment(Caster, >= 2)"]
+    },
+    {
+        "Name" : "Harden", 
+        "Description" : "Make target invulnerable to change.",
+        "Effects" : ["AddStatus(Target, Invulnerable)"],  
+        "Conditions" : ["Status(Target, Doesn't'Have, Invulnerable)"]
+    },
+    {
+        "Name" : "Suck",
+        "Description" : "Steal 1 %",
+        "Effects" : ["StealHP(Target, 1)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Suck More",
+        "Description" : "Steal 2 %s",
+        "Effects" : ["StealHP(Target, 2)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Suck Most",
+        "Description" : "Steal 3 %s",
+        "Effects" : ["StealHP(Target, 3)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Steal",
+        "Description" : "Steal from the enemy.",
+        "Effects" : ["Steal()"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Steal Coin",
+        "Description" : "",
+        "Effects" : ["StealCoin()"],
+        "Conditions" : ["Is(Target, InDifferentParty)", "Money(Target, Above0)"]
+    },
+    {
+        "Name" : "Steal Food",
+        "Description" : "",
+        "Effects" : ["StealFood()"],
+        "Conditions" : ["Is(Target, InDifferentParty)", "Food(Target, Above0)"]
+    },
+    {
+        "Name" : "Arm",
+        "Description" : "+1(, -1)",
+        "Effects" : ["AddStatus(Target, AttackUp)", "AddStatus(Target, DefenseDown)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Protect",
+        "Description" : "+1), -1(",
+        "Effects" : ["AddStatus(Target, DefenseUp)", "AddStatus(Target, AttackDown)"],
+        "Conditions" : ["Is(Target, InSameParty)"]
+    },
+    {
+        "Name" : "Fireball",
+        "Description" : "Hit 3%s",
+        "Effects" : ["HitHP(Target, -3)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Distance",
+        "Description" : "Give 1 pt of Commitment for full %",
+        "Effects" : ["HitHP(Taret, +100)", "HitStance(Target, -1)"],
+        "Conditions" : ["Is(Target, Self)"]
+    },
+    {
+        "Name" : "Terrify",
+        "Description" : "Lower someone's commitment to 0",
+        "Effects" : ["HitStance(Target, -100)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Darkness",
+        "Description" : "20% chance of killing an enemy.",
+        "Effects" : ["Kill(Target, 20)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    },
+    {
+        "Name" : "Void",
+        "Description" : "Lose 2%s. 50% chance of killing target.",
+        "Effects" : ["HitHP(Caster, -2)", "Kill(Target, 50)"],
+        "Conditions" : ["Is(Target, InDifferentParty)"]
+    }
+]
             

@@ -198,6 +198,28 @@ namespace TheParty_v2
 
                 FollowPath = true;
             }
+            else if (name.Split(' ')[0] == "Monster")
+            {
+                Frozen = false;
+                Movement = new Movement2D(1f, 26f);
+                Sprite = new FourDirSprite2D("MonsterBase", new Point(-16, -24), true);
+
+                values = new Dictionary<string, string>();
+                values.Add("Solid", "true");
+                values.Add("TriggerOnTouch", "true");
+                values.Add("Path", "");
+                values.Add("RepeatPath", "false");
+                ChasePlayer = true;
+
+                string BattleName = name.Remove(0, "Monster ".Length);
+
+                string Script =
+                    "Battle(" + BattleName + ")\n" +
+                    "Erase(Me)\n";
+
+                values.Add("Script", Script);
+                values.Add("Name", "Monster" + EntityId.ToString());
+            }
             else
             {
                 Movement = new Movement2D(1f, 26f);
@@ -213,8 +235,6 @@ namespace TheParty_v2
                     if (values["PassiveBehavior"] == "FacePlayer") FacePlayer = true;
                     if (values["PassiveBehavior"] == "ChaseIfPlayerInRange") ChasePlayer = true;
                     if (values["PassiveBehavior"] == "FollowPath") FollowPath = true;
-
-
                 }
             }
 
@@ -224,9 +244,9 @@ namespace TheParty_v2
             }
 
             if (values["Solid"] == "true")
-                MinInteractDist = 25f;
+                MinInteractDist = 36f;
             else
-                MinInteractDist = 18f;
+                MinInteractDist = 26f;
 
             ManualExists = true;
 

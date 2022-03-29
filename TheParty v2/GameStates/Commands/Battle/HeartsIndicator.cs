@@ -89,7 +89,7 @@ namespace TheParty_v2
             FloatWobble.Update(deltaTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPos)
         {
             Vector2 FloatOffset = new Vector2(FloatWobble.CurrentPosition, 0);
             Color DrawColor = new Color();
@@ -108,7 +108,7 @@ namespace TheParty_v2
 
             spriteBatch.Draw(
                 GameContent.Sprites[SpriteName],
-                new Rectangle(Position.ToPoint() + FloatOffset.ToPoint(), new Point(5, 5)),
+                new Rectangle(Position.ToPoint() + FloatOffset.ToPoint() - cameraPos.ToPoint(), new Point(5, 5)),
                 SourceRect,
                 DrawColor,
                 CurrentRotation,
@@ -221,7 +221,7 @@ namespace TheParty_v2
             NumTotalHearts = (MaxHP + 1) / 2;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 cameraPos)
         {
             int HeartPixelWidth = 4;
             int NumLivingHearts = CurrentDisplayHP;
@@ -274,7 +274,7 @@ namespace TheParty_v2
                 {
                     spriteBatch.Draw(
                         GameContent.Sprites[SpriteName],
-                        new Rectangle(DrawPoses[i], new Point(5, 5)),
+                        new Rectangle(DrawPoses[i] - cameraPos.ToPoint(), new Point(5, 5)),
                         new Rectangle(MaxSourcePos, new Point(5, 5)),
                         Color.White);
                 }
@@ -289,13 +289,13 @@ namespace TheParty_v2
                     }
                     spriteBatch.Draw(
                         GameContent.Sprites[SpriteName],
-                        new Rectangle(DrawPoses[i], SourceSize),
+                        new Rectangle(DrawPoses[i] - cameraPos.ToPoint(), SourceSize),
                         new Rectangle(SourcePos, SourceSize),
                         Color.White);
                 }
             }
 
-            Particles.ForEach(p => p.Draw(spriteBatch));
+            Particles.ForEach(p => p.Draw(spriteBatch, cameraPos));
         }
     }
 }

@@ -1,7 +1,7 @@
 {
-  "CurrentMap": "FairyForest1",
+  "CurrentMap": "SnowyTower1",
   "Variables": {
-    "DaysRemaining": 100,
+    "DaysRemaining": 97,
     "Money": 0,
     "FoodSupply": 0
   },
@@ -11,17 +11,62 @@
     "WorldMonster1": false,
     "StillShopping": false,
     "TalkedAboutFood": false,
-    "ReadyToGo": false,
-    "IBetYouLost": false,
     "DidntFlee": false,
-    "EvangelizeSceneHappened": false,
-    "RandallDead": false,
-    "CastleChest1Opened": false,
     "CaveChest1Opened": false,
-    "CaveChest2Opened": false
+    "CaveChest2Opened": false,
+    "DirtDawgJoined": false,
+    "AttackOn": false,
+    "KingKilled": false,
+    "HocusJoined": true
   },
-  "ErasedEntities": [],
+  "ErasedEntities": [
+    150,
+    152,
+    136
+  ],
   "Player": {
+    "PosRecorderTimer": {
+      "TicRate": 0.3,
+      "TicThisFrame": false,
+      "TicsSoFar": 2
+    },
+    "RecordedPositions": [
+      "200 179.01073",
+      "200 206.00017"
+    ],
+    "MemberPositions": [
+      "200 204.50018"
+    ],
+    "MemberMovements": [
+      {
+        "Velocity": "0 1.499976",
+        "Heading": "0 0.99999994",
+        "Mass": 1.0,
+        "MaxSpeed": 27.0
+      }
+    ],
+    "MemberSprites": [
+      {
+        "SpriteName": "HocusBase",
+        "DrawOffset": {
+          "X": -16,
+          "Y": -24
+        },
+        "SpriteSize": {
+          "X": 32,
+          "Y": 32
+        },
+        "CurrentFrame": 0,
+        "CurrentFacing": 1,
+        "FrameTimer": {
+          "TicRate": 0.15,
+          "TicThisFrame": false,
+          "TicsSoFar": 4
+        },
+        "AnimateWhenStatic": false,
+        "LockFacing": false
+      }
+    ],
     "Steering": {
       "SteeringForce": "0 0",
       "MaxForce": 30.0
@@ -33,7 +78,7 @@
       "MaxSpeed": 5.0
     },
     "Transform": {
-      "Position": "392 657.05707",
+      "Position": "200 207.66603",
       "BoundingRadius": 8.0
     },
     "Sprite": {
@@ -50,10 +95,11 @@
       "CurrentFacing": 0,
       "FrameTimer": {
         "TicRate": 0.15,
-        "TicThisFrame": false,
-        "TicsSoFar": 2
+        "TicThisFrame": true,
+        "TicsSoFar": 404
       },
-      "AnimateWhenStatic": false
+      "AnimateWhenStatic": false,
+      "LockFacing": false
     },
     "PathFollower": {
       "SteeringForce": "0 0",
@@ -63,19 +109,19 @@
       "Members": [
         {
           "Name": "Hero",
-          "HP": 5,
-          "MaxHP": 5,
-          "Stance": 1,
-          "Hunger": 5,
-          "MaxHunger": 5,
+          "HP": 3,
+          "MaxHP": 3,
+          "Stance": 2,
+          "Hunger": 3,
+          "MaxHunger": 3,
           "Moves": [
-            "Hit",
-            "Commit"
+            "Hit"
           ],
           "MovesToLearn": [],
           "EquippedName": "",
           "StatusEffects": [],
-          "SpriteName": "TestFighter",
+          "BattleSpriteName": "TestFighter",
+          "FieldSpriteName": "CharacterBase",
           "GoneThisTurn": false,
           "CanGo": true
         },
@@ -83,125 +129,27 @@
           "Name": "Hocus",
           "HP": 3,
           "MaxHP": 3,
-          "Stance": 2,
+          "Stance": 1,
           "Hunger": 3,
           "MaxHunger": 3,
           "Moves": [
-            "Hit",
-            "Commit"
+            "Hit"
           ],
           "MovesToLearn": [
-            "Commit More",
-            "Defend",
             "Pass",
             "Bolster",
             "Thaw"
           ],
           "EquippedName": "",
           "StatusEffects": [],
-          "SpriteName": "HocusFighter",
-          "GoneThisTurn": false,
-          "CanGo": true
-        },
-        {
-          "Name": "Faeema",
-          "HP": 8,
-          "MaxHP": 10,
-          "Stance": 1,
-          "Hunger": 2,
-          "MaxHunger": 6,
-          "Moves": [
-            "Hit",
-            "Commit"
-          ],
-          "MovesToLearn": [
-            "Commit More",
-            "Defend",
-            "Pass",
-            "Heal",
-            "Donate"
-          ],
-          "EquippedName": "",
-          "StatusEffects": [],
-          "SpriteName": "FaeemaFighter",
-          "GoneThisTurn": false,
-          "CanGo": true
-        },
-        {
-          "Name": "Flurry",
-          "HP": 5,
-          "MaxHP": 10,
-          "Stance": 1,
-          "Hunger": 5,
-          "MaxHunger": 6,
-          "Moves": [
-            "Hit",
-            "Commit"
-          ],
-          "MovesToLearn": [
-            "Commit More",
-            "Defend",
-            "Pass",
-            "Weaken",
-            "Diminish"
-          ],
-          "EquippedName": "",
-          "StatusEffects": [],
-          "SpriteName": "TheFlurryFighter",
-          "GoneThisTurn": false,
-          "CanGo": true
-        },
-        {
-          "Name": "Skinner",
-          "HP": 8,
-          "MaxHP": 10,
-          "Stance": 2,
-          "Hunger": 2,
-          "MaxHunger": 6,
-          "Moves": [
-            "Hit",
-            "Commit"
-          ],
-          "MovesToLearn": [
-            "Commit More",
-            "Defend",
-            "Pass",
-            "Freeze",
-            "Harden"
-          ],
-          "EquippedName": "",
-          "StatusEffects": [],
-          "SpriteName": "SkinnerFighter",
-          "GoneThisTurn": false,
-          "CanGo": true
-        },
-        {
-          "Name": "Crystal",
-          "HP": 5,
-          "MaxHP": 10,
-          "Stance": 1,
-          "Hunger": 5,
-          "MaxHunger": 6,
-          "Moves": [
-            "Hit",
-            "Commit",
-            "Defend",
-            "Pass"
-          ],
-          "MovesToLearn": [
-            "Commit More",
-            "Poison",
-            "Antidote"
-          ],
-          "EquippedName": "",
-          "StatusEffects": [],
-          "SpriteName": "CrystalFighter",
+          "BattleSpriteName": "HocusFighter",
+          "FieldSpriteName": "HocusBase",
           "GoneThisTurn": false,
           "CanGo": true
         }
       ],
-      "NumMembers": 6,
-      "NumAlertMembers": 6,
+      "NumMembers": 2,
+      "NumAlertMembers": 2,
       "IsDead": false
     },
     "CampMembers": [],

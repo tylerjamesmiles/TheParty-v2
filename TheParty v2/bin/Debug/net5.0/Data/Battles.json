@@ -1,118 +1,29 @@
 ﻿{
 	"Battles" : [
 		{
-			"Name" : "TutorialBattle",
+			"Name" : "Soldiers1",
 			"Parties" :
 			[
 				"PlayerParty",
-				"TutorialParty"
+				"Soldiers1"
 			],
 			"Rewards" :
 			[
+				"+6 $",
+				"+3 Food"
 			]
 		},
 		{
-			"Name" : "WorldMapBattle1",
+			"Name" : "Soldiers2",
 			"Parties" :
 			[
 				"PlayerParty",
-				"WorldMapParty1"
+				"Soldiers2"
 			],
 			"Rewards" :
 			[
-				"+3 $",
-				"+1 Food"
-			]
-		},
-		{
-			"Name" : "WorldMapBattle2",
-			"Parties" :
-			[
-				"PlayerParty",
-				"WorldMapParty2"
-			],
-			"Rewards" :
-			[
-				"+2 $",
-				"+2 Food"
-			]
-		},
-		{
-			"Name" : "CaveBattle1",
-			"Parties" :
-			[
-				"PlayerParty",
-				"CaveParty1"
-			],
-			"Rewards" :
-			[
-				"+3 $",
-				"+2 Food"
-			]
-		},
-		{
-			"Name" : "CaveBattle2",
-			"Parties" :
-			[
-				"PlayerParty",
-				"CaveParty2"
-			],
-			"Rewards" :
-			[
-				"+1 $",
-				"+1 Food"
-			]
-		},
-		{
-			"Name" : "CaveBattle3",
-			"Parties" :
-			[
-				"PlayerParty",
-				"CaveParty3"
-			],
-			"Rewards" :
-			[
-				"+2 $",
-				"+2 Food"
-			]
-		},
-		{
-			"Name" : "CaveBattle4",
-			"Parties" :
-			[
-				"PlayerParty",
-				"CaveParty4"
-			],
-			"Rewards" :
-			[
-				"+3 $",
-				"+1 Food"
-			]
-		},
-		{
-			"Name" : "CaveBattle5",
-			"Parties" :
-			[
-				"PlayerParty",
-				"CaveParty5"
-			],
-			"Rewards" :
-			[
-				"+3 $",
-				"+2 Food"
-			]
-		},
-		{
-			"Name" : "RandallBattle",
-			"Parties" :
-			[
-				"PlayerParty",
-				"RandallBoss"
-			],
-			"Rewards" :
-			[
-				"+15 $",
-				"+8 Food"
+				"+10 $",
+				"+5 Food"
 			]
 		},
 		{
@@ -124,7 +35,7 @@
 			],
 			"Rewards" :
 			[
-				"+20 $",
+				"+15 $",
 				"+7 Food"
 			]
 		}

@@ -374,7 +374,7 @@ namespace TheParty_v2
                         ResultList.Add(new CommandFadeOutMusic());
                         ResultList.Add(new CommandFade(CommandFade.Direction.Out));
                         ResultList.Add(new CommandBeFaded());
-                        //ResultList.Add(new CommandDayPass());
+                        ResultList.Add(new CommandDayPass());
                         ResultList.Add(new CommandWait(1f));
                         ResultList.Add(new CommandNighttimeTalk());
                         ResultList.Add(new CommandTeleport(Arguments[0], int.Parse(Arguments[1]), int.Parse(Arguments[2])));

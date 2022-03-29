@@ -37,13 +37,16 @@ namespace TheParty_v2
             // Sort by priority
             ToSort.Sort((t1, t2) => t1.Priority.CompareTo(t2.Priority));
 
-            // Choose the top of the sorted list
-            TalkData ChosenTalk = ToSort[0];
+            if (ToSort.Count > 0)
+            {
+                // Choose the top of the sorted list
+                TalkData ChosenTalk = ToSort[0];
 
-            // Enqueue its commands
-            var Commands = ScriptInterpreter.Interpret(client, null, ChosenTalk.Script);
+                // Enqueue its commands
+                var Commands = ScriptInterpreter.Interpret(client, null, ChosenTalk.Script);
 
-            client.CommandQueue.PushCommands(Commands);
+                client.CommandQueue.PushCommands(Commands);
+            }
 
             Entered = true;
             Done = true;
